@@ -65,6 +65,58 @@ If useful, run the same small repo task in two harnesses. Codex can be the teach
 
 Do not force a winner. Compare steering, visibility of actions, diff/review experience, defaults, and tool use separately from raw model behaviour.
 
+## Future callback — context compaction, degradation, and "tears in the rain"
+
+This module is the natural home for a later lesson about what happens to long-running conversational context as an agent session grows.
+
+The lesson should explicitly call back to Lab 3's formulation:
+
+> Decisions that exist only in conversation are tears in the rain.
+
+Lab 3 teaches the simple failure mode: if an important decision exists only in a conversation and that conversation disappears, the decision disappears with it unless it was persisted into project state.
+
+A later context-focused exercise should deepen that lesson. Conversational context can become fragile even before a conversation is literally lost. Long-running agent sessions have finite context budgets. When a harness reaches or approaches those limits, it may compact, summarise, truncate, or otherwise transform earlier context so work can continue.
+
+The exact mechanism varies by harness and should be verified against the products used when this lesson is implemented. The invariant is more important than any one product's current implementation:
+
+> Context that still appears to be "in the conversation" may no longer exist in its original form.
+
+Complex reasoning is especially vulnerable. A compacted representation may preserve a conclusion or short summary while losing qualifications, intermediate reasoning, rejected alternatives, provenance, or the path that made the conclusion trustworthy.
+
+A useful mental model is:
+
+```text
+rich original context
+        ↓
+continued conversation
+        ↓
+context pressure
+        ↓
+compaction / summarisation / truncation
+        ↓
+lossier representation of what came before
+```
+
+The intended learner insight is not that compaction is bad. Compaction is often necessary for long-running work. The lesson is that conversation context is not a durable project record.
+
+A useful formulation to earn later is:
+
+> As soon as complex reasoning produces something worth keeping, it has started fading unless the important result and enough of its supporting evidence are persisted somewhere durable.
+
+Or, more memorably:
+
+> Context is tears in the rain. Persist what matters before the weather changes.
+
+This later exercise should distinguish at least three things:
+
+- a result or conclusion;
+- the reasoning or evidence that supports it;
+- the durable project state that future agents can inspect.
+
+It should also demonstrate that merely retaining a compacted conclusion is not always equivalent to preserving the reasoning artifact that produced it.
+
+Do not force this lesson into the initial Module 5 lab if that makes the session too dense. It can become a later dedicated lab or advanced exercise once the learner has enough experience with longer-running agent sessions for context pressure to feel real rather than theoretical. Its exact curriculum position is intentionally unpinned for now.
+
 ## Tools to experiment with
 
 - ChatGPT personality/verbosity/instruction settings where available;
