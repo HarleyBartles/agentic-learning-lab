@@ -20,51 +20,76 @@ The lab is built around a few ideas:
 - Treat local project access and connectors as complementary capabilities.
 - Prefer evidence of completed work over confident agent claims.
 
-## Modules
+## Labs
 
-Each module is designed to support roughly one hour of conversation, demonstration, and experimentation. They are facilitator guides rather than learner scripts.
+A lab is the complete learning experience for one topic. Where useful, a lab contains separate surfaces for the learner, facilitator, and working mission/project environment.
 
-1. [From chatbot to worker](modules/01-chatbot-to-worker.md)
-2. [The project has a home](modules/02-project-has-a-home.md)
-3. [Repositories, save points, and safe breakage](modules/03-repositories-save-points-and-safe-breakage.md)
-4. [Model, harness, context, tools, and behaviour](modules/04-model-harness-context-tools.md)
-5. [Tools and operating knowledge](modules/05-tools-and-operating-knowledge.md)
-6. [Local work and connected systems](modules/06-local-work-and-connected-systems.md)
-7. [Source of truth and verification](modules/07-source-of-truth-and-verification.md)
-8. [Build a real agentic project](modules/08-build-a-real-agentic-project.md)
-
-See also [Core principles](docs/core-principles.md) for the ideas that should recur throughout the conversations.
-
-## Lab areas
-
-- `modules/` contains facilitator guidance: learning goals, rationale, discussion prompts, and what not to teach yet.
-- `guided/` contains short learner-facing stage cards intended to be revealed one at a time during a session.
-- `labs/` contains the actual project exercises and their mission contracts: source material, output locations, and win conditions.
-- `docs/` contains cross-cutting principles and facilitator guidance.
-- `projects/` contains small example project environments that are not primarily software projects.
-
-This separation is intentional:
+Lab 1 is the stable reference structure:
 
 ```text
-module document
-    why we are teaching this and how to facilitate it
-
-guided stage card
-    what the learner should do right now
-
-lab README
-    what the actual project task is and what success means
+labs/01-chatbot-to-worker/
+    README.md
+    facilitator/
+        README.md
+    learner/
+        01-complete-context.md
+        02-missing-context.md
+        03-on-disk-worker.md
+    mission/
+        README.md
+        source/
+        output/
 ```
 
-For Module 1, start with `guided/module-01/stage-1.md` and reveal the later stage cards only when the previous stage and reflection are complete.
+The responsibilities are intentionally local to the lab:
+
+```text
+lab
+    the complete learning experience
+
+facilitator/
+    why and how to run it
+
+learner/
+    what the learner should do next
+
+mission/
+    the bounded environment the AI actually works in
+```
+
+If a file only makes sense because a particular lab exists, it should usually live inside that lab. Cross-cutting doctrine belongs in `docs/`.
+
+For Lab 1, learner cards should be revealed one at a time. The local Codex worker is scoped to the `mission/` folder rather than the whole lab so it does not see the teaching choreography.
+
+## Curriculum
+
+1. [From chatbot to worker](labs/01-chatbot-to-worker/)
+2. The project has a home
+3. Repositories, save points, and safe breakage
+4. Model, harness, context, tools, and behaviour
+5. Tools and operating knowledge
+6. Local work and connected systems
+7. Source of truth and verification
+8. Build a real agentic project
+
+The order and design beyond Lab 1 are intentionally fluid. Existing files in `modules/` are working facilitator drafts for later curriculum and may be rewritten, folded into labs, combined, or reordered as those labs take shape.
+
+See also [Core principles](docs/core-principles.md) for ideas that should recur throughout the conversations.
+
+## Repository areas
+
+- `labs/` contains complete learning experiences, including learner guidance, facilitator notes, and bounded working environments where appropriate.
+- `docs/` contains cross-cutting principles and curriculum-wide guidance.
+- `modules/` currently contains draft planning material for later labs that has not yet been promoted into a stable lab structure.
+- `projects/` contains small example project environments that are not primarily software projects.
+
+There is deliberately no separate root-level `guided/` or stable facilitator hierarchy. Learner and facilitator material that belongs to a lab lives with that lab.
 
 ## Expected progression
 
 The broad progression is:
 
 **Chat -> workplace -> persistent state -> history -> model/harness/context/tools -> appropriate capabilities -> operating knowledge -> connectors -> source of truth -> verification -> real project**
-
-The order beyond Module 1 is intentionally fluid. As the learner encounters real friction and develops interests, later modules may be rewritten, combined, or reordered.
 
 ## Important safety model
 
