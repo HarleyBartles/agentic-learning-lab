@@ -1,0 +1,2 @@
+Disposable setup checklist from an earlier rehearsal.
+Nothing in this file needs to survive the lab.
