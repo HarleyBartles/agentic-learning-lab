@@ -29,18 +29,20 @@ Run **the same mission four times** under different environmental constraints.
 1. Ordinary cloud ChatGPT with the complete source set supplied into the conversation: success.
 2. Ordinary cloud ChatGPT with one critical source file deliberately omitted: plausible failure.
 3. Codex operating directly inside the local mission workspace: success through direct inspection of project state.
-4. Cloud ChatGPT inside a persistent ChatGPT Project whose project files were populated by the learner: two independent cloud chats both succeed from the same reusable project context without repeated source uploads.
+4. Compare a prepared persistent cloud workspace with the local workspace using fresh agents, prompt-time information, and persisted project artifacts.
 
-The intellectual task is the same in all four exercises.
+The intellectual task is the same across the lab.
 
-The experiment is not trying to prove that one model is smarter than another or that one environment is universally better. It is trying to expose how much the environment changes who is responsible for supplying, discovering, maintaining, and transporting project context and artifacts.
+The experiment is not trying to prove that one model is smarter than another or that one environment is universally better. It is trying to expose how much the environment changes who is responsible for supplying, discovering, maintaining, transporting, and persisting project context and artifacts.
 
-The four runs should make these distinctions observable:
+The four exercises should make these distinctions observable:
 
 - an ordinary cloud conversation can only reason over project state that has been made available to that conversation;
 - missing context is invisible context;
 - an on-disk worker can inspect the environment where the local project state already lives;
-- a cloud agent can also be given a persistent working environment whose project context is reusable across independent conversations, but when that environment contains a separately uploaded representation of the project, the human still owns synchronization between the local project and the cloud copy.
+- a cloud agent can also be given a persistent working environment whose project files are reusable across independent conversations;
+- prompt-time context can be combined with stored project context without becoming persistent project state automatically;
+- a fresh agent can discover information left by another agent when that information was written into shared workspace state.
 
 ## The mission
 
@@ -54,7 +56,7 @@ For Exercises 1–3, the win condition is:
 
 > A correct finished file exists locally at `labs/01-chatbot-to-worker/mission/output/mission-brief.md`.
 
-For Exercise 4, the same intellectual result is required in two separate cloud chats. Each chat should independently produce a correct brief from the shared project files. The learner deliberately does not copy either result back to the local project yet, making the remaining artifact-transport boundary visible.
+Exercise 4 deliberately varies where the finished state is left. The cloud runs return briefs only in chat. The local run writes the brief into the mission workspace, allowing a later fresh local agent to inspect that persisted artifact.
 
 A correct brief must:
 
@@ -74,25 +76,34 @@ Prepare everything so no infrastructure lesson leaks into Lab 1.
 
 ### Cloud environment
 
-Before beginning Exercise 1, disable ChatGPT conversation memory / cross-chat memory for the learner's seat in ChatGPT settings. The purpose is experimental isolation: Exercise 2 must not be able to recover the late update from Exercise 1 through remembered conversation context.
+Before beginning Exercise 1, disable ChatGPT conversation memory / cross-chat memory for the learner's seat in ChatGPT settings. The purpose is experimental isolation: later fresh conversations must not recover information merely because another chat previously mentioned it.
 
 The learner should then have:
 
 - a ChatGPT seat you control;
 - ordinary cloud ChatGPT available;
 - file upload/download capability available;
-- ChatGPT Projects available for Exercise 4;
-- **conversation memory disabled for the exercise**;
+- a prepared ChatGPT Project for Exercise 4;
+- **conversation memory / cross-conversation memory disabled for the exercise**;
 - **no GitHub connector access to this learning repository**;
-- no pre-existing ChatGPT Project containing the mission source material before Exercise 4;
+- no mission source files preloaded into the prepared Lab 1 Project before the learner reaches Exercise 4;
 - a fresh conversation for Exercise 1;
 - another fresh conversation for Exercise 2.
 
-The point is not to cripple ChatGPT. It should work normally apart from deliberately removing hidden continuity between the first two experimental conversations. It simply should not already inhabit, retrieve from, or remember the local project.
+The point is not to cripple ChatGPT. It should work normally apart from deliberately removing hidden continuity between experimental conversations. It simply should not already inhabit, retrieve from, or remember the local project.
 
 Exercise 2 must still use a fresh conversation even with memory disabled. We want both protections: no conversation carry-over and no cross-chat memory contamination.
 
-For Exercise 4, the learner deliberately creates a ChatGPT Project and uploads the mission README plus the complete source set as project files. Do not connect that Project to GitHub or any other external system of record. It is intentionally a separately maintained cloud representation of the mission. The learner then uses two entirely separate chats inside that same Project so the persistence benefit comes from the project environment rather than conversational carry-over.
+For Exercise 4, configure the ChatGPT Project in advance. Project-level cross-conversation memory should be disabled as an implementer concern. The learner does not need to create or configure the Project.
+
+The learner's meaningful setup action is to open the prepared Lab 1 Project and upload:
+
+- `mission/README.md`;
+- every file in `mission/source/`.
+
+Do not connect that Project to GitHub or any other external system of record. It is intentionally a separately maintained cloud representation of the mission.
+
+The cloud runs in Exercise 4 must use completely fresh chats so any continuity comes from the shared project files, not remembered conversation state.
 
 ### Local Codex environment
 
@@ -162,7 +173,7 @@ The learner-facing cards live in `../learner/` and should be revealed one at a t
 3. `03-on-disk-worker.md`
 4. `04-cloud-project.md`
 
-Exercises 1–3 own their local output reset at the beginning. Leave the Exercise 3 mission brief in place while reflecting; Exercise 4 uses the same source material but produces its results in cloud replies rather than replacing the local output.
+Exercises 1–3 own their local output reset at the beginning. Exercise 4 includes its own cloud and local runs and explicitly controls whether new information is left only in chat or written into the workspace.
 
 ## Suggested shape of the hour
 
@@ -252,44 +263,89 @@ output/mission-brief.md
 
 When it finishes, inspect the resulting local file against exactly the same win condition as Exercise 1.
 
-Let Exercise 3 create a natural provisional conclusion. The learner may reasonably feel that direct local workspace access is clearly the answer to the repeated context problem. Do not correct that feeling before Exercise 4; let the next run complicate it.
+Let Exercise 3 create a natural provisional conclusion. The learner may reasonably feel that direct local workspace access is clearly the answer to the repeated context problem. Do not correct that feeling before Exercise 4; let the next exercise complicate it.
 
-### Exercise 4 — persistent cloud workspace
+### Exercise 4 — persistent workspaces and what survives
 
-Now let the learner deliberately give cloud ChatGPT an environment of its own rather than returning to an empty standalone conversation.
+Exercise 4 deliberately compares fresh cloud and local agents. Neither side should use memory from a previous conversation. Memory is not the point.
 
-Have the learner create a fresh ChatGPT Project for the mission and add:
+The learner opens the prepared Lab 1 ChatGPT Project and uploads the mission README plus every file in `mission/source/`. They only do this once.
 
-- `mission/README.md`;
-- every file in `mission/source/`.
+#### Run A — cloud project plus prompt-time information
 
-Do not upload the finished mission brief from Exercise 3.
+Start a fresh chat in the Project and ask:
 
-Run the task twice in two completely separate chats inside the same Project.
+> Complete the mission brief task. Give me the finished brief in your reply. Use the project files as your source of context. The west-route footbridge is confirmed unaffected by flooding.
 
-In the first project chat, ask:
+The result should correctly combine:
+
+- the persistent project files;
+- the new bridge confirmation supplied in this prompt.
+
+Do not copy the result into the local mission folder and do not modify the cloud project files.
+
+This should quietly demonstrate that project documents can be a durable baseline while prompt-time context adds information for the current task.
+
+#### Run B — fresh cloud chat, unchanged project files
+
+Start another completely fresh chat inside the same Project.
+
+Do not upload or paste the sources again. Do not repeat the bridge confirmation.
+
+Ask:
 
 > Complete the mission brief task. Give me the finished brief in your reply. Use the project files as your source of context.
 
-Inspect the result against the same mission requirements.
+The fresh cloud chat should still reconstruct the baseline mission from the shared project files without any repeated source transport. It should not know that the west-route footbridge was confirmed unaffected, because that information existed only in Run A's prompt and reply and was never added to the shared project files.
 
-Then start a second fresh chat inside the same Project. Do not upload, paste, or restate any of the mission sources. Ask exactly the same task again.
+This is important: do not describe Run B as the cloud model "forgetting." Nothing is being remembered or forgotten here. The new agent is reading the unchanged persistent workspace available to it.
 
-The wording of the two briefs may differ. Both should independently reconstruct the same current mission state from the shared project files.
+#### Run C — local workspace plus the same prompt-time information
 
-This is a first-class part of the experiment. Exercise 3 may have made direct local access feel like the obvious solution for remembering project sources. Exercise 4 deliberately disproves that simplistic conclusion: cloud agents can also be given a persistent environment whose project context is available to multiple independent conversations.
+Return to the prepared local Codex project. Delete `mission/output/mission-brief.md` if it exists so this run begins without a finished brief.
 
-The important positive result is:
+Start a fresh local-agent conversation and ask:
 
-> Once the project files are present in the cloud workspace, every new chat in that project can benefit from the same project context without the human re-uploading the source set each time.
+> Complete the exercise. The west-route footbridge is confirmed unaffected by flooding.
 
-Then inspect what responsibility remains with the human:
+The local worker should combine the existing project sources with the prompt-time fact and write the resulting brief to `mission/output/mission-brief.md`.
 
-- the learner created the cloud Project;
-- the learner chose and uploaded the source material;
+#### Run D — fresh local agent, same workspace
+
+Start another completely fresh local-agent conversation rooted at the same mission folder.
+
+Do not repeat the bridge confirmation.
+
+Ask:
+
+> What's the current plan expressed in the mission folder?
+
+The fresh worker should discover that the west-route footbridge is confirmed unaffected because Run C wrote that information into `mission/output/mission-brief.md`.
+
+Push this distinction strongly:
+
+> The local agent did not remember Run C.
+
+and:
+
+> Neither agent remembered anything. Memory is not what produced the difference.
+
+Run D knows because the previous worker changed persistent workspace state that the new worker can inspect.
+
+A useful formulation is:
+
+> The agent didn't remember. The project carried the result forward.
+
+Be precise when unpacking that line: the project is not cognitively remembering. The previous agent persisted information into project state, and the next agent read it.
+
+The cloud environment is not incapable of this in principle. In this specific run, Cloud A was instructed to return the answer in chat and not update the shared project documents. The local worker was operating in a workspace where its normal task contract leaves the finished artifact in the project. The point is to observe the consequence of where the result was persisted.
+
+Then inspect the remaining human responsibility around the cloud Project:
+
+- the learner uploaded the project material into the prepared cloud workspace;
+- those files can serve many fresh cloud chats without repeated uploads;
 - if the local source changes later, the cloud Project does not become fresh merely because the local project changed;
-- in this setup the learner remains responsible for refreshing that cloud representation;
-- the finished briefs currently exist in cloud replies rather than the local project's output location.
+- in this setup the learner remains responsible for refreshing that cloud representation.
 
 Useful formulation:
 
@@ -309,14 +365,16 @@ Ask:
 - Who was responsible for discovering and transporting context in Exercises 1 and 2?
 - Why did Exercise 3 not need the same completeness reminder?
 - After Exercise 3, did direct local access feel like the obvious answer?
-- What did Exercise 4 disprove about that conclusion?
-- Why could two completely separate cloud chats both reconstruct the same mission without repeated uploads?
+- What did the cloud half of Exercise 4 disprove about that conclusion?
+- Why could a fresh cloud chat still use all the uploaded baseline sources without another upload?
+- Why did the bridge confirmation disappear from the fresh cloud run?
+- Why did the fresh local agent know the bridge confirmation?
+- Did either fresh agent remember the earlier conversation?
+- What would happen if the local agent had only replied in chat and never written the mission brief?
 - Who created and maintains the cloud Project's representation of the mission?
-- If a local source changes next week, which environment automatically knows about it?
-- Where did each exercise leave its finished artifact?
 - What happens to these responsibilities at 40 or 400 files?
 
-Summarise the four runs as:
+Summarise the four exercises as:
 
 ```text
 Exercise 1 — ordinary cloud + complete context
@@ -328,9 +386,11 @@ human omits critical state → AI cannot see it → plausible failure
 Exercise 3 — direct local workspace
 agent inspects project state where it already lives → AI succeeds
 
-Exercise 4 — persistent cloud workspace
-human transports project state once into a reusable cloud environment
-→ independent cloud chats reuse that context without repeated uploads
+Exercise 4 — persistent workspaces
+cloud project files persist across fresh chats
+prompt-only information does not become shared project state automatically
+local worker writes prompt-time information into the workspace
+fresh local worker discovers that persisted result
 ```
 
 The scaling question matters. Lab 1 should not end with:
@@ -339,11 +399,11 @@ The scaling question matters. Lab 1 should not end with:
 
 It should end with something closer to:
 
-> The environment changes who is responsible for discovering, carrying, maintaining, and returning project state.
+> The environment changes who is responsible for discovering, carrying, maintaining, persisting, and returning project state.
 
 ## End point
 
-The learner should leave with five ideas.
+The learner should leave with six ideas.
 
 ### Ordinary cloud chat can do project work when I bring the project context to it
 
@@ -359,11 +419,15 @@ Exercise 3 removes much of the human responsibility for enumerating every releva
 
 ### A cloud agent can also have a persistent project environment
 
-Exercise 4 shows this twice: two independent chats can use the same project files and reconstruct the same project state without the human re-uploading or pasting those sources into each conversation.
+Exercise 4 demonstrates that uploaded project files can provide reusable baseline context to fresh cloud chats without the human re-uploading or pasting those sources into every conversation.
 
-### Persistent cloud context does not automatically synchronize separate project environments
+### Stored project context and prompt-time context can be combined
 
-In Exercise 4, the human is still the transport layer between the local mission workspace and the separately populated cloud Project, and remains the arbiter of whether that cloud representation is fresh.
+Cloud Run A demonstrates this quietly: persistent project files provide the baseline while the prompt supplies the new bridge confirmation for the current task.
+
+### Persistent state, not agent memory, carries information into a fresh worker
+
+Cloud Run B and local Run D provide the contrast. Neither fresh agent remembers a previous conversation. Cloud Run B sees unchanged shared project files, so it does not know the prompt-only bridge confirmation. Local Run D sees a mission brief written by Run C, so it can discover the confirmation from the workspace.
 
 Compact formulations worth preserving:
 
@@ -375,17 +439,26 @@ Compact formulations worth preserving:
 
 > A cloud agent can have a working environment too.
 
+> Neither agent remembered anything. Memory is not the point.
+
+> The agent didn't remember. The project carried the result forward.
+
 > We stopped carrying the files into every conversation. We have not stopped carrying them between project environments.
 
 ## Important facilitator rules
 
-- Isolate Exercises 1 and 2: memory disabled, separate fresh conversations.
+- Keep conversation memory / cross-conversation memory disabled for the experimental runs.
 - Exercise 1 should succeed; gently steer toward complete source material if necessary.
 - Exercise 2 should fail for exactly one reason: deliberate omission of `late-update.md`.
 - Exercise 3 should receive no file-level hints.
 - Let Exercise 3 create the provisional feeling that direct local access may be the obvious solution; do not prematurely explain Exercise 4.
-- Exercise 4 should use a newly created ChatGPT Project populated manually by the learner with the complete mission source set.
-- Exercise 4 must run in two entirely separate chats inside that Project, with no source re-upload or paste between them.
+- Exercise 4 should use a prepared ChatGPT Project. Project creation and cross-conversation-memory configuration are implementer concerns, not learner work.
+- The learner should personally upload the mission README and complete source set into the prepared Project so they experience project files becoming shared cloud context.
+- Cloud Runs A and B must be entirely separate chats, with no conversational continuity and no source re-upload between them.
+- Cloud Run A must not update the shared cloud project files with the bridge confirmation.
+- Local Runs C and D must be entirely separate agent conversations rooted at the same mission workspace.
+- Local Run C must leave its finished brief in `mission/output/mission-brief.md` so Run D has persisted state to inspect.
+- Push the point that neither Run B nor Run D depends on agent memory. The difference is inspectable environment state.
 - Do not connect Exercise 4's cloud Project to GitHub or another source system. Lab 2 earns that step.
 - Do not teach source control or declare either workspace authoritative yet.
 - `mission/AGENTS.md` is visible plumbing. If the learner asks, explain it briefly and defer the deeper instruction-surface lesson.
@@ -394,7 +467,7 @@ Compact formulations worth preserving:
 
 ### "So cloud ChatGPT is bad"
 
-No. Exercises 1 and 4 prove the opposite. With appropriate context and environment it performs the task correctly. Exercise 4 specifically demonstrates that persistent cloud context can be reused across independent conversations.
+No. Exercises 1 and 4 prove the opposite. With appropriate context and environment it performs the task correctly. Exercise 4 specifically demonstrates that persistent cloud project files can be reused across independent conversations.
 
 ### "Exercise 2 is a hallucination"
 
@@ -402,7 +475,11 @@ Not really. The model was given an incomplete but internally plausible version o
 
 ### "Codex is better because it remembers the sources"
 
-Too simple. Exercise 3 has direct access to a local project workspace, but Exercise 4 demonstrates that cloud ChatGPT can also be given persistent project context which multiple fresh chats can use independently. The important difference is how each environment obtains and maintains that state.
+No. Memory is not responsible for the result. Exercise 4 shows that cloud ChatGPT can also be given persistent project context which multiple fresh chats use independently. The local fresh agent in Run D knows the bridge status because another worker wrote it into the shared workspace, not because Codex remembered the earlier conversation.
+
+### "Cloud Run B forgot the bridge"
+
+No. Run B is a fresh agent with the same unchanged project files. The bridge confirmation existed only in Run A's task context and reply. It never became shared project state.
 
 ### "The cloud Project solves the transport problem completely"
 
@@ -422,7 +499,7 @@ Do not teach the recovery mechanism yet.
 
 ## Connection to later labs
 
-Exercise 4 creates the natural handoff into Lab 2.
+Exercise 4 creates the natural handoff into Lab 2 and quietly plants a seed for Lab 3.
 
 At the end of Lab 1, the learner has seen both a direct local workspace and a useful persistent cloud workspace. Multiple cloud chats can share the same uploaded project context, so persistent workspace affordances are clearly not unique to local agents. The cloud workspace, however, still contains a human-maintained representation of the project.
 
@@ -430,7 +507,9 @@ Lab 2 can therefore ask:
 
 > What changes if, instead of maintaining a separate copy of project context inside ChatGPT, we give the cloud agent a route to the project itself?
 
-That introduces connector-mediated repository access without implying that the cloud environment was previously incapable of persistent project work.
+Exercise 4 also gives the learner an experience which Lab 3 can later name more explicitly: information supplied in a conversation is temporary unless something persists it into project state.
+
+Do not fully teach that abstraction in Lab 1. Let the learner experience it first.
 
 Lab 1 also intentionally leaves several later questions unanswered:
 
@@ -466,4 +545,4 @@ Unless a learner question genuinely requires a brief detour, postpone:
 
 Teach one invariant first:
 
-> A conversation is not the same thing as a workspace. Different environments change how project state reaches the agent and how completed work gets back to the project.
+> A conversation is not the same thing as a workspace. Different environments change how project state reaches the agent, what gets persisted, and how completed work gets back to the project.
