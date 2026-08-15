@@ -1,0 +1,2 @@
+Temporary note for deletion testing.
+Safe to remove and recreate.
