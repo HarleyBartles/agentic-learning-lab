@@ -319,11 +319,19 @@ Inspect it. This is a correct derived output at the time it is produced.
 
 Fresh agent:
 
-> The Repair Café public session time has changed to 10:00-13:00. Update `notes/current-decisions.md` to reflect that new confirmed time. Do not inspect the rest of the project for other references; this is a deliberately scoped update. Change only that file, then commit and push it.
+> The Repair Café public session time has changed to 10:00-13:00. Update only `notes/current-decisions.md` to reflect that new confirmed time. Do not search for or update other references. Commit and push that one-file change.
 
-Do not mention the visitor sheet or hint that other copies exist.
+Agent 2 may notice the consistency risk and warn that other project artifacts could become stale. Treat that as good agent behaviour, not as failure.
 
-This should naturally leave:
+The learner card explicitly explains that this one-file update is exercise staging rather than recommended maintenance practice. In normal work, we would usually allow the agent to find and update dependent references. Here, deliberately override the warning so Agent 3 is given an ambiguous project surface to reason over.
+
+If Agent 2 warns, have the learner say:
+
+> Yes, I understand that may leave other references stale. For this exercise, make only the scoped change I requested.
+
+Do not mention the visitor sheet or identify the specific stale references.
+
+This should leave:
 
 ```text
 notes/current-decisions.md
@@ -336,7 +344,7 @@ output/visitor-information.md
 09:30-12:30
 ```
 
-Agent 2 has not necessarily made a reasoning error. It performed the bounded task it was given.
+Agent 2 has not necessarily made a reasoning error. It performed the bounded task after appropriately surfacing the risk.
 
 ## Agent 3
 
@@ -366,6 +374,21 @@ Probe the policy it exposes:
 - refusal to choose: what would the project need to say so the conflict could be resolved without guessing?
 
 Do not force a canonical Agent 3 answer.
+
+## Scale reflection
+
+Do not let the learner leave thinking this is merely a three-file housekeeping problem.
+
+The Repair Café fixture is intentionally tiny. Once the contradiction is visible, a human can inspect the handful of artifacts and understand the problem quickly.
+
+Scale the thought experiment:
+
+- A production of *Cats* might have cast calls, rehearsal schedules, technical plans, venue arrangements, costume notes, publicity, ticketing, supplier information, and working documents all repeating overlapping facts.
+- A project the size of Glastonbury Festival can involve large numbers of teams, suppliers, schedules, safety plans, artist information, transport arrangements, site operations, public communications, and generated outputs. The same operational fact may appear in many places for legitimate reasons.
+
+Ask what happens when one important fact changes and no human can realistically inspect every representation of it.
+
+The point to surface is that at scale, truth management stops being tidiness. The project needs explicit ways to express authority, derivation, freshness, and the consequences of a change.
 
 Earn:
 
