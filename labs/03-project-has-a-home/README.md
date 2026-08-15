@@ -10,10 +10,22 @@ The learner should leave with the idea that important project state must survive
 
 The current exercises are:
 
-1. `learner/01-tears-in-the-rain.md` — make an important project decision in conversation while explicitly forbidding file changes, simulate losing that conversation, recover from the project, persist the missing decision, then prove with another fresh agent that the project now carries it forward.
+1. `learner/01-tears-in-the-rain.md` — discuss and make an important Repair Café decision while the agent is operating read-only, simulate losing that conversation, reconstruct the project without the missing decision, then explicitly re-enable mutation, persist the decision, and prove it with a fresh agent.
 2. `learner/02-meeting-minutes.md` — run the same Repair Café meeting minutes through three different persistence instructions: vague `important stuff`, verbatim evidence only, then verbatim evidence plus explicit human authority about which points become current project state. Inspect and discard the first two uncommitted runs; keep, commit, and push the third.
 
 The shared working fixture lives in `project/` and is a fictional community Repair Café pilot. The on-disk agent should be rooted at that folder rather than at the teaching lab so it sees the project rather than the exercise choreography.
+
+Exercise 1 deliberately uses more than one safety layer:
+
+- natural user intent such as `we're just discussing`;
+- standing project doctrine in `project/AGENTS.md` which defines discussion-only behaviour;
+- an enforced read-only or equivalent non-mutation mode where the chosen harness provides one.
+
+The distinction matters even though it is only lightly surfaced to the learner here:
+
+> Instructions describe the intended boundary. Permissions enforce the possible boundary.
+
+The exact control may look different across Codex desktop, Codex CLI/IDE, Devin Desktop, or another agentic environment. Keep the main Exercise 1 experiment on one surface so the persistence result stays clean, but use the variation as a small reminder that different harnesses expose different benefits, capabilities, and risk controls.
 
 Exercise 1 earns:
 
