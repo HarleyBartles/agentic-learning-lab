@@ -1,28 +1,30 @@
 # Labs
 
-This directory is for deliberately disposable exercises.
+A lab is the complete learning experience for a curriculum topic.
 
-Nothing here should be precious. The point is to create situations where the learner can make changes, inspect them, break things, and recover safely.
+A lab may contain three distinct surfaces:
 
-Suggested exercises:
+```text
+facilitator/
+    rationale, setup, teaching guidance, observations, and things to defer
 
-- `01-break-a-file/` — make a bad edit and restore it.
-- `02-break-five-files/` — make a broad multi-file change and inspect the diff.
-- `03-delete-something/` — delete tracked content and recover it.
-- `04-bad-agent-refactor/` — give an agent an overly broad instruction, inspect the result, and undo it.
-- `05-bad-commit/` — commit a mistake and recover from the commit.
-- `06-published-mistake/` — later, push a harmless bad commit to the shared remote and recover.
+learner/
+    learner-facing exercise cards or reference material, revealed as needed
 
-The exercises should be introduced conversationally rather than treated as homework.
+mission/ or another working folder
+    the bounded project environment where the task itself lives
+```
 
-## Recovery habit
+These are not separate root-level systems. They belong together because they describe and run the same learning experience.
 
-When something surprising happens:
+The working environment should be scoped deliberately. If an agent only needs the mission workspace, point the agent at that workspace rather than the whole teaching lab. This keeps facilitator and learner choreography out of the agent's project context and creates a clean boundary between teaching material and project state.
 
-1. stop;
-2. inspect state;
-3. understand the diff;
-4. decide what to keep;
-5. restore or revert what is wrong.
+Some setup may be performed in advance by the facilitator so early labs can teach an abstraction without first teaching all of its machinery. That setup should use normal capabilities of the harness rather than artificial tricks. Later labs can reveal the hidden configuration and explore its alternatives and tradeoffs.
 
-The lab should reinforce that experimentation is safe when the blast radius is controlled and a recovery path exists.
+## Current stable lab
+
+- `01-chatbot-to-worker/` — compare complete cloud context, deliberately incomplete cloud context, and an on-disk worker operating directly in the mission workspace.
+
+## Safety
+
+Nothing in these labs should be precious. The learner should be free to make bad changes, delete generated outputs, inspect surprising results, and later learn how to recover more consequential state safely.
