@@ -14,7 +14,7 @@ Give those records only to the prepared on-disk agent. Do not put the record val
 
 Ask the on-disk agent:
 
-> Set up the attendee database for this project using the records I have given you. Create any reusable database schema that belongs in source control, keep the operational database in the project's normal local location, and push the appropriate source-controlled project work when you are finished.
+> Set up the attendee database for this project using the records I have given you. Create the reusable database schema as part of the project, keep the operational database in the project's normal local location, and push the appropriate source-controlled project work when you are finished.
 
 Let the worker complete the task and publish whatever project changes properly belong in the repository.
 
@@ -28,7 +28,7 @@ Tell it:
 
 Let the cloud agent inspect the repository as thoroughly as it wants.
 
-Then ask the on-disk agent for the same information from its local project.
+Then start a fresh on-disk-agent conversation rooted at the same local project and ask for the same information.
 
 ## Reflect
 
@@ -38,7 +38,7 @@ Talk through:
 - What database-related material became visible on GitHub?
 - Where did the actual attendee records end up?
 - Could the cloud agent retrieve information that never crossed onto the GitHub surface?
-- Could the on-disk agent still query that state directly?
+- Could the fresh on-disk agent still query that state directly?
 
 The database is not excluded just to make this exercise work. Operational database contents are commonly kept out of source control while reusable schema, migrations, setup code, and other source material may be versioned normally.
 
