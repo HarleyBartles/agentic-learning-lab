@@ -34,7 +34,7 @@ Ask cloud ChatGPT to change the supplier arrival time directly in the repository
 
 Do not refresh, reset, or otherwise synchronise the local working copy yet.
 
-Ask both agents the same question again.
+Once the cloud-side change is complete, start a fresh cloud conversation and a fresh local-agent conversation. Ask both agents the same supplier-time question again.
 
 Compare the answers.
 
@@ -55,5 +55,8 @@ Talk through:
 - What did the local worker see before the local change was abandoned?
 - What did the local worker see after restoring its saved local version?
 - Why was that restored local value still different from the newer repository value?
+- At any stage, was an agent lying or giving a wrong answer based on the project state it could actually see?
+
+The disagreement is the point. Each agent can honestly report the correct value for the state visible through its own access route while disagreeing with another agent that can see a different state.
 
 Do not worry about the mechanics of synchronising, committing, or discarding changes yet. The observation for now is that `has access to the project` does not automatically mean `is looking at the same project state`.
