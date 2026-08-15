@@ -53,9 +53,11 @@ facilitator/
 learner/
     what the learner should do next
 
-mission/
-    the bounded environment the AI actually works in
+mission/ or project/
+    the bounded environment the AI actually works in, when the lab needs one
 ```
+
+Not every lab needs a mission. Labs should use whatever small set of exercises best demonstrates the lesson.
 
 If a file only makes sense because a particular lab exists, it should usually live inside that lab. Cross-cutting doctrine belongs in `docs/`.
 
@@ -64,15 +66,18 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 ## Curriculum
 
 1. [From chatbot to worker](labs/01-chatbot-to-worker/)
-2. The project has a home
-3. Repositories, save points, and safe breakage
-4. Model, harness, context, tools, and behaviour
-5. Tools and operating knowledge
-6. Local work and connected systems
-7. Source of truth and verification
-8. Build a real agentic project
+2. Give the cloud agent the project
+3. The project has a home
+4. Repositories, save points, and safe breakage
+5. Model, harness, context, tools, and behaviour
+6. Tools and operating knowledge
+7. Local work and connected systems
+8. Source of truth and verification
+9. Build a real agentic project
 
-The order and design beyond Lab 1 are intentionally fluid. Existing files in `modules/` are working facilitator drafts for later curriculum and may be rewritten, folded into labs, combined, or reordered as those labs take shape.
+Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the repository, then compares connector-mediated access with direct local workspace access.
+
+The order and design beyond Lab 1 remain intentionally fluid. Existing files in `modules/` are working facilitator drafts for later curriculum and may be rewritten, folded into labs, combined, or reordered as those labs take shape.
 
 See also [Core principles](docs/core-principles.md) for ideas that should recur throughout the conversations.
 
@@ -87,9 +92,11 @@ There is deliberately no separate root-level `guided/` or stable facilitator hie
 
 ## Expected progression
 
-The broad progression is:
+The broad progression currently begins:
 
-**Chat -> workplace -> persistent state -> history -> model/harness/context/tools -> appropriate capabilities -> operating knowledge -> connectors -> source of truth -> verification -> real project**
+**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and operating knowledge -> composed local/connected systems -> source of truth -> verification -> real project**
+
+The exact later sequence can continue to move as the labs are expanded and tested.
 
 ## Important safety model
 
