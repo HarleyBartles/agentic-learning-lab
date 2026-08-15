@@ -14,7 +14,17 @@ with:
 
 > What is the blast radius, and do I have a recovery path?
 
-## Teach only the useful Git concepts first
+## Suggested session shape
+
+### 0–10 minutes — Name the fear
+
+Ask what the learner is actually worried will happen when an agent edits files. Separate vague computer anxiety from concrete failure modes.
+
+Explain that this lab contains nothing precious. It is designed to be broken.
+
+### 10–25 minutes — Introduce only four Git ideas
+
+Teach:
 
 - what the project looked like before;
 - what changed;
@@ -23,24 +33,24 @@ with:
 
 Treat commits as named save points where the project is in a state you understand.
 
-## Deliberate breakage exercise
+Use `git status`, `git diff`, and the IDE's source-control view. Prefer visual inspection over command memorisation.
 
-Ask the agent to make an intentionally broad or foolish change across several files.
+### 25–45 minutes — Break things on purpose
 
-Then inspect:
+Use exercises from `labs/` or create them conversationally.
 
-```text
-git status
-git diff
-```
+Progression:
 
-Discuss what actually changed. Then restore the files.
+1. Make a bad edit to one tracked file and restore it.
+2. Ask the agent for an intentionally broad change across several files; inspect the diff and undo it.
+3. Delete a tracked file and recover it.
+4. Commit a bad change and then recover from the committed state.
 
-Repeat with a bad committed change, then recover from that too.
+If the learner is comfortable, later push a harmless bad commit to the shared remote and recover that too.
 
-If useful later, push a deliberately bad commit to the shared remote and recover again. The point is to demonstrate that `committed` and `on GitHub` do not mean `irreversible`.
+The point is to demonstrate that `committed` and `on GitHub` do not mean `irreversible`.
 
-## Recovery loop
+### 45–55 minutes — Practise the recovery loop
 
 When an agent does something surprising:
 
@@ -48,18 +58,32 @@ When an agent does something surprising:
 2. Inspect state.
 3. Understand the diff.
 4. Decide what to keep.
-5. Revert or restore what is wrong.
+5. Restore or revert what is wrong.
 
-The workflow should feel like iterative control, not `command -> pray`.
+Have the learner direct the agent to explain its own changes, but verify against Git rather than trusting the explanation.
 
-## Reversible versus external actions
+### 55–60 minutes — Introduce external side effects
 
-Early exercises should mostly involve reversible project state: edits, creates, deletes of tracked files, renames, document rewrites, reorganisations, and commits.
-
-Contrast those with actions Git cannot undo: sending mail, publishing, deleting remote records, spending money, changing access control, or modifying production services.
+Contrast reversible local state with actions Git cannot undo: sending mail, publishing content, deleting remote records, spending money, changing permissions, or modifying production services.
 
 > Be fearless with reversible state. Be deliberate with irreversible or external side effects.
 
+## Tools to experiment with
+
+- Git status and diff;
+- IDE source-control/diff UI;
+- local agent editing several files;
+- restore/revert operations;
+- GitHub remote only if the learner is ready.
+
+## Discussion prompts
+
+- What exactly can we lose here?
+- Which copy would we recover from?
+- What does Git protect and what does it not protect?
+- When should we checkpoint before an experiment?
+- Which agent actions deserve approval because they escape the repo boundary?
+
 ## Do not teach yet
 
-Avoid branches, rebasing, merge strategies, and elaborate Git vocabulary until the learner understands why isolated changes or parallel work would be useful.
+Avoid rebasing, merge strategies, detached HEADs, complex branching models, or Git internals. Branches can arrive when isolated work solves a problem the learner actually understands.
