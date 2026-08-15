@@ -27,6 +27,14 @@ It is a fictional community Repair Café pilot containing settled project decisi
 
 Root the prepared local agent at `labs/03-project-has-a-home/project/`, not at the Lab 3 teaching directory.
 
+The project `AGENTS.md` now contains standing discussion-mode doctrine. When the user frames work as discussion, exploration, brainstorming, thinking through, or planning, the agent should treat that as discussion-only until the user explicitly authorizes project changes.
+
+This is useful operating doctrine, but it is not the same thing as an enforced permission boundary.
+
+Keep this distinction available for later curriculum use:
+
+> Instructions describe the intended boundary. Permissions enforce the possible boundary.
+
 # Exercise 1 — Tears in the rain
 
 ## Learning goal
@@ -65,31 +73,75 @@ Before Exercise 1, make sure:
 - `working/pilot-plan.md` still marks the arrival model as undecided;
 - no learner-created arrival decision has already been persisted elsewhere in the project.
 
+## Choose the operating surface
+
+Keep the main Exercise 1 experiment on one agent surface from Conversation 1 through Conversation 3 so the persistence result is not confounded by changing products mid-experiment.
+
+Use whichever local agent surface is most convenient and supports the needed boundary cleanly.
+
+Current good options include:
+
+- Codex in a surface that exposes read-only permissions;
+- Codex CLI or IDE where a read-only sandbox/permission mode can be selected;
+- another agentic IDE such as Devin Desktop if it exposes an equivalent Plan/read-only control.
+
+The exact UI and terminology may vary by harness and can change over time. Verify the chosen surface immediately before running the lab rather than baking product-specific clicks into the conceptual lesson.
+
+The point is not `Codex has the right button`. The point is:
+
+> Different harnesses expose different operating controls, capability boundaries, and risk profiles.
+
+This should remain a light-touch observation here. A later lab will explicitly unpack model versus harness versus instructions versus tools.
+
+For Codex specifically, current OpenAI documentation distinguishes Plan mode from read-only permissions. Plan mode supports planning behaviour; read-only permissions/sandboxing are the stronger mechanism for preventing filesystem writes. Prefer an actual read-only boundary for this experiment when available.
+
 ## Conversation 1 — create valuable knowledge without changing the project
 
 Give the learner `../learner/01-tears-in-the-rain.md`.
 
-The learner begins with a strong non-mutation instruction:
+Before the learner starts discussing the Repair Café decision, put the agent into read-only or equivalent non-mutation mode if the chosen surface provides one.
 
-> Inspect this project and help me think through the unresolved arrival and booking model. We're just talking here. Do not create, edit, delete, rename, or otherwise change any files until I explicitly tell you to modify files. Discussion, agreement, decisions, or approval during this conversation are not permission to change the project.
+The learner can now speak naturally:
+
+> Inspect this project and help me think through the unresolved arrival and booking model. We're just discussing it for now.
+
+There are now three separate layers cooperating:
+
+```text
+user intent
+"We're just discussing."
+
+project doctrine
+AGENTS.md says discussion means no mutation
+
+harness boundary
+read-only mode prevents filesystem mutation
+```
+
+Do not teach this as a formal framework yet. Use it as robust exercise plumbing and, if useful, point out that the environment is enforcing the important boundary rather than trusting a long prompt.
 
 Let the learner and agent genuinely discuss the tradeoffs. Do not steer them toward a predetermined policy.
 
-Once the learner chooses an arrival policy, make sure they explicitly keep the no-mutation boundary while asking the agent to reason from the decision. The learner should say something equivalent to:
+Once the learner chooses an arrival policy, have them state it explicitly and ask the agent to reason from it while staying in discussion mode. Something like:
 
-> That's the decision: [their policy]. Talk me through what that means for volunteers, queues, and how we should communicate the pilot. We are still only discussing it. Do not modify any files.
+> That's the decision: [their policy]. Talk me through what that means for volunteers, queues, and how we should communicate the pilot. We're still only discussing it.
 
 This second turn is important. It proves that the first agent understood and could reason from the decision. The later loss must not be explainable as a misunderstanding.
 
 Before simulating the crash, quietly verify that the project really is unchanged. A local filesystem check or diff is fine as facilitator plumbing. Do not turn that check into a Git lesson.
 
-If the agent changed files despite the learner's explicit boundary, restore the baseline and repeat the discussion. The experiment depends on the decision existing only in conversational context.
+If the chosen harness lacks a reliable read-only mechanism, the standing `AGENTS.md` rule plus explicit discussion framing is the fallback. In that case verify the working tree carefully before continuing.
 
 ## Simulate the loss
 
-Tell the learner to treat the IDE as having crashed and the conversation as unrecoverable.
+Tell the learner to treat the IDE or agent surface as having crashed and the conversation as unrecoverable.
 
 Close the thread and do not consult it again.
+
+Be precise about causality:
+
+- starting a fresh conversation removes the conversational context;
+- the earlier read-only boundary merely ensured that nothing from that context was persisted into project files before the loss.
 
 The exact failure mechanism is scenery. The lesson should remain valid for a crashed IDE, corrupted or unavailable thread, accidental loss, context reset, or simply returning later without usable conversational continuity.
 
@@ -97,7 +149,7 @@ Do not imply that local agents are uniquely vulnerable. The point is that a conv
 
 ## Conversation 2 — reconstruct from durable state
 
-Start a completely fresh local-agent conversation in the same workspace.
+Start a completely fresh local-agent conversation in the same workspace and keep it read-only for the reconstruction step.
 
 The learner asks:
 
@@ -116,7 +168,9 @@ Ask the learner what is missing.
 
 ## Recovery — cross the mutation boundary deliberately
 
-Once the learner identifies the missing arrival decision, they tell the fresh agent what was decided and explicitly authorize persistence:
+Once the learner identifies the missing arrival decision, explicitly move the agent out of read-only/discussion-only operation and authorize project changes.
+
+The learner tells the fresh agent what was decided:
 
 > We actually decided [their policy]. That decision matters to the ongoing project. You may now modify project files. Persist the decision somewhere appropriate so another fresh agent can reconstruct the current state. Do not alter the source material.
 
@@ -153,6 +207,8 @@ Useful questions:
 - What changed between Conversations 2 and 3?
 - Did Conversation 3 need memory from the previous chat?
 - What would happen six months later if the only record of an important decision were an old conversation?
+- What did read-only mode guarantee that a prose instruction alone could not guarantee?
+- What role did the standing project instruction play even though the harness had the stronger boundary?
 
 The recovery pattern to reinforce is:
 
