@@ -8,9 +8,9 @@ Before starting, delete `mission/output/mission-brief.md` if it exists.
 
 Complete the mission in `mission/` using ordinary cloud ChatGPT.
 
-ChatGPT cannot see the mission folder. Make sure it has all of the information it needs, then use it however you want to produce the required mission brief and get the finished file into `mission/output/`.
+ChatGPT cannot see the mission folder. Make sure it has all of the information it needs, then complete the task however you would normally use ChatGPT.
 
-There is no required upload, download, or copy/paste technique.
+Use whatever approach feels natural to you for getting the source material into ChatGPT and the finished brief back into `mission/output/`.
 
 ## Exercise complete
 
