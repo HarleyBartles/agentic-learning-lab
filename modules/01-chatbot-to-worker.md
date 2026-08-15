@@ -2,287 +2,343 @@
 
 Approximate duration: 1 hour.
 
-## Purpose
+Status: **tightening / intended to become stable**.
 
-The first session should change the learner's mental model of AI before teaching much machinery.
+## Learning goal
 
-The starting model is likely to be:
+The first session should change one mental model and do little else.
 
-> I have a question or task, I open ChatGPT, I explain it, it gives me something, and I take the result away.
+The learner probably begins here:
 
-The model we want to introduce is:
+> I have a task, I open ChatGPT, I explain it, it gives me something, and I take the result away.
 
-> I have a project with a real working environment. An agent can enter that environment, inspect its current state, do work there, use tools, and leave the project changed.
+By the end of the session, they should have experienced this alternative:
 
-Do not frame this as cloud AI versus local AI, or good versus bad. Ordinary ChatGPT is often exactly the right tool. The lesson is that **a conversation and a workplace are different things**.
+> I have a project. An agent can work inside the project's environment, inspect the project's actual state, and leave useful work there.
 
-## Desired outcome
-
-By the end of the hour, the learner should have personally experienced the difference between:
-
-- asking an AI to produce an answer or artifact which the human then carries away; and
-- asking an agent inside a project to inspect the project and change it directly.
-
-If the learner leaves with only one sentence, it should be:
+The important distinction is not cloud bad, local good. It is:
 
 > A chat is somewhere I talk to an AI. A working environment is somewhere an AI can do work.
 
-Do not worry yet about whether they know the words repository, harness, MCP, skill, context window, worktree, or RAG.
+The exercise should make that distinction visible through experience rather than explanation.
 
-## Before the session
+## The core experiment
 
-Prepare the environment so setup does not consume the hour.
+Run **the same mission twice**.
 
-Recommended minimum:
+Attempt A uses ordinary cloud ChatGPT with no access to the local project.
 
-- the learner has access to ChatGPT;
-- Git is installed, but does not need to be taught yet;
-- this repository is cloned locally;
-- an on-disk agent can work in the clone — Codex is the primary teaching agent for this lab;
-- the learner can see the folder tree and open files in the IDE;
-- no important personal or work data is present;
-- no broad external credentials are required;
-- do not add a large `AGENTS.md`, skills, or MCP collection yet.
+Attempt B uses Codex operating locally inside the project.
 
-The lack of sophisticated project instructions is intentional. Later modules should solve problems the learner has actually felt.
+The intellectual task and success condition are identical. The thing that changes is where the agent is working.
 
-Use `labs/01-cloud-vs-local/` for the main exercise.
+The learner should discover that the cloud workflow requires the human to transport project context into the AI's environment and then transport the resulting artifact back out. In the local workflow, that transport work largely disappears.
 
-## Suggested shape of the hour
-
-This is not a script. Follow interesting questions when they arise.
-
-### 0–10 minutes — Start with what already feels normal
-
-Ask how the learner currently uses ChatGPT or Claude.
-
-Useful prompts for the conversation:
-
-- What kinds of things do you already ask AI to do?
-- When it writes something useful, what do you do with the result?
-- Have you ever downloaded a generated file and then edited it elsewhere?
-- Have you ever had to upload a revised version again?
-- Have you ever had to remind a chat about something you thought it already knew?
-- What happened with the technical drawing you tried to make?
-
-Do not correct their workflow yet. The point is to establish that cloud chat is already useful and familiar.
-
-If useful, explicitly acknowledge that one-off questions, discussion, brainstorming, web research, and many personal tasks may never need an on-disk agent.
-
-### 10–25 minutes — Do a small project through cloud chat
-
-Open `labs/01-cloud-vs-local/` locally, but use ordinary cloud ChatGPT for the task.
-
-The lab contains a few small source files and asks for a short briefing document.
-
-To make ChatGPT capable of doing the task, the human must expose the relevant material to it. Let the learner decide how: upload the files, copy and paste them, or otherwise provide the context.
-
-A suitable task is:
-
-> Read the supplied source material and produce a concise briefing that captures the objective, constraints, decisions, and open questions.
-
-When the answer is good enough, ask:
-
-> Where does the result live now?
-
-If it exists only in the chat, have the learner get it into the real project. They might copy it into a file or download an artifact and move it into place.
-
-Do not artificially make this painful. Let the normal workflow reveal its own friction.
-
-Things to notice together:
-
-- the human selected what to upload;
-- the human carried files across the boundary;
-- the model saw the representation supplied to it, not automatically the whole local project;
-- the generated result initially lived in the conversation rather than in the project;
-- the human had to decide where the result belonged;
-- if the local source changes later, the cloud copy does not magically become the current project state.
-
-The point is not that any one of these is terrible. The point is that **the human is doing integration work between the conversation and the project**.
-
-### 25–45 minutes — Give the same job to an on-disk agent
-
-Now open the local clone in the IDE with the on-disk agent operating in the repository.
-
-Use a deliberately ordinary prompt. Avoid an elaborate engineered prompt because the environment itself is the demonstration.
-
-For example:
-
-> Read `labs/01-cloud-vs-local/`, work out what the exercise is asking for, and create the finished briefing in its `output/` directory. Do not change the source material.
-
-Then let the agent work.
-
-Watch what it actually does. Depending on the harness, it may inspect the directory, read the README and source files, decide where the output belongs, and create the file directly.
-
-Open the resulting file from the project tree.
-
-Discuss what changed about the human's job:
-
-- nobody uploaded the source files one by one;
-- nobody copied the answer out of the conversation;
-- the agent could inspect the project structure itself;
-- the output appeared where the work lives;
-- the next agent entering the project can inspect the result as project state;
-- the human can still review, edit, reject, or replace the work.
-
-A useful phrase here is:
-
-> If I am asking an AI to make something that ultimately needs to live on my computer, why am I always volunteering to be the courier?
-
-Do not turn that into a universal rule. Sometimes the cloud artifact workflow is more convenient. The point is to reveal another option.
-
-### 45–55 minutes — Compare the two environments
-
-Talk through the difference without declaring a winner.
-
-A simple comparison:
-
-| Cloud conversation | On-disk working environment |
-| --- | --- |
-| Excellent for discussion and one-off tasks | Excellent for sustained project work |
-| Human supplies or connects context | Agent can inspect local project state |
-| Output naturally begins in the conversation | Output can be written directly into the project |
-| Memory and project features can provide continuity | Filesystem and repo provide explicit persistent state |
-| Connectors bridge external systems | Local tools can operate directly on project files |
-
-Ask:
-
-- Which parts of the cloud workflow were useful?
-- Which parts were just movement of information?
-- Who was maintaining the relationship between the AI's view and the real project?
-- What kinds of jobs would not benefit from a local environment at all?
-- What kinds of jobs become more attractive when the agent can work directly where the project lives?
-
-Good non-code examples to throw into the discussion:
-
-- researching and maintaining a family history archive;
-- planning a house renovation with quotes, measurements, decisions, and drawings;
-- maintaining a tabletop campaign or game design project;
-- writing a long document with source material and revisions;
-- organising a collection;
-- preparing recurring reports from a folder of source material;
-- producing technical drawings or other generated artifacts with the correct local tools.
-
-The repository is not being introduced as a place for code. It is being introduced as a **bounded project home**.
-
-### 55–60 minutes — Leave one useful itch unresolved
-
-Finish by looking at the files the local agent changed.
-
-The learner may naturally ask questions such as:
-
-- What if the agent changes the wrong thing?
-- How do I know what it changed?
-- What if I want the old version back?
-- How does it remember project rules next time?
-- What happens when the project gets much larger?
-
-Do not solve all of them now.
-
-Those questions are the curriculum generating itself.
-
-If fear of breakage comes up, reassure the learner only within the actual lab boundary: this repository is deliberately disposable and recoverable. It is safe to experiment here. Source control and recovery are covered properly in Module 3.
-
-## The actual lab
+## The mission
 
 Use:
 
 `labs/01-cloud-vs-local/`
 
-The source material is intentionally mundane. The intellectual difficulty of the task should be low so the learner can pay attention to the operating environment rather than the subject matter.
+The learner is given a small field-recovery scenario. Several source files contain the information needed to prepare a mission brief, including a late update that supersedes part of the original plan.
 
-Run it twice:
+The only win condition is:
 
-1. cloud-first, with the human moving the relevant information and result;
-2. local-agent-second, with the agent working directly in the repository.
+> A correct finished file exists locally at `labs/01-cloud-vs-local/output/mission-brief.md`.
 
-If the learner notices that ChatGPT can also work with connected files or repositories, agree. That is useful. Do not defend a simplistic local-versus-cloud position. Say that later modules will distinguish direct project access, memory, uploaded project files, synced sources, and connectors.
+The brief must satisfy the requirements stated in the lab README and correctly reconcile the source material.
 
-## Tools to experiment with
+The repository is incidental at this stage. To the learner, this can simply be a project folder on their computer.
 
-Primary tools for this module:
+## Before the session
 
-- ChatGPT as an ordinary cloud conversation;
-- the IDE's file tree/editor;
-- Codex operating locally in the repository;
-- the operating-system filesystem.
+Prepare everything so no infrastructure lesson leaks into Module 1.
 
-Tools deliberately **not** required yet:
+### Cloud environment
 
-- Git commands beyond whatever was needed to clone the lab;
-- GitHub MCP or connector workflows;
-- custom skills;
-- `AGENTS.md`;
-- branches/worktrees;
-- multiple agents;
-- RAG/vector databases.
+The learner should have:
 
-The simplicity matters. We want the learner to attribute the difference to **where the work is happening**, not to a giant preconfigured agent stack.
+- a ChatGPT seat you control;
+- ordinary cloud ChatGPT available;
+- file upload/download capability available;
+- **no GitHub connector access to this learning repository**;
+- no ChatGPT Project or other preloaded copy of the lab source material;
+- a fresh conversation for Attempt A.
 
-## Things worth saying explicitly
+The point is not to cripple ChatGPT. It should work normally. It simply should not already inhabit or retrieve from the local project.
 
-### The conversation is not the project
+### Local environment
 
-A conversation can discuss a project, remember parts of it, receive files from it, or connect to services around it. That does not automatically make the conversation itself the authoritative project state.
+Prepare in advance:
 
-### An agent can inspect reality instead of relying only on your description
+- this project already present on the learner's computer;
+- an IDE/editor where the learner can see folders and files;
+- Codex installed and authenticated;
+- Codex able to work locally in the project folder;
+- no important personal or work data inside the project;
+- no broad external credentials needed for the exercise.
 
-If the project is on disk and the agent has appropriate access, it can inspect files, folders, outputs, and later history and tools directly. That reduces the amount of project topology the human has to narrate.
+If Git was used to obtain the project, that is facilitator setup, not learner material. Do not explain clone, commit, push, branches, remotes, or source control during this module unless an unexpected question makes a brief answer necessary.
 
-### Direct access changes what tasks are worth delegating
+Do not pre-install a large `AGENTS.md`, skills, MCP collection, or other sophisticated project machinery. The local agent should win mainly because it can inhabit the project.
 
-A request that feels silly in chat — because copying the result out would take as long as doing the work — can become useful when the agent can make the change directly.
+## Suggested shape of the hour
 
-For example:
+This is guidance, not a script. Preserve the start point, the two attempts, and the end point; let the conversation between them breathe.
 
-> Update these twelve project notes to use the new terminology.
+### 0–10 minutes — Start from familiar AI use
 
-In a chat-only workflow, the movement of twelve files may dominate the task. In a local working environment, the agent can potentially inspect and modify them in place.
+Ask how the learner already uses ChatGPT or Claude.
 
-### Cloud tools remain useful
+Useful questions:
 
-Do not create the impression that the goal is to abandon ChatGPT cloud. Later the learner should be comfortable choosing among conversation, local agent work, connectors, and combinations of them.
+- What kinds of things do you ask it to do?
+- When it produces something useful, what happens next?
+- Have you downloaded a generated file before?
+- Have you copied an answer into a document or another application?
+- Have you uploaded revised files back into a later chat?
+- What happened when you tried to create a technical drawing?
 
-The engineering question is:
+Do not correct anything. Establish that cloud chat is already useful and familiar.
 
-> Which environment puts the agent closest to the state and tools needed for this job?
+It is worth saying explicitly that many tasks should remain conversations: questions, brainstorming, casual research, explanation, and one-off advice may need nothing more elaborate.
 
-## Watch for these misconceptions
+### 10–25 minutes — Attempt A: complete the mission with cloud ChatGPT
 
-### "Repos are for programmers"
+Show the learner the local folder:
 
-Counter with the contents of this lab itself: Markdown, research notes, briefs, drawings, generated documents, source material, and project instructions all benefit from a durable project home and history.
+`labs/01-cloud-vs-local/`
 
-### "The local agent is smarter"
+Give them the goal, not the workflow:
 
-Not necessarily. The model may be the same or comparable. What changed is the environment, available context, tools, and ability to act on state directly.
+> Complete this mission using ChatGPT. You have succeeded when the correct `mission-brief.md` exists in the local `output` folder. ChatGPT cannot see this project. Use it however you want.
 
-### "ChatGPT memory means the project is persistent anyway"
+Then stop directing the mechanics.
 
-Do not fully unpack this until Module 2. For now, distinguish remembering something about the work from possessing and inspecting the current project state.
+If they ask:
 
-### "The agent might break my computer"
+> Should I upload the source files or paste them?
 
-Keep the answer scoped. This lab is intentionally bounded and contains nothing precious. The learner will soon learn source control and recovery rather than being told to trust blindly.
+A good answer is:
 
-## Optional extension if there is time
+> Either works. Choose how you want to get the job done.
 
-Make one small change to a source file after both briefings have been produced.
+The learner may:
+
+- upload the source files;
+- paste some or all of their contents;
+- ask ChatGPT to create a downloadable Markdown file;
+- copy the final answer into a new local file;
+- download an artifact and move it into the output folder;
+- use some other reasonable combination.
+
+All of those count.
+
+Do not manufacture extra friction. The exercise succeeds even if the learner finds an efficient cloud workflow.
+
+What matters is that **they decide how information crosses both boundaries**:
+
+```text
+local project
+    ↓ human transports project context
+cloud ChatGPT
+    ↓ human transports finished artifact
+local project
+```
+
+The learner has won Attempt A when the file exists locally in the correct place and is good enough.
+
+### 25–30 minutes — Notice what happened
+
+Before explaining anything, ask:
+
+> What work did you have to do purely because ChatGPT could not see or write to this project?
+
+Possible observations:
+
+- deciding which files ChatGPT needed;
+- opening or selecting them;
+- uploading or pasting them;
+- explaining relationships between them if necessary;
+- retrieving the generated result;
+- deciding how to turn the result into the required local file;
+- moving or pasting it into the expected output location.
+
+The point is not that this was difficult. With a handful of small files it may have been trivial.
+
+A useful phrase is:
+
+> You were acting as the transport layer between the AI and the project.
+
+Do not yet discuss source control, connectors, persistent project instructions, or elaborate agent architecture.
+
+### 30–35 minutes — Discard the result
+
+Delete the completed `output/mission-brief.md` and return the exercise to its starting state.
+
+Do this casually.
+
+There is no commit and no push. There is no need to explain recovery semantics yet. The lab is disposable and the artifact is about to be regenerated.
+
+This deliberate discard is useful later: the source-control module can reveal why we can become even more comfortable making and undoing changes in project environments.
+
+### 35–50 minutes — Attempt B: same mission, local Codex
+
+Now allow Codex to operate locally in the project.
+
+The learner's prompt should be intentionally small:
+
+> Complete the exercise in `labs/01-cloud-vs-local`.
+
+That should be enough.
+
+Do not secretly encode the navigation plan into the prompt. We want the environment to carry that information.
+
+A successful local agent should be able to discover for itself:
+
+```text
+lab README
+    ↓
+mission and output requirement
+    ↓
+source directory
+    ↓
+relevant source files
+    ↓
+late/superseding information
+    ↓
+output/mission-brief.md
+```
+
+Watch what Codex actually inspects and changes.
+
+When it finishes, open the resulting file from the local project tree and compare it with the required outcome.
+
+### 50–60 minutes — Compare the work, not the prose
+
+The key comparison is not which mission brief was better written.
 
 Ask:
 
-> Which version of the project does each AI currently know about?
+- What did you have to move manually in Attempt A?
+- What did you have to move manually in Attempt B?
+- Did Codex need you to tell it which source files existed?
+- Did you need to copy its finished answer anywhere?
+- Was the local agent necessarily smarter, or did it have a different working environment?
+- Would the cloud workflow still be perfectly reasonable for four tiny files?
+- What changes if there are 40 files? 400?
+- What if the task is to update six existing documents rather than create one new document?
+- What if neither you nor the agent initially knows which files contain the relevant information?
+- What if this job happens repeatedly as the project changes?
 
-Do not go deep into memory or synchronisation yet. Just let the question hang as preparation for Module 2.
+The scaling question is important. Module 1 should not end with:
+
+> Codex saved me thirty seconds of copying.
+
+It should end with something closer to:
+
+> Direct project access changes the kinds and scale of work that are sensible to delegate.
+
+## End point
+
+The learner should leave with three ideas.
+
+### Cloud chat can do project work when I bring the project context to it
+
+That can be completely appropriate for small or occasional tasks.
+
+### A local agent can inspect and modify the project's working state directly
+
+The human does not always need to select every input, upload it, retrieve every output, and put it back where it belongs.
+
+### This is primarily an environment difference, not proof of a smarter model
+
+The local agent may have comparable intelligence. What changed was its proximity to the source of truth and its ability to act on the project directly.
+
+A compact formulation:
+
+> The on-disk agent removes the human from much of the context-and-artifact transport loop.
+
+## Why the mission includes a late update
+
+The source material deliberately contains a superseding fact.
+
+This gives the artifact a small correctness criterion beyond merely producing plausible prose. The learner or agent has to inspect enough of the source set to notice that the original plan is no longer fully current.
+
+Do not turn this into the verification lesson yet. It simply makes the mission real enough to have a right and wrong result.
+
+## Tools in this module
+
+Use only what is needed to make the environmental contrast visible:
+
+- ordinary cloud ChatGPT;
+- file upload/download or copy/paste, at the learner's discretion;
+- the local filesystem and IDE file tree;
+- Codex operating locally in the project.
+
+Deliberately avoid making these part of the lesson:
+
+- Git commands;
+- GitHub pushes or pull requests;
+- GitHub connector/MCP access;
+- custom skills;
+- `AGENTS.md`;
+- branches or worktrees;
+- multi-agent systems;
+- RAG/vector databases.
+
+## Important facilitator rule
+
+**Do not teach the learner the optimal cloud workflow before Attempt A.**
+
+Their chosen method of getting context into ChatGPT and the artifact back into the project is part of the observation.
+
+Help if they are genuinely blocked, but do not solve the transport problem for them merely because you know a quicker route.
+
+## Misconceptions to watch for
+
+### "So cloud ChatGPT is bad"
+
+No. For a small one-off task, Attempt A may be the simpler choice. The lesson is to recognise when the integration burden begins to dominate the useful work.
+
+### "Codex is better because it is smarter"
+
+Not established. It had direct project access and permission to change local state. Module 4 will later separate model, harness, context, tools, and feedback more carefully.
+
+### "Repositories are for programmers"
+
+Do not even need to use the word repository heavily yet. This is a project folder containing Markdown source material and an output artifact. Later modules can reveal what source control adds.
+
+### "What if the agent breaks something?"
+
+Keep the answer bounded:
+
+> In this lab there is nothing precious. We are going to learn how to make experimentation recoverable rather than avoid experimentation.
+
+Do not teach the mechanism yet.
+
+## Connection to later modules
+
+Module 1 intentionally leaves several useful questions unanswered:
+
+- Where should durable project state live?
+- How do we know what changed?
+- What if an agent makes a bad change?
+- How do we recover something we deleted?
+- How does an agent learn durable project rules?
+- How do we give it capabilities outside the local project?
+- How do we know its work is actually correct?
+
+Those are not omissions. They are hooks for the later curriculum.
+
+The source-control module should explicitly call back to the casual deletion in Module 1: we threw away the first mission brief because the exercise was disposable; now we learn how to make much more consequential experimentation safely reversible.
 
 ## Do not teach yet
 
-Avoid turning the first hour into a survey of agentic AI terminology.
-
-Unless the learner pulls hard on one of these topics, postpone:
+Unless a learner question genuinely requires a brief detour, postpone:
 
 - Git internals;
-- branches and merge strategies;
+- commits, branches, remotes, and merge strategies;
 - MCP architecture;
 - skills;
 - RAG;
@@ -291,6 +347,6 @@ Unless the learner pulls hard on one of these topics, postpone:
 - multi-agent orchestration;
 - elaborate prompting frameworks.
 
-Teach the invariant first:
+Teach one invariant first:
 
-> A persistent working environment lets an agent participate in a project instead of only talking about it.
+> A conversation can work on what I bring to it. An on-disk agent can work where the project already lives.
