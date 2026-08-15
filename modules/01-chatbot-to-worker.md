@@ -32,7 +32,7 @@ Attempt B uses Codex operating locally inside the project.
 
 The intellectual task and success condition are identical. The thing that changes is where the agent is working.
 
-The learner should discover that the cloud workflow requires the human to transport project context into the AI's environment and then transport the resulting artifact back out. In the local workflow, that transport work largely disappears.
+Both agents should be fully capable of completing the task correctly when they receive the complete source set. The exercise is not trying to show that one model can reason and the other cannot. It is trying to show who is responsible for discovering and supplying project state.
 
 ## The mission
 
@@ -40,13 +40,21 @@ Use:
 
 `labs/01-cloud-vs-local/`
 
-The learner is given a small field-recovery scenario. Several source files contain the information needed to prepare a mission brief, including a late update that supersedes part of the original plan.
+The learner is given a small field-recovery scenario. Several source files contain the information needed to prepare a mission brief, including a later update that explicitly supersedes part of the original plan.
 
-The only win condition is:
+The win condition is:
 
 > A correct finished file exists locally at `labs/01-cloud-vs-local/output/mission-brief.md`.
 
-The brief must satisfy the requirements stated in the lab README and correctly reconcile the source material.
+A correct brief must:
+
+- satisfy the required sections in the lab README;
+- select the single current access route and timing;
+- apply the later superseding information rather than presenting old and new plans as unresolved alternatives;
+- identify the remaining unresolved field risk;
+- avoid contradicting any current source constraint.
+
+The superseding update is intentionally easy to reconcile once seen. This is not a reasoning trap. Its purpose is to make completeness of context observable.
 
 The repository is incidental at this stage. To the learner, this can simply be a project folder on their computer.
 
@@ -136,7 +144,23 @@ All of those count.
 
 Do not manufacture extra friction. The exercise succeeds even if the learner finds an efficient cloud workflow.
 
-What matters is that **they decide how information crosses both boundaries**:
+### Gentle completeness nudge
+
+The only cloud failure mode we care about is incomplete context.
+
+If the learner appears ready to ask ChatGPT for the final answer without having supplied the full source set, give one gentle nudge before they proceed:
+
+> Before you ask it to finish, are you sure ChatGPT has everything in this project that might matter?
+
+If useful, add:
+
+> Remember, it cannot inspect the folder itself. If there is a file you have not shown it, it does not know that file exists.
+
+Do **not** tell them which source file matters, do not identify the superseding update, and do not prescribe upload versus copy/paste. The nudge is about the environment boundary, not the answer.
+
+Once the complete source set is supplied, cloud ChatGPT should be expected to resolve the superseded state correctly. If it does, that strengthens the lesson: the capability was there; the human had to make the project state available.
+
+What matters is that **the learner decides how information crosses both boundaries**:
 
 ```text
 local project
@@ -146,7 +170,7 @@ cloud ChatGPT
 local project
 ```
 
-The learner has won Attempt A when the file exists locally in the correct place and is good enough.
+The learner has won Attempt A when the file exists locally in the correct place and passes the mission requirements.
 
 ### 25–30 minutes — Notice what happened
 
@@ -159,10 +183,18 @@ Possible observations:
 - deciding which files ChatGPT needed;
 - opening or selecting them;
 - uploading or pasting them;
-- explaining relationships between them if necessary;
+- ensuring the complete source set was present;
 - retrieving the generated result;
 - deciding how to turn the result into the required local file;
 - moving or pasting it into the expected output location.
+
+If you gave the completeness nudge, ask:
+
+> Why did I need to remind you to check whether ChatGPT had everything?
+
+The intended observation is simple:
+
+> Because ChatGPT had no way to know another local source file existed unless the human exposed it.
 
 The point is not that this was difficult. With a handful of small files it may have been trivial.
 
@@ -192,6 +224,8 @@ The learner's prompt should be intentionally small:
 
 That should be enough.
 
+Do not give an equivalent completeness nudge. The lab README tells the agent what success means, and the on-disk environment gives it the ability to inspect the source directory itself.
+
 Do not secretly encode the navigation plan into the prompt. We want the environment to carry that information.
 
 A successful local agent should be able to discover for itself:
@@ -199,20 +233,24 @@ A successful local agent should be able to discover for itself:
 ```text
 lab README
     ↓
-mission and output requirement
+mission and pass conditions
     ↓
 source directory
     ↓
-relevant source files
+complete source set
     ↓
-late/superseding information
+original plan + superseding update
+    ↓
+current reconciled mission state
     ↓
 output/mission-brief.md
 ```
 
 Watch what Codex actually inspects and changes.
 
-When it finishes, open the resulting file from the local project tree and compare it with the required outcome.
+When it finishes, open the resulting file from the local project tree and check the same win condition used for Attempt A.
+
+If both attempts are correct, say so. That is the desired result.
 
 ### 50–60 minutes — Compare the work, not the prose
 
@@ -220,10 +258,13 @@ The key comparison is not which mission brief was better written.
 
 Ask:
 
+- Were both agents capable of resolving the superseding update once they had all the inputs?
+- In Attempt A, who was responsible for making sure the AI had all the inputs?
+- In Attempt B, who discovered the source set?
+- Why was a completeness nudge useful in the cloud run but unnecessary in the local run?
 - What did you have to move manually in Attempt A?
 - What did you have to move manually in Attempt B?
-- Did Codex need you to tell it which source files existed?
-- Did you need to copy its finished answer anywhere?
+- Did you need to copy Codex's finished answer anywhere?
 - Was the local agent necessarily smarter, or did it have a different working environment?
 - Would the cloud workflow still be perfectly reasonable for four tiny files?
 - What changes if there are 40 files? 400?
@@ -253,19 +294,23 @@ The human does not always need to select every input, upload it, retrieve every 
 
 ### This is primarily an environment difference, not proof of a smarter model
 
-The local agent may have comparable intelligence. What changed was its proximity to the source of truth and its ability to act on the project directly.
+Both agents should succeed on the actual reasoning problem when they receive the same complete source material. What changes is who has responsibility for discovering and transporting that material.
 
 A compact formulation:
 
 > The on-disk agent removes the human from much of the context-and-artifact transport loop.
 
-## Why the mission includes a late update
+## Why the mission includes superseded state
 
-The source material deliberately contains a superseding fact.
+The source material deliberately contains an original plan and a later update that explicitly supersedes part of it.
 
-This gives the artifact a small correctness criterion beyond merely producing plausible prose. The learner or agent has to inspect enough of the source set to notice that the original plan is no longer fully current.
+This gives the artifact a small objective correctness condition beyond merely producing plausible prose.
 
-Do not turn this into the verification lesson yet. It simply makes the mission real enough to have a right and wrong result.
+The correct interpretation should be straightforward once both files are visible. That is intentional. We are not testing whether the cloud or local agent can reason through a difficult ambiguity.
+
+We are testing whether the agent had access to the complete project state needed to reach the correct answer.
+
+This also lightly foreshadows a later source-of-truth lesson without teaching it yet.
 
 ## Tools in this module
 
@@ -287,13 +332,21 @@ Deliberately avoid making these part of the lesson:
 - multi-agent systems;
 - RAG/vector databases.
 
-## Important facilitator rule
+## Important facilitator rules
 
-**Do not teach the learner the optimal cloud workflow before Attempt A.**
+### Do not teach the optimal cloud workflow before Attempt A
 
 Their chosen method of getting context into ChatGPT and the artifact back into the project is part of the observation.
 
-Help if they are genuinely blocked, but do not solve the transport problem for them merely because you know a quicker route.
+Help if they are genuinely blocked, but do not solve the transport problem merely because you know a quicker route.
+
+### Do prevent accidental incomplete-context failure
+
+If the learner is about to omit source material, give the gentle completeness nudge. We do not want the lesson to become "ChatGPT gave the wrong answer" when the real issue is that the learner did not provide the project state it could not discover for itself.
+
+### Do not nudge Codex toward individual source files
+
+The local agent's ability to inspect the project and discover the complete source set is part of Attempt B's evidence.
 
 ## Misconceptions to watch for
 
@@ -303,7 +356,7 @@ No. For a small one-off task, Attempt A may be the simpler choice. The lesson is
 
 ### "Codex is better because it is smarter"
 
-Not established. It had direct project access and permission to change local state. Module 4 will later separate model, harness, context, tools, and feedback more carefully.
+Not established. Both agents should resolve the mission correctly from the same complete source set. Codex had direct project access and permission to change local state. Module 4 will later separate model, harness, context, tools, and feedback more carefully.
 
 ### "Repositories are for programmers"
 
