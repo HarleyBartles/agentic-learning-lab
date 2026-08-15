@@ -2,6 +2,8 @@
 
 Approximate duration: 1 hour.
 
+Status: fluid. Preserve the connection back to Module 1 even if this module is later reordered or rewritten.
+
 ## Core idea
 
 Source control is not mainly a programmer ritual. It is controlled history and a recovery mechanism.
@@ -13,6 +15,28 @@ The behavioural goal is to replace:
 with:
 
 > What is the blast radius, and do I have a recovery path?
+
+## Connection back to Module 1
+
+In Module 1, the learner completed the cloud version of the mission and then casually deleted `output/mission-brief.md` before asking Codex to do the same mission locally.
+
+That deletion was safe only because the artifact was disposable and easy to regenerate. Use that memory as the satisfying reveal for source control:
+
+> Remember when we threw the first mission brief away because nothing important depended on it? Source control lets us make much more consequential experimentation feel similarly recoverable.
+
+This should feel like an answer to a problem the learner already understands, not the introduction of programmer infrastructure for its own sake.
+
+The conceptual progression is:
+
+```text
+Module 1:
+"This particular thing is safe to throw away."
+
+Later source-control module:
+"We can deliberately make important project state recoverable too."
+```
+
+If this curriculum is reordered, preserve this callback wherever source control and safe breakage are eventually taught.
 
 ## Suggested session shape
 
