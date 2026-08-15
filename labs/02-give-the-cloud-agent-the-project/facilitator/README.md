@@ -34,7 +34,8 @@ The fixture is a small event-planning project for Riverside Hall. It includes:
 - tracked text describing event setup and operational facts;
 - a tracked venue plan image containing information that only exists visually;
 - a tracked description of a local operational attendee database;
-- a `.gitignore` rule excluding `local/`, where the SQLite database is generated on the learner's machine;
+- a tracked reusable SQLite schema;
+- a `.gitignore` rule excluding `local/`, where the operational database will be created during Exercise 3;
 - a tracked disposable `scratch/` directory used for the deletion exercise.
 
 This is deliberately one repository, not a second exercise repository.
@@ -60,15 +61,33 @@ Use the learner's local checkout of this same repository.
 Before the lab:
 
 1. ensure the checkout starts synchronized with `main`;
-2. run `python local-setup/create-local-db.py` from the Lab 2 project to create a fresh `local/attendees.db` with runtime-only attendee records;
+2. ensure `project/local/attendees.db` does **not** exist;
 3. confirm `project/local/` is ignored by Git;
 4. prepare the on-disk agent with a working root at `labs/02-give-the-cloud-agent-the-project/project/`;
-5. ensure the agent can inspect common image formats and can use SQLite locally;
+5. ensure the agent can inspect common image formats and use SQLite locally;
 6. keep the `scratch/` content disposable.
 
-The schema and generator are versioned, but the generated attendee records are not. This prevents the cloud agent from reconstructing the current database answer from another committed fixture.
+The repository contains the reusable database schema in `project/local-setup/schema.sql`, but no attendee records. The learner will supply those records directly to the on-disk worker during Exercise 3, and the worker will create the operational database locally.
 
 Do not teach Git synchronization or SQLite setup mechanics while preparing this lab. They are facilitator plumbing here.
+
+### Hidden local operating instruction for Exercise 3
+
+Configure the local worker through the same kind of facilitator-controlled project instruction surface used in Lab 1. Do not expose this setup to the learner yet.
+
+Add an operating rule with this intent:
+
+> Treat data in `local/` as local operational data. Never publish, reproduce, summarise, quote, encode, or otherwise leak database record contents into tracked files, generated receipts, commit messages, issues, pull requests, or other remote repository surfaces. Publish only project material appropriate for source control.
+
+Also require:
+
+> Before committing or pushing work that involved local operational data, ensure the published changes and commit message contain no values derived from those records.
+
+This hidden instruction is experimental hygiene, not the lesson. Without it, an otherwise helpful worker might create a receipt, summary, log, commit message, or other tracked artifact that accidentally copies the attendee records onto GitHub and destroys the access-boundary experiment.
+
+Do not explain this instruction layer during Lab 2. A later lab can reveal that ignored files alone do not prevent an agent from copying their contents into source control, and can introduce durable project rules, pre-publication checks, secret/data scanning, or other mechanisms when those concepts have been earned.
+
+The hidden instruction must not teach the worker the attendee values or the answer to the later cloud question. It only defines what information is permitted to cross from local operational state into remote source-controlled state.
 
 ## Exercise 1 — Which state are you looking at?
 
@@ -156,23 +175,36 @@ Do not turn this into an explanation of binary transport, connector internals, o
 
 ## Exercise 3 — Is the repository the whole project?
 
-Use `project/local/attendees.db`.
+This exercise starts with no attendee database on disk.
 
-The tracked project explains that current attendee requirements are operational data held in a local SQLite database. The actual database is excluded from source control by `.gitignore`.
+The learner chooses five fictional attendee records, including name, confirmation state, and meal choice, and supplies those values directly to the on-disk worker. Those values must not already exist in a tracked file or cloud conversation.
 
-Ask both agents:
+The learner asks the local worker to set up the attendee database using those records, create any reusable database structure that properly belongs in source control, and push the appropriate project work when finished.
 
-> How many confirmed vegetarian meals are currently required?
+Expected local result:
 
-The local agent should discover/query the SQLite database and answer from current records.
+- `project/local/attendees.db` is created and contains the records;
+- the database remains ignored and is not published;
+- reusable schema or setup material can remain tracked;
+- the worker can commit/push appropriate source-controlled work without leaking any attendee values into tracked files, commit messages, receipts, logs, issues, PRs, or other remote surfaces.
 
-The cloud agent through GitHub should be able to discover that the project *refers* to the operational database but cannot retrieve records which are not present on GitHub.
+Then start a fresh cloud ChatGPT conversation and ask it, using only repository access, to list the attendee records the on-disk worker just captured.
 
-This is not a fake limitation introduced purely for the lab. Operational database contents commonly do not live in source control. Source control often contains schema, migrations, seed/test data, and code which uses the database, while live mutable database state is managed separately. Reasons include privacy, mutable/environment-specific state, poor binary diff/merge behaviour, and practical repository size limits as databases grow.
+The learner has just watched the worker create the state and successfully publish appropriate project work, so the impossibility should feel concrete rather than staged.
+
+Expected cloud result:
+
+- it can discover that the project uses `local/attendees.db`;
+- it can inspect the reusable schema and repository material;
+- it cannot retrieve the actual attendee records because those records never crossed onto the GitHub surface.
+
+Ask the on-disk agent for the same records and let it query the database directly.
+
+This is not a fake limitation introduced purely for the lab. Operational database contents commonly do not live in source control. Source control often contains schema, migrations, setup/test material, and code which uses the database, while live mutable database state is managed separately. Reasons include privacy, mutable/environment-specific state, poor binary diff/merge behaviour, and practical repository size limits as databases grow.
 
 Do not turn that side note into a database-policy lesson. The point is simply:
 
-> A source-controlled repository and the working environment of the project can overlap without being identical.
+> Publishing the source-controlled work does not necessarily publish every piece of state in the project's working environment.
 
 ## Exercise 4 — What can this surface do?
 
@@ -230,6 +262,6 @@ Avoid declaring a winner. In different runs of this lab, either cloud or local a
 
 ## Do not teach yet
 
-Do not teach Git command workflows, commits as recovery points, branch mechanics, connector protocol semantics, database administration, skills, or elaborate permission configuration.
+Do not teach Git command workflows, commits as recovery points, branch mechanics, connector protocol semantics, database administration, instruction precedence, data-scanning pipelines, skills, or elaborate permission configuration.
 
 Lab 2 is about observing different access surfaces. Later labs explain the mechanisms and how to choose/configure them deliberately.
