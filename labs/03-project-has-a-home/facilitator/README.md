@@ -1,10 +1,10 @@
 # Lab 3 facilitator guide
 
-Status: **Exercises 1 and 2 ready to run**.
+Status: **Exercises 1, 2, and 3 ready to run**.
 
 ## Lab learning goal
 
-Lab 3 is about durable project state: what survives independently of any particular conversation or agent, and how deliberately conversational material should become part of that state.
+Lab 3 is about durable project state: what survives independently of any particular conversation or agent, how deliberately conversational material should become part of that state, and what happens when durable artifacts no longer agree.
 
 Exercise 1 earns:
 
@@ -14,16 +14,23 @@ Exercise 2 adds the complementary lesson:
 
 > Preserve evidence honestly. Promote meaning deliberately.
 
-Together they should prevent two opposite mistakes:
+Exercise 3 adds:
+
+> Persisted does not mean current.
+
+> Durable does not automatically mean authoritative.
+
+Together the exercises should prevent three mistakes:
 
 - leaving important project knowledge trapped in conversation;
-- casually converting conversation into project truth without enough human authority.
+- casually converting conversation into project truth without enough human authority;
+- assuming that everything durable in the project is equally current or authoritative.
 
 ## Shared project fixture
 
 Use `../project/` as the local agent's workspace.
 
-It is a fictional community Repair Café pilot containing settled project decisions, source material, open questions, and a working plan.
+It is a fictional community Repair Café pilot containing settled project decisions, source material, open questions, a working plan, and eventually derived outputs.
 
 Root the prepared local agent at `labs/03-project-has-a-home/project/`, not at the Lab 3 teaching directory.
 
@@ -391,6 +398,157 @@ Final proof
 fresh agent reconstructs the published state
 ```
 
+# Exercise 3 — Which truth wins?
+
+## Learning goal
+
+Exercise 3 should make the project disagree with itself through normal, believable work rather than through an artificial contradiction.
+
+The learner should see that two agents can both perform their assigned tasks correctly and still leave behind durable artifacts with different values for the same fact.
+
+The exercise is not yet about designing the authority system. It should create the need for one.
+
+The key questions are:
+
+> Which truth is authoritative?
+
+> How did you decide that truth wins?
+
+## Exercise 3 baseline
+
+Run this only after Exercise 2's good result has been committed and pushed.
+
+The project should have a clean working tree before Agent 1 begins.
+
+The committed baseline should still contain the original public session time in `notes/current-decisions.md` and `working/pilot-plan.md`. The exact time at the original fixture is 09:30-12:30.
+
+Do not pre-seed a visitor information sheet. Agent 1 should create it from the project state it can inspect.
+
+## Agent 1 — create a derived output
+
+Start a fresh agent conversation.
+
+The learner asks:
+
+> Using the current Repair Café project state, produce a short visitor information sheet with the practical information someone needs before attending. Save it as `output/visitor-information.md`. Review it for accuracy, then commit and push it.
+
+Inspect the file before ending the conversation.
+
+The visitor sheet should honestly reflect the project at this moment, including the then-current public session time.
+
+This matters: Agent 1 is not creating a bad artifact. It is creating a correct derived output from the state available at the time.
+
+End the conversation.
+
+## Agent 2 — perform a narrowly scoped maintenance task
+
+Start a completely fresh agent conversation.
+
+The learner supplies a confirmed operational update and a deliberately narrow destination:
+
+> The Repair Café public session time has changed to 10:00-13:00. Update `notes/current-decisions.md` to reflect that new confirmed time. Do not inspect the rest of the project for other references; this is a deliberately scoped update. Change only that file, then commit and push it.
+
+Agent 2 should do exactly that.
+
+Do not ask it to search the project. Do not mention `output/visitor-information.md`. Do not hint that there are other copies of the old time.
+
+Inspect the change and confirm that the task stayed bounded to `notes/current-decisions.md`.
+
+This creates the contradiction naturally:
+
+```text
+notes/current-decisions.md
+10:00-13:00
+
+working/pilot-plan.md
+09:30-12:30
+
+output/visitor-information.md
+09:30-12:30
+```
+
+Agent 2 has not necessarily made a reasoning error. It performed the explicit scoped task it was given.
+
+End the conversation.
+
+## Agent 3 — ask the project a simple factual question
+
+Start a third completely fresh agent conversation.
+
+Keep it read-only if convenient. Do not reveal the conflict.
+
+Ask only:
+
+> What time does the Repair Café start?
+
+Let the agent answer before following up.
+
+Then ask:
+
+> Show me the project evidence for that answer.
+
+Once the disagreement is visible, ask:
+
+> Which truth is authoritative?
+
+Then:
+
+> How did you decide that truth wins?
+
+The important observation is not whether the agent chooses 10:00 or 09:30. It is whether the project contains an explicit rule supporting that choice.
+
+Possible agent behaviours are all useful:
+
+- it may prefer `notes/current-decisions.md` because the filename sounds authoritative;
+- it may prefer the newest Git change because it appears freshest;
+- it may prefer `output/visitor-information.md` because it is the public-facing artifact;
+- it may inspect multiple files, report the conflict, and refuse to choose without more guidance.
+
+Follow the reasoning it exposes.
+
+If it prefers `notes/current-decisions.md`, ask:
+
+> Does the project explicitly say that `notes/current-decisions.md` outranks the other files, or did you infer that?
+
+If it relies on recency or Git history, ask:
+
+> Does newer always mean authoritative, or is that another inference?
+
+If it prefers the public output, ask:
+
+> Why should a visitor-facing output outrank a file explicitly called current decisions?
+
+If it refuses to choose, ask:
+
+> What would the project need to tell you so you could resolve this without guessing?
+
+Do not force one canonical answer from Agent 3. The purpose is to expose the conflict-resolution policy the agent is constructing from clues.
+
+## Exercise 3 reflection
+
+Useful questions:
+
+- Did Agent 1 do anything wrong when it created the visitor information sheet?
+- Did Agent 2 do anything wrong when it performed exactly the scoped update it was given?
+- How did the project nevertheless end up disagreeing with itself?
+- Did Agent 3 discover an explicit authority rule, or infer one?
+- Would another reasonable agent necessarily choose the same artifact?
+- Is the newest artifact always the authoritative artifact?
+- Is the most public artifact always the authoritative artifact?
+- What happens when a project contains dozens of plans, summaries, exports, and old outputs?
+
+Earn these lines:
+
+> Persisted does not mean current.
+
+> Durable does not automatically mean authoritative.
+
+And leave this unresolved:
+
+> When the project disagrees with itself, how does an agent know what to trust?
+
+Do not repair the contradiction during this exercise. The stale visitor sheet and working plan are useful evidence of the problem the learner just discovered.
+
 # Do not teach yet
 
 Do not turn these exercises into:
@@ -401,4 +559,4 @@ Do not turn these exercises into:
 - a context-window or compaction lesson;
 - a full source-of-truth governance lesson.
 
-Exercise 2 may naturally create questions about authority and conflicting durable artifacts. Preserve that itch for the remaining Lab 3 work and the later source-of-truth module rather than solving the whole problem here.
+Exercise 3 deliberately creates demand for authority and source-of-truth rules. Preserve that demand for the later source-of-truth module rather than solving the whole governance problem here.
