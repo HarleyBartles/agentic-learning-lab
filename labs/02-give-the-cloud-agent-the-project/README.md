@@ -1,6 +1,6 @@
 # Lab 2 — Give the cloud agent the project
 
-Status: **scaffolded / in active design**.
+Status: **locked / stable**.
 
 Lab 2 is the direct continuation of Lab 1.
 
