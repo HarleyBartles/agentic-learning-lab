@@ -34,7 +34,19 @@ Exercises 1 and 2 are now implemented in:
 
 `labs/03-project-has-a-home/`
 
-Exercise 1 uses the Repair Café project to show that a local agent does not magically remember earlier conversations merely because it works on disk. The learner makes a consequential decision while explicitly forbidding file mutations, loses that conversation, recovers the missing state, persists it, and verifies it with a fresh agent.
+Exercise 1 uses the Repair Café project to show that a local agent does not magically remember earlier conversations merely because it works on disk. The learner makes a consequential decision while the agent is intentionally non-mutating, loses that conversation, reconstructs the project without the missing decision, then deliberately allows mutation, persists the decision, and verifies it with a fresh agent.
+
+The implementation now uses layered controls rather than relying on one oversized prompt:
+
+- the learner can speak naturally and frame the interaction as discussion;
+- project-local `AGENTS.md` defines discussion-only operating doctrine;
+- where available, the chosen harness supplies an actual read-only or equivalent non-mutation boundary.
+
+Keep the conceptual distinction available for later teaching:
+
+> Instructions describe the intended boundary. Permissions enforce the possible boundary.
+
+The exact control may vary across Codex desktop, Codex CLI/IDE, Devin Desktop, or another agentic environment. Keep the core Exercise 1 experiment on one surface so the persistence result is not confounded by changing harnesses mid-run. Different surfaces can be mentioned lightly as examples of different capability and risk profiles, then explored properly in a later harness-focused lab.
 
 Key lines:
 
@@ -110,4 +122,4 @@ Now that the project has durable state:
 how do we change it fearlessly and recover when we screw it up?
 ```
 
-Lab 3 should earn the right for the source-control lab to treat project state as something worth preserving, inspecting, changing, and recovering.
+Lab 3 should therefore earn the right for the source-control lab to treat project state as something worth preserving, inspecting, changing, and recovering.
