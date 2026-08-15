@@ -24,9 +24,11 @@ Compare the answers.
 
 ## Run C
 
-The facilitator will reset the project, then cloud ChatGPT will be asked to change the supplier time through its repository access.
+Leave the local change from Run B exactly where it is.
 
-Do not refresh the local working copy yet.
+Now ask cloud ChatGPT to change the supplier time through its repository access.
+
+Do not refresh, reset, or otherwise synchronise the local working copy yet.
 
 Ask both agents the same question again.
 
@@ -38,7 +40,9 @@ Talk through:
 
 - Did both agents have access to the project in all three runs?
 - Were they always looking at the same current state?
-- In which run was the local worker ahead?
-- In which run was the connected cloud agent ahead?
+- In Run C, how many different plausible project states now exist?
+- What does the cloud agent see?
+- What does the local worker see in the current file?
+- What older saved state still sits underneath the local uncommitted change?
 
-Do not worry about the mechanics of synchronising the copies yet. The observation for now is that `has access to the project` does not automatically mean `is looking at the same project state`.
+Do not worry about the mechanics of synchronising, committing, or discarding changes yet. The observation for now is that `has access to the project` does not automatically mean `is looking at the same project state`.
