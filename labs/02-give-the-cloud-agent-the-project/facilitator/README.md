@@ -36,7 +36,8 @@ The fixture is a small event-planning project for Riverside Hall. It includes:
 - a tracked description of a local operational attendee database;
 - a tracked reusable SQLite schema;
 - a `.gitignore` rule excluding `local/`, where the operational database will be created during Exercise 3;
-- a tracked disposable `scratch/` directory used for the deletion exercise.
+- a tracked disposable `scratch/` directory used for the deletion exercise;
+- `AGENTS.md`, containing standing instructions for the on-disk worker.
 
 This is deliberately one repository, not a second exercise repository.
 
@@ -65,29 +66,30 @@ Before the lab:
 3. confirm `project/local/` is ignored by Git;
 4. prepare the on-disk agent with a working root at `labs/02-give-the-cloud-agent-the-project/project/`;
 5. ensure the agent can inspect common image formats and use SQLite locally;
-6. keep the `scratch/` content disposable.
+6. keep the `scratch/` content disposable;
+7. confirm the worker reads and follows `project/AGENTS.md`.
 
 The repository contains the reusable database schema in `project/local-setup/schema.sql`, but no attendee records. The learner will supply those records directly to the on-disk worker during Exercise 3, and the worker will create the operational database locally.
 
+`AGENTS.md` is deliberately visible in the project. It is not part of the lesson yet, but it does not need to be hidden. If the learner asks what it is, explain briefly that it contains standing working instructions for the local agent so the exercise behaves consistently, and that a later lab will examine how project instructions work and where they belong.
+
 Do not teach Git synchronization or SQLite setup mechanics while preparing this lab. They are facilitator plumbing here.
 
-### Hidden local operating instruction for Exercise 3
+### Project operating instruction for Exercise 3
 
-Configure the local worker through the same kind of facilitator-controlled project instruction surface used in Lab 1. Do not expose this setup to the learner yet.
+`project/AGENTS.md` contains the rule which keeps local operational database records from leaking onto the GitHub surface.
 
-Add an operating rule with this intent:
+Its important intent is:
 
 > Treat data in `local/` as local operational data. Never publish, reproduce, summarise, quote, encode, or otherwise leak database record contents into tracked files, generated receipts, commit messages, issues, pull requests, or other remote repository surfaces. Publish only project material appropriate for source control.
 
-Also require:
+It also requires the worker to inspect proposed published changes and the commit message before pushing work involving local operational data.
 
-> Before committing or pushing work that involved local operational data, ensure the published changes and commit message contain no values derived from those records.
+This is experimental hygiene, not the Lab 2 lesson. Without it, an otherwise helpful worker might create a receipt, summary, log, commit message, or other tracked artifact that accidentally copies the attendee records onto GitHub and destroys the access-boundary experiment.
 
-This hidden instruction is experimental hygiene, not the lesson. Without it, an otherwise helpful worker might create a receipt, summary, log, commit message, or other tracked artifact that accidentally copies the attendee records onto GitHub and destroys the access-boundary experiment.
+Do not unpack the instruction mechanism unless the learner asks. A later lab can explicitly return to `AGENTS.md`, show that ignored files alone do not prevent an agent from copying their contents into source control, and introduce project rules, pre-publication checks, scanning, or related mechanisms when those concepts have been earned.
 
-Do not explain this instruction layer during Lab 2. A later lab can reveal that ignored files alone do not prevent an agent from copying their contents into source control, and can introduce durable project rules, pre-publication checks, secret/data scanning, or other mechanisms when those concepts have been earned.
-
-The hidden instruction must not teach the worker the attendee values or the answer to the later cloud question. It only defines what information is permitted to cross from local operational state into remote source-controlled state.
+The instruction must not teach the worker the attendee values or the answer to the later cloud question. It only defines what information is permitted to cross from local operational state into remote source-controlled state.
 
 ## Exercise 1 — Which state are you looking at?
 
@@ -122,11 +124,11 @@ Expected result:
 
 Do not teach `dirty working tree`, commit, push, or remote terminology yet. Just notice that two valid access routes can be observing different states.
 
-### Run C — remote ahead
+### Run C — remote changes while local work remains
 
-Restore local state to the synchronized baseline first.
+Do **not** restore or discard the local `10:30` change from Run B.
 
-Then ask the cloud agent, through its GitHub write capability, to change the supplier arrival time in the repository to `11:15`.
+Ask the cloud agent, through its GitHub write capability, to change the supplier arrival time in the repository to `11:15`.
 
 Let any normal connector confirmation/safety flow occur naturally.
 
@@ -134,14 +136,24 @@ Do **not** update the learner's local checkout yet.
 
 Ask both agents again.
 
-Expected result:
+Expected visible result:
 
-- cloud agent: `11:15`;
-- local agent: still the older local value.
+- cloud agent: `11:15`, because that is now the repository state it can observe;
+- local agent: `10:30`, because the learner's working file still contains the uncommitted local edit.
 
-This gives the neutral mirror image of Run B: sometimes the remote-connected cloud agent is looking at newer project state than the local worker.
+There is also a third useful state underneath the local edit: the local checkout's previously saved version still corresponds to the earlier repository value, `09:00`.
 
-After the observation, resynchronize the local checkout before the next exercise.
+Do not teach the mechanics yet. Simply make the three states visible conceptually:
+
+```text
+remote repository state        11:15
+local working file             10:30
+local saved baseline beneath   09:00
+```
+
+This is stronger than resetting between runs because the learner can see that `the project` is not a single magical object with one universally observed value. Different access surfaces can expose different states at the same time.
+
+After the observation, resynchronize and clean the local checkout before the next exercise.
 
 ## Exercise 2 — Can you see it?
 
