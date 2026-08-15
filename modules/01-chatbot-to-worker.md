@@ -24,15 +24,20 @@ The exercise should make that distinction visible through experience rather than
 
 ## The core experiment
 
-Run **the same mission twice**.
+Run **the same mission three times**.
 
-Attempt A uses ordinary cloud ChatGPT with no access to the local project.
+1. Cloud ChatGPT with the complete source set: success.
+2. Cloud ChatGPT with one critical source file deliberately omitted: plausible failure.
+3. Codex operating locally in the project: success through direct inspection of project state.
 
-Attempt B uses Codex operating locally inside the project.
+The intellectual task is the same in all three stages.
 
-The intellectual task and success condition are identical. The thing that changes is where the agent is working.
+Both cloud ChatGPT and Codex should be fully capable of completing it correctly when they have the complete source material. The exercise is not trying to prove that one model can reason and another cannot.
 
-Both agents should be fully capable of completing the task correctly when they receive the complete source set. The exercise is not trying to show that one model can reason and the other cannot. It is trying to show who is responsible for discovering and supplying project state.
+It is trying to make two things observable:
+
+- a cloud conversation can only reason over project state that has been made available to it;
+- an on-disk worker can inspect the environment where the project state actually lives.
 
 ## The mission
 
@@ -40,7 +45,7 @@ Use:
 
 `labs/01-cloud-vs-local/`
 
-The learner is given a small field-recovery scenario. Several source files contain the information needed to prepare a mission brief, including a later update that explicitly supersedes part of the original plan.
+The learner is given a small field-recovery scenario. Several source files contain the information needed to prepare a mission brief. One later file explicitly supersedes part of the original plan.
 
 The win condition is:
 
@@ -71,9 +76,12 @@ The learner should have:
 - file upload/download capability available;
 - **no GitHub connector access to this learning repository**;
 - no ChatGPT Project or other preloaded copy of the lab source material;
-- a fresh conversation for Attempt A.
+- a fresh conversation for Stage 1;
+- another fresh conversation for Stage 2.
 
 The point is not to cripple ChatGPT. It should work normally. It simply should not already inhabit or retrieve from the local project.
+
+Stage 2 must use a fresh conversation. Otherwise the supposedly omitted late update may remain visible from Stage 1 and the controlled failure stops being meaningful.
 
 ### Local environment
 
@@ -92,7 +100,7 @@ Do not pre-install a large `AGENTS.md`, skills, MCP collection, or other sophist
 
 ## Suggested shape of the hour
 
-This is guidance, not a script. Preserve the start point, the two attempts, and the end point; let the conversation between them breathe.
+This is guidance, not a script. Preserve the start point, the three stages, and the end point; let the conversation between them breathe.
 
 ### 0–10 minutes — Start from familiar AI use
 
@@ -111,7 +119,7 @@ Do not correct anything. Establish that cloud chat is already useful and familia
 
 It is worth saying explicitly that many tasks should remain conversations: questions, brainstorming, casual research, explanation, and one-off advice may need nothing more elaborate.
 
-### 10–25 minutes — Attempt A: complete the mission with cloud ChatGPT
+### 10–22 minutes — Stage 1: cloud ChatGPT with complete context
 
 Show the learner the local folder:
 
@@ -119,7 +127,7 @@ Show the learner the local folder:
 
 Give them the goal, not the workflow:
 
-> Complete this mission using ChatGPT. You have succeeded when the correct `mission-brief.md` exists in the local `output` folder. ChatGPT cannot see this project. Use it however you want.
+> Complete this mission using ChatGPT. Make sure ChatGPT has all of the information. You have succeeded when the correct `mission-brief.md` exists in the local `output` folder. ChatGPT cannot see this project. Use it however you want.
 
 Then stop directing the mechanics.
 
@@ -131,24 +139,13 @@ A good answer is:
 
 > Either works. Choose how you want to get the job done.
 
-The learner may:
-
-- upload the source files;
-- paste some or all of their contents;
-- ask ChatGPT to create a downloadable Markdown file;
-- copy the final answer into a new local file;
-- download an artifact and move it into the output folder;
-- use some other reasonable combination.
+The learner may upload files, paste contents, ask ChatGPT for a downloadable Markdown file, copy the answer into a local file, or use some other reasonable workflow.
 
 All of those count.
 
-Do not manufacture extra friction. The exercise succeeds even if the learner finds an efficient cloud workflow.
+Do not manufacture extra friction. The goal is not to make cloud ChatGPT look clumsy.
 
-### Gentle completeness nudge
-
-The only cloud failure mode we care about is incomplete context.
-
-If the learner appears ready to ask ChatGPT for the final answer without having supplied the full source set, give one gentle nudge before they proceed:
+If the learner is about to proceed without supplying the full source set, give a gentle nudge:
 
 > Before you ask it to finish, are you sure ChatGPT has everything in this project that might matter?
 
@@ -156,25 +153,13 @@ If useful, add:
 
 > Remember, it cannot inspect the folder itself. If there is a file you have not shown it, it does not know that file exists.
 
-Do **not** tell them which source file matters, do not identify the superseding update, and do not prescribe upload versus copy/paste. The nudge is about the environment boundary, not the answer.
+Do not identify the important file or prescribe how to supply it.
 
-Once the complete source set is supplied, cloud ChatGPT should be expected to resolve the superseded state correctly. If it does, that strengthens the lesson: the capability was there; the human had to make the project state available.
+Stage 1 should end in a correct mission brief. This proves that cloud ChatGPT is fully capable of the task when the human supplies complete context.
 
-What matters is that **the learner decides how information crosses both boundaries**:
+### 22–28 minutes — Notice the transport work
 
-```text
-local project
-    ↓ human transports project context
-cloud ChatGPT
-    ↓ human transports finished artifact
-local project
-```
-
-The learner has won Attempt A when the file exists locally in the correct place and passes the mission requirements.
-
-### 25–30 minutes — Notice what happened
-
-Before explaining anything, ask:
+Ask:
 
 > What work did you have to do purely because ChatGPT could not see or write to this project?
 
@@ -183,38 +168,54 @@ Possible observations:
 - deciding which files ChatGPT needed;
 - opening or selecting them;
 - uploading or pasting them;
-- ensuring the complete source set was present;
+- checking that the source set was complete;
 - retrieving the generated result;
-- deciding how to turn the result into the required local file;
-- moving or pasting it into the expected output location.
-
-If you gave the completeness nudge, ask:
-
-> Why did I need to remind you to check whether ChatGPT had everything?
-
-The intended observation is simple:
-
-> Because ChatGPT had no way to know another local source file existed unless the human exposed it.
-
-The point is not that this was difficult. With a handful of small files it may have been trivial.
+- turning the result into the required local file;
+- putting it into the expected output location.
 
 A useful phrase is:
 
 > You were acting as the transport layer between the AI and the project.
 
-Do not yet discuss source control, connectors, persistent project instructions, or elaborate agent architecture.
+Then delete `output/mission-brief.md`.
 
-### 30–35 minutes — Discard the result
+Do this casually. There is no commit and no push. Source control is not part of this lesson.
 
-Delete the completed `output/mission-brief.md` and return the exercise to its starting state.
+### 28–38 minutes — Stage 2: deliberately hide critical context
 
-Do this casually.
+Start a **fresh ChatGPT conversation**.
 
-There is no commit and no push. There is no need to explain recovery semantics yet. The lab is disposable and the artifact is about to be regenerated.
+Now repeat the same mission, but deliberately omit:
 
-This deliberate discard is useful later: the source-control module can reveal why we can become even more comfortable making and undoing changes in project environments.
+`source/late-update.md`
 
-### 35–50 minutes — Attempt B: same mission, local Codex
+Give ChatGPT the other source files and ask it to prepare the mission brief.
+
+Do not tell ChatGPT that information has been withheld. The model should simply work from the apparently complete evidence it was given.
+
+Inspect the result together.
+
+The expected outcome is a plausible, confident brief based on the original access plan. It should be wrong about the current route/timing because the superseding state was invisible.
+
+The teaching question is:
+
+> Did ChatGPT fail to understand the information, or did it never have the information it needed?
+
+Stage 1 has already answered that question. With the full source set, it got the task right.
+
+A useful formulation:
+
+> Missing context is invisible context.
+
+And another:
+
+> An AI cannot reason about a project fact it has no way to observe.
+
+Do not turn this into a discussion of hallucination. The model is behaving reasonably from incomplete evidence supplied by the human.
+
+Delete any Stage 2 output before continuing.
+
+### 38–52 minutes — Stage 3: same mission, local Codex
 
 Now allow Codex to operate locally in the project.
 
@@ -224,11 +225,9 @@ The learner's prompt should be intentionally small:
 
 That should be enough.
 
-Do not give an equivalent completeness nudge. The lab README tells the agent what success means, and the on-disk environment gives it the ability to inspect the source directory itself.
+Do not point Codex toward `late-update.md`, enumerate the source files, or give it a completeness nudge.
 
-Do not secretly encode the navigation plan into the prompt. We want the environment to carry that information.
-
-A successful local agent should be able to discover for itself:
+A successful local worker should be able to discover for itself:
 
 ```text
 lab README
@@ -239,78 +238,97 @@ source directory
     ↓
 complete source set
     ↓
-original plan + superseding update
+original plan + late superseding update
     ↓
 current reconciled mission state
     ↓
 output/mission-brief.md
 ```
 
-Watch what Codex actually inspects and changes.
+When it finishes, inspect the resulting local file against exactly the same win condition as Stage 1.
 
-When it finishes, open the resulting file from the local project tree and check the same win condition used for Attempt A.
+If it succeeds, the contrast is now much stronger than a simple cloud/local convenience comparison.
 
-If both attempts are correct, say so. That is the desired result.
+The learner has seen:
 
-### 50–60 minutes — Compare the work, not the prose
+- a capable cloud AI succeed with complete context;
+- the same kind of AI workflow fail when a critical project fact is omitted;
+- an on-disk worker discover the relevant project state without relying on the human to enumerate every input.
 
-The key comparison is not which mission brief was better written.
+### 52–60 minutes — Compare the three stages
+
+Do not compare prose quality.
 
 Ask:
 
-- Were both agents capable of resolving the superseding update once they had all the inputs?
-- In Attempt A, who was responsible for making sure the AI had all the inputs?
-- In Attempt B, who discovered the source set?
-- Why was a completeness nudge useful in the cloud run but unnecessary in the local run?
-- What did you have to move manually in Attempt A?
-- What did you have to move manually in Attempt B?
-- Did you need to copy Codex's finished answer anywhere?
-- Was the local agent necessarily smarter, or did it have a different working environment?
-- Would the cloud workflow still be perfectly reasonable for four tiny files?
-- What changes if there are 40 files? 400?
-- What if the task is to update six existing documents rather than create one new document?
-- What if neither you nor the agent initially knows which files contain the relevant information?
-- What if this job happens repeatedly as the project changes?
+- Why did Stage 1 succeed?
+- Why did Stage 2 fail?
+- Was Stage 2 evidence that ChatGPT was less intelligent?
+- What fact was invisible in Stage 2?
+- Who was responsible for deciding whether cloud ChatGPT had the complete source set?
+- Why did Codex not need the same completeness reminder?
+- What would happen with 40 files? 400?
+- What if neither you nor the AI initially knew which file contained the critical update?
+- What if several files had changed since the last time you ran the task?
 
-The scaling question is important. Module 1 should not end with:
+The comparison can be summarised as:
 
-> Codex saved me thirty seconds of copying.
+```text
+Stage 1 — cloud + complete context
+human discovers and transports state → AI succeeds
 
-It should end with something closer to:
+Stage 2 — cloud + incomplete context
+human omits critical state → AI cannot see it → plausible failure
 
-> Direct project access changes the kinds and scale of work that are sensible to delegate.
+Stage 3 — on-disk worker
+agent inspects project state itself → AI succeeds
+```
+
+The scaling question matters. Module 1 should not end with:
+
+> Codex saved me a bit of copying.
+
+It should end with:
+
+> Direct project access changes who is responsible for discovering complete context, and that changes the reliability and scale of work that is sensible to delegate.
 
 ## End point
 
-The learner should leave with three ideas.
+The learner should leave with four ideas.
 
 ### Cloud chat can do project work when I bring the project context to it
 
-That can be completely appropriate for small or occasional tasks.
+Stage 1 demonstrates that clearly.
+
+### A capable AI can still produce the wrong project answer when critical state is invisible
+
+Stage 2 demonstrates this without requiring the AI to behave badly or reason poorly.
 
 ### A local agent can inspect and modify the project's working state directly
 
-The human does not always need to select every input, upload it, retrieve every output, and put it back where it belongs.
+Stage 3 removes much of the human responsibility for enumerating every relevant local input and transporting every artifact.
 
 ### This is primarily an environment difference, not proof of a smarter model
 
-Both agents should succeed on the actual reasoning problem when they receive the same complete source material. What changes is who has responsibility for discovering and transporting that material.
+The same reasoning problem is easy once the relevant information is visible.
 
-A compact formulation:
+Compact formulations worth preserving:
 
 > The on-disk agent removes the human from much of the context-and-artifact transport loop.
 
+> Missing context is invisible context.
+
+> A conversation can work on what I bring to it. An on-disk agent can inspect where the project already lives.
+
 ## Why the mission includes superseded state
 
-The source material deliberately contains an original plan and a later update that explicitly supersedes part of it.
+The source material deliberately contains an original plan and `late-update.md`, which explicitly supersedes part of it.
 
-This gives the artifact a small objective correctness condition beyond merely producing plausible prose.
+The correct interpretation is straightforward once both files are visible.
 
-The correct interpretation should be straightforward once both files are visible. That is intentional. We are not testing whether the cloud or local agent can reason through a difficult ambiguity.
+That is intentional. We are not testing whether the cloud or local agent can reason through a difficult ambiguity. We are testing whether the system has access to the complete project state needed to reach the correct answer.
 
-We are testing whether the agent had access to the complete project state needed to reach the correct answer.
-
-This also lightly foreshadows a later source-of-truth lesson without teaching it yet.
+This lightly foreshadows later lessons about source of truth, retrieval, verification, and persistent state without teaching those concepts yet.
 
 ## Tools in this module
 
@@ -334,33 +352,39 @@ Deliberately avoid making these part of the lesson:
 
 ## Important facilitator rules
 
-### Do not teach the optimal cloud workflow before Attempt A
+### Stage 1 should succeed
 
-Their chosen method of getting context into ChatGPT and the artifact back into the project is part of the observation.
+Gently steer the learner toward supplying all source material if necessary. We want proof that cloud ChatGPT can solve the task.
 
-Help if they are genuinely blocked, but do not solve the transport problem merely because you know a quicker route.
+### Stage 2 should fail for exactly one reason
 
-### Do prevent accidental incomplete-context failure
+Use a fresh conversation and deliberately omit only `source/late-update.md`. The resulting failure should be attributable to missing context, not confusing instructions or a difficult reasoning problem.
 
-If the learner is about to omit source material, give the gentle completeness nudge. We do not want the lesson to become "ChatGPT gave the wrong answer" when the real issue is that the learner did not provide the project state it could not discover for itself.
+### Stage 3 should receive no file-level hints
 
-### Do not nudge Codex toward individual source files
+Give Codex the one-line mission prompt and let it inspect the project. Its ability to discover the complete source set is part of the evidence.
 
-The local agent's ability to inspect the project and discover the complete source set is part of Attempt B's evidence.
+### Do not teach the optimal cloud workflow
+
+The learner chooses how files and artifacts cross the cloud boundary. That transport work is itself part of the lesson.
 
 ## Misconceptions to watch for
 
 ### "So cloud ChatGPT is bad"
 
-No. For a small one-off task, Attempt A may be the simpler choice. The lesson is to recognise when the integration burden begins to dominate the useful work.
+No. Stage 1 proves the opposite. With the necessary context it performs the task correctly, and for small one-off tasks it may still be the best lever.
+
+### "Stage 2 is a hallucination"
+
+Not really. The model was given an incomplete but internally plausible version of the project state. The important failure happened at the context boundary.
 
 ### "Codex is better because it is smarter"
 
-Not established. Both agents should resolve the mission correctly from the same complete source set. Codex had direct project access and permission to change local state. Module 4 will later separate model, harness, context, tools, and feedback more carefully.
+Not established. Its important advantage in this experiment is environmental: it can inspect the project directly.
 
 ### "Repositories are for programmers"
 
-Do not even need to use the word repository heavily yet. This is a project folder containing Markdown source material and an output artifact. Later modules can reveal what source control adds.
+Do not even need to use the word repository heavily yet. This is a project folder containing source material and an output artifact. Later modules can reveal what source control adds.
 
 ### "What if the agent breaks something?"
 
@@ -384,7 +408,7 @@ Module 1 intentionally leaves several useful questions unanswered:
 
 Those are not omissions. They are hooks for the later curriculum.
 
-The source-control module should explicitly call back to the casual deletion in Module 1: we threw away the first mission brief because the exercise was disposable; now we learn how to make much more consequential experimentation safely reversible.
+The source-control module should explicitly call back to the casual deletion in Module 1: we repeatedly threw away generated mission briefs because the exercise was disposable; later we learn how to make much more consequential experimentation safely reversible.
 
 ## Do not teach yet
 
@@ -402,4 +426,4 @@ Unless a learner question genuinely requires a brief detour, postpone:
 
 Teach one invariant first:
 
-> A conversation can work on what I bring to it. An on-disk agent can work where the project already lives.
+> A conversation can only work with the project state made visible to it. An on-disk worker can inspect the environment where that state lives.
