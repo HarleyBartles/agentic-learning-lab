@@ -77,9 +77,9 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 
 Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the repository, then compares connector-mediated access with direct local workspace access.
 
-Lab 3 is now being promoted from module planning into a real lab structure. Exercise 1 uses a Repair Café planning project to show that important project decisions disappear with a lost conversation unless they are persisted into durable project state.
+Lab 3 now has three runnable Repair Café exercises. They show that important decisions must enter durable project state, that conversation should not be promoted into that state without deliberate authority, and that durable project artifacts can later drift and disagree about the same fact.
 
-Labs 1 and 2 have expanded lab structures and Lab 3 is in active scaffold development. Existing files in `modules/` are working facilitator drafts for curriculum material that has not yet been fully promoted into labs; they may be rewritten, folded into labs, combined, or reordered as those labs take shape.
+Labs 1, 2, and 3 now have expanded lab structures. Existing files in `modules/` are working facilitator drafts for later curriculum material; promoted module material may remain as concise planning and handoff notes.
 
 See also [Core principles](docs/core-principles.md) for ideas that should recur throughout the conversations.
 
@@ -87,7 +87,7 @@ See also [Core principles](docs/core-principles.md) for ideas that should recur 
 
 - `labs/` contains complete learning experiences, including learner guidance, facilitator notes, and bounded working environments where appropriate.
 - `docs/` contains cross-cutting principles and curriculum-wide guidance.
-- `modules/` currently contains draft planning material for later labs or unpromoted portions of labs still being developed.
+- `modules/` currently contains draft planning material for later labs or concise planning notes for material already promoted into labs.
 - `projects/` contains small example project environments that are not primarily software projects.
 
 There is deliberately no separate root-level `guided/` or stable facilitator hierarchy. Learner and facilitator material that belongs to a lab lives with that lab.
