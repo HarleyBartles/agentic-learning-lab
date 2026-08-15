@@ -10,19 +10,23 @@ For the first part of this exercise, you are only discussing ideas with the agen
 
 Start a fresh local-agent conversation rooted at the Lab 3 project folder.
 
-Ask:
+Before discussing the project, put the agent into a read-only or equivalent non-mutation mode if your agent surface provides one.
 
-> Inspect this project and help me think through the unresolved arrival and booking model. We're just talking here. Do not create, edit, delete, rename, or otherwise change any files until I explicitly tell you to modify files. Discussion, agreement, decisions, or approval during this conversation are not permission to change the project.
+The point is simple: during this first conversation the agent may inspect and reason about the project, but the environment should not allow it to change project state.
+
+Then ask:
+
+> Inspect this project and help me think through the unresolved arrival and booking model. We're just discussing it for now.
 
 Discuss the options with the agent until you reach a policy you are happy with.
 
 Choose the policy yourself. There is no single answer hidden in the project.
 
-Once you have decided, tell the agent clearly what the decision is and ask it to discuss the consequences while still keeping the project untouched.
+Once you have decided, tell the agent clearly what the decision is and ask it to discuss the consequences while remaining in discussion mode.
 
 For example:
 
-> That's the decision: we'll use drop-in by default, with two pre-bookable accessibility slots each hour. Talk me through what that means for volunteers, queues, and how we should communicate the pilot. We are still only discussing it. Do not modify any files.
+> That's the decision: we'll use drop-in by default, with two pre-bookable accessibility slots each hour. Talk me through what that means for volunteers, queues, and how we should communicate the pilot. We're still only discussing it.
 
 You do not have to choose that policy. Use the policy you actually decided on.
 
@@ -30,15 +34,21 @@ Make sure the agent understands the decision and can reason from it.
 
 Do not ask it to record the decision anywhere yet.
 
+If your agent surface has a visible Plan or read-only mode, leave it enabled throughout this conversation.
+
 ## The conversation is gone
 
-Now treat the IDE as having crashed.
+Now treat the IDE or agent surface as having crashed.
 
 The conversation is unrecoverable. Close it and do not consult it again for the rest of this exercise.
+
+Starting a fresh conversation is what removes the conversational context. The earlier read-only boundary simply made sure that context could not leak into project files before the conversation disappeared.
 
 ## Conversation 2 — what survived?
 
 Start a completely fresh local-agent conversation in the same project folder.
+
+Keep this reconstruction step read-only as well.
 
 Ask:
 
@@ -52,7 +62,9 @@ What important decision is missing?
 
 Tell the agent what you actually decided.
 
-Then explicitly allow it to update the project so that another fresh agent can recover that decision later.
+Now explicitly move out of discussion-only/read-only operation and allow project changes.
+
+Then ask it to update the project so that another fresh agent can recover that decision later.
 
 For example:
 
@@ -87,6 +99,7 @@ Talk through:
 - What changed between the second and third conversations?
 - Did the third agent remember the previous conversation?
 - Where did it actually find the decision?
+- What did the read-only boundary guarantee that a prose instruction alone could not guarantee?
 
 The important idea is:
 
