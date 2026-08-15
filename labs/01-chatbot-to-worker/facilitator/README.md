@@ -98,16 +98,20 @@ Root that project at:
 
 `labs/01-chatbot-to-worker/mission/`
 
-Give the project minimal operating instructions through Codex's own project/configuration machinery rather than adding an `AGENTS.md` to the mission folder. The exact storage mechanism is deliberately not learner-facing in this lab.
+The mission folder contains `AGENTS.md` with the standing operating instructions for the local worker.
 
-The operating intent is only:
+Those instructions should stay minimal:
 
 - treat the mission folder as the complete project;
 - work inside that project;
 - do not inspect parent or sibling teaching directories;
-- inspect the project before deciding what information matters.
+- inspect the project before deciding what information matters;
+- follow the mission README;
+- preserve source material unless the task explicitly requires otherwise;
+- place finished work where the project requires it;
+- check the result against the stated requirements before stopping.
 
-Do not use these hidden instructions to teach the worker the answer, enumerate source files, mention `late-update.md`, or prescribe the solution workflow. The worker should still succeed mainly because it can inhabit and inspect the mission workspace.
+Do not use `AGENTS.md` to teach the worker the answer, enumerate source files, mention `late-update.md`, or prescribe the solution workflow. The worker should still succeed mainly because it can inhabit and inspect the mission workspace.
 
 The learner experience should be:
 
@@ -115,9 +119,11 @@ The learner experience should be:
 2. type `Complete the exercise.`;
 3. inspect the result.
 
-This is not bending Codex into an unnatural shape. It is making setup machinery invisible so the first lab teaches the abstraction rather than the plumbing.
+`AGENTS.md` does not need to be hidden. If the learner notices it or asks what it is, explain briefly that it contains standing instructions for how the local agent should work in this project, that it is part of the exercise plumbing, and that a later lab will examine this mechanism properly.
 
-Later labs can reveal that this simplicity was engineered and compare the many instruction surfaces available across harnesses: repository files such as `AGENTS.md`, project/system instructions, global instructions, reusable skills, harness rules and triggers, managed policy, and equivalent mechanisms in other agentic IDEs such as `.devin/rules`.
+This is not bending Codex into an unnatural shape. It is moving stable operating knowledge out of the task prompt and into the project where it can persist.
+
+Later labs can compare the many instruction surfaces available across harnesses: repository files such as `AGENTS.md`, project/system instructions, global instructions, reusable skills, harness rules and triggers, managed policy, and equivalent mechanisms in other agentic IDEs such as `.devin/rules`.
 
 The later lesson is not that one instruction surface is universally correct. Different surfaces have different scope, lifetime, portability, visibility, precedence, and coupling to the harness.
 
@@ -125,7 +131,7 @@ A useful future formulation is:
 
 > A good agentic environment moves stable knowledge out of repeated prompts and into the layer where it naturally belongs.
 
-For Lab 1, keep that machinery invisible.
+For Lab 1, use `AGENTS.md` as plumbing without turning it into the subject of the lesson.
 
 ### General local setup
 
@@ -299,7 +305,7 @@ Compact formulations worth preserving:
 - Exercise 2 should fail for exactly one reason: deliberate omission of `late-update.md`.
 - Exercise 3 should receive no file-level hints.
 - Do not teach the optimal cloud workflow. The learner chooses how files and artifacts cross the cloud boundary.
-- Do not reveal the Codex configuration machinery in Lab 1 unless the learner explicitly asks and a brief answer is useful.
+- `mission/AGENTS.md` is visible plumbing. If the learner asks, explain it briefly and defer the deeper instruction-surface lesson.
 
 ## Misconceptions to watch for
 
@@ -317,7 +323,7 @@ Not established. Its important advantage in this experiment is environmental: it
 
 ### "The one-line prompt is magic"
 
-No. The worker is operating inside a deliberately prepared environment. A later lab should reveal that the short prompt works because stable setup and operating knowledge were moved into the environment rather than repeated in the prompt.
+No. The worker is operating inside a deliberately prepared environment. `AGENTS.md` carries standing project instructions so they do not have to be repeated in the task prompt. A later lab should unpack that mechanism and compare it with other instruction surfaces.
 
 ### "What if the agent breaks something?"
 
@@ -344,7 +350,7 @@ Those are not omissions. They are hooks for the later curriculum.
 
 The source-control lab should explicitly call back to the casual deletion in Lab 1: we repeatedly threw away generated mission briefs because the exercise was disposable; later we learn how to make much more consequential experimentation safely reversible.
 
-A later configuration/instruction lab should explicitly call back to Exercise 3 and reveal the hidden setup. Compare options such as task prompts, project/system instructions, global instructions, `AGENTS.md`, reusable skills, harness-specific rules/triggers, managed policy, and equivalent facilities in alternate agentic IDEs. The goal is to teach tradeoffs rather than crown one mechanism as universally correct.
+A later configuration/instruction lab should explicitly call back to `mission/AGENTS.md`: the learner has already seen a project-local standing instruction file in use, even though Lab 1 did not stop to teach it. Compare that mechanism with task prompts, project/system instructions, global instructions, reusable skills, harness-specific rules/triggers, managed policy, and equivalent facilities in alternate agentic IDEs. The goal is to teach tradeoffs rather than crown one mechanism as universally correct.
 
 ## Do not teach yet
 
