@@ -21,9 +21,11 @@ The working environment should be scoped deliberately. If an agent only needs th
 
 Some setup may be performed in advance by the facilitator so early labs can teach an abstraction without first teaching all of its machinery. That setup should use normal capabilities of the harness rather than artificial tricks. Later labs can reveal the hidden configuration and explore its alternatives and tradeoffs.
 
-## Current stable lab
+## Current labs
 
-- `01-chatbot-to-worker/` — compare complete cloud context, deliberately incomplete cloud context, and an on-disk worker operating directly in the mission workspace.
+- `01-chatbot-to-worker/` — compare ordinary cloud conversations, an on-disk worker, and a persistent cloud workspace to expose how environment changes context and artifact transport.
+- `02-give-the-cloud-agent-the-project/` — examine how project access depends on state, representation, scope, and allowed operations.
+- `03-project-has-a-home/` — in development; Exercise 1 is scaffolded around durable project state and decisions that would otherwise exist only in conversation.
 
 ## Safety
 
