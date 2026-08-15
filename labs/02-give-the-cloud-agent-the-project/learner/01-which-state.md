@@ -16,7 +16,9 @@ Compare the answers.
 
 ## Run B
 
-The facilitator will change the local project without changing the repository copy visible to cloud ChatGPT.
+Choose a different supplier arrival time. Do not write your chosen time into the repository or tell cloud ChatGPT.
+
+Tell the on-disk agent to change the supplier arrival time to the time you chose, then stop for review without committing or publishing the change.
 
 Ask both agents the same question again in fresh conversations.
 
@@ -26,7 +28,9 @@ Compare the answers.
 
 Leave the local change from Run B exactly where it is.
 
-Now ask cloud ChatGPT to change the supplier time through its repository access.
+Choose another supplier arrival time, different from the one you chose for Run B.
+
+Ask cloud ChatGPT to change the supplier arrival time directly in the repository to this new time using its repository access.
 
 Do not refresh, reset, or otherwise synchronise the local working copy yet.
 
@@ -34,15 +38,22 @@ Ask both agents the same question again.
 
 Compare the answers.
 
+Now return to the on-disk agent and say:
+
+> I changed my mind. Abandon my local change to the supplier file and restore that file to the saved local version. Then tell me the supplier arrival time again.
+
+Compare that answer with the current repository answer from cloud ChatGPT.
+
 ## Reflect
 
 Talk through:
 
 - Did both agents have access to the project in all three runs?
 - Were they always looking at the same current state?
-- In Run C, how many different plausible project states now exist?
-- What does the cloud agent see?
-- What does the local worker see in the current file?
-- What older saved state still sits underneath the local uncommitted change?
+- In Run C, how many different plausible project states existed at once?
+- What did the cloud agent see?
+- What did the local worker see before the local change was abandoned?
+- What did the local worker see after restoring its saved local version?
+- Why was that restored local value still different from the newer repository value?
 
 Do not worry about the mechanics of synchronising, committing, or discarding changes yet. The observation for now is that `has access to the project` does not automatically mean `is looking at the same project state`.
