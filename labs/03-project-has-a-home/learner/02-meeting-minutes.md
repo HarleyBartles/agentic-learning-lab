@@ -26,13 +26,13 @@ Ask the local agent to inspect the current project state. If the final decision 
 
 Then make sure there are no other uncommitted project changes before starting Run 1.
 
-You do not need to learn the source-control mechanics yet. The important thing for this exercise is that each experimental run starts from the same project state.
+You do not need to learn the source-control mechanics yet. The project already carries standing working instructions about review, commit, push, and discarding experimental runs. The important thing here is that each run starts from the same project state.
 
 ## Run 1 — "save the important stuff"
 
 Start with the deliberately vague instruction below. Paste the meeting minutes after it.
 
-> Here are the minutes from the latest Repair Café planning meeting. Sort through them and put the important stuff in the repo. Make whatever project-file changes you think are appropriate, but leave all changes uncommitted and do not push anything. Stop when the changes are ready for me to review.
+> Here are the minutes from the latest Repair Café planning meeting. Sort through them and put the important stuff in the repo.
 
 Inspect what the agent changed.
 
@@ -51,7 +51,7 @@ The result may look perfectly reasonable. That is part of the exercise.
 
 Now ask:
 
-> Discard all uncommitted changes from this run and restore the project to exactly how it was before Run 1. Do not alter committed history or push anything.
+> Discard that run.
 
 Check that the Run 1 changes are gone before continuing.
 
@@ -61,7 +61,7 @@ Use the same meeting minutes again.
 
 Ask:
 
-> Here are the same meeting minutes. Persist them verbatim in the project as an honest meeting record. Do not interpret any point as a settled decision, commitment, rule, or resolved question, and do not update the rest of the project state from them. Leave the changes uncommitted and do not push anything. Stop when the meeting record is ready for review.
+> Here are the same meeting minutes. Persist them verbatim in the project as an honest meeting record. Do not interpret any point as a settled decision, commitment, rule, or resolved question, and do not update the rest of the project state from them.
 
 Inspect the changes.
 
@@ -71,7 +71,7 @@ This time the project should contain an honest record of what was said without s
 
 Now ask:
 
-> Discard all uncommitted changes from this run and restore the project to exactly how it was before Run 2. Do not alter committed history or push anything.
+> Discard that run.
 
 Check that the Run 2 changes are gone before continuing.
 
@@ -83,7 +83,7 @@ This time tell the agent exactly which meeting points have authority to change t
 
 Ask:
 
-> Persist these meeting minutes verbatim as the meeting record. Then update the durable project state to reflect them. Points 3, 4 and 7 are confirmed project state and should affect the current plan. Points 2 and 5 remain unresolved questions. Do not promote points 1 or 6 into current project state; they should remain only in the meeting record. Make the project-file changes you think are appropriate, but leave everything uncommitted and do not push anything. Stop for review when you are done.
+> Persist these meeting minutes verbatim as the meeting record. Then update the durable project state to reflect them. Points 3, 4 and 7 are confirmed project state and should affect the current plan. Points 2 and 5 remain unresolved questions. Do not promote points 1 or 6 into current project state; they should remain only in the meeting record.
 
 Inspect the changes carefully.
 
@@ -98,7 +98,7 @@ Check that points 1 and 6 have not quietly become current policy just because th
 
 If the result looks right, tell the agent:
 
-> Keep these changes. Commit and push the completed Exercise 2 project state.
+> Keep this result. Commit and push it.
 
 ## Final proof
 
@@ -119,6 +119,8 @@ Run 1 delegated more than file editing. The phrase `important stuff` also delega
 Run 2 preserved the evidence without pretending that preservation automatically updates the operational state of the project.
 
 Run 3 separated the two jobs: preserve what was actually said, then deliberately state what should become current project knowledge.
+
+Notice something else about how you worked: the project itself carried the routine operating rules about review, commit, push, and discarding a run. You did not have to reconstruct those rules in every task prompt.
 
 The practical lesson is:
 
