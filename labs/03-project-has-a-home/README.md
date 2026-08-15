@@ -1,17 +1,18 @@
 # Lab 3 — The project has a home
 
-Status: **Exercises 1 and 2 scaffolded; remainder in development**.
+Status: **Exercises 1, 2, and 3 scaffolded and ready to run**.
 
 Labs 1 and 2 established that agents can work through different access surfaces. Lab 3 stops treating cloud versus local as the organising question and asks something more basic:
 
 > Where does the project live when nobody is currently talking to an AI about it?
 
-The learner should leave with the idea that important project state must survive independently of any particular conversation or agent, and that conversational material should become durable project state deliberately rather than by accident.
+The learner should leave with the idea that important project state must survive independently of any particular conversation or agent, that conversational material should become durable project state deliberately rather than by accident, and that durable artifacts can still disagree.
 
-The current exercises are:
+The exercises are:
 
 1. `learner/01-tears-in-the-rain.md` — discuss and make an important Repair Café decision while the agent is operating read-only, simulate losing that conversation, reconstruct the project without the missing decision, then explicitly re-enable mutation, persist the decision, and prove it with a fresh agent.
 2. `learner/02-meeting-minutes.md` — run the same Repair Café meeting minutes through three different persistence instructions: vague `important stuff`, verbatim evidence only, then verbatim evidence plus explicit human authority about which points become current project state. Inspect and discard the first two uncommitted runs; keep, commit, and push the third.
+3. `learner/03-which-truth-wins.md` — have one fresh agent produce a visitor information sheet, a second fresh agent perform a deliberately narrow time update only in `notes/current-decisions.md`, then ask a third fresh agent what time the event starts, which durable artifact is authoritative, and how it decided.
 
 The shared working fixture lives in `project/` and is a fictional community Repair Café pilot. The on-disk agent should be rooted at that folder rather than at the teaching lab so it sees the project rather than the exercise choreography.
 
@@ -39,4 +40,12 @@ Exercise 2 adds:
 
 > Don't make the agent guess which meeting chatter became project truth.
 
-Later Lab 3 material is still being designed and should not be inferred from this scaffold.
+Exercise 3 adds:
+
+> Persisted does not mean current.
+
+> Durable does not automatically mean authoritative.
+
+And leaves one deliberate question unresolved:
+
+> When the project disagrees with itself, how does an agent know what to trust?
