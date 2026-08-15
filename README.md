@@ -22,7 +22,7 @@ The lab is built around a few ideas:
 
 ## Modules
 
-Each module is designed to support roughly one hour of conversation, demonstration, and experimentation. They are guides rather than lesson scripts.
+Each module is designed to support roughly one hour of conversation, demonstration, and experimentation. They are facilitator guides rather than learner scripts.
 
 1. [From chatbot to worker](modules/01-chatbot-to-worker.md)
 2. [The project has a home](modules/02-project-has-a-home.md)
@@ -37,10 +37,26 @@ See also [Core principles](docs/core-principles.md) for the ideas that should re
 
 ## Lab areas
 
-- `modules/` contains the high-level guidance for each conversation.
+- `modules/` contains facilitator guidance: learning goals, rationale, discussion prompts, and what not to teach yet.
+- `guided/` contains short learner-facing stage cards intended to be revealed one at a time during a session.
+- `labs/` contains the actual project exercises and their mission contracts: source material, output locations, and win conditions.
 - `docs/` contains cross-cutting principles and facilitator guidance.
-- `labs/` contains deliberately disposable exercises, including things intended to be broken.
 - `projects/` contains small example project environments that are not primarily software projects.
+
+This separation is intentional:
+
+```text
+module document
+    why we are teaching this and how to facilitate it
+
+guided stage card
+    what the learner should do right now
+
+lab README
+    what the actual project task is and what success means
+```
+
+For Module 1, start with `guided/module-01/stage-1.md` and reveal the later stage cards only when the previous stage and reflection are complete.
 
 ## Expected progression
 
@@ -48,7 +64,7 @@ The broad progression is:
 
 **Chat -> workplace -> persistent state -> history -> model/harness/context/tools -> appropriate capabilities -> operating knowledge -> connectors -> source of truth -> verification -> real project**
 
-The order is intentional, but it is not rigid. If the learner becomes interested in a real use case earlier, follow that interest and use the modules as reference material rather than forcing the sequence.
+The order beyond Module 1 is intentionally fluid. As the learner encounters real friction and develops interests, later modules may be rewritten, combined, or reordered.
 
 ## Important safety model
 
