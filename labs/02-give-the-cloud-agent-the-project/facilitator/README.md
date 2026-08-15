@@ -60,11 +60,13 @@ Use the learner's local checkout of this same repository.
 Before the lab:
 
 1. ensure the checkout starts synchronized with `main`;
-2. generate `project/local/attendees.db` from `project/local-setup/seed-attendees.sql` using SQLite;
+2. run `python local-setup/create-local-db.py` from the Lab 2 project to create a fresh `local/attendees.db` with runtime-only attendee records;
 3. confirm `project/local/` is ignored by Git;
 4. prepare the on-disk agent with a working root at `labs/02-give-the-cloud-agent-the-project/project/`;
 5. ensure the agent can inspect common image formats and can use SQLite locally;
 6. keep the `scratch/` content disposable.
+
+The schema and generator are versioned, but the generated attendee records are not. This prevents the cloud agent from reconstructing the current database answer from another committed fixture.
 
 Do not teach Git synchronization or SQLite setup mechanics while preparing this lab. They are facilitator plumbing here.
 
