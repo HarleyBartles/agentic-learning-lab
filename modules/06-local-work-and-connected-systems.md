@@ -6,9 +6,15 @@ Approximate duration: 1 hour.
 
 Direct project access and connectors solve different problems. They should be composed rather than treated as substitutes.
 
-## Local access
+The repository is the workplace. Connectors let the agent reach outside that workplace.
 
-An on-disk agent in a repository can inspect the project directly:
+## Suggested session shape
+
+### 0–15 minutes — Compare access modes
+
+Ask the learner what an on-disk agent can inspect without anyone pre-selecting files for it.
+
+Examples:
 
 - walk directories;
 - read many files;
@@ -19,57 +25,73 @@ An on-disk agent in a repository can inspect the project directly:
 - compare generated artifacts;
 - discover things nobody knew to retrieve explicitly.
 
-This makes it well suited to deep project exploration and modification.
+Then ask what a connector is especially good at: reaching systems that are not part of the local project environment.
 
-## Connectors
+### 15–35 minutes — Run the same repo through two routes
 
-Connectors are excellent when the agent needs to reach systems outside the project environment:
+Use this learning-lab repository itself.
 
-- GitHub remote state;
-- email;
-- calendars;
-- issue trackers;
-- cloud storage;
-- databases;
-- external APIs.
+Through the GitHub connector, ask a focused remote-state question such as:
 
-A connector is a bridge, not a replacement for direct access to the project when deep local inspection is the real task.
+- Which module discusses safe breakage?
+- What files currently exist under `modules/`?
+- What is the latest remote commit touching a chosen file?
 
-## Useful distinction
+Then use the local agent to inspect the repository broadly:
+
+> Explore this repository and explain how the learning plan, labs, and project examples fit together. Follow any references you think matter.
+
+Discuss how the connector retrieved useful remote information while the local agent could freely traverse the working copy and build its own map.
+
+### 35–50 minutes — Retrieval versus exploration
+
+Use the distinction:
 
 > Retrieval asks for something. Exploration discovers what is there.
 
-A connector often works by retrieving the relevant object or result. A local agent can build its own understanding by traversing the project and following evidence wherever it leads.
+A connector may be exactly right for `find the issue where we decided X` or `read the email Bob just sent`.
 
-## Suggested demonstration
+A local agent is better positioned for `deeply understand this project, inspect whatever is relevant, and modify it safely`.
 
-Use the same repository through two routes.
+Neither is universally better.
 
-First, ask a cloud-connected agent a focused question through the GitHub connector, such as locating a file or checking a remote issue.
+### 50–60 minutes — Compose them
 
-Then ask a local agent to understand the repository structure and explain how the project fits together.
-
-Discuss why both are useful and why they are not interchangeable.
-
-## Project isolation
-
-Use this module to reinforce that different agent environments should expose only the capabilities they need.
-
-A project may have:
+Sketch a realistic environment:
 
 ```text
-local repo
-  + local tools
-  + project instructions
-  + Git history
-  + selected MCPs/connectors
+                     email / calendar
+                          |
+issue tracker ---- local agent ---- GitHub remote
+                          |
+                    project repo
+                    local tools
+                    instructions
 ```
 
-The repository is the workplace. Connectors let the agent reach outside that workplace.
+Ask which systems the project should be able to touch, which should be read-only, and which do not belong in this environment at all.
+
+This prepares later conversations about least privilege and deliberate capability boundaries.
+
+## Tools to experiment with
+
+- GitHub connector/MCP;
+- local repository inspection via Codex;
+- Git CLI/history locally;
+- optionally one external non-GitHub connector if there is a clear harmless example.
 
 ## Discussion prompts
 
-- When is retrieval enough?
-- When does the agent need direct access to inspect broadly?
+- When is focused retrieval enough?
+- When does an agent need freedom to explore broadly?
+- What does direct filesystem access reveal that a search result may not?
 - Which external systems should this project be allowed to touch?
-- What information belongs locally versus behind a connector?
+- Where should authoritative project state live?
+
+## Principle
+
+> Put the agent close to the source of truth it needs to work on, and give it appropriate bridges to everything else.
+
+## Do not teach yet
+
+Do not turn MCP into a protocol lecture. At this stage it is enough to understand it as a way to expose external context and actions to the agent. Protocol internals can wait until there is a reason to care.
