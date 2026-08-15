@@ -30,7 +30,15 @@ A confirmed operational change has arrived:
 
 Give Agent 2 a narrow maintenance task:
 
-> The Repair Café public session time has changed to 10:00-13:00. Update `notes/current-decisions.md` to reflect that new confirmed time. Do not inspect the rest of the project for other references; this is a deliberately scoped update. Change only that file, then commit and push it.
+> The Repair Café public session time has changed to 10:00-13:00. Update only `notes/current-decisions.md` to reflect that new confirmed time. Do not search for or update other references. Commit and push that one-file change.
+
+Agent 2 may warn you that changing only one file could leave other project artifacts stale. That is a good warning.
+
+In normal project work, you would usually want the agent to find and update related references rather than knowingly leave the project inconsistent. For this exercise, though, we are deliberately creating that inconsistency so Agent 3 has a real conflict to investigate.
+
+If Agent 2 warns you, acknowledge it and ask it to continue with the scoped change only:
+
+> Yes, I understand that may leave other references stale. For this exercise, make only the scoped change I requested.
 
 Inspect the change and confirm that Agent 2 did exactly the bounded job it was given.
 
@@ -89,11 +97,20 @@ There is no required Agent 3 answer. The important thing is to expose how it dec
 Talk through:
 
 - Did Agent 1 do anything wrong when it created the visitor sheet?
-- Did Agent 2 do anything wrong when it performed exactly the scoped update it was given?
-- How did the project nevertheless end up disagreeing with itself?
+- Was Agent 2 right to warn about stale references if it noticed the risk?
+- Why did we deliberately override that good warning for this exercise?
+- How did the project nevertheless end up disagreeing with itself even though each agent followed its assigned task?
 - Did Agent 3 discover an explicit authority rule, or construct one from clues?
 - Would a reasonable agent always make the same choice?
 - What happens as a project accumulates more outputs, summaries, plans, and historical artifacts?
+
+This Repair Café project is tiny. There are only a handful of files and the contradiction is easy to inspect once you know to look for it.
+
+Now imagine the project is organising a production of *Cats*: cast calls, rehearsal schedules, technical plans, venue arrangements, publicity, ticketing information, supplier details, and working notes can all repeat the same facts in different forms.
+
+Then imagine organising Glastonbury Festival. The number of teams, suppliers, schedules, safety plans, artist information, transport arrangements, site operations, public communications, and derived outputs becomes enormous. A stale fact no longer sits conveniently beside the newer one waiting for a human to notice it.
+
+At that scale, keeping project truth coherent stops being a tidiness problem. The project needs ways to communicate what is authoritative, what is derived, what is stale, and what should change when an important fact changes.
 
 The key ideas are:
 
