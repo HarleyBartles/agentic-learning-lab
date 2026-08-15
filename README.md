@@ -66,7 +66,7 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 ## Curriculum
 
 1. [From chatbot to worker](labs/01-chatbot-to-worker/)
-2. Give the cloud agent the project
+2. [Give the cloud agent the project](labs/02-give-the-cloud-agent-the-project/)
 3. The project has a home
 4. Repositories, save points, and safe breakage
 5. Model, harness, context, tools, and behaviour
@@ -77,7 +77,7 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 
 Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the repository, then compares connector-mediated access with direct local workspace access.
 
-The order and design beyond Lab 1 remain intentionally fluid. Existing files in `modules/` are working facilitator drafts for later curriculum and may be rewritten, folded into labs, combined, or reordered as those labs take shape.
+Labs 1 and 2 now have expanded lab structures. Existing files in `modules/` are working facilitator drafts for later curriculum and may be rewritten, folded into labs, combined, or reordered as those labs take shape.
 
 See also [Core principles](docs/core-principles.md) for ideas that should recur throughout the conversations.
 
