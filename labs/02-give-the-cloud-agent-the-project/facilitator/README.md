@@ -2,7 +2,7 @@
 
 Approximate duration: 1 hour.
 
-Status: **scaffolded / in active design**.
+Status: **locked / stable**.
 
 ## Learning goal
 
@@ -34,8 +34,8 @@ The fixture is a small event-planning project for Riverside Hall. It includes:
 - tracked text describing event setup and operational facts;
 - a tracked venue plan image containing information that only exists visually;
 - a tracked description of a local operational attendee database;
-- a tracked reusable SQLite schema;
 - a `.gitignore` rule excluding `local/`, where the operational database will be created during Exercise 3;
+- an initially empty `local-setup/` area where the worker will create reusable database schema during Exercise 3;
 - a tracked disposable `scratch/` directory used for the deletion exercise;
 - `AGENTS.md`, containing standing instructions for the on-disk worker.
 
@@ -64,12 +64,13 @@ Before the lab:
 1. ensure the checkout starts synchronized with `main`;
 2. ensure `project/local/attendees.db` does **not** exist;
 3. confirm `project/local/` is ignored by Git;
-4. prepare the on-disk agent with a working root at `labs/02-give-the-cloud-agent-the-project/project/`;
-5. ensure the agent can inspect common image formats and use SQLite locally;
-6. keep the `scratch/` content disposable;
-7. confirm the worker reads and follows `project/AGENTS.md`.
+4. confirm `project/local-setup/` contains no attendee schema yet;
+5. prepare the on-disk agent with a working root at `labs/02-give-the-cloud-agent-the-project/project/`;
+6. ensure the agent can inspect common image formats and use SQLite locally;
+7. keep the `scratch/` content disposable;
+8. confirm the worker reads and follows `project/AGENTS.md`.
 
-The repository contains the reusable database schema in `project/local-setup/schema.sql`, but no attendee records. The learner will supply those records directly to the on-disk worker during Exercise 3, and the worker will create the operational database locally.
+The learner will supply the attendee records directly to the on-disk worker during Exercise 3. The worker should create both the reusable schema and the operational database. The schema is legitimate source-controlled work; the current attendee records remain local runtime state.
 
 `AGENTS.md` is deliberately visible in the project. It is not part of the lesson yet, but it does not need to be hidden. If the learner asks what it is, explain briefly that it contains standing working instructions for the local agent so the exercise behaves consistently, and that a later lab will examine how project instructions work and where they belong.
 
@@ -138,7 +139,7 @@ Let any normal connector confirmation/safety flow occur naturally.
 
 Do **not** update the learner's local checkout.
 
-Ask both agents again.
+Once the remote mutation is complete, start a fresh cloud conversation and a fresh local-agent conversation before asking for the supplier time again. This prevents either answer from coming from conversational memory of the mutation instruction rather than project state.
 
 Expected visible result:
 
@@ -161,7 +162,11 @@ local working file             learner's Run B value
 local saved version beneath    original synchronized value
 ```
 
-This is stronger than resetting between runs because the learner can see that `the project` is not a single magical object with one universally observed value. Different access surfaces can expose different states at the same time.
+A key reflection question is:
+
+> At any stage, was an agent lying or giving a wrong answer based on the project state it could actually see?
+
+The intended answer is no. Each agent honestly reported the correct value according to the project state visible through its own access route. The disagreement comes from state divergence, not deception or necessarily bad reasoning.
 
 After the observation, synchronize and clean the local checkout before the next exercise.
 
@@ -197,30 +202,30 @@ Do not turn this into an explanation of binary transport, connector internals, o
 
 ## Exercise 3 — Is the repository the whole project?
 
-This exercise starts with no attendee database on disk.
+This exercise starts with no attendee database on disk and no pre-existing attendee schema in `local-setup/`.
 
 The learner chooses five fictional attendee records, including name, confirmation state, and meal choice, and supplies those values directly to the on-disk worker. Those values must not already exist in a tracked file or cloud conversation.
 
-The learner asks the local worker to set up the attendee database using those records, create any reusable database structure that properly belongs in source control, and push the appropriate project work when finished.
+The learner asks the local worker to set up the attendee database using those records, create the reusable database schema as source-controlled project material, and push the appropriate project work when finished.
 
 Expected local result:
 
 - `project/local/attendees.db` is created and contains the records;
 - the database remains ignored and is not published;
-- reusable schema or setup material can remain tracked;
-- the worker can commit/push appropriate source-controlled work without leaking any attendee values into tracked files, commit messages, receipts, logs, issues, PRs, or other remote surfaces.
+- a reusable schema is created in `project/local-setup/` and is committed/pushed;
+- the worker can publish that legitimate source-controlled work without leaking any attendee values into tracked files, commit messages, receipts, logs, issues, PRs, or other remote surfaces.
 
 Then start a fresh cloud ChatGPT conversation and ask it, using only repository access, to list the attendee records the on-disk worker just captured.
 
-The learner has just watched the worker create the state and successfully publish appropriate project work, so the impossibility should feel concrete rather than staged.
+The learner has just watched the worker create the state and successfully publish legitimate related work, so the impossibility should feel concrete rather than staged.
 
 Expected cloud result:
 
 - it can discover that the project uses `local/attendees.db`;
-- it can inspect the reusable schema and repository material;
+- it can inspect the newly published reusable schema and repository material;
 - it cannot retrieve the actual attendee records because those records never crossed onto the GitHub surface.
 
-Ask the on-disk agent for the same records and let it query the database directly.
+Then start a **fresh** on-disk-agent conversation rooted at the same local project and ask for the same records. It should query the database directly. Using a fresh conversation ensures success demonstrates persistent local state rather than remembered prompt content.
 
 This is not a fake limitation introduced purely for the lab. Operational database contents commonly do not live in source control. Source control often contains schema, migrations, setup/test material, and code which uses the database, while live mutable database state is managed separately. Reasons include privacy, mutable/environment-specific state, poor binary diff/merge behaviour, and practical repository size limits as databases grow.
 
@@ -291,6 +296,20 @@ A compact facilitator synthesis is:
 > Project access is shaped by the surface the agent is given.
 
 Avoid declaring a winner. In different runs of this lab, either cloud or local access should have the useful advantage.
+
+## Reset after the session
+
+Return the lab to a known starting state before the next run:
+
+1. restore the remote supplier arrival time in `project/source/supplier.md` to the original baseline;
+2. synchronize the learner's local checkout and leave no local supplier edit behind;
+3. remove `project/local/attendees.db`;
+4. remove the attendee schema created during Exercise 3 from `project/local-setup/` so the next learner creates it themselves;
+5. restore `project/scratch/` remotely if the cloud-side deletion succeeded;
+6. confirm the scratch fixture exists locally after synchronization;
+7. immediately before teaching the lab again, verify that the GitHub connector still exposes `venue-plan.png` only as encoded/binary content rather than usable image pixels.
+
+The reset mechanics are facilitator work. They are not part of the Lab 2 lesson.
 
 ## Do not teach yet
 
