@@ -99,61 +99,71 @@ The exercise has three runs.
 
 ### Run A — synchronized baseline
 
-Start with local and GitHub both saying the supplier arrival time is `09:00`.
+Start with local and GitHub both reporting the same supplier arrival time.
 
-Ask both agents the same question:
+Ask both agents:
 
 > What time is the supplier arriving at Riverside Hall?
 
-Both should answer `09:00`.
+Both should agree.
 
 The important first observation is positive:
 
 > The cloud agent can now use the project directly. Lab 1's manual file transport is no longer necessary for this kind of task.
 
-### Run B — local ahead
+### Run B — learner creates local-only state
 
-Change the local working copy of `source/supplier.md` to `10:30` without publishing that change.
+Ask the learner to choose a different supplier arrival time themselves. The chosen value should exist only in the learner's prompt to the local agent; do not encode it in facilitator notes or tracked learner material.
+
+Have the learner tell the on-disk agent to change the supplier arrival time to that value and stop for review without committing or publishing.
 
 Ask both agents again in fresh conversations.
 
 Expected result:
 
-- local agent: `10:30`;
-- cloud agent through GitHub: `09:00`.
+- local agent reports the learner's chosen local time;
+- cloud agent through GitHub reports the unchanged repository time.
 
-Do not teach `dirty working tree`, commit, push, or remote terminology yet. Just notice that two valid access routes can be observing different states.
+The learner has caused the divergence themselves. Do not teach `dirty working tree`, staging, commit, or push terminology yet. Just notice that two valid access routes can be observing different states.
 
-### Run C — remote changes while local work remains
+### Run C — learner creates remote state while local work remains
 
-Do **not** restore or discard the local `10:30` change from Run B.
+Do **not** restore or discard the local change from Run B.
 
-Ask the cloud agent, through its GitHub write capability, to change the supplier arrival time in the repository to `11:15`.
+Ask the learner to choose another supplier arrival time, different from their Run B value. Again, the value should be created in the learner-to-cloud-agent conversation rather than encoded in the repository.
+
+Have the learner ask cloud ChatGPT, through its GitHub write capability, to change the supplier arrival time directly in the repository to that second value.
 
 Let any normal connector confirmation/safety flow occur naturally.
 
-Do **not** update the learner's local checkout yet.
+Do **not** update the learner's local checkout.
 
 Ask both agents again.
 
 Expected visible result:
 
-- cloud agent: `11:15`, because that is now the repository state it can observe;
-- local agent: `10:30`, because the learner's working file still contains the uncommitted local edit.
+- cloud agent reports the learner's Run C value from the repository;
+- local agent still reports the learner's Run B value from the uncommitted working file.
 
-There is also a third useful state underneath the local edit: the local checkout's previously saved version still corresponds to the earlier repository value, `09:00`.
+There is also a third state underneath the local edit: the saved local version from before Run B.
 
-Do not teach the mechanics yet. Simply make the three states visible conceptually:
+Now have the learner tell the local agent:
+
+> I changed my mind. Abandon my local change to the supplier file and restore that file to the saved local version. Then tell me the supplier arrival time again.
+
+Expected result: the local agent now reports the older saved local value, which is still stale relative to the repository because the learner has not synchronized after the cloud-side change.
+
+Do not unpack the Git mechanics yet. The learner has now experienced three simultaneously meaningful states:
 
 ```text
-remote repository state        11:15
-local working file             10:30
-local saved baseline beneath   09:00
+remote repository state        learner's Run C value
+local working file             learner's Run B value
+local saved version beneath    original synchronized value
 ```
 
 This is stronger than resetting between runs because the learner can see that `the project` is not a single magical object with one universally observed value. Different access surfaces can expose different states at the same time.
 
-After the observation, resynchronize and clean the local checkout before the next exercise.
+After the observation, synchronize and clean the local checkout before the next exercise.
 
 ## Exercise 2 — Can you see it?
 
@@ -226,15 +236,25 @@ Use only:
 
 The directory contains deliberately disposable files.
 
-First ask the local agent:
+### Run A — local deletion and cheap rollback
 
-> Delete everything in `scratch/`.
+Have the learner ask the local agent:
 
-With ordinary local filesystem permissions, this should happen immediately.
+> Delete everything in `scratch/`, but do not commit or publish the deletion. Stop for review when the files are gone locally.
 
-Restore the scratch fixture.
+Inspect the result.
 
-Then ask the cloud agent through GitHub to perform the analogous deletion against the repository.
+Then have the learner tell the same local agent:
+
+> I changed my mind. Abandon those local changes and restore the scratch files.
+
+Inspect the restored files.
+
+Do not teach Git commands or recovery mechanics here. This is a small preview of a later source-control lesson: when a destructive local change has not been published and a saved project version exists underneath it, changing your mind can be cheap.
+
+### Run B — analogous remote deletion
+
+Ask the cloud agent through GitHub to perform the analogous deletion against the repository.
 
 Observe the actual current connector behaviour. Depending on the enabled write surface and safety policy, the operation may be unavailable, may require explicit user confirmation, or may permit only bounded mutations.
 
