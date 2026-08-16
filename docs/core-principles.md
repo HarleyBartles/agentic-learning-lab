@@ -208,8 +208,70 @@ Source control, disposable examples, narrow permissions, and clear project bound
 
 Be fearless with reversible state. Be deliberate with external side effects such as sending messages, deleting remote records, publishing, spending money, or changing real permissions.
 
+## The learner defines success, legal routes, and good enough
+
+As the curriculum moves from isolated tasks into skills, loops, graphs, and autonomous workflows, the learner is doing more than describing an output.
+
+They are increasingly defining:
+
+- what counts as success;
+- which transitions/actions are legal;
+- what evidence counts as progress;
+- what `good enough` means;
+- which failures should be retried;
+- which conditions require a stop;
+- where control should go when normal progress is impossible.
+
+Do not explain systematic agent behaviour as personality when the environment already made that behaviour reasonable.
+
+A useful model at this stage is:
+
+> **The agent is looking for a legal route to something that appears to satisfy the task success condition.**
+
+If the easiest legal route is an overly broad escalation path, the agent may hand difficult work back too early. If no legal escape exists, the agent may churn inside a loop that cannot converge. Neither requires the agent to be `lazy`, `cheeky`, or inherently attracted to escape hatches.
+
+Ask instead:
+
+> Who defined the success condition?
+
+> Who defined the legal routes from the start state to the goal?
+
+> Who defined what good enough looks like?
+
+At this stage of the curriculum, the answer is largely the learner, directly or through the environment they provisioned.
+
+A reusable diagnostic question is:
+
+> **What did we make it reasonable for the agent to believe counted as success?**
+
+## Loops need termination models and bounded escape routes
+
+A continuation rule alone does not make a robust loop.
+
+A workflow should distinguish:
+
+- keep trying because a plausible corrective route still exists;
+- stop because more trying cannot resolve the underlying problem;
+- escalate because the remaining decision belongs to a different authority.
+
+Useful distinctions:
+
+- **stop condition:** when the current loop must not continue;
+- **escalation path:** what happens after the stop;
+- **escape hatch:** an exceptional legal route out of the normal workflow.
+
+A missing escape hatch can turn impossible work into endless activity. An overly broad escape hatch can become an easy legal route around difficult-but-solvable work.
+
+> **Exceptional exits need explicit entry conditions.**
+
+A strong escape condition should be grounded in evidence such as recurrence, incompatible authoritative requirements, bounded retries, no new evidence, or missing authority.
+
+> **A robust workflow defines not only how to continue, but how to recognise non-progress, how to stop, and which authority receives the unresolved decision.**
+
+As soon as a loop can pass, retry, return, stop, or escalate depending on state, the learner has earned a graph-shaped mental model without needing graph theory.
+
 ## Teach invariants; let techniques emerge
 
-Teach ideas such as source of truth, recovery, verification, isolation, bounded authority, and persistent state directly.
+Teach ideas such as source of truth, recovery, verification, isolation, bounded authority, persistent state, termination, and legal workflow transitions directly.
 
 Let advanced techniques such as elaborate Git workflows, RAG, multi-agent orchestration, CI/CD, complex MCP setups, and sophisticated automation arrive when the learner encounters the problem they solve.
