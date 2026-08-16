@@ -20,16 +20,20 @@ You do not need to understand or edit the Python. Copy the supplied file into:
 
 `project/tools/validate_schedule.py`
 
-Inspect the Git diff.
+Inspect the working-tree state:
+
+`git status --short`
+
+The checker is an untracked addition, so normal `git diff` will not display it.
 
 Before running it, answer:
 
 - Did the model change?
 - Did the schedule change?
-- What new capability is now available inside the project?
+- What new project-specific capability is now available?
 - What does the harness already provide that lets the worker execute that tool?
 
-Now ask:
+Now ask the same worker that made the provisional assessment:
 
 > Run the prepared schedule validator and compare its evidence with your provisional assessment. Tell me what changed in your confidence.
 

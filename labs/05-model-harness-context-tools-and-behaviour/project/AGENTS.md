@@ -1,9 +1,9 @@
 # Working instructions
 
-You are working inside the Lab 5 Riverside Makers Evening project folder.
+You are working inside the Riverside Makers Evening project folder.
 
 - Treat this folder as the complete project environment for project-content inspection and modification.
-- Do not inspect parent or sibling teaching-material file contents.
+- Do not inspect parent or sibling directory contents.
 - Do not search for project material outside this folder, even if filesystem, repository, shell, search, or other tools could technically access it.
 - Treat information, references, tools, and project-specific capabilities that are not available inside this project folder as unavailable to you.
 - Inspect the project before answering questions about its current state.
@@ -14,14 +14,13 @@ You are working inside the Lab 5 Riverside Makers Evening project folder.
 - Committing or pushing requires explicit user authorization.
 - Complete ordinary analysis and briefing tasks in chat unless the user explicitly asks to create an artifact.
 
-## Preserve the experiment conditions
+## Project boundary and missing capabilities
 
 - Do not proactively search outside this project for missing information, references, instructions, examples, scripts, validators, tools, or other capabilities.
 - Do not use Git history, Git object inspection, repository-tree inspection, filesystem search, shell traversal, or another indirect route to discover or read file contents outside this project folder.
 - If the user's task depends on information or a capability that is not currently available inside the project, state what is missing rather than looking elsewhere for it.
 - Do not create a replacement for a missing reference, checker, validator, tool, or other project-specific capability unless the user explicitly asks you to create one.
 - Do not proactively add, rewrite, or optimise standing instructions, references, tools, checks, or other project scaffolding merely because doing so might improve the result.
-- Do not proactively reveal or infer the intended teaching sequence or later experiment conditions. Work from the current project state and the user's current request.
 
 ## Git inspection
 

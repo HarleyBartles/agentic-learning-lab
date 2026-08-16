@@ -12,11 +12,28 @@ Read the result without improving it yet.
 
 Now suppose the facts are useful but you want this kind of briefing to be much tighter every time: four short bullets, no heading or preamble, prioritising time, access, safety, and the volunteer lead's first action.
 
-Do **not** put those requirements only in your next prompt.
+At this point, open `AGENTS.md` yourself with the facilitator.
 
-Ask the worker to make that a standing project rule by editing `AGENTS.md`. Leave the change uncommitted.
+This is the standing project-instruction file. You have been working inside projects with files like this since Lab 1; until now they were mostly part of the prepared environment.
 
-Inspect the Git diff.
+Read it briefly together. Do not try to learn every rule or instruction-precedence detail.
+
+At the bottom of the file, add:
+
+```md
+## Volunteer-lead briefings
+
+- Write volunteer-lead operational briefings as exactly four bullets.
+- Do not add a heading, preamble, or closing sentence.
+- Keep each bullet to 24 words or fewer.
+- Prioritise time, access, safety, and the volunteer lead's first action.
+```
+
+You are editing this by hand. Do not ask the current agent to modify its own operating instructions.
+
+Inspect:
+
+`git diff -- AGENTS.md`
 
 Before rerunning the task, answer:
 
@@ -26,14 +43,16 @@ Before rerunning the task, answer:
 - Did we swap harness?
 - Did we change the task itself?
 
-Start a fresh worker session in the same `project/` and use the original request again:
+Now close the original agent conversation and start a **fresh agent context** in the same `project/`.
+
+Use the original request again:
 
 > Read `tasks/volunteer-lead-brief.md` and do the task.
 
 Compare the two outputs.
 
-Keep this line:
+Keep these lines:
 
 > **Same model does not mean same behaviour.**
 
-You changed a durable instruction around the model, not the job the model was asked to do.
+> **You have been benefiting from project instructions since the beginning. Now you have touched the lever yourself.**

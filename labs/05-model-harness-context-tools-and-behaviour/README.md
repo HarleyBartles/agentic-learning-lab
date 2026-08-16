@@ -1,6 +1,6 @@
 # Lab 5 — Model, harness, context, tools, and behaviour
 
-Status: **Runnable draft — ready for facilitator trial.**
+Status: **Mature and ready to run.**
 
 Approximate duration: 60–75 minutes.
 
@@ -14,7 +14,7 @@ The learner works in one evolving project rather than being moved between prepar
 2. available project evidence;
 3. an available verification tool.
 
-Those changes accumulate in one visible Git diff. The final exercise uses that diff to reconstruct the larger system model:
+The resulting working-tree change set remains visible throughout the lab. The final exercise uses that evidence to reconstruct the larger system model:
 
 > **model + harness + instructions/settings + context + tools + environment/state + feedback = observed behaviour**
 
@@ -34,6 +34,7 @@ labs/05-model-harness-context-tools-and-behaviour/
         validate_schedule.py
     project/
         AGENTS.md
+        README.md
         event/
         tasks/
         work/
@@ -41,14 +42,16 @@ labs/05-model-harness-context-tools-and-behaviour/
 
 Root the local worker at `project/` throughout the lab.
 
-`toolbox/` is course material outside the worker's project boundary. The learner can see it, but the worker should not be scoped to it. Moving useful material across that boundary is part of the exercise rather than facilitator setup hidden between runs.
+`project/` is a coherent Riverside Makers Evening project from the worker's point of view. It does not explain the surrounding lesson or advertise later inputs.
+
+`toolbox/` is course material outside the worker's project boundary. The learner can see it, but the worker is instructed to treat the project folder as its complete working environment. Moving useful material across that boundary is part of the exercise rather than hidden facilitator setup.
 
 ## Exercises
 
-1. `learner/01-change-the-instructions.md` — run a briefing task, deliberately change the project's standing instructions, inspect the diff, start a fresh session, and rerun the same task.
-2. `learner/02-bring-in-the-evidence.md` — encounter a task the worker cannot justify from current project evidence, then deliberately add the missing venue reference to the project and rerun.
+1. `learner/01-change-the-instructions.md` — run a briefing task, open the standing project instructions with the facilitator, hand-edit one bounded briefing rule, inspect the tracked diff, start a fresh agent context, and rerun the same task.
+2. `learner/02-bring-in-the-evidence.md` — encounter a task the worker cannot justify from current project evidence, deliberately add the missing venue reference to the project, and rerun.
 3. `learner/03-give-it-a-checker.md` — make a provisional schedule assessment, deliberately add a prepared deterministic checker to the project, then compare unaided judgment with tool-backed feedback.
-4. `learner/04-read-the-agent-diff.md` — inspect the accumulated project diff, map each intervention to a system layer, then diagnose mixed failure scenarios before choosing interventions.
+4. `learner/04-read-the-agent-change-set.md` — inspect the accumulated working-tree change set, map each intervention to a system layer, then diagnose mixed failure scenarios before choosing interventions.
 
 The core lab does not require a second AI product. A cross-harness or cross-model comparison is optional only after the learner can state what variables were actually held constant.
 
@@ -66,4 +69,4 @@ Core lines to earn:
 
 > **Diagnosis before intervention.**
 
-Do not turn this into benchmark methodology, model leaderboards, or a catalogue of every possible instruction surface. The learner needs a practical diagnostic model they have physically manipulated themselves before Lab 6 begins deliberate provisioning.
+Do not turn this into benchmark methodology, model leaderboards, or a catalogue of every possible instruction surface. The learner needs a practical diagnostic model they have physically manipulated themselves before Module 6 begins deliberate provisioning.

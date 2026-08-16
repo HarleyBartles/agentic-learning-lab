@@ -64,17 +64,19 @@ Do not treat capability richness as automatically desirable. This module should 
 
 > Does this worker need this capability for the job in front of it?
 
-### 40–50 minutes — Take ownership of persistent instructions
+### 40–50 minutes — Own and maintain persistent instructions
 
-The learner has already been working inside lab environments whose `AGENTS.md` files were facilitator-authored experimental controls.
+Lab 5 already revealed `AGENTS.md` as one of the layers shaping agent behaviour. The learner opened the prepared project instructions, changed one bounded rule by hand, and observed a fresh agent receive the changed environment.
 
-This is the right point to reveal that lever explicitly and transfer ownership.
+This phase is therefore **not another reveal**.
+
+The new step is that this is the learner's real project. There is no facilitator-owned answer for what its standing doctrine should be.
 
 If the learner has repeatedly told the agent the same stable project rule, ask:
 
 > Where should this live so we stop rebuilding it in every prompt?
 
-Then have the learner direct the agent to create or modify the appropriate `AGENTS.md` rather than manually editing it themselves.
+Have the learner decide whether the rule really is stable project doctrine. If it is, they can now deliberately ask the agent to create or modify the project's `AGENTS.md`, then inspect that change before accepting it.
 
 Examples:
 
@@ -84,9 +86,9 @@ Examples:
 - always render and inspect PDFs before calling the task complete;
 - prefer local repository inspection over GitHub retrieval when the repository is already on disk.
 
-Explicitly connect this to the earlier labs:
+Explicitly connect this to Lab 5:
 
-> You have been benefiting from project instructions since Lab 1. Until now the facilitator owned them. This project is yours, so you decide what stable working doctrine belongs here.
+> In Lab 5 you changed one standing instruction yourself so you could see the lever clearly. This project is yours, so now you decide what stable working doctrine belongs here — and you can delegate maintaining that file because you understand what it does.
 
 A useful rule remains:
 
@@ -141,7 +143,7 @@ Choose them based on the real project rather than curriculum requirements:
 - Codex or another on-disk agent;
 - one or two project-specific local tools;
 - a carefully chosen MCP/connector if needed;
-- learner-owned `AGENTS.md` once repeated project guidance exists;
+- learner-owned `AGENTS.md` maintained deliberately once repeated project guidance exists;
 - one small skill once a reusable workflow exists.
 
 ## Reflect on the full system

@@ -1,11 +1,14 @@
-# Riverside Makers Evening project
+# Riverside Makers Evening
 
-This is the worker's project for Lab 5.
+Planning and operational material for the Riverside Makers Evening at Riverside Centre.
 
-Root the local agent here and keep that root throughout the lab.
+The event brings together a repair table, demonstration stage, and quiet help desk for an evening public session supported by volunteers.
 
-The project begins intentionally incomplete. During the exercises, the learner will change the worker's environment by editing standing instructions and adding selected course material to this project.
+## Project structure
 
-Keep those changes uncommitted until Exercise 4 so the accumulated Git diff remains available as evidence of what changed.
+- `event/` contains current event facts and operational constraints.
+- `tasks/` contains bounded pieces of work that need to be completed from project evidence.
+- `work/` contains working operational data such as schedules and constraints.
+- `AGENTS.md` contains standing working instructions for agents operating in this project.
 
-Course material in the neighbouring `toolbox/` directory is outside this worker's project boundary unless the learner deliberately brings something into the project.
+Use project evidence when making event-specific claims. If the project does not contain enough evidence to answer a question, preserve that uncertainty rather than inventing a Riverside-specific rule.

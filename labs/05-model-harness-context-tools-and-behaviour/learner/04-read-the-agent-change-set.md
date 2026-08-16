@@ -1,12 +1,16 @@
-# Exercise 4 — Read the agent diff
+# Exercise 4 — Read the agent change set
 
-Before looking at any new scenarios, inspect the accumulated Git diff from this lab.
+Before looking at any new scenarios, inspect the accumulated working-tree state from this lab:
+
+`git status --short`
 
 You should be able to find three deliberate interventions:
 
-- a change to standing project instructions;
-- new project evidence;
-- a new checking tool.
+- a tracked change to standing project instructions;
+- new untracked project evidence;
+- a new untracked checking tool.
+
+Inspect `git diff -- AGENTS.md` for the tracked instruction change, and open the two new files if you need to inspect their contents.
 
 Ask:
 

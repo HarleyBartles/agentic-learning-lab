@@ -48,7 +48,7 @@ local checkout / connectors / agent workspaces
 
 Early synchronization can remain facilitator plumbing. Later modules can deliberately reveal the difference between local working state, the learner's remote fork, and upstream curriculum state.
 
-Lab-scoped `AGENTS.md` files survive the fork. In early labs they are facilitator-owned experimental controls: they establish stable agent behaviour and safety boundaries without teaching the learner the mechanism yet. Later the learner should explicitly take ownership of this lever and direct an agent to create or modify project instructions for their own work.
+Lab-scoped `AGENTS.md` files survive the fork. In Labs 1–4 they are facilitator-owned experimental controls: they establish stable agent behaviour and safety boundaries without making instruction architecture the subject of those labs. Lab 5 explicitly reveals this lever: the learner reads the project instructions with the facilitator, hand-edits one bounded standing rule, and starts a fresh agent to observe the resulting behaviour. Later, when the learner creates a real project, they own that instruction surface and can deliberately delegate its maintenance to an agent.
 
 ## Labs
 
@@ -120,7 +120,7 @@ Lab 3 stops treating cloud versus local as the organizing question and focuses o
 
 Lab 4 makes the source-control machinery visible after the learner has already benefited from it: working state, recorded history, diffs, commit versus push, historical recovery, and the boundary where Git can no longer undo external consequences.
 
-Labs 1–4 are mature and ready to run. Lab 5 is scaffolded as a runnable draft ready for facilitator trial.
+Labs 1–5 are mature and ready to run.
 
 The middle curriculum deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Module 6 uses that model to provision a worker for a domain. Module 7 lets the learner temporarily treat the assembled worker as `an Agent`, then asks where that worker should operate and what it should be connected to. Later modules deliberately refine that conception again.
 

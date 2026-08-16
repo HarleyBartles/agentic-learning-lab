@@ -12,15 +12,19 @@ Now look outside the worker's project at the course material in:
 
 `toolbox/venue-constraints.md`
 
-The information exists on your machine, but it is outside the worker's current project boundary.
+The information exists on your machine, but it is outside the worker's assigned project.
 
-Copy it into the project as:
+Copy it with your editor or file browser into:
 
 `project/reference/venue-constraints.md`
 
-Use your editor or file browser; no coding is required.
+No coding is required.
 
-Inspect the Git diff before asking the question again.
+Inspect the working-tree state:
+
+`git status --short`
+
+The new file is untracked, so a normal `git diff` will not display its contents. Open the copied file directly if you want to inspect what entered the project.
 
 Ask yourself:
 
@@ -29,7 +33,7 @@ Ask yourself:
 - What did you just change about the worker's environment?
 - Why is putting the evidence in durable project state different from telling one conversation the answer?
 
-Start a fresh worker session in the same project and repeat exactly:
+Start a fresh worker context in the same project and repeat exactly:
 
 > Read `tasks/venue-layout.md` and answer it from project evidence you can actually inspect.
 

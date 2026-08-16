@@ -1,6 +1,6 @@
 # Lab 5 facilitator guide
 
-Status: **Runnable draft — ready for facilitator trial.**
+Status: **Mature and ready to run.**
 
 ## Lab learning goal
 
@@ -20,9 +20,9 @@ The lab should earn that model through manipulation rather than explanation. The
 
 Do not teleport the learner between prepared versions of the same project.
 
-Labs 1–4 have already taught them to care about workspace boundaries, durable project state, and diffs. Reuse those habits here.
+Labs 1–4 have already taught the learner to care about workspace boundaries, durable project state, Git status/diffs, and reversible change. Reuse those habits here.
 
-The learner keeps one worker rooted at:
+Keep one local worker rooted at:
 
 `labs/05-model-harness-context-tools-and-behaviour/project/`
 
@@ -30,7 +30,7 @@ The course also contains:
 
 `labs/05-model-harness-context-tools-and-behaviour/toolbox/`
 
-The learner can inspect that course material in their editor/file browser, but the worker should not be rooted high enough to see it directly.
+The human can inspect the toolbox in the editor/file browser. The worker must remain rooted at `project/` and its `AGENTS.md` explicitly tells it not to inspect parent or sibling material, including through shell, filesystem search, or Git back doors.
 
 The central loop is:
 
@@ -41,30 +41,48 @@ identify one layer to change
         ↓
 change the project/environment
         ↓
-inspect the diff
+inspect working-tree state
         ↓
 rerun
         ↓
 explain the behavioural difference
 ```
 
-This gives the setup work pedagogical value. The learner is not receiving a new mysterious worker; they are building the changed conditions themselves.
+This makes setup part of the exercise. The learner is changing the conditions themselves rather than receiving a new mysterious worker.
 
-## Callback to Lab 4
+## Callback to Lab 4: working-tree evidence and recovery
 
 Useful transition:
 
-> Last time, the diff told you what changed in the project. This time, we're going to use the diff to tell us what we changed about the worker's environment.
+> Last time, status and diffs told you what changed in the project. This time, we're going to use the same evidence to tell us what we changed about the worker's environment.
 
-Keep Lab 5 changes uncommitted during the session so the accumulated diff remains visible for Exercise 4.
+Keep the three Lab 5 interventions uncommitted through Exercise 4.
+
+Use the Git tools the learner already knows, without introducing staging as new ceremony:
+
+- `git status --short` shows the complete working-tree change set, including untracked files;
+- `git diff -- AGENTS.md` shows the tracked standing-instruction edit;
+- newly copied untracked files should be opened directly when their contents matter.
+
+Do **not** describe the three interventions as one ordinary `git diff`: untracked files do not appear there.
+
+Recovery should also reuse Lab 4 rather than become a new lesson:
+
+- if the learner mistypes the `AGENTS.md` rule, edit only that rule or restore that tracked file if they intentionally want to restart Exercise 1;
+- if a course file is copied to the wrong place, remove or move only that mistaken untracked file;
+- do not use broad `git clean`, `reset --hard`, branch creation, or repository-wide recovery for these small mistakes;
+- before continuing after a recovery, use `git status --short` to confirm the intended earlier Lab 5 changes remain.
+
+The principle is familiar now: identify the bad change and undo only its blast radius.
 
 ## Initial project state
 
-The project begins with:
+The worker's project begins as a coherent Riverside Makers Evening project:
 
 ```text
 project/
     AGENTS.md
+    README.md
     event/
         event-brief.md
     tasks/
@@ -75,15 +93,26 @@ project/
         volunteer-schedule.csv
 ```
 
-`AGENTS.md` contains only stable safety/accuracy boundaries and the review-stop convention. It does not initially contain a special response-style rule.
-
 There is intentionally no `reference/venue-constraints.md` and no `tools/validate_schedule.py`.
 
 The course-level toolbox contains both. Their absence from `project/` is part of the starting condition.
 
-## Exercise 1 — Change the instructions
+`project/README.md` describes only the Riverside project. It must not explain Lab 5, name the toolbox, or reveal later exercise choreography.
 
-Goal: demonstrate that observed behaviour can change substantially without changing the underlying job, model, or harness.
+`project/AGENTS.md` is different: like Labs 1–4, it is facilitator-provisioned operating doctrine that protects the experimental boundary. It is deliberately visible and becomes part of the lesson in Exercise 1.
+
+Before the session, confirm:
+
+1. the worker is rooted at `project/`, not the Lab 5 directory;
+2. `git status --short` is clean for the Lab 5 project;
+3. `reference/venue-constraints.md` does not exist;
+4. `tools/validate_schedule.py` does not exist;
+5. the worker follows `project/AGENTS.md` and does not inspect parent/sibling teaching material;
+6. the prepared validator remains unchanged in `toolbox/`.
+
+## Exercise 1 — Reveal and change the instructions
+
+Goal: demonstrate that observed behaviour can change substantially without changing the job, model, or harness, while explicitly cashing the `AGENTS.md` breadcrumb from Labs 1–4.
 
 Start a fresh worker session rooted at `project/`.
 
@@ -91,11 +120,9 @@ Ask exactly:
 
 > Read `tasks/volunteer-lead-brief.md` and do the task.
 
-Let the worker answer normally.
+Let the worker answer normally. Do not coach the output style yet.
 
-Do not coach the output style yet.
-
-Now ask the learner what they would change if the facts are fine but they want a much tighter operational briefing.
+Now ask what the learner would change if the facts are fine but they want this kind of briefing much tighter every time.
 
 A useful target is:
 
@@ -104,25 +131,48 @@ A useful target is:
 - each bullet 24 words or fewer;
 - prioritise time, access, safety, and the volunteer lead's first action.
 
-The important move is not to put those requirements in the next one-off prompt.
+At this point, ask the learner to open `project/AGENTS.md` in the editor.
 
-Ask the learner to tell the worker to make that a standing project rule for this kind of briefing by editing `AGENTS.md`.
+Spend a few minutes reading it together. The reveal should be simple:
 
-Suggested instruction:
+> This file contains standing instructions supplied to agents working in this project. You have been benefiting from the same mechanism since Lab 1. Until now it was mostly experimental plumbing; now you can see and change the lever deliberately.
 
-> Make future volunteer-lead operational briefings exactly four short bullets with no heading or preamble. Prioritise time, access, safety, and the lead's first action. Put that in the project's standing instructions, not just this conversation. Leave the change uncommitted.
+Do not teach a complete precedence model. Notice only what is useful now:
 
-Inspect the Git diff before rerunning anything.
+- these are durable project instructions rather than one-chat prompting;
+- they apply to a fresh agent working in this project;
+- some lines are ordinary project-working rules;
+- some lines deliberately constrain the worker so a helpful agent cannot spoil the controlled exercise.
+
+Have the **learner edit the file by hand**. Do not ask the current agent to rewrite its own operating instructions.
+
+Append this at the bottom:
+
+```md
+## Volunteer-lead briefings
+
+- Write volunteer-lead operational briefings as exactly four bullets.
+- Do not add a heading, preamble, or closing sentence.
+- Keep each bullet to 24 words or fewer.
+- Prioritise time, access, safety, and the volunteer lead's first action.
+```
+
+The exact wording can vary if the learner proposes an equivalent rule. Keep the change narrowly scoped to volunteer-lead briefings so it does not contaminate later tasks.
+
+Inspect:
+
+`git diff -- AGENTS.md`
 
 Ask:
 
 - What changed on disk?
-- What did not change?
+- What stayed the same?
 - Did we swap model?
 - Did we swap harness?
-- Did the task file change?
+- Did we change the task or source facts?
+- Why do we need a fresh agent context now?
 
-Start a fresh worker session rooted at the **same** `project/`. A fresh session is useful because it proves the standing instruction is durable project state rather than conversational carry-over.
+Close the baseline conversation and start a fresh worker context rooted at the **same** project. This is the important injection boundary: the new worker starts with the changed standing project instructions rather than receiving the style rule as conversational carry-over.
 
 Ask exactly the original task again:
 
@@ -136,9 +186,11 @@ Earn:
 
 > **Instructions and configuration are part of the system.**
 
-This also cashes the curriculum breadcrumb that early `AGENTS.md` files were facilitator-owned experimental apparatus. The learner has now touched the lever themselves.
+And cash the breadcrumb explicitly:
 
-Do not turn this into a full instruction-precedence lesson. That comes later.
+> **You have been benefiting from this mechanism since the beginning. Now you have touched the lever yourself.**
+
+Do not turn this into self-modifying-agent design. Having an agent maintain its own project instructions is a useful later capability, but it is not needed to prove this lesson.
 
 ## Exercise 2 — Bring in the evidence
 
@@ -156,28 +208,32 @@ The project does not yet contain the venue rules needed to decide.
 
 A good worker should say the evidence is missing rather than invent project-specific rules. If it guesses, use that as evidence about safe handling of missing context rather than pretending the context was present.
 
-Now reveal that the course repository contains:
+Now reveal to the human that the course repository contains:
 
 `../toolbox/venue-constraints.md`
 
-Do not widen the worker's root to expose the toolbox. The boundary is the lesson.
+Do not widen the worker's root or ask the worker to fetch the file. The boundary is part of the observation.
 
-Have the learner copy that file into the worker's project as:
+Have the learner copy that file with the editor/file browser into:
 
 `project/reference/venue-constraints.md`
 
-Dragging/copying it in the editor is fine. The learner is deliberately promoting useful evidence into the worker's world.
+No coding is required.
 
-Inspect the diff.
+Run:
+
+`git status --short`
+
+The new file should appear as untracked. Open it directly to confirm what entered the worker's project. Do not expect normal `git diff` to display an untracked file.
 
 Ask:
 
-- Did the venue facts exist before?
-- Did they exist inside the worker's project before?
+- Did the venue facts exist on the machine before?
+- Did they exist inside the worker's assigned project before?
 - What changed: intelligence, or available evidence?
-- Why is copying the reference into durable project state different from merely telling this one conversation the answer?
+- Why is putting the evidence in durable project state different from telling one conversation the answer?
 
-Start a fresh session rooted at the same project and repeat the exact task:
+Start a fresh worker context in the same project and repeat exactly:
 
 > Read `tasks/venue-layout.md` and answer it from project evidence you can actually inspect.
 
@@ -215,11 +271,11 @@ The known fixture problems are:
 - Sam is double-booked in the 18:00–20:00 shift;
 - Jordan is double-booked in the 20:00–22:00 shift.
 
-Now ask:
+Ask:
 
 > We have a plausible judgment. What could we give this worker that would let it check the schedule reproducibly?
 
-Reveal the prepared course material:
+Reveal to the human:
 
 `../toolbox/validate_schedule.py`
 
@@ -229,18 +285,22 @@ Have the learner copy it into:
 
 `project/tools/validate_schedule.py`
 
-Inspect the diff before running it.
+Run:
+
+`git status --short`
+
+The checker should appear as another untracked project file. Open it only if useful; do not turn the exercise into Python inspection.
 
 Ask:
 
 - Did the model change?
 - Did the schedule change?
-- What new thing can the worker do now that it could not do from project state alone?
+- What new project-specific capability is now available?
 - What capability did the harness already provide that makes this tool executable?
 
 This distinction matters: the harness already had shell/process execution. The learner has now provisioned a project-specific checking tool into that environment.
 
-Ask the worker:
+In the same worker conversation that made the provisional assessment, ask:
 
 > Run the prepared schedule validator and compare its evidence with your provisional assessment. Tell me what changed in your confidence.
 
@@ -263,30 +323,31 @@ Earn:
 
 Do not teach Python.
 
-## Exercise 4 — Read the agent diff
+## Exercise 4 — Read the agent change set
 
 Goal: reconstruct the system model from interventions the learner actually made, then apply it diagnostically.
 
-Before any scenario cards, inspect the accumulated Git diff for Lab 5.
+Before any scenario cards, inspect the accumulated Lab 5 working-tree state.
 
-The meaningful changes should be roughly:
+Run:
+
+`git status --short`
+
+The meaningful state should be roughly:
 
 ```text
-AGENTS.md
-    changed standing instructions
-
-reference/venue-constraints.md
-    added project evidence
-
-tools/validate_schedule.py
-    added checking capability
+ M AGENTS.md
+?? reference/venue-constraints.md
+?? tools/validate_schedule.py
 ```
+
+Then inspect `git diff -- AGENTS.md` and open the two new files as needed.
 
 Ask:
 
 > What did we change about the worker during this lab?
 
-Build the answer from the diff rather than presenting the formula first.
+Build the answer from observed project state rather than presenting the formula first.
 
 Map the interventions:
 
@@ -298,16 +359,16 @@ harness
     intentionally unchanged
 
 instructions
-    changed AGENTS.md
+    human changed AGENTS.md
 
 context / project knowledge
-    added venue evidence
+    human added venue evidence
 
 tools
-    added a project-specific checker
+    human added a project-specific checker
 
 feedback
-    ran the checker and received deterministic evidence
+    worker ran the checker and received deterministic evidence
 
 observed behaviour
     changed after each intervention
@@ -317,7 +378,7 @@ Now reveal the compact model:
 
 > **model + harness + instructions/settings + context + tools + environment/state + feedback = observed behaviour**
 
-Then use `learner/04-read-the-agent-diff.md` scenarios one at a time.
+Then use `learner/04-read-the-agent-change-set.md` scenarios one at a time.
 
 For each scenario ask for three things:
 
@@ -353,13 +414,13 @@ Before comparing quality, have the learner list what was and was not held consta
 
 The point is not to pick a winner. The point is to notice that `product A felt better` may describe a real preference without proving that the underlying model is the sole cause.
 
-## Bridge into Lab/Module 6
+## Bridge into Module 6
 
-Close by looking at the accumulated diff again.
+Close by looking at the accumulated working-tree state again.
 
 The learner has already, experimentally:
 
-- persisted an instruction;
+- changed a persistent project instruction;
 - provisioned relevant knowledge;
 - provisioned a capability;
 - used a verification mechanism.
@@ -372,6 +433,21 @@ Lab 5 supplies the diagnosis.
 
 Module 6 turns those same levers into deliberate worker design.
 
+## Reset after the session
+
+Return the project to its clean starting state before another learner runs the lab.
+
+Use narrow recovery only:
+
+1. restore `project/AGENTS.md` to its recorded baseline;
+2. remove the learner-added `project/reference/venue-constraints.md`;
+3. remove the learner-added `project/tools/validate_schedule.py`;
+4. run `git status --short` from the project and confirm no Lab 5 exercise changes remain.
+
+Do not delete the course copies in `toolbox/`.
+
+If unrelated pre-existing working-tree changes exist, preserve them and clean only the Lab 5 exercise state.
+
 ## Do not teach yet
 
 Do not turn this lab into:
@@ -381,6 +457,7 @@ Do not turn this lab into:
 - token-window arithmetic;
 - prompt-engineering folklore;
 - a complete instruction-precedence lecture;
+- self-modifying-agent design;
 - skill design;
 - MCP catalogue browsing;
 - RAG implementation;

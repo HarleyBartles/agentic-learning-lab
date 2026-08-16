@@ -23,13 +23,13 @@ Some setup may be performed in advance by the facilitator so early labs can teac
 
 ## Current labs
 
-Labs 1–4 are mature and ready to run. Lab 5 is a runnable draft ready for facilitator trial.
+Labs 1–5 are mature and ready to run.
 
 - `01-chatbot-to-worker/` — compare ordinary cloud conversations, an on-disk worker, and a persistent cloud workspace to expose how environment changes context and artifact transport.
 - `02-give-the-cloud-agent-the-project/` — examine how project access depends on state, representation, scope, and allowed operations.
 - `03-project-has-a-home/` — three Repair Café exercises covering conversational knowledge that never became project state, deliberate promotion of meeting material into durable state, and conflicting durable artifacts whose authority is not explicitly defined.
 - `04-repositories-save-points-and-safe-breakage/` — a theatre-production fixture that reveals working state versus recorded state, diffs and restore, commit versus push, unpublished versus published recovery, historical recovery, and the repository boundary around external side effects.
-- `05-model-harness-context-tools-and-behaviour/` — controlled comparisons that vary instructions, context/access, and verification capability so the learner practises diagnosing which layer produced observed agent behaviour before changing the system.
+- `05-model-harness-context-tools-and-behaviour/` — one evolving project where the learner changes standing instructions, available evidence, and verification capability, then diagnoses which system layer produced observed agent behaviour.
 
 ## Safety
 
