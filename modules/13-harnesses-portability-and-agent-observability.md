@@ -2,7 +2,7 @@
 
 Status: structured planning. This module follows specialist sub-agents deliberately: the learner first understands the conceptual specialist profile, then discovers that the mechanism for creating that worker is harness-specific and still changing quickly.
 
-Approximate duration: 1 hour.
+Approximate duration: 1 hour for the core harness/portability lesson. The linked **13A practicum — The 20-Agent Bonfire** may run as a separate practical session or extension rather than being forced into the same hour.
 
 ## Core idea
 
@@ -24,7 +24,8 @@ Module 12 teaches a conceptual specialist profile as some combination of:
 
 - role;
 - instructions;
-- model/capability level;
+- model/capability expectation;
+- reasoning-effort expectation;
 - tools;
 - permissions;
 - context expectations;
@@ -108,7 +109,7 @@ The teaching point does not depend on any one of these details remaining true.
 
 This is one of the most important lessons in the module.
 
-A profile is configuration intent. The spawned worker is runtime truth.
+A profile is configuration intent. The spawned worker is effective runtime state.
 
 Suppose a profile created for one harness says, conceptually:
 
@@ -150,11 +151,13 @@ The task may even complete correctly.
 
 Earn:
 
-> **The profile is configuration intent. The spawned worker is runtime truth.**
+> **The profile is configuration intent. The spawned worker is effective runtime state.**
 
 And:
 
 > **Do not assume the specialist you requested is the worker that was instantiated.**
+
+Use `runtime state` deliberately here. Module 8 uses truth/authority language for which project evidence governs a decision; this section is about what configuration the harness actually instantiated, not semantic authority over project truth.
 
 ## Verify the effective worker
 
@@ -186,7 +189,7 @@ Where a field is not observable, say so. Do not turn an assumption into proof.
 
 Useful callback to source-of-truth teaching:
 
-> **What you asked the harness to instantiate is a claim. What the runtime actually instantiated is state.**
+> **What you asked the harness to instantiate is a claim. What the runtime actually instantiated is observable system state where the harness exposes it.**
 
 ## A successful result does not prove a successful port
 
@@ -455,11 +458,19 @@ The same applies to explicit model routing, reasoning-effort selection, review p
 
 When a stronger model or harness absorbs one of those responsibilities reliably, reevaluate the workflow rather than preserving the old ceremony forever.
 
+## Linked 13A practicum — The 20-Agent Bonfire
+
+The companion `13-20-agent-bonfire-and-context-transport.md` is the practical economics/context-transport cash-in for this module.
+
+Do not force it into the core one-hour comparison if doing so would turn the harness lesson into a sprint through two substantial experiments. It can run immediately after Module 13 as a separate practicum, or be used as an extension once the learner has enough time to compare real usage surfaces carefully.
+
+Keep one sequencing boundary clear: the Bonfire is about **resource economics, worker resolution, and context transport**, not about teaching concurrent mutable-workspace isolation. If the twenty-worker setup would create shared-write collisions, constrain the fixture so workers are read-only, serialised, or write to deliberately separate outputs. Module 16 owns the later lesson that concurrent mutable work earns isolation and reconciliation.
+
 ## Principles
 
 > **Agent concepts can travel between harnesses. Their implementations often cannot.**
 
-> **The profile is configuration intent. The spawned worker is runtime truth.**
+> **The profile is configuration intent. The spawned worker is effective runtime state.**
 
 > **Do not assume the specialist you requested is the worker that was instantiated.**
 
@@ -504,7 +515,8 @@ Do not turn this module into:
 - mandatory use of the cheapest possible model;
 - a claim that more expensive models are wasteful by definition;
 - a prediction that manual model routing definitely will disappear;
-- a universal portability standard that does not yet exist.
+- a universal portability standard that does not yet exist;
+- concurrent shared-workspace isolation mechanics that belong in Module 16.
 
 The learner should leave able to separate portable agent intent from harness-specific adapters, verify the effective runtime worker after dispatch, reason about model/effort economics, use available observability while work is in flight, and expect the interfaces to evolve.
 
