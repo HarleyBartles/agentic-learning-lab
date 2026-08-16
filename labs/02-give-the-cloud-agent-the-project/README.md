@@ -1,6 +1,6 @@
 # Lab 2 — Give the cloud agent the project
 
-Status: **locked / stable**.
+Status: **Mature and ready to run.**
 
 Lab 2 is the direct continuation of Lab 1.
 
