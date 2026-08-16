@@ -140,6 +140,38 @@ Useful alternative prompts should be available in the eventual facilitator guide
 
 These are prompt *shapes*, not claims that the named domain definitely contains neat canonical innovators. That uncertainty is useful. A model may correctly challenge a premise, reveal that the history is collective rather than person-led, or say that the evidence is sparse.
 
+### Facilitator note — absence of recall is not proof of absence
+
+Include at least one closed-book query whose premise may itself be historically or technically wrong, anachronistic, or based on a category that did not yet exist in the period being asked about.
+
+The knitting-and-crochet example can naturally expose this. If the model has little or no retained evidence for crochet in the seventeenth or eighteenth century, it faces several different possibilities:
+
+- crochet as the modern named craft did not yet exist;
+- related techniques existed but were described under different names;
+- the historical boundary is disputed or terminologically messy;
+- relevant material existed but was weakly represented in training;
+- the model encountered it during training but does not reliably retain it now.
+
+A closed-book answer usually cannot prove which of those explanations is correct merely from its own lack of recall.
+
+Ask the model explicitly:
+
+> You are not finding much evidence in your retained knowledge for the premise of this question. Can you tell whether the premise is false, the category is anachronistic, or your training coverage is simply thin here? What could you prove without retrieval?
+
+Then ask the learner:
+
+> What is the difference between `the model cannot recall evidence for X` and `X did not exist`?
+
+This should introduce a useful epistemic boundary:
+
+> **A model's missing memory is evidence about the model, not automatically evidence about the world.**
+
+The reverse also matters. A model confidently recalling a claim does not prove the claim is true, current, correctly attributed, or grounded in the right source.
+
+The eventual facilitator guide should contain one or two query shapes that deliberately test this distinction. Prefer historically plausible but uncertain premises over silly trick questions. The learner should have to reason about whether the model has encountered a real knowledge boundary, a false premise, an anachronistic category, or merely weak recall.
+
+Do not tell the learner in advance which explanation is correct. The value is in noticing that the closed-book model cannot necessarily settle the question from inside its own parametric knowledge.
+
 If one query produces a surprisingly detailed answer, do not argue with the model or keep escalating merely to force an embarrassing failure. Ask the learner what the result itself tells us: this model appears to carry more training knowledge in that niche than we expected. Then move one step narrower, ask for provenance, or switch to another niche.
 
 If the model remains strong across several attempts, that is still a valid outcome. The lesson becomes that the boundary of parametric knowledge is difficult to predict from the outside. That unpredictability is itself a reason not to build project guarantees on an assumption about what the model probably knows.
@@ -151,6 +183,7 @@ The facilitator guide for Lab 6 should therefore carry:
 - one broad opening query likely to demonstrate surprising retained knowledge;
 - at least three progressively narrower follow-ups in the same domain;
 - at least two alternative niche-domain query families;
+- at least one premise-challenge query where `I cannot recall evidence` must be distinguished from `the premise is false`;
 - a reminder that unexpected success is evidence, not a demo failure;
 - a stop rule: after a few useful probes, discuss what was observed rather than spending the session hunting for a question the model cannot answer;
 - an explicit ban on judging truth from confidence or fluency alone.
@@ -480,6 +513,8 @@ For Lab 6A, use:
 ## Discussion prompts
 
 - What does an isolated model appear to know already, and how confident are we about the depth of that knowledge?
+- If the model cannot recall evidence for something, what would justify concluding that the thing did not exist rather than that the model simply lacks the relevant knowledge?
+- How can the model distinguish a false premise from thin training coverage without external evidence?
 - Why might software engineering be unusually strong relative to a niche specialist domain?
 - If two people use the same model to build the same thing, why might the results differ?
 - What is the domain expert contributing when they never manually perform the implementation?
@@ -493,6 +528,8 @@ For Lab 6A, use:
 ## Principles
 
 > A model arrives with broad but uneven knowledge from training.
+
+> A model's missing memory is evidence about the model, not automatically evidence about the world.
 
 > What the model may know is not the same as what the agent has been deliberately equipped to know for this job.
 
