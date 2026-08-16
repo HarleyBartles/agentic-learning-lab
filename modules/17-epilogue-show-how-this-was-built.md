@@ -1,4 +1,4 @@
-# Module 16 — Epilogue: show how this was built
+# Module 17 — Epilogue: show how this was built
 
 Status: early planning. Preserve the intent and evidence requirements without pretending the session is fully designed yet.
 
