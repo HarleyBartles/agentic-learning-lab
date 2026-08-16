@@ -19,6 +19,7 @@ The lab is built around a few ideas:
 - Give agents both the tools they need and the operating knowledge to use those tools well.
 - Treat local project access and connectors as complementary capabilities.
 - Prefer evidence of completed work over confident agent claims.
+- Teach the learner to direct, inspect, verify, question, and iteratively steer agent work rather than becoming the agent's manual implementation layer.
 
 ## Labs
 
@@ -74,6 +75,7 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 7. Local work and connected systems
 8. Source of truth and verification
 9. Build a real agentic project
+10. Epilogue: show how this was built
 
 Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the repository, then compares connector-mediated access with direct local workspace access.
 
@@ -81,7 +83,7 @@ Lab 3 is stable and ready to run. Its three Repair Café exercises show that imp
 
 Labs 1, 2, and 3 now have mature lab structures. Existing files in `modules/` are working facilitator drafts for later curriculum material that has not yet been promoted into a mature lab.
 
-See also [Core principles](docs/core-principles.md) for ideas that should recur throughout the conversations.
+See also [Core principles](docs/core-principles.md) and [Learning methodology and origin](docs/learning-methodology.md) for curriculum-wide doctrine and the method this repository itself is intended to demonstrate.
 
 ## Repository areas
 
@@ -96,7 +98,7 @@ There is deliberately no separate root-level `guided/` or stable facilitator hie
 
 The broad progression currently begins:
 
-**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and operating knowledge -> composed local/connected systems -> source of truth -> verification -> real project**
+**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and operating knowledge -> composed local/connected systems -> source of truth -> verification -> real project -> retrospective on how the whole framework was built**
 
 The exact later sequence can continue to move as the labs are expanded and tested.
 
