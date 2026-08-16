@@ -1,6 +1,6 @@
 # Module 12 — Selective provisioning, context, and evaluation
 
-Status: structured planning. This module cashes several earlier breadcrumbs: persistent instructions, skill composition, context limits, retrieval, instruction scope, and the danger of over-provisioning.
+Status: structured planning. This module cashes several earlier breadcrumbs: persistent instructions, skill composition, context limits, retrieval, instruction scope, inspectable reasoning, and the danger of over-provisioning.
 
 Approximate duration: 1 hour.
 
@@ -21,6 +21,7 @@ Earlier labs have already modelled narrow operating doctrine:
 - Lab 1 uses minimal `AGENTS.md` instructions to bound the mission without teaching the answer;
 - Lab 2 uses a focused rule to prevent local operational data leaking to remote surfaces;
 - Lab 3 moves repeated review/discussion behaviour into standing project doctrine while leaving semantic authority with the human;
+- Module 5 separates model behaviour from harness/configuration/context;
 - Module 6 asks where repeated domain knowledge should live;
 - Module 10 shows multiple skills harmonising into a larger workflow;
 - Module 11 shows specialist profiles carrying narrower role-specific operating conditions.
@@ -109,19 +110,264 @@ The learner now has enough experience to see that several instruction-bearing su
 
 - task/user prompt;
 - project instructions such as `AGENTS.md`;
-- global/harness instructions;
+- user/home-level instructions;
+- global/harness/system instructions;
 - skills;
 - workflow/orchestration rules;
 - specialist profiles;
-- managed policy/permissions.
+- managed policy/permissions;
+- retrieved material that may itself contain instruction-like text.
 
-Do not teach a product-specific precedence table.
+Do not reduce this to one product-specific precedence table.
 
-Teach the more durable question:
+Teach the more durable questions:
 
 > Which rule naturally owns this decision, for which worker, for how long, and under what authority?
 
+And:
+
+> If two rules conflict, what does this runtime say about precedence?
+
 A useful project environment avoids forcing every worker to reconcile the whole policy universe on every task.
+
+## Instruction hierarchy whodunnit
+
+Use short cases where the learner predicts which instruction should win or where a surprising instruction came from.
+
+The cases should include three categories:
+
+1. the answer is specified and deterministic;
+2. the answer depends on how the harness/runtime injects the instruction;
+3. the apparent conflict is not inside the project at all.
+
+### Case — nested AGENTS.md scope
+
+For Codex/OpenAI-style `AGENTS.md` semantics, a deeper `AGENTS.md` applies to its subtree and takes precedence over a conflicting instruction from a higher directory for files in that subtree.
+
+Example:
+
+```text
+/AGENTS.md
+use British English
+
+/docs/AGENTS.md
+customer-facing documentation uses US English
+
+/docs/help.md
+```
+
+Ask:
+
+> Which rule applies when the agent edits `docs/help.md`?
+
+Answer: the nearer/deeper scoped instruction for that file.
+
+Treat this as a product/runtime rule that should be verified against current documentation when the lab is implemented, not as a universal law of all agent harnesses.
+
+### Case — direct prompt versus project instruction
+
+For Codex's documented hierarchy, direct system/developer/user instructions outrank `AGENTS.md` instructions.
+
+Example:
+
+```text
+root AGENTS.md
+run the full validation suite before finishing
+
+user task
+for this investigation, do not run validation; only inspect and report
+```
+
+Ask which instruction has authority in this runtime.
+
+Again, teach the general habit: know whether the answer comes from a published runtime contract rather than intuition.
+
+### Case — project instruction versus invoked skill
+
+Pose the question deliberately without pretending there is one universal answer:
+
+```text
+root AGENTS.md
+contains rule A
+
+invoked skill
+contains contradictory rule B
+```
+
+Ask:
+
+> Which wins?
+
+The answer may depend on how that harness presents the skill to the model and what instruction role/authority it receives.
+
+This is valuable precisely because `it depends` is sometimes the correct engineering answer.
+
+Do not guess. Inspect the runtime documentation, active prompt construction, or run a controlled behavioural test.
+
+Useful principle:
+
+> **Instruction hierarchy is partly a model contract and partly a harness implementation detail. Know which one you are reasoning about.**
+
+### Case — the poison is outside the project
+
+Example:
+
+> The root `AGENTS.md` clearly says X. There is no contradictory project instruction anywhere, but the agent repeatedly behaves as though `not X` is a standing rule. Where do you look?
+
+Answer: outward.
+
+Possible sources include:
+
+- home/user-level `AGENTS.md` or equivalent;
+- ancestor/workspace instructions;
+- harness configuration;
+- developer/system prompts;
+- workspace policy;
+- active skills;
+- tool instructions;
+- retrieved context;
+- runtime-injected operational policy.
+
+Earn:
+
+> **The project can be the authoritative state of the work without being the complete instruction environment of the agent.**
+
+## Hierarchy does not solve composition
+
+Include a case where no instruction directly contradicts another, yet their combination produces bad behaviour.
+
+For example:
+
+```text
+root instruction
+be proactive
+
+local instruction
+never modify source material
+
+review skill
+resolve detected inconsistencies before finishing
+
+user task
+summarise this deliberately inconsistent fixture
+```
+
+The agent may become tempted to repair or over-handle the inconsistency even though no single instruction explicitly said `modify this fixture`.
+
+The point:
+
+> **Instruction hierarchy tells you which rule has authority when rules conflict. It does not guarantee that the combined instruction set produces good behaviour.**
+
+This connects directly back to agent overwhelming and selective provisioning.
+
+## Inspectable agents — not magic black boxes
+
+Do not teach formal explainable-AI theory here. Teach a practical agent-operating habit.
+
+Many agent harnesses expose some combination of:
+
+- visible reasoning/activity summaries;
+- plans;
+- tool calls;
+- intermediate observations;
+- self-review notes;
+- status messages;
+- logs.
+
+The amount and fidelity varies by model, harness, and settings.
+
+The learner should not assume that because the final answer looks plausible, the route to it was sound.
+
+Useful principle:
+
+> **When the harness exposes the agent's working trace, inspect it. Do not assume the model reasoned well merely because the output looks credible.**
+
+But immediately add the qualification:
+
+> **Visible reasoning is evidence about the agent's process, not a guaranteed complete transcript of everything that influenced it.**
+
+A runtime may summarise, hide, transform, or omit parts of the model's internal reasoning. The learner should use visible traces diagnostically without treating them as perfect ground truth.
+
+## The thought stream can reveal injected concepts without explaining their provenance
+
+Use a demo where the agent repeatedly refers to a concept the learner never supplied.
+
+A suitable live-demo candidate, subject to verification at teaching time, is a verbose agent/model configuration that repeatedly mentions an internally injected operating mode or policy while reasoning about an otherwise ordinary task.
+
+The wow moment is not `we extracted a secret`.
+
+It is:
+
+> **You typed one prompt, but that was not necessarily the first instruction the model received.**
+
+The agent may talk about an injected concept as though it were completely natural because, from the model's point of view, it is simply part of the current context.
+
+The thought stream may therefore tell you *that* a rule is influencing behaviour without telling you *where that rule came from*.
+
+When surprised, ask the agent:
+
+> Why did you think that?
+
+Then:
+
+> Where did that instruction or assumption enter your context?
+
+And when necessary:
+
+> Which instruction surface supplied it, and what authority does that surface have?
+
+Use a diagnostic ladder:
+
+```text
+what did the agent do?
+        ↓
+what did the visible reasoning/activity say?
+        ↓
+what rule or premise was it following?
+        ↓
+where did that rule enter the context?
+        ↓
+what authority did that instruction surface have?
+```
+
+This is `diagnosis before intervention` applied to instruction provenance.
+
+## Hidden/system prompts are operating inputs, not secure vaults
+
+A later reveal may show the learner that the harness supplies system/developer instructions before or alongside anything they typed.
+
+Do not frame this as `hacking the secret prompt`.
+
+The useful model is:
+
+```text
+system / harness instructions
+        ↓
+developer or managed policy
+        ↓
+project / user-scoped instructions
+        ↓
+skills / workflow injections
+        ↓
+retrieved context
+        ↓
+user task
+        ↓
+agent reasoning and action
+```
+
+The exact stack and precedence vary by runtime.
+
+Teach two security consequences:
+
+1. model-readable hidden instructions should not be treated as a safe place for secrets merely because the UI does not normally display them;
+2. critical behavioural boundaries should not rely solely on hidden natural-language instructions when sandboxing, permissions, capability scoping, or other mechanical enforcement can make the forbidden action impossible.
+
+Connect back to the trust-boundary principle:
+
+> **An instruction can influence behaviour without being a trustworthy security boundary.**
+
+Do not make system-prompt extraction itself the learning objective. The objective is to understand that the learner-visible project is only one layer of the worker's operating environment.
 
 ## Context is finite and selective
 
@@ -203,6 +449,22 @@ compare evidence
 
 Do not introduce benchmark culture. These are local regression/evaluation cases for the behaviour this environment is meant to preserve.
 
+Instruction-hierarchy and provenance scenarios are useful regression cases too:
+
+```text
+nested scoped instruction
+→ correct local rule wins
+
+user override where runtime permits it
+→ correct direct instruction wins
+
+runtime-injected rule
+→ agent can identify/provenance the rule when challenged
+
+no direct conflict but poor composition
+→ evaluation detects undesirable emergent behaviour
+```
+
 ## TDD-inspired agent design
 
 Acknowledge Test-Driven Development's software origin briefly, then extract the transferable discipline:
@@ -261,15 +523,22 @@ Do not replace `the model is everything` with `the environment can fix everythin
 
 ## Principle
 
-> **Good agent design is selective: provision what this worker needs, where it naturally belongs, when it is needed, and test that the resulting behaviour is actually better.**
+> **Good agent design is selective: provision what this worker needs, where it naturally belongs, when it is needed, inspect how the worker is reasoning from those inputs, trace surprising beliefs back to their source, and test that the resulting behaviour is actually better.**
+
+Useful closing diagnostic:
+
+> **When an agent surprises you, do not only ask what it did. Ask what it believed, why it believed it, where that belief entered the system, and which instruction surface had authority.**
 
 ## Do not teach yet
 
 Do not turn this into:
 
+- formal XAI theory;
+- chain-of-thought epistemology;
 - token-count optimisation;
 - vector-database internals;
-- product-specific instruction-precedence trivia;
+- memorising one product's entire precedence table;
+- system-prompt extraction as a party trick;
 - benchmark engineering;
 - a blanket argument for tiny prompts;
 - a claim that specialist agents are always superior.
