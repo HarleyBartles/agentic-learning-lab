@@ -1,4 +1,4 @@
-# Module 12 — Selective provisioning, context, and evaluation
+# Module 13 — Selective provisioning, context, and evaluation
 
 Status: structured planning. This module cashes several earlier breadcrumbs: persistent instructions, skill composition, context limits, retrieval, instruction scope, inspectable reasoning, and the danger of over-provisioning.
 
@@ -23,8 +23,9 @@ Earlier labs have already modelled narrow operating doctrine:
 - Lab 3 moves repeated review/discussion behaviour into standing project doctrine while leaving semantic authority with the human;
 - Module 5 separates model behaviour from harness/configuration/context;
 - Module 6 asks where repeated domain knowledge should live;
-- Module 10 shows multiple skills harmonising into a larger workflow;
-- Module 11 shows specialist profiles carrying narrower role-specific operating conditions.
+- Module 10 introduces agent self-introspection, local self-review, behavioural prediction, and test-first thinking as cheap local engineering primitives;
+- Module 11 shows multiple skills harmonising into a larger workflow;
+- Module 12 shows specialist profiles carrying narrower role-specific operating conditions.
 
 Open by asking:
 

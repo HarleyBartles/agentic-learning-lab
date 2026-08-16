@@ -1,4 +1,4 @@
-# Module 13 — Trust boundaries and connected autonomy
+# Module 14 — Trust boundaries and connected autonomy
 
 Status: structured planning. This module connects semantic authority, permissions, external content, autonomy, and provenance before agents are given broad consequential reach.
 
@@ -22,8 +22,8 @@ Earlier curriculum already establishes:
 - Lab 3: conversation or source material must not silently become project truth;
 - Module 4: external side effects can escape repository recovery;
 - Module 7: connectors extend what the worker can reach;
-- Module 10: bounded autonomy moves routine transitions into the agent while preserving meaningful human gates, and explicitly teaches stop conditions, escalation routes, and escape hatches;
-- Module 11: different specialist workers may deserve different permissions.
+- Module 11: bounded autonomy moves routine transitions into the agent while preserving meaningful human gates, and explicitly teaches stop conditions, escalation routes, and escape hatches;
+- Module 12: different specialist workers may deserve different permissions.
 
 This module combines those ideas into a trust-boundary model.
 
@@ -114,7 +114,7 @@ Earn:
 
 ## Reuse the stop-condition and escape-hatch model under external pressure
 
-Module 10 should already have made the failure mode visible: a loop can contain locally sensible actions yet fail to converge, and an escape hatch is only useful when its entry conditions are well designed.
+Module 11 should already have made the failure mode visible: a loop can contain locally sensible actions yet fail to converge, and an escape hatch is only useful when its entry conditions are well designed.
 
 Do not reteach that mechanism from scratch here. Apply it to trust and connected systems.
 

@@ -4,13 +4,13 @@ Approximate duration: 1 hour.
 
 ## Core idea
 
-Lab 5 decomposes the system around a model; Module 6 then provisions that system for competent work.
+Lab 5 decomposes the system around a model. Module 6 then asks what the model already knows, what must be provisioned, and what capability and verification add. The linked Lab 6A mini-project turns domain authority over to the learner and has them apply those ideas in a specialist domain they can judge independently.
 
-This module should briefly let the learner name the assembled thing before asking where it should operate.
+This module should begin after that mini-project and briefly let the learner name the assembled thing before asking where it should operate.
 
 A useful opening question is:
 
-> We have just provisioned an environment with tools, instructions, skills, domain material, project state, permissions, and verification. What exactly did we create?
+> In the mini-project you took a model, gave it suitable capability, supplied specialist knowledge it could not safely be assumed to know, and added a way to judge the work. What exactly did you create?
 
 At this stage, it is fair and useful for the learner to answer:
 
@@ -32,7 +32,7 @@ A rough decomposition to recall is:
 
 ```text
 model
-reasoning capability
+reasoning capability and broad uneven prior knowledge
 
 + harness
 where/how it operates
@@ -83,7 +83,7 @@ The learning-lab repository itself is useful evidence: substantial curriculum de
 
 Ask:
 
-> We have spent the last lab provisioning tools, instructions, skills, references, domain knowledge and quality checks. What exactly did we just create?
+> In the Lab 6 mini-project you combined model knowledge, tools, instructions, references, specialist domain provision and quality checks. What exactly did you just create?
 
 Let the learner reason toward `an Agent` or `a worker for this job`.
 
