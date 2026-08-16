@@ -1,5 +1,7 @@
 # Lab 1 — From chatbot to worker
 
+Status: **Mature and ready to run.**
+
 This lab is the complete learning experience for Module 1.
 
 It has three deliberately separate repository surfaces:
