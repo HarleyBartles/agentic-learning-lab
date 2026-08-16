@@ -102,7 +102,7 @@ The numbering below is the current planning order, not a promise that every modu
 2. [Give the cloud agent the project](labs/02-give-the-cloud-agent-the-project/)
 3. [The project has a home](labs/03-project-has-a-home/)
 4. [Repositories, save points, and safe breakage](labs/04-repositories-save-points-and-safe-breakage/)
-5. Model, harness, context, tools, and behaviour
+5. [Model, harness, context, tools, and behaviour](labs/05-model-harness-context-tools-and-behaviour/)
 6. Tools, operating knowledge, and domain provisioning
 7. What did we just create? Local work and connected systems
 8. Source of truth and verification
@@ -120,9 +120,9 @@ Lab 3 stops treating cloud versus local as the organizing question and focuses o
 
 Lab 4 makes the source-control machinery visible after the learner has already benefited from it: working state, recorded history, diffs, commit versus push, historical recovery, and the boundary where Git can no longer undo external consequences.
 
-Labs 1–4 are mature and ready to run.
+Labs 1–4 are mature and ready to run. Lab 5 is scaffolded as a runnable draft ready for facilitator trial.
 
-The middle curriculum deliberately compounds earlier ideas rather than replacing them. Module 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Module 6 uses that model to provision a worker for a domain. Module 7 lets the learner temporarily treat the assembled worker as `an Agent`, then asks where that worker should operate and what it should be connected to. Later modules deliberately refine that conception again.
+The middle curriculum deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Module 6 uses that model to provision a worker for a domain. Module 7 lets the learner temporarily treat the assembled worker as `an Agent`, then asks where that worker should operate and what it should be connected to. Later modules deliberately refine that conception again.
 
 Modules 10 and 11 continue the same progression. Module 10 teaches one provisioned agent to carry work from vague intent through clarification, design, planning, execution, self-review, human approval gates, and finalisation. Module 11 then puts pressure on the `one worker does every stage` model and introduces specialist agent profiles, delegation, and orchestrator tradeoffs.
 
