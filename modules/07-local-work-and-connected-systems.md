@@ -1,16 +1,101 @@
-# Module 7 — Local work and connected systems
+# Module 7 — What did we just create? Local work and connected systems
 
 Approximate duration: 1 hour.
 
 ## Core idea
 
+Modules 5 and 6 decompose the system around a model, then provision that system for competent work.
+
+This module should briefly let the learner name the assembled thing before asking where it should operate.
+
+A useful opening question is:
+
+> We have just provisioned an environment with tools, instructions, skills, domain material, project state, permissions, and verification. What exactly did we create?
+
+At this stage, it is fair and useful for the learner to answer:
+
+> We created an Agent for this job.
+
+Do not immediately over-correct that model.
+
+The useful interim conception is:
+
+> **An agent is the model-in-environment, equipped and instructed to do a job.**
+
+Operationally, the learner has created a worker.
+
+The deeper distinction between a broad environment and specific custom agent profiles/sub-agents should be deliberately deferred until a later module has created a reason for that refinement.
+
+This follows the curriculum-wide pattern of giving the learner a useful mental model, letting it become operational knowledge, and only breaking it when a later requirement exposes its limits.
+
+A rough decomposition to recall is:
+
+```text
+model
+reasoning capability
+
++ harness
+where/how it operates
+
++ tools
+what it can do
+
++ instructions
+how it should behave
+
++ skills/workflows
+how it should perform recurring work
+
++ domain material
+what good looks like here
+
++ project state
+what it knows about this job
+
++ permissions
+what it is allowed to touch
+
++ verification/feedback
+how its work is judged
+
+= a provisioned worker for a job
+```
+
+The question for this module then becomes:
+
+> We built a worker. Where should that worker work, and what other systems should it be connected to?
+
+## Local work and connected systems
+
 Direct project access and connectors solve different problems. They should be composed rather than treated as substitutes.
 
 The repository is the workplace. Connectors let the agent reach outside that workplace.
 
+Do not teach `local = agent` or `cloud = not agent`.
+
+Local, cloud, connected, and mixed arrangements are deployment and access choices for a worker. They are not the definition of agency.
+
+The learning-lab repository itself is useful evidence: substantial curriculum development has been performed by a cloud ChatGPT worker operating through a GitHub connector rather than by an on-disk agent.
+
 ## Suggested session shape
 
-### 0–15 minutes — Compare access modes
+### 0–10 minutes — Name the worker
+
+Ask:
+
+> We have spent the last lab provisioning tools, instructions, skills, references, domain knowledge and quality checks. What exactly did we just create?
+
+Let the learner reason toward `an Agent` or `a worker for this job`.
+
+Use the interim model rather than immediately introducing specialist profiles.
+
+Then ask:
+
+> If that is our worker, where should it actually work?
+
+This opens the access/deployment question.
+
+### 10–25 minutes — Compare access modes
 
 Ask the learner what an on-disk agent can inspect without anyone pre-selecting files for it.
 
@@ -27,7 +112,7 @@ Examples:
 
 Then ask what a connector is especially good at: reaching systems that are not part of the local project environment.
 
-### 15–35 minutes — Run the same repo through two routes
+### 25–40 minutes — Run the same repo through two routes
 
 Use this learning-lab repository itself.
 
@@ -43,7 +128,7 @@ Then use the local agent to inspect the repository broadly:
 
 Discuss how the connector retrieved useful remote information while the local agent could freely traverse the working copy and build its own map.
 
-### 35–50 minutes — Retrieval versus exploration
+### 40–50 minutes — Retrieval versus exploration
 
 Use the distinction:
 
@@ -55,7 +140,7 @@ A local agent is better positioned for `deeply understand this project, inspect 
 
 Neither is universally better.
 
-### 50–60 minutes — Compose them
+### 50–60 minutes — Compose the worker's environment
 
 Sketch a realistic environment:
 
@@ -69,9 +154,9 @@ issue tracker ---- local agent ---- GitHub remote
                     instructions
 ```
 
-Ask which systems the project should be able to touch, which should be read-only, and which do not belong in this environment at all.
+Ask which systems the worker should be able to touch, which should be read-only, and which do not belong in this environment at all.
 
-This prepares later conversations about least privilege and deliberate capability boundaries.
+This prepares later conversations about least privilege, deliberate capability boundaries, and eventually specialist workers with different access profiles.
 
 ## Future callback — access is not discoverability
 
@@ -130,6 +215,20 @@ This is a good place to reinforce that putting an agent "close to the project" i
 
 Do not force this into the first version of the Module 7 lab if it makes the session too dense. It can be a dedicated exercise or later callback once the learner has enough experience to appreciate the difference between having filesystem access and actually discovering something through that filesystem.
 
+## Future deliberate model break — one environment, several workers
+
+Preserve the learner's useful Module 7 conception for now:
+
+> We provisioned the environment and created an Agent for this job.
+
+A later specialist/sub-agent module should deliberately reopen it:
+
+> What if the same project needs several workers that should not all think, act, or access things in the same way?
+
+That is where the learner can discover that a broad environment can support multiple distinct agent profiles and that an invoked profile can become a specialist worker within that environment.
+
+Do not explain that machinery here. The later contradiction is pedagogically useful.
+
 ## Tools to experiment with
 
 - GitHub connector/MCP;
@@ -140,17 +239,27 @@ Do not force this into the first version of the Module 7 lab if it makes the ses
 
 ## Discussion prompts
 
+- What did we actually create when we provisioned the worker?
+- Which parts belong to the model and which belong to its operating environment?
 - When is focused retrieval enough?
 - When does an agent need freedom to explore broadly?
 - What does direct filesystem access reveal that a search result may not?
 - Can something be accessible but still fail to be discovered?
-- Which external systems should this project be allowed to touch?
+- Which external systems should this worker be allowed to touch?
 - Where should authoritative project state live?
 
 ## Principle
 
 > Put the agent close to the source of truth it needs to work on, and give it appropriate bridges to everything else.
 
+And, for this stage of the curriculum:
+
+> **The agent is the model-in-environment, equipped and instructed to do a job.**
+
+Treat that as a useful working model, not the final word.
+
 ## Do not teach yet
 
 Do not turn MCP into a protocol lecture. At this stage it is enough to understand it as a way to expose external context and actions to the agent. Protocol internals can wait until there is a reason to care.
+
+Do not introduce custom agent profiles or sub-agent orchestration merely to make the definition more technically complete. Let the learner first use the simpler worker model until later work creates a concrete reason to break it.
