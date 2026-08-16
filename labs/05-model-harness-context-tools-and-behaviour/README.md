@@ -4,32 +4,53 @@ Status: **Runnable draft — ready for facilitator trial.**
 
 Approximate duration: 60–75 minutes.
 
-Lab 4 taught the learner to inspect and recover project state. Lab 5 changes the question from `what state did the agent change?` to:
+Lab 4 taught the learner to change project state safely and inspect what changed. Lab 5 turns that habit onto the agent itself:
 
-> **What part of the agent system produced the behaviour I just saw?**
+> **Change one part of the worker's environment, rerun the work, and inspect what changed in the behaviour.**
 
-The working model is:
+The learner works in one evolving project rather than being moved between prepared copies. Across the lab they deliberately change three layers of the worker's environment:
+
+1. standing instructions;
+2. available project evidence;
+3. an available verification tool.
+
+Those changes accumulate in one visible Git diff. The final exercise uses that diff to reconstruct the larger system model:
 
 > **model + harness + instructions/settings + context + tools + environment/state + feedback = observed behaviour**
-
-The lab is built as a sequence of controlled comparisons. The learner should change one important condition at a time, inspect what changed, and resist reflexively attributing every good or bad result to the model.
 
 The practical invariant is:
 
 > **Diagnose the failing layer before intervening.**
 
+## Shape
+
+```text
+labs/05-model-harness-context-tools-and-behaviour/
+    README.md
+    facilitator/
+    learner/
+    toolbox/
+        venue-constraints.md
+        validate_schedule.py
+    project/
+        AGENTS.md
+        event/
+        tasks/
+        work/
+```
+
+Root the local worker at `project/` throughout the lab.
+
+`toolbox/` is course material outside the worker's project boundary. The learner can see it, but the worker should not be scoped to it. Moving useful material across that boundary is part of the exercise rather than facilitator setup hidden between runs.
+
 ## Exercises
 
-1. `learner/01-same-job-different-behaviour.md` — run the same task with the same model and harness in two prepared workspaces whose standing instructions differ, then inspect the instruction layer that changed the output contract.
-2. `learner/02-what-context-does-it-have.md` — run the same decision task in two otherwise-matched workspaces, one without the required project evidence and one with it, and distinguish missing context from weak reasoning.
-3. `learner/03-plausible-is-not-verified.md` — make a provisional manual assessment of a volunteer schedule, then let the agent invoke a prepared validator and compare plausible judgment with tool-backed feedback.
-4. `learner/04-diagnose-before-intervening.md` — classify mixed failure scenarios by likely layer, name the first evidence to inspect, and only then choose an intervention.
+1. `learner/01-change-the-instructions.md` — run a briefing task, deliberately change the project's standing instructions, inspect the diff, start a fresh session, and rerun the same task.
+2. `learner/02-bring-in-the-evidence.md` — encounter a task the worker cannot justify from current project evidence, then deliberately add the missing venue reference to the project and rerun.
+3. `learner/03-give-it-a-checker.md` — make a provisional schedule assessment, deliberately add a prepared deterministic checker to the project, then compare unaided judgment with tool-backed feedback.
+4. `learner/04-read-the-agent-diff.md` — inspect the accumulated project diff, map each intervention to a system layer, then diagnose mixed failure scenarios before choosing interventions.
 
-For Exercises 1–3, root the local agent at the exact experiment folder named by the facilitator rather than at the whole lab or `project/`. The workspace boundary is part of the experiment.
-
-Use fresh sessions for controlled comparisons where practical. Keep the model and harness fixed unless the exercise explicitly says otherwise.
-
-The core lab does not require a second AI product. A cross-harness or cross-model comparison is an optional extension only after the learner can state which variables were actually held constant.
+The core lab does not require a second AI product. A cross-harness or cross-model comparison is optional only after the learner can state what variables were actually held constant.
 
 Core lines to earn:
 
@@ -45,4 +66,4 @@ Core lines to earn:
 
 > **Diagnosis before intervention.**
 
-Do not turn this into benchmark methodology, model leaderboard discussion, or a catalogue of every possible instruction surface. The learner only needs a practical diagnostic model they can use before Lab 6 begins deliberate provisioning.
+Do not turn this into benchmark methodology, model leaderboards, or a catalogue of every possible instruction surface. The learner needs a practical diagnostic model they have physically manipulated themselves before Lab 6 begins deliberate provisioning.

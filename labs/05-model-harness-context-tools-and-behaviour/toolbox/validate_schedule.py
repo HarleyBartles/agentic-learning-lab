@@ -1,12 +1,16 @@
 import csv
 from collections import Counter, defaultdict
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+SCHEDULE = PROJECT_ROOT / "work" / "volunteer-schedule.csv"
 
 REQUIRED_PER_STATION = 2
 RESTRICTED_STATION = {"Lee": "Repair"}
 CANNOT_WORK_SHIFT = {"Sam": "20:00-22:00"}
 ONLY_SHIFT = {"Priya": "20:00-22:00"}
 
-with open("candidate.csv", newline="", encoding="utf-8") as handle:
+with SCHEDULE.open(newline="", encoding="utf-8") as handle:
     rows = list(csv.DictReader(handle))
 
 errors = []

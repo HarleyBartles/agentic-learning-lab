@@ -14,166 +14,177 @@ and a working habit:
 
 > **Diagnose the failing layer before intervening.**
 
-The goal is not to make the learner an evaluator or benchmark designer. It is to make their next debugging question better.
+The lab should earn that model through manipulation rather than explanation. The learner changes one project-level condition at a time and sees the worker behave differently.
 
-Instead of:
+## Why the setup is part of the lesson
 
-> This AI is bad at this.
+Do not teleport the learner between prepared versions of the same project.
 
-we want:
+Labs 1–4 have already taught them to care about workspace boundaries, durable project state, and diffs. Reuse those habits here.
 
-> What changed, what evidence do I have, and which layer should I inspect first?
-
-## Why this lab belongs here
-
-Labs 1–4 have already exposed several layers without naming the whole system:
-
-- Lab 1 changed conversation and workspace conditions and showed that access to project material changes what the agent can know and do.
-- Lab 2 made project access, representation, scope, and local-versus-connected surfaces visible.
-- Lab 3 separated conversational context from durable project state.
-- Lab 4 made working state, recorded history, publication, and verification evidence visible.
-
-Lab 5 names the larger diagnostic model before Lab 6 asks the learner to deliberately provision a worker.
-
-Useful transition:
-
-> You've already changed the agent system several times. This lab is about noticing which part you changed.
-
-## Experimental discipline
-
-This lab uses controlled comparisons rather than claims about particular products.
-
-For the core exercises:
-
-- use the same local agent harness for both sides of a comparison;
-- keep the same model selected where the harness exposes that choice;
-- use fresh sessions where earlier conversation would contaminate the comparison;
-- root the agent at the exact experiment folder named below;
-- use the same prompt text on both sides unless the exercise explicitly changes it;
-- inspect the prepared files only after the learner has observed the relevant behaviour when delaying that reveal helps the lesson.
-
-Do not claim that a single run proves a universal property of a model. The exercise proves that changing one surrounding condition can materially change observed behaviour.
-
-If the harness does not expose or guarantee model identity, say so. The useful claim becomes narrower:
-
-> We held the visible task and harness conditions as constant as this product allows, and changed this prepared layer.
-
-That is enough for the lesson.
-
-## Project fixture
-
-The fixture lives at:
+The learner keeps one worker rooted at:
 
 `labs/05-model-harness-context-tools-and-behaviour/project/`
 
-Do **not** root the agent at `project/` for the controlled exercises. Each experiment folder is intended to be its own workspace boundary.
+The course also contains:
 
-The fixture contains:
+`labs/05-model-harness-context-tools-and-behaviour/toolbox/`
+
+The learner can inspect that course material in their editor/file browser, but the worker should not be rooted high enough to see it directly.
+
+The central loop is:
+
+```text
+observe behaviour
+        ↓
+identify one layer to change
+        ↓
+change the project/environment
+        ↓
+inspect the diff
+        ↓
+rerun
+        ↓
+explain the behavioural difference
+```
+
+This gives the setup work pedagogical value. The learner is not receiving a new mysterious worker; they are building the changed conditions themselves.
+
+## Callback to Lab 4
+
+Useful transition:
+
+> Last time, the diff told you what changed in the project. This time, we're going to use the diff to tell us what we changed about the worker's environment.
+
+Keep Lab 5 changes uncommitted during the session so the accumulated diff remains visible for Exercise 4.
+
+## Initial project state
+
+The project begins with:
 
 ```text
 project/
-    behaviour-baseline/
-    behaviour-configured/
-    context-missing/
-    context-complete/
-    verification/
+    AGENTS.md
+    event/
+        event-brief.md
+    tasks/
+        volunteer-lead-brief.md
+        venue-layout.md
+    work/
+        schedule-constraints.md
+        volunteer-schedule.csv
 ```
 
-The two behaviour folders contain the same source and task but different standing project instructions.
+`AGENTS.md` contains only stable safety/accuracy boundaries and the review-stop convention. It does not initially contain a special response-style rule.
 
-The two context folders contain the same task and the same standing instructions, but only one contains the project evidence required to answer confidently.
+There is intentionally no `reference/venue-constraints.md` and no `tools/validate_schedule.py`.
 
-The verification folder contains a deliberately flawed volunteer schedule and a prepared validator.
+The course-level toolbox contains both. Their absence from `project/` is part of the starting condition.
 
-## Exercise 1 — Same job, different behaviour
+## Exercise 1 — Change the instructions
 
 Goal: demonstrate that observed behaviour can change substantially without changing the underlying job, model, or harness.
 
-### Run A
+Start a fresh worker session rooted at `project/`.
 
-Root a fresh local agent session at:
+Ask exactly:
 
-`project/behaviour-baseline/`
+> Read `tasks/volunteer-lead-brief.md` and do the task.
 
-Use exactly:
+Let the worker answer normally.
 
-> Read `task.md` and do the task.
+Do not coach the output style yet.
 
-Let the agent answer in chat. Do not coach its style.
+Now ask the learner what they would change if the facts are fine but they want a much tighter operational briefing.
 
-### Run B
+A useful target is:
 
-Root another fresh session in the same harness, with the same model selection if available, at:
+- exactly four bullets;
+- no heading, preamble, or closing sentence;
+- each bullet 24 words or fewer;
+- prioritise time, access, safety, and the volunteer lead's first action.
 
-`project/behaviour-configured/`
+The important move is not to put those requirements in the next one-off prompt.
 
-Use exactly the same prompt:
+Ask the learner to tell the worker to make that a standing project rule for this kind of briefing by editing `AGENTS.md`.
 
-> Read `task.md` and do the task.
+Suggested instruction:
 
-The configured workspace has a strict output contract: exactly four bullets, no heading or preamble, short bullets, and prioritisation of time, access, safety, and the volunteer lead's first action.
+> Make future volunteer-lead operational briefings exactly four short bullets with no heading or preamble. Prioritise time, access, safety, and the lead's first action. Put that in the project's standing instructions, not just this conversation. Leave the change uncommitted.
 
-Compare the outputs before discussing why they differ.
+Inspect the Git diff before rerunning anything.
 
 Ask:
 
-- Did the job change?
-- Did the source material change?
-- Did we intentionally change model?
-- Did we intentionally change harness?
-- What observable behaviour changed?
+- What changed on disk?
+- What did not change?
+- Did we swap model?
+- Did we swap harness?
+- Did the task file change?
 
-Now inspect the `AGENTS.md` files in both workspaces.
+Start a fresh worker session rooted at the **same** `project/`. A fresh session is useful because it proves the standing instruction is durable project state rather than conversational carry-over.
 
-The baseline file supplies only safety/accuracy boundaries. The configured file adds a strong response contract.
+Ask exactly the original task again:
+
+> Read `tasks/volunteer-lead-brief.md` and do the task.
+
+Compare the outputs.
 
 Earn:
 
 > **Same model does not mean same behaviour.**
 
-> **Instructions and settings are part of the system.**
+> **Instructions and configuration are part of the system.**
 
-Do not conclude that the configured result is inherently `better`. It is better only if the configured behaviour matches the user's goal.
+This also cashes the curriculum breadcrumb that early `AGENTS.md` files were facilitator-owned experimental apparatus. The learner has now touched the lever themselves.
 
-If the baseline happens to produce something similarly concise, compare compliance with the exact four-bullet contract rather than chasing a more dramatic run.
+Do not turn this into a full instruction-precedence lesson. That comes later.
 
-## Exercise 2 — What context does it have?
+## Exercise 2 — Bring in the evidence
 
 Goal: distinguish inability to observe required project evidence from inability to reason about the task.
 
-The two workspaces use the same `AGENTS.md` and the same `task.md`.
+Use the same evolving `project/`.
 
-### Run A — evidence absent
+Ask:
 
-Root a fresh session at:
+> Read `tasks/venue-layout.md` and answer it from project evidence you can actually inspect.
 
-`project/context-missing/`
+The task asks whether a foyer welcome desk and a soldering demonstration in Studio B are allowed.
 
-Use:
+The project does not yet contain the venue rules needed to decide.
 
-> Read `task.md` and answer it from the project evidence you can actually inspect.
+A good worker should say the evidence is missing rather than invent project-specific rules. If it guesses, use that as evidence about safe handling of missing context rather than pretending the context was present.
 
-The task asks whether two proposed event-layout choices comply with venue constraints. The workspace intentionally contains no venue-constraint file.
+Now reveal that the course repository contains:
 
-A good response should identify the missing evidence rather than inventing project rules.
+`../toolbox/venue-constraints.md`
 
-If the agent guesses, that is useful diagnostic evidence: the failure is not `the model had no access`; it is that the system did not respond safely to missing context.
+Do not widen the worker's root to expose the toolbox. The boundary is the lesson.
 
-### Run B — evidence present
+Have the learner copy that file into the worker's project as:
 
-Root a fresh session at:
+`project/reference/venue-constraints.md`
 
-`project/context-complete/`
+Dragging/copying it in the editor is fine. The learner is deliberately promoting useful evidence into the worker's world.
 
-Use the exact same prompt.
+Inspect the diff.
 
-This workspace contains `venue-constraints.md`, which establishes that a welcome desk is allowed in the foyer if the exit route remains clear, while soldering is not allowed in Studio B.
+Ask:
 
-Now ask:
+- Did the venue facts exist before?
+- Did they exist inside the worker's project before?
+- What changed: intelligence, or available evidence?
+- Why is copying the reference into durable project state different from merely telling this one conversation the answer?
 
-- Which layer changed between runs?
-- Did the reasoning task change?
-- Would swapping the model have been the first sensible intervention in Run A?
+Start a fresh session rooted at the same project and repeat the exact task:
+
+> Read `tasks/venue-layout.md` and answer it from project evidence you can actually inspect.
+
+The new project evidence establishes:
+
+- a welcome desk is allowed in the foyer if the 1.5 metre accessible exit route remains clear;
+- soldering is not allowed in Studio B.
 
 Earn:
 
@@ -181,30 +192,22 @@ Earn:
 
 > **Context and access constrain what conclusions the agent can justify.**
 
-This is a callback to Labs 1–3, but the learner is now explicitly naming the layer rather than merely experiencing it.
+This should feel like a synthesis of Labs 1–3: access, context, and durable state are now named as layers in the agent system.
 
-## Exercise 3 — Plausible is not verified
+## Exercise 3 — Give it a checker
 
 Goal: show that tools and feedback change the evidence available to the system even when the reasoning task is unchanged.
 
-Root the agent at:
+The project already contains:
 
-`project/verification/`
-
-The folder contains:
-
-- `constraints.md` — the human-readable scheduling rules;
-- `candidate.csv` — a proposed volunteer schedule;
-- `validate_schedule.py` — a prepared deterministic checker;
-- `AGENTS.md` — instructions that keep the first assessment manual and provisional, then allow the checker when explicitly requested.
-
-### Part A — provisional judgment
+- `work/schedule-constraints.md`;
+- `work/volunteer-schedule.csv`.
 
 Ask:
 
-> Read `constraints.md` and `candidate.csv`. Give me an initial assessment of whether the schedule works. Do not run the validator yet.
+> Read the schedule constraints and volunteer schedule. Give me an initial assessment of whether the schedule works. Do not use or create a checker. Label the conclusion provisional.
 
-The agent may catch all, some, or none of the seeded problems manually. Do not force a miss.
+The worker may catch all, some, or none of the seeded problems manually. Do not force a miss.
 
 The known fixture problems are:
 
@@ -212,13 +215,34 @@ The known fixture problems are:
 - Sam is double-booked in the 18:00–20:00 shift;
 - Jordan is double-booked in the 20:00–22:00 shift.
 
-The interesting label is **provisional**.
+Now ask:
 
-### Part B — add the verification capability and feedback
+> We have a plausible judgment. What could we give this worker that would let it check the schedule reproducibly?
+
+Reveal the prepared course material:
+
+`../toolbox/validate_schedule.py`
+
+The learner does not need to read or understand Python. Explain only that it is a deterministic checker supplied by the course and that it encodes the prepared schedule checks.
+
+Have the learner copy it into:
+
+`project/tools/validate_schedule.py`
+
+Inspect the diff before running it.
 
 Ask:
 
-> Now run the prepared validator. Compare its evidence with your initial assessment and tell me what changed in your confidence.
+- Did the model change?
+- Did the schedule change?
+- What new thing can the worker do now that it could not do from project state alone?
+- What capability did the harness already provide that makes this tool executable?
+
+This distinction matters: the harness already had shell/process execution. The learner has now provisioned a project-specific checking tool into that environment.
+
+Ask the worker:
+
+> Run the prepared schedule validator and compare its evidence with your provisional assessment. Tell me what changed in your confidence.
 
 Expected checker result:
 
@@ -231,43 +255,77 @@ FAIL
 
 If the manual assessment already found all three, the exercise still succeeds. The transition is from unaided judgment to reproducible evidence.
 
-If the manual assessment missed something, ask which layer the validator changed:
-
-- the model did not change;
-- the task did not change;
-- the system gained a deterministic checking capability and feedback channel.
-
 Earn:
 
 > **A plausible answer and a verified answer are different states of knowledge.**
 
 > **Tools change what the agent can do; feedback changes what the system can know about the result.**
 
-Do not use this to teach Python. The learner can ask what the checker does in ordinary language if curious.
+Do not teach Python.
 
-## Exercise 4 — Diagnose before intervening
+## Exercise 4 — Read the agent diff
 
-Goal: apply the model to mixed failures without insisting every case has exactly one cause.
+Goal: reconstruct the system model from interventions the learner actually made, then apply it diagnostically.
 
-Use `learner/04-diagnose-before-intervening.md` one scenario at a time.
+Before any scenario cards, inspect the accumulated Git diff for Lab 5.
 
-For each scenario, ask the learner for three things:
+The meaningful changes should be roughly:
+
+```text
+AGENTS.md
+    changed standing instructions
+
+reference/venue-constraints.md
+    added project evidence
+
+tools/validate_schedule.py
+    added checking capability
+```
+
+Ask:
+
+> What did we change about the worker during this lab?
+
+Build the answer from the diff rather than presenting the formula first.
+
+Map the interventions:
+
+```text
+model
+    intentionally unchanged
+
+harness
+    intentionally unchanged
+
+instructions
+    changed AGENTS.md
+
+context / project knowledge
+    added venue evidence
+
+tools
+    added a project-specific checker
+
+feedback
+    ran the checker and received deterministic evidence
+
+observed behaviour
+    changed after each intervention
+```
+
+Now reveal the compact model:
+
+> **model + harness + instructions/settings + context + tools + environment/state + feedback = observed behaviour**
+
+Then use `learner/04-read-the-agent-diff.md` scenarios one at a time.
+
+For each scenario ask for three things:
 
 1. What layer or layers are plausible suspects?
 2. What evidence would you inspect first?
 3. What is the smallest justified intervention after that inspection?
 
 Reward `I do not know yet; I would inspect X` when that is the evidence-honest answer.
-
-The scenarios deliberately cover:
-
-- instruction/configuration problems;
-- context/access problems;
-- tool or permission limitations;
-- missing persistent project knowledge;
-- missing verification feedback;
-- harness differences;
-- a case where model capability remains a legitimate suspect after other conditions are held reasonably constant.
 
 The mature rule is not `never blame the model`.
 
@@ -279,7 +337,7 @@ It is:
 
 Only use this if a second agentic harness is already available and setup will not dominate the session.
 
-Run the exact `behaviour-baseline/` task in both harnesses.
+Run the original volunteer-lead task in both harnesses using the same current project state.
 
 Before comparing quality, have the learner list what was and was not held constant:
 
@@ -297,21 +355,22 @@ The point is not to pick a winner. The point is to notice that `product A felt b
 
 ## Bridge into Lab/Module 6
 
-Close with:
+Close by looking at the accumulated diff again.
 
-> If we can identify which layer caused the behaviour, can we deliberately change the right layer before the next task begins?
+The learner has already, experimentally:
 
-Examples:
+- persisted an instruction;
+- provisioned relevant knowledge;
+- provisioned a capability;
+- used a verification mechanism.
 
-- repeated project-rule mistakes → persistent project instructions;
-- missing capability → provision a tool;
-- missing domain understanding → provide domain references/examples;
-- weak process → provide reusable workflow knowledge;
-- plausible but unverifiable work → add checks and quality criteria.
+Ask:
+
+> We changed these things one at a time so we could diagnose behaviour. What happens if, before a real job starts, we deliberately design the worker's environment this way?
 
 Lab 5 supplies the diagnosis.
 
-Module 6 turns diagnosis into deliberate worker design.
+Module 6 turns those same levers into deliberate worker design.
 
 ## Do not teach yet
 

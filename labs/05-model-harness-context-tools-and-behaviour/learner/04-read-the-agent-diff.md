@@ -1,8 +1,26 @@
-# Exercise 4 — Diagnose before intervening
+# Exercise 4 — Read the agent diff
 
-For each scenario, do not jump straight to a fix.
+Before looking at any new scenarios, inspect the accumulated Git diff from this lab.
 
-Answer three questions:
+You should be able to find three deliberate interventions:
+
+- a change to standing project instructions;
+- new project evidence;
+- a new checking tool.
+
+Ask:
+
+> What did we actually change about the worker during this lab?
+
+Try to map each change to a layer of the system before reading on.
+
+A useful compact model is:
+
+> **model + harness + instructions/settings + context + tools + environment/state + feedback = observed behaviour**
+
+Now use that model on the scenarios below.
+
+For each one, answer three questions:
 
 1. Which layer or layers are plausible suspects?
 2. What evidence would you inspect first?

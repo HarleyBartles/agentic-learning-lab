@@ -1,17 +1,11 @@
-# Lab 5 project fixture
+# Riverside Makers Evening project
 
-This fixture contains several deliberately bounded experiment workspaces.
+This is the worker's project for Lab 5.
 
-For the controlled exercises, root the local agent at the exact subfolder named by the facilitator:
+Root the local agent here and keep that root throughout the lab.
 
-```text
-behaviour-baseline/
-behaviour-configured/
-context-missing/
-context-complete/
-verification/
-```
+The project begins intentionally incomplete. During the exercises, the learner will change the worker's environment by editing standing instructions and adding selected course material to this project.
 
-Do not root the agent at this `project/` directory for Exercises 1–3. Doing so would allow the worker to see material from both sides of the comparison and would collapse the intended context boundary.
+Keep those changes uncommitted until Exercise 4 so the accumulated Git diff remains available as evidence of what changed.
 
-The files are disposable teaching fixtures. Exercises should normally produce chat responses and checker output rather than modifying project files.
+Course material in the neighbouring `toolbox/` directory is outside this worker's project boundary unless the learner deliberately brings something into the project.
