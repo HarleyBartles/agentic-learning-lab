@@ -1,4 +1,4 @@
-# Module 14 — Trust boundaries and connected autonomy
+# Module 15 — Trust boundaries and connected autonomy
 
 Status: structured planning. This module connects semantic authority, permissions, external content, autonomy, and provenance before agents are given broad consequential reach.
 
@@ -23,7 +23,9 @@ Earlier curriculum already establishes:
 - Module 4: external side effects can escape repository recovery;
 - Module 7: connectors extend what the worker can reach;
 - Module 11: bounded autonomy moves routine transitions into the agent while preserving meaningful human gates, and explicitly teaches stop conditions, escalation routes, and escape hatches;
-- Module 12: different specialist workers may deserve different permissions.
+- Module 12: different specialist workers may deserve different permissions;
+- Module 13: harnesses can resolve profile fields, tools, model choices, permissions, and defaults differently, so the effective worker must be verified rather than inferred from configuration intent;
+- Module 14: selective provisioning asks what each worker actually needs in context.
 
 This module combines those ideas into a trust-boundary model.
 
