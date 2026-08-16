@@ -14,7 +14,9 @@ This module deliberately breaks the next useful mental model:
 
 Ask what changes when the same worker is responsible for understanding the problem, designing the solution, planning the work, implementing it, and reviewing its own assumptions.
 
-The learner should discover that specialist agent profiles can package different combinations of role, instructions, tools, domain scope, permissions, workflows, and quality criteria, and that an orchestrating agent can delegate work to the profile best suited to a stage or task.
+The learner should discover that specialist agent profiles can package different combinations of role, instructions, capability/model expectations, reasoning-effort expectations, tools, domain scope, permissions, workflows, and quality criteria, and that an orchestrating agent can delegate work to the profile best suited to a stage or task.
+
+At this stage, treat model/capability and reasoning effort as **conceptual requirements of the intended worker**, not as a product-specific configuration lesson. The next module deliberately asks whether the current harness can express and honour those requirements at all.
 
 The goal is not to teach that multi-agent work is inherently superior.
 
@@ -53,6 +55,7 @@ Possible pressures include:
 - some stages need broader context while others benefit from narrower context;
 - permissions appropriate for implementation may be excessive for review;
 - a domain specialist may know more than the general worker;
+- a narrow mechanical stage may not justify the same model capability or reasoning effort as orchestration/design;
 - independent review can catch self-confirming errors;
 - large tasks may benefit from parallel or isolated work;
 - orchestration overhead may outweigh these benefits on small work.
@@ -82,6 +85,8 @@ Within that environment, a specialist agent profile can bind a more specific wor
 agent profile
 - role
 - instructions
+- capability / model expectation
+- reasoning-effort expectation
 - preferred/relevant skills
 - permitted tools
 - domain scope
@@ -91,6 +96,8 @@ agent profile
 ```
 
 When invoked for a task, that profile becomes a specialist worker for that piece of work.
+
+The profile above describes **intent**. Do not yet claim that every harness has fields for each item, uses the same names, permits child-model selection, or honours those settings at runtime. Module 13 exists to break that assumption.
 
 Do not present this as a contradiction that invalidates earlier teaching.
 
@@ -158,12 +165,16 @@ Meaningful specialisation should usually involve some combination of different:
 
 - instructions;
 - context;
+- model/capability expectation;
+- reasoning-effort expectation;
 - tools;
 - permissions;
 - skills;
 - domain material;
 - verification criteria;
 - responsibilities.
+
+Do not configure harness-specific model fields here. It is enough for the learner to be able to say, for example, `this narrow checker should not need orchestrator-class inference` and carry that requirement into the next module.
 
 ## Teach the orchestrator that specialists exist
 
@@ -253,6 +264,7 @@ Potential drawbacks:
 Potential benefits:
 
 - role separation;
+- different capability levels may suit different stages;
 - different tools/permissions per worker;
 - narrower relevant context;
 - independent review;
@@ -293,6 +305,7 @@ Useful questions:
 - What evidence proves its work completed?
 - What context does it need?
 - What context should it not need?
+- What level of capability/reasoning does the work appear to require?
 - What can it modify?
 - Who receives the output next?
 
@@ -354,11 +367,21 @@ These are not prerequisites for understanding the core idea.
 
 ## Principle
 
-> **Provision specialists when different stages genuinely benefit from different instructions, tools, context, permissions, expertise, or review perspective.**
+> **Provision specialists when different stages genuinely benefit from different instructions, capability, tools, context, permissions, expertise, or review perspective.**
 
 And:
 
 > **The orchestrator's job is not to delegate everything. It is to choose where delegation improves the work.**
+
+## Handoff to Module 13
+
+End with one unresolved implementation question:
+
+> We have described the worker we want. How do we know the harness will actually create *that* worker?
+
+The learner should carry a conceptual specialist profile into Module 13 without yet assuming how model choice, reasoning effort, tool allowance, inheritance, context isolation, or permissions are encoded.
+
+That lets the next module earn the distinction between intended specialist contract and effective runtime worker.
 
 ## Do not teach yet
 
@@ -366,9 +389,10 @@ Do not turn this module into:
 
 - a claim that more agents are always better;
 - multi-agent hype;
+- harness-specific model-selection fields or sub-agent tool schemas;
 - complex parallel execution;
 - worktree or branch choreography unless the fixture genuinely requires it;
 - orchestration-framework internals;
 - agent-personality roleplay without meaningful provisioning differences.
 
-The learner should leave able to reason about why a specialist exists, what makes it specialist, when the orchestrator should use it, and what tradeoff delegation introduces.
+The learner should leave able to reason about why a specialist exists, what makes it specialist, when the orchestrator should use it, what capability it appears to need, and what tradeoff delegation introduces — while still needing Module 13 to discover how the current harness actually realises that intent.
