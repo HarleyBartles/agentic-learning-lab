@@ -4,7 +4,7 @@ This document records the curriculum-wide teaching method behind the Agentic Lea
 
 ## This is not a coding course
 
-The curriculum does not teach the learner to code, operate Git manually, write shell commands, build databases by hand, or become the human implementation layer for an agent.
+The curriculum does not teach the learner to code, operate Git manually, write shell commands, build databases by hand, or become the learner implementation layer for an agent.
 
 It teaches the learner to use agents to achieve goals while progressively understanding the work those agents perform.
 
@@ -21,9 +21,9 @@ The learner's role is to:
 
 The core loop is:
 
-> **Human instruct -> agent do -> human inspect, verify and question -> agent explain -> human instruct again.**
+> **Learner instruct -> Agent do -> Learner inspect, verify and question -> Agent explain -> Learner instruct again.**
 
-The loop is iterative. The human does not need a complete specification or complete implementation knowledge before useful work can begin.
+The loop is iterative. The learner does not need a complete specification or complete implementation knowledge before useful work can begin.
 
 ## Accomplish first; understand progressively
 
@@ -58,7 +58,7 @@ The learner does not need to hand-write a Python script merely to be allowed to 
 
 A useful test is:
 
-> Are we teaching a durable mental model and the ability to direct work, or are we making the human imitate actions the agent can already perform safely?
+> Are we teaching a durable mental model and the ability to direct work, or are we making the learner imitate actions the agent can already perform safely?
 
 ## Do not turn access surfaces into a hierarchy
 
@@ -91,11 +91,11 @@ It emerged through the same loop the curriculum teaches:
 ```text
 vague goal
     ↓
-human instruction
+learner instruction
     ↓
 agent proposes or changes project state
     ↓
-human inspects, questions, accepts, rejects, or redirects
+learner inspects, questions, accepts, rejects, or redirects
     ↓
 agent explains and revises
     ↓
@@ -132,4 +132,4 @@ At the end of the curriculum, the learner should be able to look back at this re
 
 > Start before you know everything. Give the agent a real environment and a useful goal. Inspect the work. Verify it. Ask why. Correct it. Persist what matters. Then instruct again.
 
-The goal is not dependence on an agent's answers. The goal is progressively stronger human judgment while the agent performs more of the implementation work.
+The goal is not dependence on an agent's answers. The goal is progressively stronger learner judgment while the agent performs more of the implementation work.
