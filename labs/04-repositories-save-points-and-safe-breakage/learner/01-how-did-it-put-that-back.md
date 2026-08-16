@@ -48,17 +48,62 @@ Then say:
 
 Verify the project is clean again.
 
-## Compare with local ignored state
+## Move tracked state out of Git's current view
 
-The project also contains a local operational file at:
+The project currently tracks:
 
-`local/radio-allocations.csv`
+`production/radio-allocations.csv`
+
+The `local/` folder is for operational state that should remain on this machine rather than being part of the current tracked project.
 
 Ask the agent:
 
-> Is this file tracked by Git? If it were deleted, could Git restore its contents? Inspect the project before answering.
+> Move `production/radio-allocations.csv` into `local/radio-allocations.csv`. This is local operational state now, so it should no longer be tracked. Commit and push the resulting project change.
 
-Do not rely on the filename or `.gitignore` alone; let the agent establish whether Git actually has a recorded version.
+Inspect what happened before moving on.
+
+The current project history should now record that `production/radio-allocations.csv` was removed. The copy under `local/` exists on disk but is ignored by Git.
+
+Ask:
+
+> Is `local/radio-allocations.csv` tracked by Git now?
+
+Then deliberately delete the local file:
+
+> Delete `local/radio-allocations.csv`.
+
+Now ask:
+
+> We just deleted it and Git isn't tracking it. Can Git put it back?
+
+Do not settle for the first yes/no answer. Follow with:
+
+> Was this file ever tracked by Git, even though it is not tracked now?
+
+Ask the agent to inspect history and recover the previous contents into `local/radio-allocations.csv` without adding the restored local file back to Git tracking.
+
+Verify that the recovered file matches the earlier radio allocations.
+
+## Compare with something Git never knew
+
+Your facilitator may have placed one or two harmless scratch files in `local/` before the lab. Those files have always been ignored and have never entered Git history.
+
+Ask the agent to identify one of them and answer:
+
+> If this file were deleted, could Git reconstruct its contents? How is that different from `local/radio-allocations.csv`?
+
+You should now have three different cases:
+
+```text
+tracked now
+Git has a current recorded version
+
+not tracked now, but tracked historically
+Git may still have an older recorded version in history
+
+never tracked
+Git has no recorded content version to recover
+```
 
 ## Reflect
 
@@ -68,13 +113,17 @@ Talk through:
 - Where did the restored contents actually come from?
 - What did the diff represent?
 - What does a clean working tree mean?
-- Why is the local radio-allocation file different?
-- How does this explain why some local project state can be recoverable while other local state is not?
+- Is `not tracked now` the same thing as `never tracked`?
+- Why could Git recover the radio allocations after they had moved into an ignored folder?
+- Why can Git not promise the same recovery for a file that never entered its history?
+- How does this change the question you would ask when someone says, `Git isn't tracking it`?
 
 The useful ideas are:
 
 > **The working project can be messy without destroying the last state you understood.**
 
+> **Not tracked now is not the same as never tracked.**
+
 and:
 
-> **Git can only restore a version it has actually recorded.**
+> **Git can only restore content that it has recorded somewhere in its history.**
