@@ -48,51 +48,96 @@ Then say:
 
 Verify the project is clean again.
 
-## Move tracked state out of Git's current view
+## Put some genuinely local working material in `local/`
+
+The project contains a `local/` folder.
+
+Read its README, then ask the agent to help create a few plausible on-site, day-of-production working files there. Keep them lightweight and disposable.
+
+For example, ask:
+
+> We're going to use `local/` for little on-site things that only matter on this machine during the current production day. Put a few realistic disposable notes in there: something like a temporary console position note, a quick dressing-room label list, and a scratch channel note. Nothing important or durable.
+
+Inspect what the agent creates.
+
+These files should feel genuinely local and disposable.
+
+## Move the radio assignments into `local/`
 
 The project currently tracks:
 
 `production/radio-allocations.csv`
 
-The `local/` folder is for operational state that should remain on this machine rather than being part of the current tracked project.
+Reason from the folder name and the other files you have just created there.
+
+A perfectly reasonable interpretation is that radio assignments are another local, on-the-day operational concern.
 
 Ask the agent:
 
-> Move `production/radio-allocations.csv` into `local/radio-allocations.csv`. This is local operational state now, so it should no longer be tracked. Commit and push the resulting project change.
+> Move `production/radio-allocations.csv` into `local/radio-allocations.csv` with the other local on-site stuff. Then commit and push all the changes so we're safe.
 
-Inspect what happened before moving on.
+Let the agent do it.
 
-The current project history should now record that `production/radio-allocations.csv` was removed. The copy under `local/` exists on disk but is ignored by Git.
+Inspect the result just enough to confirm the change was committed and pushed.
 
-Ask:
+At this point, act on the reasonable assumption that because everything was committed and pushed, you have a safe copy upstream.
 
-> Is `local/radio-allocations.csv` tracked by Git now?
+## Clear out the local mess
 
-Then deliberately delete the local file:
+The `local/` folder now contains several disposable files plus the radio assignments you moved there.
 
-> Delete `local/radio-allocations.csv`.
+Tell the agent:
+
+> Clear out the `local/` folder. Hard delete everything in there, no recycle bin. It's become a mess; I'll start again. After that we'll compare what's in the repo upstream with what we deleted and rewrite anything we still want.
+
+Let the agent delete the ignored local files.
+
+Now realise the mistake:
+
+> Oh no — it deleted the radio assignments file as well. I moved that into `local/` earlier. Are we stuffed?
+
+Do not jump straight to the answer.
+
+First ask:
+
+> Is `local/radio-allocations.csv` in the repo upstream now?
+
+Then inspect what the earlier commit actually did.
+
+The important reveal is that `local/` means local to this machine from Git's point of view. Its operational contents are ignored.
+
+Your earlier `commit and push all the changes` did not publish the moved file at its new location. It published the deletion of the old tracked file from `production/`.
+
+So the current published project no longer contains the radio assignments at all.
 
 Now ask:
 
-> We just deleted it and Git isn't tracking it. Can Git put it back?
+> If the file is not in the current repo and we hard-deleted the local copy, is it gone for good?
 
-Do not settle for the first yes/no answer. Follow with:
+Then:
 
-> Was this file ever tracked by Git, even though it is not tracked now?
+> Was this file ever tracked before we moved it into `local/`?
 
-Ask the agent to inspect history and recover the previous contents into `local/radio-allocations.csv` without adding the restored local file back to Git tracking.
+Ask the agent to inspect Git history and recover the last tracked version of `production/radio-allocations.csv` into `local/radio-allocations.csv` without re-adding the local path to tracking.
 
-Verify that the recovered file matches the earlier radio allocations.
+Verify the recovered contents.
 
-## Compare with something Git never knew
+## What just happened?
 
-Your facilitator may have placed one or two harmless scratch files in `local/` before the lab. Those files have always been ignored and have never entered Git history.
+The useful surprise is that Git is not only a snapshot of what exists now.
 
-Ask the agent to identify one of them and answer:
+The current published state says the tracked production copy was deleted.
 
-> If this file were deleted, could Git reconstruct its contents? How is that different from `local/radio-allocations.csv`?
+But earlier history still contains the file and its contents.
 
-You should now have three different cases:
+That is why the agent can recover something that is:
+
+- not tracked now;
+- not present in the current remote state;
+- hard-deleted locally;
+- but previously committed in Git history.
+
+The distinction is:
 
 ```text
 tracked now
@@ -109,14 +154,13 @@ Git has no recorded content version to recover
 
 Talk through:
 
-- Was the agent remembering the deleted briefing?
-- Where did the restored contents actually come from?
-- What did the diff represent?
-- What does a clean working tree mean?
-- Is `not tracked now` the same thing as `never tracked`?
-- Why could Git recover the radio allocations after they had moved into an ignored folder?
-- Why can Git not promise the same recovery for a file that never entered its history?
-- How does this change the question you would ask when someone says, `Git isn't tracking it`?
+- Was `commit and push all the changes` enough to preserve the new `local/radio-allocations.csv` path?
+- What did Git actually publish when the tracked file was moved into an ignored folder?
+- Why was the learner's interpretation of `local/` reasonable?
+- Why was Git's interpretation different?
+- After the hard delete, where did the recovered radio assignments actually come from?
+- Is `not in the repo now` the same as `never existed in Git`?
+- How does this change your mental model of a repository?
 
 The useful ideas are:
 
@@ -124,6 +168,6 @@ The useful ideas are:
 
 > **Not tracked now is not the same as never tracked.**
 
-and:
+and the main reveal:
 
-> **Git can only restore content that it has recorded somewhere in its history.**
+> **Git is not just a snapshot of now. It is a history of recorded project states.**
