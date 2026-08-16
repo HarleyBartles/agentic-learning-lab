@@ -23,6 +23,32 @@ The lab is built around a few ideas:
 - Give the learner useful interim mental models, then deliberately break and refine them when later examples expose their limits.
 - Teach agents how work moves through a lifecycle, not only how to perform isolated tasks.
 - Treat delegation to specialist agents as a design choice rather than an automatic sign of maturity.
+- Treat provisioning as selective design rather than accumulation: the right knowledge, at the right scope, when the worker needs it.
+- Define observable success for agent behaviour and re-test it when instructions, skills, tools, profiles, or context change.
+
+## Learner workspace from day one
+
+Before Lab 1, the facilitator should help the learner fork this repository into the learner's own GitHub account.
+
+The learner does not need to understand forks, remotes, upstreams, or synchronization yet. The practical explanation can simply be:
+
+> This is your copy of the laboratory. You can break this one.
+
+The intended roles are:
+
+```text
+upstream curriculum repository
+facilitator-maintained teaching source
+        ↓ fork
+learner-owned repository
+persistent laboratory for the whole curriculum
+        ↓
+local checkout / connectors / agent workspaces
+```
+
+Early synchronization can remain facilitator plumbing. Later modules can deliberately reveal the difference between local working state, the learner's remote fork, and upstream curriculum state.
+
+Lab-scoped `AGENTS.md` files survive the fork. In early labs they are facilitator-owned experimental controls: they establish stable agent behaviour and safety boundaries without teaching the learner the mechanism yet. Later the learner should explicitly take ownership of this lever and direct an agent to create or modify project instructions for their own work.
 
 ## Labs
 
@@ -69,6 +95,8 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 
 ## Curriculum
 
+The numbering below is the current planning order, not a promise that every module will keep this exact position. Conceptual dependencies matter more than fixed numbering while later labs are still being designed.
+
 1. [From chatbot to worker](labs/01-chatbot-to-worker/)
 2. [Give the cloud agent the project](labs/02-give-the-cloud-agent-the-project/)
 3. [The project has a home](labs/03-project-has-a-home/)
@@ -80,9 +108,12 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 9. Build a real agentic project
 10. Autonomous human-in-the-loop workflows
 11. Specialist sub-agents and orchestration
-12. Epilogue: show how this was built
+12. Selective provisioning, context, and evaluation
+13. Trust boundaries and connected autonomy
+14. Concurrent agents and isolation
+15. Epilogue: show how this was built
 
-Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the repository, then compares connector-mediated access with direct local workspace access.
+Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the learner's repository, then compares connector-mediated access with direct local workspace access.
 
 Lab 3 is stable and ready to run. Its three Repair Café exercises show that important decisions must enter durable project state, that conversation should not be promoted into that state without deliberate authority, and that durable project artifacts can later drift and disagree about the same fact.
 
@@ -90,9 +121,17 @@ The middle curriculum deliberately compounds earlier ideas rather than replacing
 
 Modules 10 and 11 continue the same progression. Module 10 teaches one provisioned agent to carry work from vague intent through clarification, design, planning, execution, self-review, human approval gates, and finalisation. Module 11 then puts pressure on the `one worker does every stage` model and introduces specialist agent profiles, delegation, and orchestrator tradeoffs.
 
+Module 12 deliberately breaks another useful but incomplete model: that good provisioning means continually adding more useful guidance and capability. It uses agent overwhelm to teach selective scope, finite context, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design without requiring code.
+
+Module 13 connects Lab 3's authority model to connected/autonomous systems: external content is evidence rather than operating authority, capability should follow responsibility, and autonomy needs explicit stopping conditions and provenance.
+
+Module 14 finally breaks Module 4's intentionally simple `one worker, one mutable workspace` model. Concurrent specialists earn isolated workspaces, deliberate reconciliation, and verification of the integrated state rather than a premature Git branching lesson.
+
+Module 9 should be treated as a synthesis checkpoint rather than graduation. Once the learner can create a real agentic project, that real project can become one of the surfaces used to learn the later operating patterns.
+
 Labs 1, 2, and 3 now have mature lab structures. Existing files in `modules/` are working facilitator drafts for later curriculum material that has not yet been promoted into a mature lab.
 
-See also [Core principles](docs/core-principles.md) and [Learning methodology and origin](docs/learning-methodology.md) for curriculum-wide doctrine and the method this repository itself is intended to demonstrate.
+See also [Core principles](docs/core-principles.md), [Learning methodology and origin](docs/learning-methodology.md), and [Curriculum threads, breadcrumbs, and future cash-ins](docs/curriculum-threads.md).
 
 ## Repository areas
 
@@ -105,15 +144,15 @@ There is deliberately no separate root-level `guided/` or stable facilitator hie
 
 ## Expected progression
 
-The broad progression currently begins:
+The broad conceptual progression currently includes:
 
-**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and domain knowledge -> provisioned worker -> composed local/connected systems -> source of truth and verification -> real project -> autonomous human-in-the-loop workflow -> specialist delegation and orchestration -> retrospective on how the whole framework was built**
+**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and domain knowledge -> provisioned worker -> composed local/connected systems -> authority and verification -> real project -> autonomous human-in-the-loop workflow -> specialist delegation -> selective context/provisioning and evaluation -> trust boundaries -> concurrent isolation and integration -> retrospective on how the whole framework was built**
 
-The exact later sequence can continue to move as the labs are expanded and tested.
+The exact module sequence can move while labs are expanded and tested. Preserve the causal links and breadcrumbs rather than treating today's numbering as immutable.
 
 ## Important safety model
 
-This repository is a laboratory. Nothing in it should be precious.
+This repository is a laboratory. The learner's fork should contain nothing precious.
 
 The learner is expected to make bad changes, delete things, ask agents to do overly broad work, inspect the result, and recover it. The goal is to replace fear of breakage with the engineering question:
 
