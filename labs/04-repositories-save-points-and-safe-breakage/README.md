@@ -1,6 +1,6 @@
 # Lab 4 — Repositories, save points, and safe breakage
 
-Status: **Scaffolded; ready for a dry run and refinement.**
+Status: **Mature and ready to run.**
 
 Approximate duration: 1 hour.
 
