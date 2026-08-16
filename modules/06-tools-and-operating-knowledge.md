@@ -89,6 +89,72 @@ Do not teach that a model knows nothing until the human uploads documents. That 
 
 Do not teach that because the model can discuss a domain, it should be trusted as an expert in every corner of that domain. That is also false.
 
+### Facilitator note — use live no-retrieval queries, not a scripted failure
+
+When this becomes a lab, preserve the live uncertainty of the exercise. The facilitator guide should contain a small bank of no-retrieval queries and a method for making them progressively harder, not one question whose expected answer is `the model does not know`.
+
+The point is to observe the shape of the model's retained training knowledge on the day.
+
+A useful setup prompt is:
+
+> For this turn, do not use web search, retrieval, tools, project files, or other reads. Answer only from what you retain from training. Be explicit about where your recall becomes uncertain rather than filling gaps with invented precision.
+
+If the product or harness cannot actually disable a capability, use an environment where those capabilities are unavailable or simply do not invoke them. Do not claim a stronger isolation than the setup really provides.
+
+A good first demonstration is deliberately broad enough that the model may surprise the learner:
+
+> Tell us what you know about knitting and crochet in the seventeenth and eighteenth centuries, including important technical changes and the major people associated with those changes.
+
+A strong model may answer with substantial detail. That is not a failed demonstration. It proves that an unprovisioned model is not a blank slate.
+
+Then narrow the same domain until the coverage becomes visibly less secure. For example:
+
+> Now separate mechanised stocking-frame history from hand-knitting technique. Which named practitioners or innovators changed hand-knitting practice between 1650 and 1800, what did each change, and how confident are you in each attribution?
+
+Then:
+
+> Pick one regional tradition from that period. Name the documented people responsible for specific technical changes, give the approximate dates, and tell us what contemporary evidence you remember for those claims.
+
+Then:
+
+> Which parts of your previous answer are well-attested facts you strongly recall, which are broad historical associations, and which would you want to verify before teaching them as fact?
+
+The same narrowing pattern can be reused in other domains:
+
+```text
+broad familiar domain
+→ narrower historical or technical slice
+→ regional / specialist subfield
+→ named people or organisations
+→ exact contribution and date
+→ remembered provenance or contemporary evidence
+→ contested exceptions or local practice
+```
+
+Useful alternative prompts should be available in the eventual facilitator guide in case one domain happens to be unusually well represented in the model used on the day. Candidate shapes include:
+
+- `Tell us the history and major players in the development of nineteenth-century croquet technique. Which specific tactical or technical changes are associated with which people or manuals?`
+- `Choose a specialised textile or decorative craft from early modern Britain. Explain how its techniques changed across a fifty-year period, then name the people who drove those changes and the contemporary sources that establish the attribution.`
+- `Take a regional craft tradition rather than the whole craft. Explain which conventions were distinctive, when they appeared, who introduced them, and how certain you are that those named attributions are historical rather than later folklore.`
+- `Describe a narrow pre-industrial trade or production technique in depth. Then identify the named practitioners, workshops, or publications responsible for three specific technical changes and distinguish remembered evidence from inference.`
+
+These are prompt *shapes*, not claims that the named domain definitely contains neat canonical innovators. That uncertainty is useful. A model may correctly challenge a premise, reveal that the history is collective rather than person-led, or say that the evidence is sparse.
+
+If one query produces a surprisingly detailed answer, do not argue with the model or keep escalating merely to force an embarrassing failure. Ask the learner what the result itself tells us: this model appears to carry more training knowledge in that niche than we expected. Then move one step narrower, ask for provenance, or switch to another niche.
+
+If the model remains strong across several attempts, that is still a valid outcome. The lesson becomes that the boundary of parametric knowledge is difficult to predict from the outside. That unpredictability is itself a reason not to build project guarantees on an assumption about what the model probably knows.
+
+The facilitator should not quietly verify answers during the no-retrieval demonstration and then feed corrections back as though they came from the model. Keep the experiment clean. Later, if useful, retrieval can be turned back on explicitly to compare remembered knowledge with authoritative sources. That comparison belongs to the verification/provenance thread, not to pretending the closed-book answer was sourced.
+
+The facilitator guide for Lab 6 should therefore carry:
+
+- one broad opening query likely to demonstrate surprising retained knowledge;
+- at least three progressively narrower follow-ups in the same domain;
+- at least two alternative niche-domain query families;
+- a reminder that unexpected success is evidence, not a demo failure;
+- a stop rule: after a few useful probes, discuss what was observed rather than spending the session hunting for a question the model cannot answer;
+- an explicit ban on judging truth from confidence or fluency alone.
+
 Useful line to earn:
 
 > **What the model may know from training is not the same as what this agent has been deliberately equipped to know for this job.**
