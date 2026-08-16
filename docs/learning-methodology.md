@@ -4,7 +4,7 @@ This document records the curriculum-wide teaching method behind the Agentic Lea
 
 ## This is not a coding course
 
-The curriculum does not teach the learner to code, operate Git manually, write shell commands, build databases by hand, or become the learner implementation layer for an agent.
+The curriculum does not teach the learner to code, operate Git manually, write shell commands, build databases by hand, or become the manual implementation layer for an agent.
 
 It teaches the learner to use agents to achieve goals while progressively understanding the work those agents perform.
 
