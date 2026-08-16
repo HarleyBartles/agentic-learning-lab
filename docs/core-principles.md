@@ -8,7 +8,7 @@ This curriculum is not a coding course and does not require the learner to becom
 
 The core learning loop is:
 
-> **Human instruct -> agent do -> human inspect, verify and question -> agent explain -> human instruct again.**
+> **Learner instruct -> Agent do -> Learner inspect, verify and question -> Agent explain -> Learner instruct again.**
 
 The learner should become increasingly good at deciding what outcome they want, placing the agent in an appropriate environment, inspecting what actually happened, questioning unfamiliar machinery, and using the explanation to steer the next iteration.
 
