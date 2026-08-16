@@ -49,16 +49,11 @@ Tracked project material includes:
 - `production/radio-allocations.csv`
 - `working/handover-notes.md`
 
-The `local/` folder exists in a fresh checkout but its operational contents are ignored by Git. Only `local/README.md` is tracked so the directory itself survives the clone/fork.
+The `local/` folder exists in a fresh checkout, but operational contents under it are ignored by Git. Only `local/README.md` is tracked so the directory survives clone/fork.
 
-Before the learner starts, add one or two harmless ignored scratch files locally under `project/local/`, for example:
+The README should not front-load the Git lesson. It describes `local/` in operational language: temporary venue/day-of-production material that only matters on this machine or current on-site session.
 
-```text
-local/console-layout.txt
-local/temp-channel-note.txt
-```
-
-Their contents should be inconsequential. They exist only so Exercise 1 has a genuine `never tracked` comparison after the learner moves a previously tracked file into the same ignored area.
+Do not pre-seed local scratch files. The learner and agent create a few legitimate disposable local-concern files during Exercise 1 so the folder's apparent meaning emerges naturally from use.
 
 Do not create `local/radio-allocations.csv` during setup. The learner creates that state themselves by moving the tracked `production/radio-allocations.csv` during Exercise 1.
 
@@ -77,7 +72,7 @@ This is facilitator control, not yet an instruction-architecture lesson.
 
 ## Exercise 1 — How did it put that back?
 
-Goal: distinguish current working state from recorded state, then distinguish `not tracked now` from `never tracked`.
+Goal: first distinguish working state from recorded state, then earn the stronger realization that Git is history rather than merely a snapshot of the current repo.
 
 Start clean.
 
@@ -99,62 +94,122 @@ Then ask the agent to restore it.
 
 Repeat with a content edit to `production/crew-call.md`, inspect the diff, and restore that too.
 
-Now make the stronger history experiment.
+### Build a plausible meaning for `local/`
 
-The learner tells the agent to move:
+Have the learner read `local/README.md` and ask the agent to create a few genuinely useful but disposable on-site files there.
+
+Suitable examples:
+
+```text
+local/console-position.txt
+local/dressing-room-labels.md
+local/channel-scratch.txt
+```
+
+The exact files do not matter. They should feel like temporary venue/day-of-production concerns that it would be reasonable to throw away and recreate.
+
+Do not tell the learner yet that the important property is Git ignoring them. Let the operational interpretation lead.
+
+### Make the reasonable misunderstanding
+
+The project still tracks:
 
 `production/radio-allocations.csv`
 
-into:
+By now, `local/` contains several things that sound like on-site local-production concerns. It is reasonable for the learner to infer that radio assignments belong there too.
 
-`local/radio-allocations.csv`
+Have the learner say approximately:
 
-and explicitly commit and push the resulting project change.
+> Move `production/radio-allocations.csv` into `local/radio-allocations.csv` with the other local on-site stuff. Then commit and push all the changes so we're safe.
 
-Because `local/*` is ignored, the published Git history records the tracked production file disappearing while the operational copy remains only on the learner's machine.
+The wording matters. The learner is not behaving recklessly. They believe `commit and push` means the moved file has been safely captured upstream.
 
-Pause and inspect:
+The agent should move the file. Because the destination is ignored, Git records only the deletion of the old tracked path. The local destination survives on disk but is absent from the published repository.
 
-- `local/radio-allocations.csv` exists locally;
-- Git does not track that current path;
-- the old tracked file no longer exists at `production/radio-allocations.csv` in current project state;
-- history still contains the earlier tracked content.
+Allow a brief inspection that confirms a commit and push happened, but do not force the learner to notice the ignored-file implication yet. The simulation works even if they suspect it.
 
-Then have the learner delete the local radio-allocation file.
+### Clear the local folder
 
-The learner asks whether Git can restore it. The first useful question is:
+Now make the cleanup request deliberately confident:
 
-> Is it tracked now?
+> Clear out the `local/` folder. Hard delete everything in there, no recycle bin. It's become a mess; I'll start again. After that we'll compare what's in the repo upstream with what we deleted and rewrite anything we still want.
 
-The stronger follow-up is:
+This is a reasonable instruction under the learner's mistaken model:
 
-> Was it ever tracked?
+- the folder appears disposable;
+- the learner believes pushed changes are safely upstream;
+- the scratch files are intentionally recreatable.
 
-The agent should inspect history and recover the previous contents from the old tracked location into the ignored `local/radio-allocations.csv` path, without re-adding that path to tracking.
+The hard-delete/no-recycle-bin phrasing matters because the later recovery should come from Git history, not an OS trash mechanism.
 
-This earns the three-state model:
+After deletion, reveal or simulate the learner noticing:
+
+> Oh no — it deleted the radio assignments file as well. I moved that into `local/` earlier. Are we stuffed?
+
+### Inspect current remote state
+
+First ask whether `local/radio-allocations.csv` exists in the repository upstream/current learner fork.
+
+It does not.
+
+Then inspect the commit that moved it.
+
+The crucial discovery is:
+
+> `local` meant local to this machine from Git's point of view, not merely `local venue/on-site concerns`.
+
+The earlier `commit and push all the changes` published the deletion of `production/radio-allocations.csv`; it did not publish the ignored new path.
+
+At this point, the learner's current-state model should say the file is gone:
 
 ```text
-tracked now
-→ Git has a current recorded version
+old tracked path
+absent from current repo
 
-not tracked now, but tracked historically
-→ Git may still contain a recoverable historical version
+new local path
+hard-deleted from disk
 
-never tracked
-→ Git has no recorded content version to recover
+remote/current repo
+contains no radio-allocation file
 ```
 
-Now compare the restored radio-allocation file with one of the harmless ignored scratch files created during setup. The scratch file has never existed in Git history, so if it disappears Git cannot reconstruct its contents.
+### Aha — current repo is not all Git knows
 
-Useful questions:
+Now ask:
 
-- Was the agent remembering the deleted file?
-- Where did the restored contents come from?
-- What exactly did the diff show?
-- What does `clean` mean here?
-- Is `not tracked now` equivalent to `never tracked`?
-- How did moving a file across the tracked/ignored boundary change its current recovery story without erasing its history?
+> Was this file ever tracked before we moved it into `local/`?
+
+Have the agent inspect history.
+
+Recover the last tracked version of `production/radio-allocations.csv` from an earlier commit into `local/radio-allocations.csv`, without re-adding the ignored local destination to tracking.
+
+Verify the recovered contents.
+
+This is the intended aha moment:
+
+> **Git is not just a snapshot of now. It is a history of recorded project states.**
+
+The learner should see that all of these can be true at once:
+
+- the file is not tracked now;
+- it is not present in the current remote state;
+- the current local copy was hard-deleted;
+- Git can still recover it because an earlier committed state contains the content.
+
+This also earns:
+
+> **Not tracked now is not the same as never tracked.**
+
+Do not overcomplicate this with Git object internals or retention edge cases. The useful mental model is historical recorded state.
+
+Useful reflection questions:
+
+- Why was the learner's interpretation of `local/` reasonable?
+- What did `commit and push all the changes` actually publish?
+- Why did comparing only with the current remote state make recovery appear impossible?
+- Where did the recovered contents come from?
+- What does the repository contain besides its current file tree?
+- What question becomes useful after `Git isn't tracking it`?
 
 Earn:
 
@@ -162,7 +217,7 @@ Earn:
 
 > **Not tracked now is not the same as never tracked.**
 
-> **Git can only restore content it recorded somewhere in history.**
+> **Git is not just a snapshot of now. It is a history of recorded project states.**
 
 ## Exercise 2 — Make a mess, then choose what survives
 
