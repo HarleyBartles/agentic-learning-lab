@@ -2,6 +2,26 @@
 
 These are the ideas to reinforce throughout the lab. They are more important than any particular product, command, model, or framework.
 
+## The learner directs work rather than manually reproducing it
+
+This curriculum is not a coding course and does not require the learner to become the manual implementation layer for an agent.
+
+The core learning loop is:
+
+> **Human instruct -> agent do -> human inspect, verify and question -> agent explain -> human instruct again.**
+
+The learner should become increasingly good at deciding what outcome they want, placing the agent in an appropriate environment, inspecting what actually happened, questioning unfamiliar machinery, and using the explanation to steer the next iteration.
+
+The central methodology is:
+
+> **The learner knows how to use agents to accomplish things before they fully understand the implementation, while using the work itself to progressively build that understanding.**
+
+Do not hide code, Git operations, configuration, scripts, SQL, or other technical artifacts merely because the learner cannot yet produce them manually. Let the agent do useful work, then use the work itself as material for inspection and learning.
+
+This method should generalise beyond the curriculum. If the learner later wants to learn programming or another unfamiliar technical craft, the same loop applies.
+
+See [Learning methodology and origin](learning-methodology.md) for the fuller curriculum-wide statement and the repository's own origin story.
+
 ## The conversation is not the project
 
 A chat is a useful interface for thinking and asking questions. A project needs durable state that can be inspected, changed, versioned, and revisited independently of one conversation.
@@ -64,6 +84,10 @@ Direct project access is better suited to deep exploration of a local project: w
 > Retrieval asks for something. Exploration discovers what is there.
 
 Neither replaces the other.
+
+Do not teach `on-disk good, cloud bad`. Different surfaces expose different state, capabilities, permissions, and safety boundaries. Select the environment that fits the task.
+
+The learning-lab repository itself is a useful proof point: substantial curriculum development was carried out through cloud ChatGPT using a GitHub connector after only minimal manual setup.
 
 ## Prefer evidence over agent claims
 
