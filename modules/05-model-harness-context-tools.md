@@ -12,6 +12,34 @@ A useful model is:
 
 The learner should leave less inclined to say `model X is better` when the observed difference may come from configuration or tooling.
 
+The stronger practical invariant is:
+
+> **When an agent disappoints you, identify which layer failed before changing anything.**
+
+Or more compactly:
+
+> **Diagnosis before intervention.**
+
+This module is the hinge between controlling project state and deliberately provisioning a competent worker.
+
+The progression is:
+
+```text
+Module 4
+control the work
+inspect state, diff, history, blast radius, and recovery
+
+Module 5
+understand the worker
+separate model from harness, context, instructions, tools, environment, state, and feedback
+
+Module 6
+build the worker for the job
+provision capability, workflow, domain knowledge, and quality criteria
+```
+
+Without this diagnostic model, later provisioning risks feeling like a bag of tricks. Module 5 should give the learner a way to ask what actually needs changing.
+
 ## Suggested session shape
 
 ### 0–15 minutes — Start from the Claude/ChatGPT preference
@@ -51,6 +79,8 @@ A recurring question:
 
 > Is this a model problem, context problem, harness problem, tool problem, state problem, or feedback problem?
 
+Do not insist there is always exactly one cause. The useful habit is to diagnose the system rather than reflexively swapping the model.
+
 ### 45–60 minutes — Fair comparison
 
 Discuss what a fair model or agent comparison would try to hold constant:
@@ -64,6 +94,24 @@ Discuss what a fair model or agent comparison would try to hold constant:
 If useful, run the same small repo task in two harnesses. Codex can be the teaching baseline; another agentic IDE such as Devin Desktop can later be used as a comparator.
 
 Do not force a winner. Compare steering, visibility of actions, diff/review experience, defaults, and tool use separately from raw model behaviour.
+
+## Bridge into Module 6
+
+Close by asking a forward-looking question:
+
+> If we can identify the layer that caused the behaviour, can we deliberately change those layers to make the worker better at a particular job?
+
+That sets up Module 6.
+
+For example:
+
+- wrong capability -> provision a better tool;
+- repeated workflow mistakes -> provision a skill;
+- repeated project-rule mistakes -> persist project instructions;
+- domain misunderstanding -> provision references, examples, standards, or expert guidance;
+- plausible but unverifiable work -> add quality criteria and checks.
+
+Module 5 supplies the diagnosis. Module 6 turns diagnosis into design.
 
 ## Future callback — context compaction, degradation, and "tears in the rain"
 
@@ -130,10 +178,15 @@ Do not force this lesson into the initial Module 5 lab if that makes the session
 - Which preferences are really harness preferences?
 - Which parts of the system can we change without changing model?
 - When is a default valuable even if it is technically configurable?
+- Which layer would you change first for this failure, and why?
 
 ## Principle
 
 > Separate capability from configuration.
+
+And:
+
+> **Diagnose the failing layer before intervening.**
 
 ## Do not teach yet
 
