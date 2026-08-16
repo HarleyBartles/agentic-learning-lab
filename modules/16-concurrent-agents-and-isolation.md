@@ -1,4 +1,4 @@
-# Module 15 — Concurrent agents and isolation
+# Module 16 — Concurrent agents and isolation
 
 Status: structured planning. This module should arrive only after the learner understands single-agent workflow orchestration and specialist delegation.
 
@@ -23,6 +23,8 @@ The learner should discover why isolation, explicit ownership, reconciliation, a
 Module 4 keeps the source-control model intentionally simple and defers branches/worktrees/concurrent-agent isolation.
 
 Module 12 introduces specialist workers but initially keeps delegation understandable and mostly sequential.
+
+Module 13 shows that worker creation, context isolation, tools, defaults, and sub-agent semantics vary by harness. Before parallelising, the orchestrator must therefore know what isolation the current harness actually provides rather than assuming a profile implies a particular runtime boundary.
 
 Now create a task where parallelism is genuinely useful rather than introducing Git machinery for ceremony.
 
