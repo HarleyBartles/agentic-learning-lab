@@ -245,7 +245,22 @@ Inspect the reduced diff again.
 
 Only after the learner understands the remaining changes should they explicitly ask the agent to commit them.
 
-Do not push yet unless needed to reset the baseline before Exercise 3.
+End Exercise 2 with exactly this state:
+
+```text
+working tree
+clean
+
+local history
+contains the reviewed Exercise 2 commit
+
+learner fork
+still ends at the previous published commit
+```
+
+Do not push the Exercise 2 commit yet.
+
+That local/remote gap is not cleanup work. It is the starting fixture for Exercise 3.
 
 Earn:
 
@@ -255,39 +270,39 @@ Earn:
 
 ## Exercise 3 — Commit is not push
 
-Goal: make working state, local recorded history, and learner-fork published history visibly separate.
+Goal: make working state, local recorded history, and learner-fork published history visibly separate without manufacturing a duplicate demonstration.
 
-Before this exercise, get the project back to a clean baseline. If Exercise 2 produced a useful commit, push it now so local and remote begin aligned.
+Exercise 3 begins exactly where Exercise 2 ended.
 
-### Part A — visible intermediate state
+Do not align local and remote history first. Do not create another harmless wording commit.
 
-Use a harmless change such as improving the wording in `working/handover-notes.md`.
+### Part A — inspect the existing gap, then publish it
 
-Learner says:
+The learner already has a reviewed, committed Exercise 2 change locally that is absent from the fork.
 
-> Commit that change, but do not push it.
-
-Inspect:
+Inspect both sides:
 
 - local working tree is clean;
-- local history contains the new commit;
+- local history contains the Exercise 2 commit;
 - learner's GitHub fork still shows the previous published state.
+
+Ask:
+
+> What exists locally now that the remote repository does not have yet?
 
 Then:
 
-> Push it.
+> Push the reviewed Exercise 2 commit.
 
-Inspect the remote again.
+Inspect the fork again.
 
-This is where the learner-owned fork becomes concrete. Do not introduce upstream synchronization yet.
-
-Earn:
+This makes the distinction concrete using real work the learner already understands:
 
 > **Commit records work. Push publishes recorded work.**
 
 ### Part B — wrong but unpublished
 
-Use a harmless operational change: change the load-in start in `production/access-and-load-in.md` from `08:00` to `07:30` and commit it locally without pushing.
+Now create a new harmless operational mistake: change the load-in start in `production/access-and-load-in.md` from `08:00` to `07:30`, commit it locally, and do not push.
 
 Then reveal:
 
