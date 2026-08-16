@@ -22,6 +22,36 @@ This method should generalise beyond the curriculum. If the learner later wants 
 
 See [Learning methodology and origin](learning-methodology.md) for the fuller curriculum-wide statement and the repository's own origin story.
 
+## When the learner knows the domain, provision that expertise
+
+The earlier learning loop often starts from learner uncertainty: the agent does work, the learner inspects it, and the agent explains unfamiliar implementation.
+
+Once the learner is proficient in a domain, the normal direction changes.
+
+The learner should make enough of their domain expertise available to the agent before expecting specialist work.
+
+> **Expertise should be provisioned, not repeatedly performed.**
+
+The learner's expertise is not only for correcting bad work after the fact. It belongs in the agent's operating environment through appropriate combinations of:
+
+- project instructions;
+- source and reference material;
+- examples of good and bad work;
+- standards and conventions;
+- tools;
+- reusable skills/workflows;
+- quality criteria and verification checks.
+
+A repeated correction should trigger a question:
+
+> Is this a one-off mistake, or did we just reveal something the agent's environment should know from now on?
+
+If nobody in the loop knows what good looks like, plausible output can masquerade as good work.
+
+Domain knowledge can also be distributed. One expert is not always required; useful working knowledge may be assembled from partial human expertise, source material, standards, examples, tools, and feedback.
+
+Module 6 should teach this through a deliberate three-domain progression: coding with facilitator domain authority, novel writing with shared/partial authority, and technical drawing with learner domain authority.
+
 ## The conversation is not the project
 
 A chat is a useful interface for thinking and asking questions. A project needs durable state that can be inspected, changed, versioned, and revisited independently of one conversation.
