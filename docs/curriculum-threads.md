@@ -175,6 +175,57 @@ The mature rule is:
 
 This prevents the learner from replacing one simplistic belief (`the model is everything`) with another (`the environment can fix everything`).
 
+## Specialist intent versus harness runtime state
+
+Module 12 should let the learner describe a specialist conceptually before they learn any one product's dispatch schema.
+
+That intended worker may include:
+
+- role/instructions;
+- model or capability expectation;
+- reasoning-effort expectation;
+- tools and permissions;
+- context/isolation expectations;
+- quality and verification contract.
+
+Module 13 then deliberately breaks the assumption that another harness will realise those fields in the same way.
+
+Different runtimes can ignore, rename, reject, inherit, or default different parts of the profile while still successfully launching a worker.
+
+The durable distinction is:
+
+> **The profile is configuration intent. The spawned worker is effective runtime state.**
+
+Keep `runtime state` separate from the curriculum's semantic/source-of-truth language. This thread concerns what worker configuration actually exists, not which project artifact has authority.
+
+The learner should verify observable effective configuration where the harness permits it rather than treating a successful task result as proof that the requested specialist contract was honoured.
+
+## Agent economics are part of engineering correctness
+
+The curriculum should eventually make resource allocation visible rather than treating cost as an implementation footnote.
+
+The central pressure case is intentionally perverse:
+
+```text
+1 strong orchestrator
++
+20 tiny mechanical jobs
+```
+
+If the harness silently inherits/defaults the strong orchestrator model for all twenty workers, the workflow may still produce an excellent answer while consuming dramatically more inference than the task justified.
+
+Earn:
+
+> **A system can be behaviourally correct and operationally wrong.**
+
+And:
+
+> **Capability, context, and inference are resources. Spend them in proportion to the job.**
+
+Do not turn this into `always use the cheapest model`. Quality, risk, latency, independence, and confidence can all justify additional spend.
+
+Likewise, do not fossilise current model-selection/reasoning knobs. They are human control surfaces today; future harnesses/models may increasingly allocate them automatically. Teach the resource-allocation problem underneath the current interface.
+
 ## Knowledge has a destination
 
 Whenever a repeated correction or useful discovery occurs, ask not merely `should we save this?` but:
@@ -268,6 +319,8 @@ Later specialist work can deliberately break it:
 
 That earns isolation, separate workspaces/branches/worktrees, reconciliation, and merge review.
 
+The Module 13A **20-Agent Bonfire** must not accidentally cash this thread early. Keep the Bonfire workers read-only, serialised, or on separate output paths if necessary. Its lesson is economics/context transport; the shared-mutable-state collision belongs to the later concurrency module.
+
 ## Context is finite and selective
 
 The learner should not finish the curriculum with only the shorthand `context is temporary; state is persistent`.
@@ -289,6 +342,72 @@ Use the existing `tears in the rain` line as the precursor:
 Then deepen it:
 
 > **Persist what must survive; retrieve what is relevant; do not make every worker carry everything.**
+
+## Context transport and materialisation
+
+Once specialist workers exist, the curriculum should distinguish durable information from information currently materialised in one worker's context.
+
+A handoff that pastes a large brief/value directly into a sub-agent causes that material to occupy the worker's context immediately.
+
+A handoff that passes a durable file/artifact reference lets the recipient decide when and whether to resolve the contents.
+
+Likewise, a worker that returns a giant report in its final message pushes that material into the orchestrator's context immediately. If the real deliverable is a file, it can write the file directly and return a short receipt/pointer instead.
+
+Earn:
+
+> **Pass references when you can. Pass contents when you must.**
+
+And:
+
+> **Do not make an agent narrate an artifact to another agent when it can create the artifact directly.**
+
+This is not a claim that files make context free. It is control over **where, when, and whether** information is materialised.
+
+Keep verification explicit: a short receipt does not establish content correctness. The worker/stage that owns correctness still has to inspect or deterministically verify the artifact.
+
+## Lazy loading, eager loading, and agentic N+1
+
+Use familiar systems/programming shapes as analogies without turning the curriculum into a coding/database course.
+
+Lazy-loading question:
+
+> I know the artifact exists. Does this worker need to read it now, read all of it, or follow all of its related doctrine/evidence?
+
+Eager-loading question:
+
+> If this worker predictably needs a coherent bundle of related material, should we supply/retrieve that bundle together instead of forcing serial rediscovery?
+
+Agentic N+1 pressure:
+
+```text
+20 workers
+→ each opens the same project instructions
+→ each discovers the same skill
+→ each follows the same architecture reference
+→ each reloads substantially the same doctrine
+```
+
+Every read may be individually sensible while the system is globally wasteful.
+
+Earn:
+
+> **Many locally rational context loads can still form a globally inefficient system.**
+
+This should cash into Module 14 selective provisioning/context.
+
+## The system can know more than the orchestrator has loaded
+
+Durable project state and specialist artifacts mean the overall agentic system can contain more useful knowledge than any one current worker has in context.
+
+An orchestrator may only need a verdict and artifact pointer in order to route work; another stage may consume the underlying report directly.
+
+Useful principle:
+
+> **The agentic system can know more than any individual agent currently has in context.**
+
+This changes the orchestrator's role from `agent that must ingest everything` to `agent that coordinates where knowledge and work need to flow`.
+
+Again, routing is not verification. If the orchestrator does not inspect an artifact, some other responsible stage must establish whatever content-level property the workflow relies on.
 
 ## Retrieval and RAG should be earned from scale
 
@@ -314,7 +433,7 @@ agent working context
 
 RAG should be taught as mediated context selection, not as vector-database mathematics.
 
-Connect it to the existing retrieval-versus-exploration distinction and to the agent-overwhelming lesson.
+Connect it to the existing retrieval-versus-exploration distinction, the agent-overwhelming lesson, and the context-materialisation thread.
 
 ## Untrusted content is evidence, not authority
 
@@ -494,7 +613,7 @@ Its mature role is a synthesis checkpoint:
 
 > You now know enough to build a genuine agentic project. From here, real project work and bounded teaching fixtures can both be used to introduce more advanced operating patterns.
 
-Later autonomy, selective provisioning, retrieval/context, evaluation, specialist delegation, security, and isolation remain core learning rather than optional epilogue material.
+Later self-introspection, autonomy, specialist delegation, harness portability/effective-worker verification, economics, selective provisioning, context transport/materialisation, retrieval/context, evaluation, security, and isolation remain core learning rather than optional epilogue material.
 
 ## Epilogue should compare two histories
 
