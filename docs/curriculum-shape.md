@@ -72,7 +72,7 @@ A useful summary is:
 
 ## Part 3 — Advanced agentic concepts: mastering agents
 
-Current planning range: Modules 10–15.
+Current planning range: Modules 10–16.
 
 The emphasis changes here.
 
@@ -85,6 +85,9 @@ Current advanced threads include:
 - loops, graphs, retries, stopping conditions, escalation routes, and escape hatches;
 - defining success conditions and legal workflow transitions;
 - specialist sub-agents and orchestration;
+- harness portability, runtime-specific sub-agent contracts, profile translation, model/reasoning selection, inheritance/defaults, and verification of the effective worker;
+- harness observability and scan-reading visible activity for churn, looping, drift, and missing progress;
+- separating durable agent concepts from volatile product control surfaces;
 - selective provisioning rather than accumulation;
 - finite context and retrieval/RAG as context selection;
 - instruction scope, hierarchy, provenance, and runtime injection;
@@ -111,7 +114,7 @@ A useful summary is:
 
 ## Part 4 — Epilogue as the final project task
 
-Current planning anchor: Module 16, `Epilogue: show how this was built`.
+Current planning anchor: Module 17, `Epilogue: show how this was built`.
 
 The epilogue is not only a retrospective lecture.
 
@@ -177,7 +180,7 @@ If the concept is required for basic competence with agents, it probably belongs
 
 If it tests whether foundational understanding transfers into a real project, it belongs in Part 2.
 
-If it becomes useful only after the learner can already operate agents and now needs to design more reliable, autonomous, explainable, selective, or scalable agent systems, it probably belongs in Part 3.
+If it becomes useful only after the learner can already operate agents and now needs to design more reliable, autonomous, explainable, selective, portable, or scalable agent systems, it probably belongs in Part 3.
 
 If it asks the learner to synthesize the whole course and reason from the project they have built and inhabited, it belongs in the epilogue.
 
