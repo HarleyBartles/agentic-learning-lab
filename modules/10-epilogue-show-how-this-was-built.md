@@ -10,7 +10,7 @@ The learner should discover that the Agentic Learning Lab did not begin as a ful
 
 The final retrospective should make the curriculum's central methodology visible in its own history:
 
-> **Human instruct -> agent do -> human inspect, verify and question -> agent explain -> human instruct again.**
+> **Learner instruct -> Agent do -> Learner inspect, verify and question -> Agent explain -> Learner instruct again.**
 
 And:
 
