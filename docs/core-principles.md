@@ -270,8 +270,117 @@ A strong escape condition should be grounded in evidence such as recurrence, inc
 
 As soon as a loop can pass, retry, return, stop, or escalate depending on state, the learner has earned a graph-shaped mental model without needing graph theory.
 
+## Inspect the agent's working trace when the harness exposes it
+
+Agents do not have to be treated as magical black boxes.
+
+Many harnesses expose some combination of plans, tool calls, reasoning/activity summaries, observations, self-review, status messages, and logs. The amount and fidelity vary by model and runtime.
+
+When useful traces exist, inspect them.
+
+> **Do not assume the model reasoned well merely because the final output looks credible.**
+
+But do not overclaim what the visible trace represents either.
+
+> **Visible reasoning is evidence about the agent's process, not guaranteed complete ground truth about everything that influenced it.**
+
+Harnesses may summarise, transform, hide, or omit internal reasoning. A visible trace can still be diagnostically valuable without being a literal transcript of the model's complete internal process.
+
+## Trace surprising beliefs back to their instruction source
+
+An agent may repeatedly reason from a rule, operating mode, or premise the learner never supplied.
+
+That does not necessarily mean the agent invented it. It may have entered through:
+
+- system/developer prompts;
+- harness configuration;
+- user/home-level instructions;
+- project instructions;
+- nested project instructions;
+- skills;
+- workflow rules;
+- tool descriptions;
+- retrieved context;
+- workspace policy.
+
+The model may discuss injected material as though it were the most natural thing in the world because, from its point of view, that material is simply part of the current context.
+
+Use the diagnostic ladder:
+
+```text
+what did the agent do?
+        ↓
+what did the visible reasoning/activity say?
+        ↓
+what rule or premise was it following?
+        ↓
+where did that rule enter the context?
+        ↓
+what authority did that surface have?
+```
+
+Useful questions:
+
+> Why did you think that?
+
+> Where did that instruction or assumption come from?
+
+> Which instruction surface supplied it?
+
+> What authority did that surface have relative to the other instructions in force?
+
+A durable principle:
+
+> **When an agent surprises you, do not only ask what it did. Ask what it believed, why it believed it, where that belief entered the system, and which instruction surface had authority.**
+
+## Instruction hierarchy is real, but partly runtime-specific
+
+The learner should understand that `everything in the project` is not necessarily `everything the agent has pressed onto it`.
+
+Some precedence rules are explicit runtime contracts. Others depend on how the harness injects instructions.
+
+For example, current Codex/OpenAI `AGENTS.md` semantics specify that:
+
+- an `AGENTS.md` applies to the directory tree rooted where it lives;
+- deeper/nested `AGENTS.md` instructions take precedence over conflicting higher-level `AGENTS.md` instructions for files inside their scope;
+- direct system/developer/user instructions take precedence over `AGENTS.md`;
+- relevant instructions may also come from outside the repository, including the user's/home environment.
+
+Do not universalise those exact rules to every harness. Verify product/runtime behaviour when teaching it.
+
+Use short `instruction hierarchy whodunnit` cases to distinguish:
+
+- known precedence by specification;
+- precedence that depends on runtime injection semantics;
+- behaviour caused by an instruction outside the project;
+- bad behaviour caused by composition even when no direct conflict exists.
+
+> **Instruction hierarchy tells you which rule has authority when rules conflict. It does not guarantee that the combined instruction set produces good behaviour.**
+
+And:
+
+> **The project can be the authoritative state of the work without being the complete instruction environment of the agent.**
+
+## Hidden instructions are operating inputs, not secure vaults
+
+The learner-visible prompt is not necessarily the first or only prompt the model receives.
+
+Harnesses commonly supply system/developer instructions, tool descriptions, project/user instructions, policies, skills, or other context before or alongside the learner's task.
+
+The useful reveal is not `we found the secret prompt`.
+
+It is:
+
+> **You typed one prompt, but that was not necessarily the first instruction the model received.**
+
+Treat model-readable hidden instructions as behavioural inputs, not as a trustworthy secret store or sole security boundary.
+
+> **An instruction can influence behaviour without being a trustworthy security boundary.**
+
+Do not put secrets into model-readable prompts merely because the UI does not normally show them, and do not rely on natural-language instructions alone when permissions, sandboxing, or capability restrictions can enforce an important boundary mechanically.
+
 ## Teach invariants; let techniques emerge
 
-Teach ideas such as source of truth, recovery, verification, isolation, bounded authority, persistent state, termination, and legal workflow transitions directly.
+Teach ideas such as source of truth, recovery, verification, isolation, bounded authority, persistent state, termination, legal workflow transitions, instruction provenance, and inspectable reasoning directly.
 
 Let advanced techniques such as elaborate Git workflows, RAG, multi-agent orchestration, CI/CD, complex MCP setups, and sophisticated automation arrive when the learner encounters the problem they solve.
