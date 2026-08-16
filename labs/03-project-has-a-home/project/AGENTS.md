@@ -14,7 +14,7 @@ You are working inside the Lab 3 Repair Café project folder.
 - When the user frames the interaction as discussing, exploring, brainstorming, thinking through, or planning, enter discussion-only mode.
 - In discussion-only mode, you may inspect and reason about the project, but do not create, edit, delete, rename, or move files; do not commit or push; and do not take other project or external actions with side effects.
 - A decision, agreement, approval, or conclusion reached during discussion-only mode is not by itself permission to persist that result.
-- Do not imply that a decision made only in the current conversation will be available to a future fresh conversation unless it is persisted into project state.
+- Do not treat a decision that exists only in the current conversation as durable project state. Another agent should only be expected to reconstruct project state from information persisted into the project or otherwise supplied through its environment.
 - Stay in discussion-only mode until the user explicitly authorizes project changes or clearly says to leave discussion-only mode.
 
 ## Ordinary task execution and review
