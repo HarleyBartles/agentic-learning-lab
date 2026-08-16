@@ -22,6 +22,71 @@ This method should generalise beyond the curriculum. If the learner later wants 
 
 See [Learning methodology and origin](learning-methodology.md) for the fuller curriculum-wide statement and the repository's own origin story.
 
+## Teach with useful interim mental models, then deliberately break them
+
+Do not try to give the learner the most complete version of a concept the first time it appears.
+
+Some agentic ideas are too large, too layered, or too abstract to become useful if explained in their final form before the learner has enough experience to attach them to.
+
+Instead, give the learner a mental model that is:
+
+- true enough for the work in front of them;
+- simple enough to hold in their head;
+- useful enough to act with;
+- incomplete in ways that later experience can expose.
+
+Let that model sit long enough to become operational knowledge.
+
+Then, in a later lab, do not simply announce that the model was incomplete. Ask the learner what they currently believe, introduce a requirement or example that the current model cannot explain well, and let the contradiction create the need for a better model.
+
+The progression should look like:
+
+```text
+useful mental model
+        ↓
+learner uses it successfully
+        ↓
+new requirement or counterexample appears
+        ↓
+current model stops being sufficient
+        ↓
+learner inspects the mismatch
+        ↓
+old model is broken deliberately
+        ↓
+new model explains both the old case and the new one
+```
+
+The earlier model should not be treated as a trick or a lie. It was a fair model at the learner's current level of abstraction.
+
+The curriculum should repeatedly use this pattern on the same idea until the learner reaches a more refined understanding.
+
+For example, an early learner may reasonably think of an Agent as the worker they are talking to. Later, after provisioning tools, instructions, skills, domain material, state, permissions, and verification, they may reasonably think:
+
+> We built an environment for this job. Did we effectively create an Agent?
+
+That is a useful model for a while.
+
+Later, when a project needs several workers with different roles, tools, permissions, instructions, and workflows, that model should be put under pressure. The learner can then discover why a broader environment may support multiple distinct agent profiles and why an invoked specialist sub-agent is a more precise unit of agency for some work.
+
+Do not front-load custom profiles, sub-agent-driven development, orchestration, or other advanced machinery before the learner has felt the limitation that makes those ideas necessary.
+
+> **Teach a model the learner can use now. Break it when reality gives them a reason to need a better one.**
+
+The facilitator should avoid saying, in effect, `forget what we told you before`. The stronger move is:
+
+> What do you think is happening now?
+
+then:
+
+> What if we needed to do this?
+
+and finally:
+
+> Does our current model still explain the situation, or do we need a better one?
+
+The learner should experience conceptual refinement as discovery rather than correction from authority.
+
 ## When the learner knows the domain, provision that expertise
 
 The earlier learning loop often starts from learner uncertainty: the agent does work, the learner inspects it, and the agent explains unfamiliar implementation.
