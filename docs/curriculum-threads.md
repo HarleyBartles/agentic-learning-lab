@@ -44,9 +44,9 @@ Do not teach fork/remotes/upstream mechanics before the learner has a reason to 
 
 When mature labs are revised, hard-coded assumptions that cloud agents work directly against `HarleyBartles/agentic-learning-lab` should be replaced by the learner's fork where the experiment concerns learner project state.
 
-## AGENTS.md is initially facilitator-owned experimental apparatus
+## AGENTS.md starts as facilitator-owned experimental apparatus
 
-Early lab-scoped `AGENTS.md` files are facilitator controls over the agents invoked inside the exercises.
+In Labs 1–4, lab-scoped `AGENTS.md` files are facilitator controls over the agents invoked inside the exercises.
 
 They survive the learner's fork and therefore arrive as part of the prepared experimental environment.
 
@@ -64,31 +64,39 @@ The design rule for early lab instructions is:
 
 > **Control the experiment, not the conclusion.**
 
-Do not hide the file if the learner notices it. Explain briefly that it contains standing project instructions and that a later lab will explore that lever deliberately.
+Do not hide the file if the learner notices it. Explain briefly that it contains standing project instructions and that Lab 5 will explore that lever deliberately.
 
 The intended progression is:
 
 ```text
-early labs
+Labs 1–4
 facilitator provisions project instructions
 learner experiences controlled behaviour
         ↓
-model/harness/configuration lesson
-learner identifies instructions as one layer shaping behaviour
+Lab 5
+learner opens AGENTS.md with the facilitator
+learner hand-edits one bounded standing rule
+fresh agent context demonstrates the changed instruction
+instructions become a named layer of the system
         ↓
-domain provisioning
-learner reasons about what knowledge belongs in which layer
+Module 6 and later provisioning work
+learner reasons about which knowledge belongs in which layer
         ↓
 real project
-learner directs the agent to create/change their own AGENTS.md
+learner owns the instruction surface
+learner may delegate creation and maintenance of AGENTS.md
         ↓
 later work
-learner designs project doctrine deliberately
+learner designs project doctrine and instruction scope deliberately
 ```
 
-The later reveal should feel like:
+The Lab 5 reveal should feel like:
 
-> You have been benefiting from this mechanism since the beginning. Now you own the lever.
+> You have been benefiting from this mechanism since the beginning. Now you have touched the lever yourself.
+
+The later real-project transition is different:
+
+> You understand this surface now. This is your project, so you decide what stable doctrine belongs here and what maintenance you want to delegate.
 
 ## From repeated guidance to selective provisioning
 
@@ -149,7 +157,7 @@ The learner will eventually encounter several instruction-bearing surfaces:
 
 The curriculum should eventually teach that `I told the agent X` does not imply that X is the only instruction in force.
 
-Do not make this a standards or precedence lecture. The useful mental model is scope:
+Do not make Lab 5 a standards or precedence lecture. Its useful result is simply that the learner has seen project instructions as one real layer. The richer later mental model is scope:
 
 > Which rule naturally owns this decision, for which worker, for how long, and under what authority?
 
@@ -157,9 +165,9 @@ The agent-overwhelming exercise is the natural place to make conflicting or dupl
 
 ## Model capability really can be the problem
 
-Module 5 correctly discourages reflexively blaming the model for every observed failure.
+Lab 5 correctly discourages reflexively blaming the model for every observed failure.
 
-Later in that lesson or a callback, include at least one controlled comparison where context, tools, instructions, and opportunity to verify are held reasonably constant and one model still performs materially better at the bounded task.
+Its final diagnostic scenario deliberately preserves the opposite possibility: when context, tools, instructions, and opportunity to verify are held reasonably constant and one model still fails the same bounded reasoning step, model capability becomes a serious suspect.
 
 The mature rule is:
 
@@ -479,6 +487,8 @@ Do not teach branching mechanics as ceremony before this problem appears.
 ## Module 9 is a synthesis checkpoint, not graduation
 
 The current `build a real agentic project` material should not imply that the curriculum is over once the learner can establish a real project home, tools, instructions, and a first skill.
+
+By Module 9, project instructions are no longer a reveal: Lab 5 already exposed and manipulated that layer. The new step is ownership in a real project and deliberate delegation of instruction maintenance where useful.
 
 Its mature role is a synthesis checkpoint:
 

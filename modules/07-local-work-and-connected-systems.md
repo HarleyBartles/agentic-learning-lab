@@ -4,7 +4,7 @@ Approximate duration: 1 hour.
 
 ## Core idea
 
-Modules 5 and 6 decompose the system around a model, then provision that system for competent work.
+Lab 5 decomposes the system around a model; Module 6 then provisions that system for competent work.
 
 This module should briefly let the learner name the assembled thing before asking where it should operate.
 
@@ -118,7 +118,7 @@ Use this learning-lab repository itself.
 
 Through the GitHub connector, ask a focused remote-state question such as:
 
-- Which module discusses safe breakage?
+- Which lab discusses safe breakage?
 - What files currently exist under `modules/`?
 - What is the latest remote commit touching a chosen file?
 
