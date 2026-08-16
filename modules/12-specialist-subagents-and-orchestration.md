@@ -1,4 +1,4 @@
-# Module 11 — Specialist sub-agents and orchestration
+# Module 12 — Specialist sub-agents and orchestration
 
 Status: structured planning. Preserve the conceptual progression and tradeoffs now; exact product mechanics and lab implementation should be verified later.
 
