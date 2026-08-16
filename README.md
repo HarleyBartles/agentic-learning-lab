@@ -65,6 +65,7 @@ labs/01-chatbot-to-worker/
         01-complete-context.md
         02-missing-context.md
         03-on-disk-worker.md
+        04-cloud-project.md
     mission/
         README.md
         source/
@@ -100,7 +101,7 @@ The numbering below is the current planning order, not a promise that every modu
 1. [From chatbot to worker](labs/01-chatbot-to-worker/)
 2. [Give the cloud agent the project](labs/02-give-the-cloud-agent-the-project/)
 3. [The project has a home](labs/03-project-has-a-home/)
-4. Repositories, save points, and safe breakage
+4. [Repositories, save points, and safe breakage](labs/04-repositories-save-points-and-safe-breakage/)
 5. Model, harness, context, tools, and behaviour
 6. Tools, operating knowledge, and domain provisioning
 7. What did we just create? Local work and connected systems
@@ -115,7 +116,11 @@ The numbering below is the current planning order, not a promise that every modu
 
 Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the learner's repository, then compares connector-mediated access with direct local workspace access.
 
-Lab 3 is stable and ready to run. Its three Repair Café exercises show that important decisions must enter durable project state, that conversation should not be promoted into that state without deliberate authority, and that durable project artifacts can later drift and disagree about the same fact.
+Lab 3 stops treating cloud versus local as the organizing question and focuses on durable project state, deliberate promotion of conversational material, and conflicting durable artifacts.
+
+Lab 4 makes the source-control machinery visible after the learner has already benefited from it: working state, recorded history, diffs, commit versus push, historical recovery, and the boundary where Git can no longer undo external consequences.
+
+Labs 1–4 are mature and ready to run.
 
 The middle curriculum deliberately compounds earlier ideas rather than replacing them. Module 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Module 6 uses that model to provision a worker for a domain. Module 7 lets the learner temporarily treat the assembled worker as `an Agent`, then asks where that worker should operate and what it should be connected to. Later modules deliberately refine that conception again.
 
@@ -129,7 +134,7 @@ Module 14 finally breaks Module 4's intentionally simple `one worker, one mutabl
 
 Module 9 should be treated as a synthesis checkpoint rather than graduation. Once the learner can create a real agentic project, that real project can become one of the surfaces used to learn the later operating patterns.
 
-Labs 1, 2, and 3 now have mature lab structures. Existing files in `modules/` are working facilitator drafts for later curriculum material that has not yet been promoted into a mature lab.
+Existing files in `modules/` are working facilitator drafts for later curriculum material that has not yet been promoted into a mature lab.
 
 See also [Core principles](docs/core-principles.md), [Learning methodology and origin](docs/learning-methodology.md), and [Curriculum threads, breadcrumbs, and future cash-ins](docs/curriculum-threads.md).
 
@@ -138,9 +143,8 @@ See also [Core principles](docs/core-principles.md), [Learning methodology and o
 - `labs/` contains complete learning experiences, including learner guidance, facilitator notes, and bounded working environments where appropriate.
 - `docs/` contains cross-cutting principles and curriculum-wide guidance.
 - `modules/` contains draft planning material for later labs that have not yet been fully promoted.
-- `projects/` contains small example project environments that are not primarily software projects.
 
-There is deliberately no separate root-level `guided/` or stable facilitator hierarchy. Learner and facilitator material that belongs to a lab lives with that lab.
+There is deliberately no separate root-level `guided/`, `projects/`, or stable facilitator hierarchy. Learner and facilitator material, fixtures, and project environments that belong to a lab live with that lab.
 
 ## Expected progression
 
