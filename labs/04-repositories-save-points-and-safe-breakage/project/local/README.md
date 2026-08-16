@@ -1,9 +1,7 @@
-# Local operational state
+# Local notes
 
-Files in this folder are local operational state and are ignored by Git, except for this README which exists only so the folder is present in a fresh checkout.
+Use this folder for temporary venue- and day-of-production working material that only matters on this machine or during the current on-site session.
 
-During Lab 4, a previously tracked file will be moved into this folder so the learner can distinguish:
+Examples might include quick room notes, temporary equipment labels, one-off desk positions, ad-hoc channel notes, or other disposable operational detail.
 
-- tracked now;
-- not tracked now but present in Git history;
-- never tracked at all.
+Keep durable production information in the main project structure.
