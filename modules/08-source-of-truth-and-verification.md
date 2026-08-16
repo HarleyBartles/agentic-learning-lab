@@ -71,10 +71,76 @@ Ask:
 
 Use this to reinforce that authoritative state should be explicit rather than inferred from whichever message is newest.
 
+## Future callback — "is it tracked?" becomes "was it ever tracked?"
+
+Lab 4 should teach the simple recovery question:
+
+> Is the lost thing tracked?
+
+That is the right first model because Git cannot restore content that never entered Git history.
+
+Later, once the learner understands that Git is historical state rather than merely a snapshot of the current repository, deliberately deepen the question to:
+
+> Was it ever tracked?
+
+Use a scenario like this:
+
+1. `production/cue-notes.md` was tracked for some time.
+2. Later, the file was moved to an ignored local location such as `local/cue-notes.md` and removed from the current tracked project state.
+3. The local ignored copy was then accidentally deleted by an agent.
+4. The current filesystem contains no copy, and the current repository no longer tracks that path.
+
+Ask the learner:
+
+> Can Git save us?
+
+The Lab 4 reflex may be:
+
+> It is ignored now, so no.
+
+The better historical question is:
+
+> Did some earlier commit contain the content we need?
+
+If so, Git history may still hold a recoverable version even though the file is absent now and its current destination is ignored.
+
+The progression is:
+
+```text
+Lab 4 question:
+Is it tracked?
+
+Later question:
+Was it ever tracked?
+
+Deeper historical question:
+Which recorded state contained the version we need?
+```
+
+The lesson should make clear that current `.gitignore` rules describe what Git should normally ignore now; they do not erase older repository history.
+
+Useful lines to earn:
+
+> Not tracked now does not necessarily mean never tracked.
+
+> Current absence does not prove historical absence.
+
+> Git is recorded project history, not just a backup of the files currently present.
+
+This future callback fits naturally with verification because recovery starts with evidence: inspect history before concluding that a missing object is unrecoverable.
+
+It also pairs usefully with the later discoverability lesson in Module 7:
+
+- something can exist now but fail to be discovered through the agent's normal navigation path;
+- something can be absent now but still be discoverable in historical project state.
+
+Do not force historical archaeology into the first version of the Module 8 lab if it distracts from the main verification lesson. Preserve it as a later exercise or advanced callback.
+
 ## Tools to experiment with
 
 - repository search (`rg`/IDE search);
 - Git diff/status;
+- Git history inspection for historical recovery when appropriate;
 - artifact rendering or preview;
 - simple validation scripts;
 - GitHub remote inspection when publication is part of the task.
@@ -86,6 +152,7 @@ Use this to reinforce that authoritative state should be explicit rather than in
 - Is the check independent enough to catch the original failure?
 - What is authoritative when sources disagree?
 - Which checks should eventually become automatic?
+- If something is missing now, what evidence would tell us whether it existed in recorded project history?
 
 ## Useful distinction
 
