@@ -72,7 +72,7 @@ A useful summary is:
 
 ## Part 3 — Advanced agentic concepts: mastering agents
 
-Current planning range: Modules 10 onward, before the epilogue.
+Current planning range: Modules 10–15.
 
 The emphasis changes here.
 
@@ -80,6 +80,7 @@ The learner is no longer mainly learning how to get an agent to work. They are l
 
 Current advanced threads include:
 
+- agent self-introspection, counterfactual self-simulation, cheap local self-review, behavioural prediction, and test-first probes;
 - autonomous human-in-the-loop workflows;
 - loops, graphs, retries, stopping conditions, escalation routes, and escape hatches;
 - defining success conditions and legal workflow transitions;
@@ -109,6 +110,8 @@ A useful summary is:
 > **Part 3 teaches the learner to engineer agent behaviour rather than merely operate agents.**
 
 ## Part 4 — Epilogue as the final project task
+
+Current planning anchor: Module 16, `Epilogue: show how this was built`.
 
 The epilogue is not only a retrospective lecture.
 
