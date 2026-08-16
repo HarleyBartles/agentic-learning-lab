@@ -1,4 +1,4 @@
-# Module 13 — Selective provisioning, context, and evaluation
+# Module 14 — Selective provisioning, context, and evaluation
 
 Status: structured planning. This module cashes several earlier breadcrumbs: persistent instructions, skill composition, context limits, retrieval, instruction scope, inspectable reasoning, and the danger of over-provisioning.
 
@@ -25,7 +25,8 @@ Earlier labs have already modelled narrow operating doctrine:
 - Module 6 asks where repeated domain knowledge should live;
 - Module 10 introduces agent self-introspection, local self-review, behavioural prediction, and test-first thinking as cheap local engineering primitives;
 - Module 11 shows multiple skills harmonising into a larger workflow;
-- Module 12 shows specialist profiles carrying narrower role-specific operating conditions.
+- Module 12 shows specialist profiles carrying narrower role-specific operating conditions;
+- Module 13 shows that harnesses differ in how those profiles, tools, models, defaults, and observability surfaces are actually realised at runtime.
 
 Open by asking:
 
@@ -263,7 +264,9 @@ This connects directly back to agent overwhelming and selective provisioning.
 
 ## Inspectable agents — not magic black boxes
 
-Do not teach formal explainable-AI theory here. Teach a practical agent-operating habit.
+Module 13 has already taught visible activity as a harness-specific observability surface and the practical skill of scan-reading it for churn, loops, drift, and lack of new evidence.
+
+This module cashes that capability diagnostically rather than reteaching the harness comparison.
 
 Many agent harnesses expose some combination of:
 
@@ -292,6 +295,8 @@ A runtime may summarise, hide, transform, or omit parts of the model's internal 
 ## The thought stream can reveal injected concepts without explaining their provenance
 
 Use a demo where the agent repeatedly refers to a concept the learner never supplied.
+
+The learner now knows from Module 13 that a harness can produce and surface activity channels in different ways. Here the question is not how the stream is rendered, but what an unexpected concept in that stream tells us about the worker's instruction environment.
 
 A suitable live-demo candidate, subject to verification at teaching time, is a verbose agent/model configuration that repeatedly mentions an internally injected operating mode or policy while reasoning about an otherwise ordinary task.
 
