@@ -22,7 +22,7 @@ Earlier curriculum already establishes:
 - Lab 3: conversation or source material must not silently become project truth;
 - Module 4: external side effects can escape repository recovery;
 - Module 7: connectors extend what the worker can reach;
-- Module 10: bounded autonomy moves routine transitions into the agent while preserving meaningful human gates;
+- Module 10: bounded autonomy moves routine transitions into the agent while preserving meaningful human gates, and explicitly teaches stop conditions, escalation routes, and escape hatches;
 - Module 11: different specialist workers may deserve different permissions.
 
 This module combines those ideas into a trust-boundary model.
@@ -112,26 +112,39 @@ Earn:
 
 > **Capability should follow responsibility, not convenience.**
 
-## Autonomy needs stopping conditions
+## Reuse the stop-condition and escape-hatch model under external pressure
 
-Module 10 teaches how the agent knows when it can continue. Complete the model here or in the autonomy lab itself by making stopping/escalation explicit.
+Module 10 should already have made the failure mode visible: a loop can contain locally sensible actions yet fail to converge, and an escape hatch is only useful when its entry conditions are well designed.
 
-A worker should hand control back when, for example:
+Do not reteach that mechanism from scratch here. Apply it to trust and connected systems.
 
-- a bounded retry limit is reached;
-- verification cannot establish success;
-- the workflow is repeating without new evidence;
-- a design/plan assumption has become false;
+A connected worker should hand control back when, for example:
+
 - required authority is unavailable;
-- cost/time/risk exceeds the delegated budget;
+- untrusted content conflicts with trusted operating doctrine;
 - a consequential external action requires human approval;
-- untrusted content conflicts with trusted operating doctrine.
+- cost/time/risk exceeds the delegated budget;
+- verification cannot establish success;
+- the workflow has reached the bounded escape condition already learned earlier.
+
+The important connection is:
+
+> An escalation route is itself part of the legal workflow designed by the learner.
+
+Do not anthropomorphise escalation as the agent `wanting to get out of the work`. The worker is choosing among the legal routes and success conditions the environment makes available.
+
+Ask:
+
+- Who made this external action legal or illegal?
+- Who decided that missing authority should cause escalation?
+- Who defined what evidence is sufficient to continue?
+- Who defined what `done` means after an external side effect?
+
+The answer is the human/system designer through the provisioned environment.
 
 Useful line:
 
-> **Autonomy needs stopping conditions as much as continuation rules.**
-
-Do not let `be autonomous` become `keep trying indefinitely`.
+> **The worker does not invent the project's authority model; it operates inside the authority and escape routes we give it.**
 
 ## Provenance across connected work
 
@@ -168,6 +181,10 @@ Connect back to Module 4:
 ## Principle
 
 > **Treat external content as evidence, give each worker only the capabilities its responsibility needs, and require human authority at consequential boundaries.**
+
+And:
+
+> **Authority, success conditions, legal transitions, and escape routes are part of the system the learner designs; do not explain systematic agent behaviour as personality when the workflow already made that behaviour reasonable.**
 
 ## Do not teach yet
 
