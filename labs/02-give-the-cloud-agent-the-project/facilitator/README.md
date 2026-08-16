@@ -10,7 +10,7 @@ Lab 1 established:
 
 > If an agent cannot see the project surface, it cannot see what is missing from the context supplied to it.
 
-Lab 2 changes one variable: cloud ChatGPT is given access to this repository through the GitHub connector.
+Lab 2 changes one variable: cloud ChatGPT is given access to the learner's repository fork through the GitHub connector.
 
 The learner should experience that connector access genuinely removes much of the manual context transport from Lab 1, while also discovering that `has access to the project` is not a precise enough description on its own.
 
@@ -25,7 +25,7 @@ Do not present those four questions as a lecture at the start. Let the exercises
 
 ## The project fixture
 
-All exercises happen in this repository under:
+All exercises happen in the learner's fork under:
 
 `labs/02-give-the-cloud-agent-the-project/project/`
 
@@ -45,30 +45,35 @@ This is deliberately one repository, not a second exercise repository.
 
 ### Cloud environment
 
-Re-enable the GitHub connector for `HarleyBartles/agentic-learning-lab` before Lab 2.
+Enable the GitHub connector for the learner's fork before Lab 2.
+
+Do not target the canonical upstream `HarleyBartles/agentic-learning-lab` for learner mutations. Upstream remains the curriculum source; the learner fork is the learner's project state.
 
 The learner does not configure the connector. The visible change from Lab 1 is simply:
 
-> ChatGPT can now reach the repository.
+> ChatGPT can now reach your repository.
 
-Use a fresh conversation for each exercise or each controlled run where stale conversational context could hide the observed difference.
+Use a fresh conversation for each exercise or controlled run where stale conversational context could hide the observed difference.
 
-Do not explain MCP, schemas, indexing, authentication, or connector implementation in this lab.
+Where the product/harness exposes cross-chat memory or similar continuity features, configure the teaching environment so those features cannot supply the hidden answer for runs intended to prove persistence or access-surface differences. This is facilitator environment setup, not an `AGENTS.md` responsibility.
+
+Do not explain MCP, schemas, indexing, authentication, memory controls, or connector implementation in this lab unless needed to troubleshoot the setup.
 
 ### Local environment
 
-Use the learner's local checkout of this same repository.
+Use the learner's local checkout of the same fork.
 
 Before the lab:
 
-1. ensure the checkout starts synchronized with `main`;
+1. ensure the checkout starts synchronized with the learner fork's current main line;
 2. ensure `project/local/attendees.db` does **not** exist;
 3. confirm `project/local/` is ignored by Git;
 4. confirm `project/local-setup/` contains no attendee schema yet;
 5. prepare the on-disk agent with a working root at `labs/02-give-the-cloud-agent-the-project/project/`;
 6. ensure the agent can inspect common image formats and use SQLite locally;
 7. keep the `scratch/` content disposable;
-8. confirm the worker reads and follows `project/AGENTS.md`.
+8. confirm the worker reads and follows `project/AGENTS.md`;
+9. confirm local push configuration targets the learner fork rather than canonical upstream.
 
 The learner will supply the attendee records directly to the on-disk worker during Exercise 3. The worker should create both the reusable schema and the operational database. The schema is legitimate source-controlled work; the current attendee records remain local runtime state.
 
@@ -76,21 +81,24 @@ The learner will supply the attendee records directly to the on-disk worker duri
 
 Do not teach Git synchronization or SQLite setup mechanics while preparing this lab. They are facilitator plumbing here.
 
-### Project operating instruction for Exercise 3
+### Project operating instructions
 
-`project/AGENTS.md` contains the rule which keeps local operational database records from leaking onto the GitHub surface.
+`project/AGENTS.md` controls the experimental conditions for the on-disk worker.
 
-Its important intent is:
+Its important intents include:
 
-> Treat data in `local/` as local operational data. Never publish, reproduce, summarise, quote, encode, or otherwise leak database record contents into tracked files, generated receipts, commit messages, issues, pull requests, or other remote repository surfaces. Publish only project material appropriate for source control.
+- deliberately divergent local/remote state must not be silently synchronized;
+- ordinary local changes stop for review unless commit/push is explicitly authorized;
+- pushes must target the learner fork, not canonical upstream;
+- local operational database records and attendee-specific derived content must not cross onto the GitHub surface;
+- inaccessible file representations must not be guessed at;
+- disposable `scratch/` work stays bounded and is not backed up or widened into unrelated cleanup.
 
-It also requires the worker to inspect proposed published changes and the commit message before pushing work involving local operational data.
+These are experimental hygiene, not the Lab 2 lesson. Without them, an otherwise helpful worker could pull remote changes, publish local-only data, create an attendee summary, force-add an ignored database, back up scratch files, or otherwise remove the difference the learner is meant to observe.
 
-This is experimental hygiene, not the Lab 2 lesson. Without it, an otherwise helpful worker might create a receipt, summary, log, commit message, or other tracked artifact that accidentally copies the attendee records onto GitHub and destroys the access-boundary experiment.
+Do not unpack the instruction mechanism unless the learner asks. A later lab can explicitly return to `AGENTS.md` and project instruction architecture.
 
-Do not unpack the instruction mechanism unless the learner asks. A later lab can explicitly return to `AGENTS.md`, show that ignored files alone do not prevent an agent from copying their contents into source control, and introduce project rules, pre-publication checks, scanning, or related mechanisms when those concepts have been earned.
-
-The instruction must not teach the worker the attendee values or the answer to the later cloud question. It only defines what information is permitted to cross from local operational state into remote source-controlled state.
+The instructions must not teach the worker the answers to the exercises. They control what state may move between surfaces and what kinds of helpful automation are out of scope.
 
 ## Exercise 1 — Which state are you looking at?
 
@@ -100,7 +108,7 @@ The exercise has three runs.
 
 ### Run A — synchronized baseline
 
-Start with local and GitHub both reporting the same supplier arrival time.
+Start with local and the learner fork both reporting the same supplier arrival time.
 
 Ask both agents:
 
@@ -133,13 +141,13 @@ Do **not** restore or discard the local change from Run B.
 
 Ask the learner to choose another supplier arrival time, different from their Run B value. Again, the value should be created in the learner-to-cloud-agent conversation rather than encoded in the repository.
 
-Have the learner ask cloud ChatGPT, through its GitHub write capability, to change the supplier arrival time directly in the repository to that second value.
+Have the learner ask cloud ChatGPT, through its GitHub write capability, to change the supplier arrival time directly in the learner fork to that second value.
 
 Let any normal connector confirmation/safety flow occur naturally.
 
 Do **not** update the learner's local checkout.
 
-Once the remote mutation is complete, start a fresh cloud conversation and a fresh local-agent conversation before asking for the supplier time again. This prevents either answer from coming from conversational memory of the mutation instruction rather than project state.
+Once the remote mutation is complete, start a fresh cloud conversation and a fresh local-agent conversation before asking for the supplier time again. Ensure the environment is not carrying the answer across conversations through a separate memory feature.
 
 Expected visible result:
 
@@ -213,7 +221,7 @@ Expected local result:
 - `project/local/attendees.db` is created and contains the records;
 - the database remains ignored and is not published;
 - a reusable schema is created in `project/local-setup/` and is committed/pushed;
-- the worker can publish that legitimate source-controlled work without leaking any attendee values into tracked files, commit messages, receipts, logs, issues, PRs, or other remote surfaces.
+- the worker can publish that legitimate source-controlled work without leaking any attendee values or attendee-specific derived content into tracked files, commit messages, receipts, logs, issues, PRs, or other remote surfaces.
 
 Then start a fresh cloud ChatGPT conversation and ask it, using only repository access, to list the attendee records the on-disk worker just captured.
 
@@ -225,7 +233,7 @@ Expected cloud result:
 - it can inspect the newly published reusable schema and repository material;
 - it cannot retrieve the actual attendee records because those records never crossed onto the GitHub surface.
 
-Then start a **fresh** on-disk-agent conversation rooted at the same local project and ask for the same records. It should query the database directly. Using a fresh conversation ensures success demonstrates persistent local state rather than remembered prompt content.
+Then start a **fresh** on-disk-agent conversation rooted at the same local project and ask for the same records. Ensure cross-chat memory or equivalent continuity is disabled for this proof. The agent should answer from the persistent local database, not from carried conversational context.
 
 This is not a fake limitation introduced purely for the lab. Operational database contents commonly do not live in source control. Source control often contains schema, migrations, setup/test material, and code which uses the database, while live mutable database state is managed separately. Reasons include privacy, mutable/environment-specific state, poor binary diff/merge behaviour, and practical repository size limits as databases grow.
 
@@ -259,7 +267,7 @@ Do not teach Git commands or recovery mechanics here. This is a small preview of
 
 ### Run B — analogous remote deletion
 
-Ask the cloud agent through GitHub to perform the analogous deletion against the repository.
+Ask the cloud agent through GitHub to perform the analogous deletion against the learner fork.
 
 Observe the actual current connector behaviour. Depending on the enabled write surface and safety policy, the operation may be unavailable, may require explicit user confirmation, or may permit only bounded mutations.
 
@@ -299,7 +307,7 @@ Avoid declaring a winner. In different runs of this lab, either cloud or local a
 
 ## Reset after the session
 
-Return the lab to a known starting state before the next run:
+Return the learner fork and local checkout to a known starting state before the next run:
 
 1. restore the remote supplier arrival time in `project/source/supplier.md` to the original baseline;
 2. synchronize the learner's local checkout and leave no local supplier edit behind;
@@ -307,12 +315,14 @@ Return the lab to a known starting state before the next run:
 4. remove the attendee schema created during Exercise 3 from `project/local-setup/` so the next learner creates it themselves;
 5. restore `project/scratch/` remotely if the cloud-side deletion succeeded;
 6. confirm the scratch fixture exists locally after synchronization;
-7. immediately before teaching the lab again, verify that the GitHub connector still exposes `venue-plan.png` only as encoded/binary content rather than usable image pixels.
+7. immediately before teaching the lab again, verify that the GitHub connector still exposes `venue-plan.png` only as encoded/binary content rather than usable image pixels;
+8. confirm the cloud connector and local push remote still target the learner fork, not canonical upstream;
+9. confirm any cross-chat memory/continuity features that could contaminate the fresh-conversation proofs are disabled for the relevant surfaces.
 
 The reset mechanics are facilitator work. They are not part of the Lab 2 lesson.
 
 ## Do not teach yet
 
-Do not teach Git command workflows, commits as recovery points, branch mechanics, connector protocol semantics, database administration, instruction precedence, data-scanning pipelines, skills, or elaborate permission configuration.
+Do not teach Git command workflows, commits as recovery points, branch mechanics, connector protocol semantics, database administration, instruction precedence, data-scanning pipelines, skills, elaborate permission configuration, or memory configuration.
 
 Lab 2 is about observing different access surfaces. Later labs explain the mechanisms and how to choose/configure them deliberately.
