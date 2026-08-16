@@ -40,23 +40,27 @@ Root the local agent at:
 
 The fixture is a fictional theatre production called **Northstar**.
 
-Tracked project material:
+Tracked project material includes:
 
 - `production/crew-briefing.md`
 - `production/crew-call.md`
 - `production/venue-notes.md`
 - `production/access-and-load-in.md`
+- `production/radio-allocations.csv`
 - `working/handover-notes.md`
 
-Ignored local material:
+The `local/` folder exists in a fresh checkout but its operational contents are ignored by Git. Only `local/README.md` is tracked so the directory itself survives the clone/fork.
 
-- `local/radio-allocations.csv`
+Before the learner starts, add one or two harmless ignored scratch files locally under `project/local/`, for example:
 
-`local/` is ignored by `.gitignore` so the fixture can demonstrate that local operational state may exist without a recoverable Git version.
+```text
+local/console-layout.txt
+local/temp-channel-note.txt
+```
 
-The ignored CSV cannot itself be committed in the upstream curriculum repository because `.gitignore` prevents it. Before the lab, the facilitator should create it locally in the learner's checkout from the sample content in `facilitator/radio-allocations-sample.csv`.
+Their contents should be inconsequential. They exist only so Exercise 1 has a genuine `never tracked` comparison after the learner moves a previously tracked file into the same ignored area.
 
-Do not make the learner do this setup unless using it as a quick reminder that ignored state is local operational state rather than tracked curriculum content.
+Do not create `local/radio-allocations.csv` during setup. The learner creates that state themselves by moving the tracked `production/radio-allocations.csv` during Exercise 1.
 
 ## Standing project instructions
 
@@ -73,7 +77,7 @@ This is facilitator control, not yet an instruction-architecture lesson.
 
 ## Exercise 1 — How did it put that back?
 
-Goal: distinguish current working state from recorded state and expose the tracked/untracked recovery boundary.
+Goal: distinguish current working state from recorded state, then distinguish `not tracked now` from `never tracked`.
 
 Start clean.
 
@@ -95,13 +99,53 @@ Then ask the agent to restore it.
 
 Repeat with a content edit to `production/crew-call.md`, inspect the diff, and restore that too.
 
-Then inspect `local/radio-allocations.csv` and ask whether Git could restore its contents if it were deleted.
+Now make the stronger history experiment.
 
-Have the agent establish whether the file is tracked before answering.
+The learner tells the agent to move:
 
-Do not delete the local CSV unless convenient. The concept is enough:
+`production/radio-allocations.csv`
 
-> Git can only restore a version it has actually recorded.
+into:
+
+`local/radio-allocations.csv`
+
+and explicitly commit and push the resulting project change.
+
+Because `local/*` is ignored, the published Git history records the tracked production file disappearing while the operational copy remains only on the learner's machine.
+
+Pause and inspect:
+
+- `local/radio-allocations.csv` exists locally;
+- Git does not track that current path;
+- the old tracked file no longer exists at `production/radio-allocations.csv` in current project state;
+- history still contains the earlier tracked content.
+
+Then have the learner delete the local radio-allocation file.
+
+The learner asks whether Git can restore it. The first useful question is:
+
+> Is it tracked now?
+
+The stronger follow-up is:
+
+> Was it ever tracked?
+
+The agent should inspect history and recover the previous contents from the old tracked location into the ignored `local/radio-allocations.csv` path, without re-adding that path to tracking.
+
+This earns the three-state model:
+
+```text
+tracked now
+→ Git has a current recorded version
+
+not tracked now, but tracked historically
+→ Git may still contain a recoverable historical version
+
+never tracked
+→ Git has no recorded content version to recover
+```
+
+Now compare the restored radio-allocation file with one of the harmless ignored scratch files created during setup. The scratch file has never existed in Git history, so if it disappears Git cannot reconstruct its contents.
 
 Useful questions:
 
@@ -109,11 +153,16 @@ Useful questions:
 - Where did the restored contents come from?
 - What exactly did the diff show?
 - What does `clean` mean here?
-- Why is the ignored local file different?
+- Is `not tracked now` equivalent to `never tracked`?
+- How did moving a file across the tracked/ignored boundary change its current recovery story without erasing its history?
 
 Earn:
 
 > **The working project can be messy without destroying the last state you understood.**
+
+> **Not tracked now is not the same as never tracked.**
+
+> **Git can only restore content it recorded somewhere in history.**
 
 ## Exercise 2 — Make a mess, then choose what survives
 
