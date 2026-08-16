@@ -1,6 +1,6 @@
-# Module 13 companion — The 20-Agent Bonfire and context transport
+# Module 13 companion / 13A practicum — The 20-Agent Bonfire and context transport
 
-Status: facilitator planning companion to `13-harnesses-portability-and-agent-observability.md`, with a deliberate bridge into Module 14 selective provisioning/context. Preserve this alongside the main module when the practical lab is scaffolded.
+Status: facilitator planning companion to `13-harnesses-portability-and-agent-observability.md`, with a deliberate bridge into Module 14 selective provisioning/context. Preserve this alongside the main module when the practical lab is scaffolded. It may run as a separate 13A practicum rather than being forced into the core Module 13 hour.
 
 ## Why this exists
 
@@ -18,6 +18,20 @@ The deliberately memorable name is:
 > **The 20-Agent Bonfire**
 
 Do not tone the name down. This curriculum is for a specific facilitator/learner pair, not a generic corporate training product. Quirky names, jokes, and pop-culture references are allowed when they make the lesson easier to remember.
+
+## Sequencing guard — do not accidentally teach Module 16 here
+
+The Bonfire is about **resource economics, worker resolution, and context transport**.
+
+It is not the curriculum's concurrency/isolation lesson.
+
+If the chosen twenty-worker task would cause several workers to mutate the same workspace concurrently, constrain the fixture so the workers are read-only, run serially, or write to deliberately separate output paths. You may still discuss whether concurrency could affect latency, but do not let shared-workspace collisions become the dominant failure mode.
+
+Module 16 later earns this distinct lesson:
+
+> Concurrent mutable work needs isolation, explicit ownership, reconciliation, and re-verification.
+
+Keep that powder dry.
 
 ## Practical exercise — The 20-Agent Bonfire
 
@@ -91,7 +105,7 @@ quality
 Did the result satisfy the task well?
 
 latency
-Did concurrency materially reduce useful elapsed time?
+Did concurrency or delegation materially reduce useful elapsed time?
 
 resource efficiency
 How much model/context/orchestration capacity did we spend to obtain it?
@@ -134,7 +148,7 @@ Questions include:
 
 This directly reinforces the parent Module 13 rule:
 
-> **The profile is configuration intent. The spawned worker is runtime truth.**
+> **The profile is configuration intent. The spawned worker is effective runtime state.**
 
 A workflow can appear to work perfectly while twenty narrow mechanical jobs quietly run on heavyweight orchestrator-class inference.
 
@@ -269,6 +283,25 @@ And the intentionally quirky facilitator line:
 
 > **Do not make the orchestrator eat every document just because it owns the filing cabinet.**
 
+## Artifact routing does not remove verification responsibility
+
+Do not let `the orchestrator does not need to read it` mutate into `nobody needs to verify it`.
+
+A tiny receipt can prove that a worker claims to have written an artifact and may establish its location. It does not by itself prove the artifact satisfies its contract.
+
+If content-level correctness matters, assign that responsibility somewhere explicit:
+
+- the producing worker may run deterministic checks before handoff;
+- a reviewer/integration worker may inspect the artifact directly;
+- a deterministic validator may establish the required property;
+- the orchestrator may read it when orchestration itself requires semantic judgment.
+
+The efficient pattern is not `skip inspection`. It is:
+
+> **Make the worker or stage that actually needs the contents perform the inspection; do not force every coordinator in the route to materialise them.**
+
+This preserves Module 8's evidence rule while avoiding unnecessary context transport.
+
 ## Superpowers-style SDD as a concrete facilitator example
 
 A useful facilitator anecdote is the Superpowers subagent-driven-development style of handoff: deeply discourage large prompt payloads and large worker return payloads when a durable file can carry the brief/result instead.
@@ -293,7 +326,8 @@ It is the architecture:
 - the worker discovers/reads it;
 - the worker writes its deliverable directly to durable state;
 - the return message is a receipt/pointer rather than a duplicate artifact;
-- the orchestrator only materialises the artifact if its own job actually requires understanding it.
+- the orchestrator only materialises the artifact if its own job actually requires understanding it;
+- verification responsibility remains explicit even when the orchestrator does not read the artifact.
 
 ## Bridge to Module 14 — this is old engineering in a new medium
 
