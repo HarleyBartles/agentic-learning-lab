@@ -1,6 +1,6 @@
 # Lab 4 facilitator guide
 
-Status: **Scaffolded; ready for dry-run refinement.**
+Status: **Mature and ready to run.**
 
 ## Lab learning goal
 
