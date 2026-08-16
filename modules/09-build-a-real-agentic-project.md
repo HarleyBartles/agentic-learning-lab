@@ -193,9 +193,13 @@ From this point onward, use both:
 
 Important later concepts still remain to be earned, including:
 
+- agent self-introspection, local review, behavioural prediction, and test-first probes;
 - autonomous human-in-the-loop lifecycle orchestration;
 - specialist agent profiles and delegation;
+- harness portability, effective-worker verification, observability, and current model/reasoning control surfaces;
+- agent-system economics: capability, context, and inference should earn their cost;
 - selective provisioning and agent overwhelm;
+- context transport/materialisation, lazy/eager loading, and N+1-style repeated context work;
 - finite context and retrieval/RAG;
 - lightweight evaluation and TDD-inspired agent design;
 - untrusted-content and capability boundaries;
