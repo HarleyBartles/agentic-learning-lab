@@ -20,6 +20,9 @@ The lab is built around a few ideas:
 - Treat local project access and connectors as complementary capabilities.
 - Prefer evidence of completed work over confident agent claims.
 - Teach the learner to direct, inspect, verify, question, and iteratively steer agent work rather than becoming the agent's manual implementation layer.
+- Give the learner useful interim mental models, then deliberately break and refine them when later examples expose their limits.
+- Teach agents how work moves through a lifecycle, not only how to perform isolated tasks.
+- Treat delegation to specialist agents as a design choice rather than an automatic sign of maturity.
 
 ## Labs
 
@@ -71,15 +74,21 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 3. [The project has a home](labs/03-project-has-a-home/)
 4. Repositories, save points, and safe breakage
 5. Model, harness, context, tools, and behaviour
-6. Tools and operating knowledge
-7. Local work and connected systems
+6. Tools, operating knowledge, and domain provisioning
+7. What did we just create? Local work and connected systems
 8. Source of truth and verification
 9. Build a real agentic project
-10. Epilogue: show how this was built
+10. Autonomous human-in-the-loop workflows
+11. Specialist sub-agents and orchestration
+12. Epilogue: show how this was built
 
 Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the repository, then compares connector-mediated access with direct local workspace access.
 
 Lab 3 is stable and ready to run. Its three Repair Café exercises show that important decisions must enter durable project state, that conversation should not be promoted into that state without deliberate authority, and that durable project artifacts can later drift and disagree about the same fact.
+
+The middle curriculum deliberately compounds earlier ideas rather than replacing them. Module 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Module 6 uses that model to provision a worker for a domain. Module 7 lets the learner temporarily treat the assembled worker as `an Agent`, then asks where that worker should operate and what it should be connected to. Later modules deliberately refine that conception again.
+
+Modules 10 and 11 continue the same progression. Module 10 teaches one provisioned agent to carry work from vague intent through clarification, design, planning, execution, self-review, human approval gates, and finalisation. Module 11 then puts pressure on the `one worker does every stage` model and introduces specialist agent profiles, delegation, and orchestrator tradeoffs.
 
 Labs 1, 2, and 3 now have mature lab structures. Existing files in `modules/` are working facilitator drafts for later curriculum material that has not yet been promoted into a mature lab.
 
@@ -98,7 +107,7 @@ There is deliberately no separate root-level `guided/` or stable facilitator hie
 
 The broad progression currently begins:
 
-**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and operating knowledge -> composed local/connected systems -> source of truth -> verification -> real project -> retrospective on how the whole framework was built**
+**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and domain knowledge -> provisioned worker -> composed local/connected systems -> source of truth and verification -> real project -> autonomous human-in-the-loop workflow -> specialist delegation and orchestration -> retrospective on how the whole framework was built**
 
 The exact later sequence can continue to move as the labs are expanded and tested.
 
