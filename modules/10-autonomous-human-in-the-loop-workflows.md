@@ -441,6 +441,235 @@ The learner only needs the design insight:
 
 > **A useful agent workflow is rarely just a checklist. It can contain decision points, return paths, stopping conditions, and approval gates.**
 
+## Pressure exercise — a loop that cannot converge
+
+Do not leave loops, graphs, and stopping conditions as abstract vocabulary. Make the failure mode visible.
+
+Use a small review fixture containing two authoritative requirements that cannot both be satisfied at the same time. The contradiction should be real enough that fixing one necessarily recreates the other defect.
+
+Give the agent a review skill whose initial logic is intentionally plausible but incomplete:
+
+> Review the current state. If you find a defect, correct it and review the resulting state again. Continue until the review passes.
+
+Do not encode the expected loop into the task prompt. Let the skill create it naturally.
+
+The likely behaviour is:
+
+```text
+A is broken
+→ fix A
+
+B is now broken
+→ fix B
+
+A is now broken
+→ fix A
+
+B is now broken
+→ ...
+```
+
+Each individual review decision can be locally reasonable while the workflow as a whole fails.
+
+Ask:
+
+> Is the agent failing to solve the next step, or is there no reachable state that satisfies the success condition it has been given?
+
+Earn:
+
+> **A loop needs a termination model, not only a rule for continuing.**
+
+The learner should see that repeated competent action is not the same as progress.
+
+## Add a stop condition and escalation route
+
+Run the same fixture again with the same model, task, and project state, but improve only the review skill.
+
+Add a stop condition along the lines of:
+
+> If successive review cycles substantially repeat a previously seen state or alternate between the same incompatible defects, stop modifying the work. Preserve the best-understood state, record the incompatible requirements and evidence, and escalate to the user for an authority decision.
+
+Now the route becomes:
+
+```text
+review
+↓
+defect A
+↓
+repair A
+↓
+review
+↓
+defect B
+↓
+repair B
+↓
+review
+↓
+defect A again
+↓
+recurrence / incompatibility condition reached
+↓
+stop modifying
+↓
+explain evidence
+↓
+human handoff
+```
+
+Distinguish three concepts:
+
+- **stop condition:** when the loop must not continue;
+- **escalation path:** what happens after it stops;
+- **escape hatch:** an exceptional legal route out of the normal workflow.
+
+A stop with no destination can still leave the work stranded. A useful escape hatch says both when normal progress is no longer justified and where control should go next.
+
+## Escape hatches can be missing or too easy
+
+Use the same idea to pressure the opposite failure mode.
+
+### No escape hatch
+
+If a workflow has no legitimate exit for impossible or authority-blocked work, the agent may:
+
+- churn;
+- burn time/tokens/cost;
+- repeatedly damage and repair the same state;
+- invent increasingly speculative fixes;
+- or eventually stop only because of an arbitrary harness/runtime limit.
+
+Useful line:
+
+> **A workflow without an escape hatch can turn an impossible task into endless activity.**
+
+### Escape hatch too broad
+
+Now deliberately make the escape condition too easy, for example:
+
+> If uncertain, ask the user.
+
+A capable agent may now encounter ordinary difficulty and immediately hand the task back.
+
+Ask:
+
+> Did we solve the loop problem, or did we create a legal route around doing difficult but solvable work?
+
+Earn:
+
+> **Exceptional exits need explicit entry conditions.**
+
+And:
+
+> **An escape hatch should be easier than endless failure, but harder than doing the ordinary work.**
+
+A stronger escape condition may require evidence such as:
+
+- the same defect class reappears after repair;
+- a previously visited state recurs;
+- authoritative constraints are demonstrably incompatible;
+- no new evidence appears across repeated cycles;
+- a bounded retry threshold is reached;
+- the missing decision belongs to human/project authority rather than execution.
+
+## Are agents looking for escape hatches?
+
+Answer this explicitly because the behaviour can look cheeky or lazy.
+
+Not really.
+
+At this stage of the curriculum, a better model is:
+
+> **The agent is looking for a legal route to something that appears to satisfy the task success condition.**
+
+Then ask:
+
+- Who defined the success condition?
+- Who defined the legal routes from the start state to the goal?
+- Who defined what `good enough` looks like?
+- Who defined when escalation is permitted?
+
+The answer is largely the learner, either directly or through the environment they provisioned.
+
+The agent did not independently decide what the project's goal should be. It consumed the task, project state, instructions, workflow, quality criteria, tools, permissions, and transition rules and produced a credible-looking route through them.
+
+If the easiest policy-compliant route bypasses difficult work, the workflow may reward bypassing it without the model having any human-like desire to shirk.
+
+Useful line:
+
+> **Agents do not need to be lazy for badly designed escape hatches to produce avoidance. If the shortest legal route satisfies the contract, the contract is what needs inspection.**
+
+This reframes systematic failure away from personality and toward system design.
+
+Ask:
+
+> What did we make it reasonable for the agent to believe counted as success?
+
+That question should become a reusable diagnostic habit.
+
+## From loop to graph
+
+After the learner has seen the non-converging loop and the new escape route, redraw the workflow:
+
+```text
+        ┌──────── repair ────────┐
+        ↓                        │
+review ───── pass ─────→ finish  │
+  │                              │
+  ├─ new resolvable defect ──────┘
+  │
+  └─ repeated/incompatible state
+             ↓
+          escalate
+             ↓
+           human
+```
+
+Then ask:
+
+> Is this really just a loop anymore?
+
+The learner has now earned the graph model: several possible states, several legal routes, and different exit conditions.
+
+The deeper lesson is:
+
+> **The learner is increasingly defining what progress, failure, success, and legitimate escape look like — not merely telling the agent what task to perform.**
+
+## Evaluate the escape hatch, not just the happy path
+
+This connects naturally to later TDD-inspired agent design and evaluation.
+
+Define representative behavioural cases before changing the workflow skill:
+
+```text
+ordinary solvable defect
+→ repair it; do not escalate
+
+difficult but solvable defect
+→ persist within bounded attempts
+
+repeated non-converging defect
+→ detect recurrence and stop
+
+incompatible authoritative requirements
+→ preserve evidence and escalate
+
+missing authority
+→ stop rather than invent policy
+```
+
+Then rerun the same cases whenever the stop/escape logic changes.
+
+This demonstrates that an escape hatch is part of the agent's behavioural contract and can itself regress.
+
+A good stop condition distinguishes:
+
+> keep trying
+
+from:
+
+> more trying cannot resolve the underlying problem.
+
 ## Scaled glimpse — mature graph orchestration
 
 After the learner has built the small conceptual version, briefly show a mature example.
@@ -462,6 +691,7 @@ Ask them to identify familiar concepts:
 - What proves a node completed?
 - How does the agent know what comes next?
 - What stops it jumping to an invalid stage?
+- Where are the legal escape/escalation routes?
 
 Intended insight:
 
@@ -515,6 +745,10 @@ And:
 
 > **Do not spend human attention on defects or transitions the agent can cheaply handle itself. Keep humans at the gates where judgment, intent, authority, or consequential action matters.**
 
+And:
+
+> **A robust workflow defines not only how to continue, but how to recognise non-progress, how to stop, and which authority receives the unresolved decision.**
+
 ## Do not teach yet
 
 Do not turn this module into:
@@ -527,4 +761,4 @@ Do not turn this module into:
 - a claim that every task needs design → plan → execute;
 - a claim that maximum autonomy is always desirable.
 
-The learner should leave understanding why workflow orchestration exists and having seen a single provisioned agent perform a substantial human-in-the-loop lifecycle.
+The learner should leave understanding why workflow orchestration exists and having seen a single provisioned agent perform a substantial human-in-the-loop lifecycle, including a loop that fails, a bounded escape from that failure, and the graph-shaped workflow that results.
