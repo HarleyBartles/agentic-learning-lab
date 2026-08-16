@@ -23,6 +23,8 @@ The lab is built around a few ideas:
 - Give the learner useful interim mental models, then deliberately break and refine them when later examples expose their limits.
 - Teach agents how work moves through a lifecycle, not only how to perform isolated tasks.
 - Treat delegation to specialist agents as a design choice rather than an automatic sign of maturity.
+- Treat harness interfaces as implementation contracts rather than universal agent standards; verify the effective worker instead of assuming the requested profile was honoured.
+- Treat capability, context, and inference as resources whose use should be proportionate to the job.
 - Treat provisioning as selective design rather than accumulation: the right knowledge, at the right scope, when the worker needs it.
 - Define observable success for agent behaviour and re-test it when instructions, skills, tools, profiles, or context change.
 
@@ -107,12 +109,14 @@ The numbering below is the current planning order, not a promise that every modu
 7. What did we just create? Local work and connected systems
 8. Source of truth and verification
 9. Build a real agentic project
-10. Autonomous human-in-the-loop workflows
-11. Specialist sub-agents and orchestration
-12. Selective provisioning, context, and evaluation
-13. Trust boundaries and connected autonomy
-14. Concurrent agents and isolation
-15. Epilogue: show how this was built
+10. Agent self-introspection and local review
+11. Autonomous human-in-the-loop workflows
+12. Specialist sub-agents and orchestration
+13. Harnesses, portability, and agent observability
+14. Selective provisioning, context, and evaluation
+15. Trust boundaries and connected autonomy
+16. Concurrent agents and isolation
+17. Epilogue: show how this was built
 
 Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the learner's repository, then compares connector-mediated access with direct local workspace access.
 
@@ -124,13 +128,13 @@ Labs 1–5 are mature and ready to run.
 
 The middle curriculum deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Module 6 uses that model to provision a worker for a domain. Module 7 lets the learner temporarily treat the assembled worker as `an Agent`, then asks where that worker should operate and what it should be connected to. Later modules deliberately refine that conception again.
 
-Modules 10 and 11 continue the same progression. Module 10 teaches one provisioned agent to carry work from vague intent through clarification, design, planning, execution, self-review, human approval gates, and finalisation. Module 11 then puts pressure on the `one worker does every stage` model and introduces specialist agent profiles, delegation, and orchestrator tradeoffs.
+Modules 10–13 progressively turn a competent worker into an engineered agent system. Module 10 makes agent self-introspection, behavioural prediction, local self-review, and test-first probes explicit as cheap local primitives. Module 11 composes those primitives into autonomous human-in-the-loop workflows, loops, gates, stopping conditions, and legal routes. Module 12 then puts pressure on the `one worker does every stage` model and introduces specialist profiles, delegation, and orchestrator tradeoffs. Module 13 immediately pressure-tests the portability of that specialist abstraction by comparing harness-specific worker contracts, effective runtime configuration, current model/reasoning control surfaces, economics, and observability.
 
-Module 12 deliberately breaks another useful but incomplete model: that good provisioning means continually adding more useful guidance and capability. It uses agent overwhelm to teach selective scope, finite context, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design without requiring code.
+Module 14 deliberately breaks another useful but incomplete model: that good provisioning means continually adding more useful guidance and capability. It uses agent overwhelm to teach selective scope, finite context, context transport/materialisation, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design without requiring code.
 
-Module 13 connects Lab 3's authority model to connected/autonomous systems: external content is evidence rather than operating authority, capability should follow responsibility, and autonomy needs explicit stopping conditions and provenance.
+Module 15 connects Lab 3's authority model to connected/autonomous systems: external content is evidence rather than operating authority, capability should follow responsibility, and autonomy needs explicit stopping conditions and provenance.
 
-Module 14 finally breaks Module 4's intentionally simple `one worker, one mutable workspace` model. Concurrent specialists earn isolated workspaces, deliberate reconciliation, and verification of the integrated state rather than a premature Git branching lesson.
+Module 16 finally breaks Module 4's intentionally simple `one worker, one mutable workspace` model. Concurrent specialists earn isolated workspaces, deliberate reconciliation, and verification of the integrated state rather than a premature Git branching lesson.
 
 Module 9 should be treated as a synthesis checkpoint rather than graduation. Once the learner can create a real agentic project, that real project can become one of the surfaces used to learn the later operating patterns.
 
@@ -150,7 +154,7 @@ There is deliberately no separate root-level `guided/`, `projects/`, or stable f
 
 The broad conceptual progression currently includes:
 
-**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and domain knowledge -> provisioned worker -> composed local/connected systems -> authority and verification -> real project -> autonomous human-in-the-loop workflow -> specialist delegation -> selective context/provisioning and evaluation -> trust boundaries -> concurrent isolation and integration -> retrospective on how the whole framework was built**
+**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> purpose-built capabilities and domain knowledge -> provisioned worker -> composed local/connected systems -> authority and verification -> real project -> self-introspection and local review -> autonomous human-in-the-loop workflow -> specialist delegation -> harness portability/effective-worker verification/observability -> selective context transport/provisioning/retrieval and evaluation -> trust boundaries -> concurrent isolation and integration -> retrospective on how the whole framework was built**
 
 The exact module sequence can move while labs are expanded and tested. Preserve the causal links and breadcrumbs rather than treating today's numbering as immutable.
 
