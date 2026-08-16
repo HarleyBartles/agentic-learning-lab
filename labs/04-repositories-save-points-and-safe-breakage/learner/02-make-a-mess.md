@@ -52,6 +52,23 @@ When you are satisfied, tell the agent:
 
 > Commit this result, but do not push it yet.
 
+Stop there.
+
+Do not align the remote repository yet. Exercise 3 begins from exactly this state:
+
+```text
+working tree
+clean
+
+local history
+contains the reviewed Exercise 2 commit
+
+GitHub fork
+still ends at the previous published commit
+```
+
+That intentional gap is the starting material for the next exercise.
+
 ## Reflect
 
 Talk through:
@@ -62,6 +79,7 @@ Talk through:
 - Was the prose summary enough by itself?
 - Why did you wait until after review to commit?
 - What would `Discard that run` have meant if you had rejected the whole experiment?
+- What changed when you committed, even though you have not pushed anything yet?
 
 Useful ideas:
 
