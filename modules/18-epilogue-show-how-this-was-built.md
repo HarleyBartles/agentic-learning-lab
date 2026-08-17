@@ -107,6 +107,72 @@ that may be a strong theory, but it is not automatically a proved fact. Ask:
 
 This should call back to the earlier uncertainty and model-reliability lessons: a confident explanation is not evidence merely because it is plausible.
 
+## Compare explainability surfaces — direct mainline versus squash-merged PRs
+
+Use the repository's own history to compare not just workflows, but the surfaces available to an investigating agent.
+
+### Direct-main period
+
+During the early direct-main period, the accepted mainline commit sequence is also much of the visible development sequence.
+
+Ask the agent to investigate questions such as:
+
+- can you establish the order in which changes happened?
+- which commits appear related to each other?
+- which ideas were introduced incrementally?
+- where did one commit clearly build on or revise an earlier one?
+- what can you infer from many small commits touching one or a few files at a time?
+
+The mainline history may be comparatively verbose, but the agent can often reason directly over its chronology because the development steps themselves are visible on the accepted line.
+
+### Squash-merged PR period
+
+Then inspect a later pull request that was squash merged.
+
+From `main` alone, the branch's internal development may appear compressed into one accepted commit containing the final combined file changes.
+
+Ask:
+
+> If the mainline only shows one squash commit, did we lose the ability to investigate how that accepted change was built?
+
+Not necessarily.
+
+Have the agent follow the accepted commit back to the merged pull request and inspect the richer PR surface where available:
+
+- the PR's ordered branch commits;
+- how those commits relate to one another;
+- the aggregate PR diff;
+- reviews, comments, or acceptance evidence;
+- the PR merge point relative to other mainline commits;
+- which internal development steps were compressed out of `main` but remain queryable through the PR.
+
+This should expose a useful distinction:
+
+> **Mainline history and pull-request history answer different questions.**
+
+A squash merge can make `main` easier to read as a sequence of accepted changes while moving much of the richer development narrative into the pull request.
+
+The learner should be able to compare the two surfaces:
+
+```text
+direct-main history
+accepted chronology also exposes much of the development chronology
+
+squash-merged PR history
+main exposes accepted batch + integration point
+PR exposes richer internal development chronology and review surface
+```
+
+Do not frame this as `squash is better` or `squash destroys history`.
+
+Instead ask:
+
+- What question are we trying to answer?
+- Which historical surface contains the evidence for that question?
+- Did the agent stop at the squash commit and invent a development story, or did it follow the available evidence into the merged PR?
+
+That final question deliberately reconnects to the curriculum's epistemic theme: an agent should not mistake a compressed surface for the whole available evidence set.
+
 ## Same visible shift, different causes
 
 The teaching repository and learner fork should deliberately provide a useful contrast.
