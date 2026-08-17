@@ -1,6 +1,6 @@
 # Lab 6 — What does the model know?
 
-Status: **Scaffolded — iterate before marking mature.**
+Status: **Mature and ready to run.**
 
 Approximate duration: 60–75 minutes.
 
