@@ -140,11 +140,13 @@ Not necessarily.
 Have the agent follow the accepted commit back to the merged pull request and inspect the richer PR surface where available:
 
 - the PR's ordered branch commits;
+- the branch commit messages and what they say each step contributed;
 - how those commits relate to one another;
 - the aggregate PR diff;
 - reviews, comments, or acceptance evidence;
 - the PR merge point relative to other mainline commits;
-- which internal development steps were compressed out of `main` but remain queryable through the PR.
+- the preserved remote branch where it still exists;
+- which internal development steps were compressed out of `main` but remain queryable through the PR and branch.
 
 This should expose a useful distinction:
 
@@ -160,7 +162,8 @@ accepted chronology also exposes much of the development chronology
 
 squash-merged PR history
 main exposes accepted batch + integration point
-PR exposes richer internal development chronology and review surface
+PR exposes richer internal development chronology,
+commit messages, branch lineage, and review surface
 ```
 
 Do not frame this as `squash is better` or `squash destroys history`.
@@ -172,6 +175,126 @@ Instead ask:
 - Did the agent stop at the squash commit and invent a development story, or did it follow the available evidence into the merged PR?
 
 That final question deliberately reconnects to the curriculum's epistemic theme: an agent should not mistake a compressed surface for the whole available evidence set.
+
+## Staged reveal — constrain, retrieve, then audit
+
+Do not give the learner the richer history surface immediately. The information boundary is part of the lesson.
+
+### Stage 1 — mainline only
+
+Constrain the first investigation explicitly to history reachable from `main`.
+
+Ask the agent to summarise the repository's evolution and to call out commits whose size, breadth, or shape make their internal development story difficult to establish from mainline evidence alone.
+
+A useful prompt shape is:
+
+> Inspect only the history visible from `main`. Summarise how the repository evolved. Call out any commits whose size or shape means you cannot confidently reconstruct how that change was developed from mainline history alone. Do not inspect pull requests or branch history yet.
+
+The desired behaviour is not for the agent to guess that a large accepted commit was necessarily designed and implemented as one coherent step.
+
+It should be able to say something like:
+
+> I can establish what entered the accepted history, when it entered, and the combined files that changed. I cannot establish the internal development sequence from this surface alone.
+
+Earn:
+
+> **Mainline can explain the accepted state without necessarily explaining how that state was assembled.**
+
+The mainline commit message matters here too. A squash commit may have a concise or deliberately opaque message that describes the accepted batch without exposing the granular decisions that produced it. The learner should notice that `one commit with one message` is a narrower explanatory surface than `many branch commits with their own messages`.
+
+### Stage 2 — reopen retrieval
+
+Now let the learner choose one surfaced under-explained mainline commit and expand the investigation.
+
+Ask the agent to follow whatever repository relationships are available from that accepted change into its pull request, preserved branch, individual commits, commit messages, reviews, comments, and aggregate diff.
+
+The shift should be visible:
+
+```text
+mainline-only view
+one accepted change
+one mainline commit message
+final combined file set
+
+        ↓ retrieve related repository surfaces
+
+PR / branch view
+ordered granular commits
+richer commit messages
+how decisions accumulated
+aggregate proposed change
+review / acceptance context
+integration point back into main
+```
+
+The commit messages are part of the explainability gain, not decoration. They can expose intent and sequencing that the squash commit message does not contain.
+
+A useful question is:
+
+> Which things can you now explain from retrieved PR/branch evidence that you could not establish from `main` alone?
+
+This is a direct callback to the curriculum's retrieval model:
+
+> **The system can contain more evidence than the agent currently has in context.**
+
+A mainline-only gap does not imply that the richer history never existed. It may mean the agent has not yet retrieved the surface that contains it.
+
+### Stage 3 — audit the first explanation
+
+Finally, ask the agent to compare its first mainline-only account with the expanded investigation.
+
+Ask:
+
+> Which of your earlier conclusions were confirmed, which became more precise, which were wrong, and which questions still cannot be answered from repository evidence?
+
+This is the most important stage epistemically.
+
+The learner should see that retrieval can:
+
+- confirm a mainline inference;
+- replace a vague story with an evidenced chronology;
+- overturn a plausible but unsupported explanation;
+- expose the contribution of individual branch commits through their messages;
+- still leave causal questions unresolved when the rationale was never persisted.
+
+The agent should not treat `more evidence` as `total explanation`.
+
+## Facilitator-known fixture — PR #4
+
+Preserve PR #4 as a known worked example for the eventual epilogue, but do not hand its number to the learner during the first-stage investigation.
+
+PR #4 is intended to be squash merged after accumulating many granular commits that reshape the curriculum planning, including:
+
+- splitting the original Module 6 plan into separate model-knowledge and domain-provisioning modules;
+- renumbering the advanced half of the curriculum;
+- adding branch and pull-request semantics to Module 17;
+- adding the `tears in the rain` policy callback;
+- adding workflow archaeology to the epilogue;
+- adding the direct-main versus squash-merged explainability comparison;
+- adding this staged retrieval exercise itself.
+
+The remote branch should remain available after merge.
+
+This makes PR #4 deliberately recursive teaching evidence:
+
+```text
+future mainline
+one squash-merged accepted curriculum change
+        ↓
+learner notices that main alone under-explains its construction
+        ↓
+agent follows the commit to PR #4
+        ↓
+agent inspects ordered granular commits + rich commit messages
+        ↓
+agent reconstructs how the accepted curriculum change evolved
+```
+
+The learner should discover this path from repository evidence rather than being told `go inspect PR #4`.
+
+The facilitator can later reveal that this was intentional: the PR which records the lesson about richer retrieval surfaces was itself preserved so its squash merge, pull request, branch, granular commits, and commit messages could become a worked example of that lesson.
+
+Do not rely on PR #4 as the only possible specimen. When the epilogue is finally scaffolded, inspect the completed repository history and choose the strongest real examples that exist. PR #4 should remain an especially useful known fixture if its evidence surfaces are still available.
 
 ## Same visible shift, different causes
 
@@ -381,11 +504,13 @@ This module intentionally records the destination rather than a finished runbook
 
 Do not yet:
 
-- prescribe exact commits the agent must discover;
+- prescribe exact commits the agent must discover during the first-stage investigation;
+- tell the learner to inspect PR #4 before the agent has surfaced it naturally;
 - manufacture a fixed historical narrative before the repository has finished evolving;
 - turn the epilogue into a Git archaeology tutorial;
 - imply that every important design decision is recoverable from history;
 - treat a plausible causal story as proved merely because it fits the visible evidence;
+- treat a compressed mainline surface as the complete available evidence set;
 - claim that cloud or local work is inherently superior.
 
 When the curriculum is close to complete, revisit this module against the actual final Git history and design the retrospective around the evidence that genuinely exists.
