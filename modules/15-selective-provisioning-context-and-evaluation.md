@@ -1,6 +1,6 @@
-# Module 14 — Selective provisioning, context, and evaluation
+# Module 15 — Selective provisioning, context, and evaluation
 
-Status: structured planning. This module cashes several earlier breadcrumbs: persistent instructions, skill composition, context limits, retrieval, instruction scope, inspectable reasoning, over-provisioning, and the context-transport/materialisation ideas introduced by the Module 13A Bonfire practicum.
+Status: structured planning. This module cashes several earlier breadcrumbs: persistent instructions, skill composition, context limits, retrieval, instruction scope, inspectable reasoning, over-provisioning, and the context-transport/materialisation ideas introduced by the Module 14A Bonfire practicum.
 
 Approximate duration: 1 hour for the core selective-provisioning lesson. The context-loading/materialisation material may become a second exercise or extension if the full set of ideas makes one hour too dense.
 
@@ -22,12 +22,13 @@ Earlier labs have already modelled narrow operating doctrine:
 - Lab 2 uses a focused rule to prevent local operational data leaking to remote surfaces;
 - Lab 3 moves repeated review/discussion behaviour into standing project doctrine while leaving semantic authority with the human;
 - Module 5 separates model behaviour from harness/configuration/context;
-- Module 6 asks where repeated domain knowledge should live;
-- Module 10 introduces agent self-introspection, local self-review, behavioural prediction, and test-first thinking as cheap local engineering primitives;
-- Module 11 shows multiple skills harmonising into a larger workflow;
-- Module 12 shows specialist profiles carrying narrower role-specific operating conditions;
-- Module 13 shows that harnesses differ in how those profiles, tools, models, defaults, and observability surfaces are actually realised at runtime;
-- the Module 13A Bonfire practicum asks where inference/context spend goes and introduces artifact/reference handoffs as a way to control when information enters a worker's context.
+- Module 6 establishes broad but uneven retained model knowledge and the difference between closed-book recall and evidence-backed judgment;
+- Module 7 asks where repeated domain knowledge should live while moving domain authority from facilitator expertise to shared proficiency to learner expertise;
+- Module 11 introduces agent self-introspection, local self-review, behavioural prediction, and test-first thinking as cheap local engineering primitives;
+- Module 12 shows multiple skills harmonising into a larger workflow;
+- Module 13 shows specialist profiles carrying narrower role-specific operating conditions;
+- Module 14 shows that harnesses differ in how those profiles, tools, models, defaults, and observability surfaces are actually realised at runtime;
+- the Module 14A Bonfire practicum asks where inference/context spend goes and introduces artifact/reference handoffs as a way to control when information enters a worker's context.
 
 Open by asking:
 
@@ -113,7 +114,7 @@ Now deepen the question from `what should this worker know?` to:
 
 > **When should this information enter this worker's context, and does this worker need to materialise it at all?**
 
-The Module 13A Bonfire introduces the practical pattern:
+The Module 14A Bonfire introduces the practical pattern:
 
 ```text
 large handoff value
@@ -252,7 +253,7 @@ It is:
 
 ## The system can know more than the orchestrator currently has in context
 
-This is the conceptual jump from the Bonfire companion that Module 14 should make explicit.
+This is the conceptual jump from the Bonfire companion that Module 15 should make explicit.
 
 Durable project state, source material, specialist artifacts, and verification results can collectively encode more than any one worker has currently materialised.
 
@@ -277,7 +278,7 @@ And:
 
 > **The orchestrator coordinates where knowledge and work need to flow; it does not automatically need to ingest every artifact itself.**
 
-Keep the verification boundary from Module 8: routing an artifact without reading it does not prove its contents are correct. The stage that owns content-level correctness must still inspect or deterministically verify it.
+Keep the verification boundary from Module 9: routing an artifact without reading it does not prove its contents are correct. The stage that owns content-level correctness must still inspect or deterministically verify it.
 
 ## Instruction surfaces and scope
 
@@ -437,7 +438,7 @@ This connects directly back to agent overwhelming and selective provisioning.
 
 ## Inspectable agents — not magic black boxes
 
-Module 13 has already taught visible activity as a harness-specific observability surface and the practical skill of scan-reading it for churn, loops, drift, and lack of new evidence.
+Module 14 has already taught visible activity as a harness-specific observability surface and the practical skill of scan-reading it for churn, loops, drift, and lack of new evidence.
 
 This module cashes that capability diagnostically rather than reteaching the harness comparison.
 
@@ -469,7 +470,7 @@ A runtime may summarise, hide, transform, or omit parts of the model's internal 
 
 Use a demo where the agent repeatedly refers to a concept the learner never supplied.
 
-The learner now knows from Module 13 that a harness can produce and surface activity channels in different ways. Here the question is not how the stream is rendered, but what an unexpected concept in that stream tells us about the worker's instruction environment.
+The learner now knows from Module 14 that a harness can produce and surface activity channels in different ways. Here the question is not how the stream is rendered, but what an unexpected concept in that stream tells us about the worker's instruction environment.
 
 A suitable live-demo candidate, subject to verification at teaching time, is a verbose agent/model configuration that repeatedly mentions an internally injected operating mode or policy while reasoning about an otherwise ordinary task.
 
@@ -571,11 +572,11 @@ Then refine it:
 
 ## Retrieval and RAG — architecture before machinery
 
-Cash the progression from Lab 1 and Module 7.
+Cash the progression from Lab 1 and Module 8.
 
 Lab 1 begins with the human manually selecting and transporting context.
 
-Module 7 distinguishes retrieval from exploration.
+Module 8 distinguishes retrieval from exploration.
 
 At scale, introduce the next problem:
 
