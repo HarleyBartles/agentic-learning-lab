@@ -1,6 +1,6 @@
-# Module 13 companion / 13A practicum — The 20-Agent Bonfire and context transport
+# Module 14 companion / 14A practicum — The 20-Agent Bonfire and context transport
 
-Status: facilitator planning companion to `13-harnesses-portability-and-agent-observability.md`, with a deliberate bridge into Module 14 selective provisioning/context. Preserve this alongside the main module when the practical lab is scaffolded. It may run as a separate 13A practicum rather than being forced into the core Module 13 hour.
+Status: facilitator planning companion to `14-harnesses-portability-and-agent-observability.md`, with a deliberate bridge into Module 15 selective provisioning/context. Preserve this alongside the main module when the practical lab is scaffolded. It may run as a separate 14A practicum rather than being forced into the core Module 14 hour.
 
 ## Why this exists
 
@@ -19,7 +19,7 @@ The deliberately memorable name is:
 
 Do not tone the name down. This curriculum is for a specific facilitator/learner pair, not a generic corporate training product. Quirky names, jokes, and pop-culture references are allowed when they make the lesson easier to remember.
 
-## Sequencing guard — do not accidentally teach Module 16 here
+## Sequencing guard — do not accidentally teach Module 17 here
 
 The Bonfire is about **resource economics, worker resolution, and context transport**.
 
@@ -27,7 +27,7 @@ It is not the curriculum's concurrency/isolation lesson.
 
 If the chosen twenty-worker task would cause several workers to mutate the same workspace concurrently, constrain the fixture so the workers are read-only, run serially, or write to deliberately separate output paths. You may still discuss whether concurrency could affect latency, but do not let shared-workspace collisions become the dominant failure mode.
 
-Module 16 later earns this distinct lesson:
+Module 17 later earns this distinct lesson:
 
 > Concurrent mutable work needs isolation, explicit ownership, reconciliation, and re-verification.
 
@@ -146,7 +146,7 @@ Questions include:
 - did the worker receive broader tools than needed?
 - did each worker receive more context than its narrow task justified?
 
-This directly reinforces the parent Module 13 rule:
+This directly reinforces the parent Module 14 rule:
 
 > **The profile is configuration intent. The spawned worker is effective runtime state.**
 
@@ -300,7 +300,7 @@ The efficient pattern is not `skip inspection`. It is:
 
 > **Make the worker or stage that actually needs the contents perform the inspection; do not force every coordinator in the route to materialise them.**
 
-This preserves Module 8's evidence rule while avoiding unnecessary context transport.
+This preserves Module 9's evidence rule while avoiding unnecessary context transport.
 
 ## Superpowers-style SDD as a concrete facilitator example
 
@@ -329,7 +329,7 @@ It is the architecture:
 - the orchestrator only materialises the artifact if its own job actually requires understanding it;
 - verification responsibility remains explicit even when the orchestrator does not read the artifact.
 
-## Bridge to Module 14 — this is old engineering in a new medium
+## Bridge to Module 15 — this is old engineering in a new medium
 
 Use this moment for a deliberate callback to software/programming first principles.
 
@@ -356,7 +356,7 @@ This curriculum is not teaching coding, but many agentic-engineering problems rh
 
 ## Lazy loading, eager loading, and agentic N+1
 
-Carry this explicitly into Module 14 selective provisioning/context.
+Carry this explicitly into Module 15 selective provisioning/context.
 
 ### Lazy loading intuition
 

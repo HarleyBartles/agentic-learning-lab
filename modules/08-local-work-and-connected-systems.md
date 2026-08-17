@@ -1,16 +1,16 @@
-# Module 7 — What did we just create? Local work and connected systems
+# Module 8 — What did we just create? Local work and connected systems
 
 Approximate duration: 1 hour.
 
 ## Core idea
 
-Lab 5 decomposes the system around a model. Module 6 then asks what the model already knows, what must be provisioned, and what capability and verification add. The linked Lab 6A mini-project turns domain authority over to the learner and has them apply those ideas in a specialist domain they can judge independently.
+Lab 5 decomposes the system around a model. Module 6 then asks what the model already knows and what changes when external evidence is removed or restored. Module 7 turns that into practical domain provisioning across software engineering, novel writing, and technical drawing, transferring domain authority from facilitator to shared proficiency to learner.
 
-This module should begin after that mini-project and briefly let the learner name the assembled thing before asking where it should operate.
+This module should begin immediately after that three-domain progression and briefly let the learner name the assembled thing before asking where it should operate.
 
 A useful opening question is:
 
-> In the mini-project you took a model, gave it suitable capability, supplied specialist knowledge it could not safely be assumed to know, and added a way to judge the work. What exactly did you create?
+> In Module 7 you took models that already knew some things, gave them suitable capabilities, supplied operating/domain knowledge that could not safely be assumed, and added ways to judge the work. What exactly did you create?
 
 At this stage, it is fair and useful for the learner to answer:
 
@@ -83,7 +83,7 @@ The learning-lab repository itself is useful evidence: substantial curriculum de
 
 Ask:
 
-> In the Lab 6 mini-project you combined model knowledge, tools, instructions, references, specialist domain provision and quality checks. What exactly did you just create?
+> Across the Module 7 exercises you combined model knowledge, tools, instructions, references, domain provision and quality checks. What exactly did you just create?
 
 Let the learner reason toward `an Agent` or `a worker for this job`.
 
@@ -213,11 +213,11 @@ Useful lines to earn:
 
 This is a good place to reinforce that putting an agent "close to the project" improves its opportunities to inspect state, but does not magically guarantee that it will search every relevant surface or infer every hidden path.
 
-Do not force this into the first version of the Module 7 lab if it makes the session too dense. It can be a dedicated exercise or later callback once the learner has enough experience to appreciate the difference between having filesystem access and actually discovering something through that filesystem.
+Do not force this into the first version of the Module 8 lab if it makes the session too dense. It can be a dedicated exercise or later callback once the learner has enough experience to appreciate the difference between having filesystem access and actually discovering something through that filesystem.
 
 ## Future deliberate model break — one environment, several workers
 
-Preserve the learner's useful Module 7 conception for now:
+Preserve the learner's useful Module 8 conception for now:
 
 > We provisioned the environment and created an Agent for this job.
 

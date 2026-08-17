@@ -1,6 +1,6 @@
 # Module 6 companion — closed-book introspection ladder
 
-Status: facilitator planning companion to `06-tools-and-operating-knowledge.md`. Preserve this alongside the main Module 6 note when the lab is scaffolded.
+Status: facilitator planning companion to `06-what-does-the-model-know.md`. Preserve this alongside the main Module 6 note when the lab is scaffolded.
 
 ## Why this exists
 
@@ -8,7 +8,7 @@ The closed-book thought experiment produced several teaching discoveries that ar
 
 The richer lesson is Socratic and behavioural. The learner should predict what the agent will do, ask the agent to reason about its own likely behaviour and knowledge boundary, run the experiment, inspect what actually happened, then deliberately reopen retrieval and notice how the epistemic grounds change.
 
-This is also the learner's first encounter with **agent self-introspection as an engineering technique**. Module 10 should later name and generalise that technique.
+This is also the learner's first encounter with **agent self-introspection as an engineering technique**. Module 11 should later name and generalise that technique.
 
 ## Socratic opening ladder
 
@@ -196,7 +196,7 @@ Examples can be mentioned without running them yet:
 
 Do not fully teach the engineering pattern here. Preserve the surprise and plant the hook.
 
-Module 10 should later return to it explicitly as a cheap local self-review and behavioural-prediction primitive that can be composed into loops/graphs or escalated to cleaner sub-agent simulation when isolation buys something.
+Module 11 should later return to it explicitly as a cheap local self-review and behavioural-prediction primitive that can be composed into loops/graphs or escalated to cleaner sub-agent simulation when isolation buys something.
 
 ## Facilitator safeguards
 

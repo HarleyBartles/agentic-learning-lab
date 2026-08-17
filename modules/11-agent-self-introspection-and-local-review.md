@@ -1,4 +1,4 @@
-# Module 10 — Agent self-introspection and local review
+# Module 11 — Agent self-introspection and local review
 
 Status: structured planning. This module turns a technique first encountered incidentally in Module 6 into a deliberate agentic-engineering primitive before workflow loops, graphs, and specialist delegation are introduced.
 
@@ -34,7 +34,7 @@ observe what actually happens
 compare self-model with behaviour
 ```
 
-Module 10 now makes the technique explicit and reusable.
+Module 11 now makes the technique explicit and reusable.
 
 Useful line:
 
@@ -70,7 +70,7 @@ The point is not to always climb the whole ladder. The point is to know which ru
 
 ## Exercise 1 — predict a fresh agent's first move
 
-Use the learner's real project from Module 9.
+Use the learner's real project from Module 10.
 
 Add or strengthen one clear, binding project instruction in the root `AGENTS.md`. The instruction should have an observable consequence on a fresh agent's first relevant turn.
 
@@ -209,7 +209,7 @@ clean-context review
 specialist reviewer
 ```
 
-Module 12 will later deepen why a specialist reviewer can be worth the coordination cost. Do not prematurely teach that every review requires a second agent.
+Module 13 will later deepen why a specialist reviewer can be worth the coordination cost. Do not prematurely teach that every review requires a second agent.
 
 ## Exercise 4 — test-first thinking as another local primitive
 

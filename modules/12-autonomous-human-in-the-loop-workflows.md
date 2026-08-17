@@ -1,4 +1,4 @@
-# Module 11 — Autonomous human-in-the-loop workflows
+# Module 12 — Autonomous human-in-the-loop workflows
 
 Status: structured planning. The exercise spine is strong enough to preserve now; exact fixture files and lab choreography can still change.
 

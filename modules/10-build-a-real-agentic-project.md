@@ -1,4 +1,4 @@
-# Module 9 — Build a real agentic project
+# Module 10 — Build a real agentic project
 
 Approximate duration: 1 hour.
 
