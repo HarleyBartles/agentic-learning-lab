@@ -1,4 +1,4 @@
-# Module 8 — Source of truth and verification
+# Module 9 — Source of truth and verification
 
 Approximate duration: 1 hour.
 
@@ -129,12 +129,12 @@ Useful lines to earn:
 
 This future callback fits naturally with verification because recovery starts with evidence: inspect history before concluding that a missing object is unrecoverable.
 
-It also pairs usefully with the later discoverability lesson in Module 7:
+It also pairs usefully with the discoverability lesson in Module 8:
 
 - something can exist now but fail to be discovered through the agent's normal navigation path;
 - something can be absent now but still be discoverable in historical project state.
 
-Do not force historical archaeology into the first version of the Module 8 lab if it distracts from the main verification lesson. Preserve it as a later exercise or advanced callback.
+Do not force historical archaeology into the first version of the Module 9 lab if it distracts from the main verification lesson. Preserve it as a later exercise or advanced callback.
 
 ## Tools to experiment with
 
