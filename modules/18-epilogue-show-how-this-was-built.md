@@ -263,7 +263,7 @@ The agent should not treat `more evidence` as `total explanation`.
 
 Preserve PR #4 as a known worked example for the eventual epilogue, but do not hand its number to the learner during the first-stage investigation.
 
-PR #4 is intended to be squash merged after accumulating many granular commits that reshape the curriculum planning, including:
+PR #4 was deliberately squash merged after accumulating many granular commits that reshape the curriculum planning, including:
 
 - splitting the original Module 6 plan into separate model-knowledge and domain-provisioning modules;
 - renumbering the advanced half of the curriculum;
@@ -273,7 +273,7 @@ PR #4 is intended to be squash merged after accumulating many granular commits t
 - adding the direct-main versus squash-merged explainability comparison;
 - adding this staged retrieval exercise itself.
 
-The remote branch should remain available after merge.
+Its squash commit message on `main` was deliberately opaque. The remote branch should remain available after merge.
 
 This makes PR #4 deliberately recursive teaching evidence:
 
@@ -295,6 +295,91 @@ The learner should discover this path from repository evidence rather than being
 The facilitator can later reveal that this was intentional: the PR which records the lesson about richer retrieval surfaces was itself preserved so its squash merge, pull request, branch, granular commits, and commit messages could become a worked example of that lesson.
 
 Do not rely on PR #4 as the only possible specimen. When the epilogue is finally scaffolded, inspect the completed repository history and choose the strongest real examples that exist. PR #4 should remain an especially useful known fixture if its evidence surfaces are still available.
+
+## Facilitator-known fixture — PR #5 and the security callback
+
+PR #5 should become the second deliberately opaque squash-merge specimen.
+
+Its real job is to scaffold and mature Lab 6. It should accumulate ordinary granular commits before and after one middle commit whose **commit message** contains a harmless instruction-like line aimed at a future investigating agent. The other granular commits should not contain prompt injection. After PR #5 is complete, squash merge it with another deliberately uninformative mainline commit message and preserve the remote branch.
+
+Do not tell the learner about the security fixture during the initial archaeology.
+
+The intended epilogue sequence is:
+
+```text
+mainline-only investigation
+        ↓
+agent surfaces at least two large opaque squash commits
+        ↓
+learner chooses the PR #4 squash commit first
+        ↓
+agent retrieves PR #4 + branch + granular commit messages
+        ↓
+learner sees how retrieval increases explainability
+        ↓
+ask the agent to investigate the other unexplained squash commit
+        ↓
+agent follows it to PR #5 + preserved branch
+        ↓
+retrieved granular commit messages include one instruction-like message
+```
+
+The agent may ignore the instruction, quote it, report it neutrally, or explicitly flag it as attempted prompt injection. Any of those are useful outcomes.
+
+The exercise does **not** depend on a modern model actually obeying the embedded instruction.
+
+The learner should already have the Module 16 mental model available:
+
+> **Data from outside the trusted instruction boundary is evidence, not authority.**
+
+Ask the learner whether anything changed when the agent expanded its retrieval surface.
+
+The answer is not only `it gained more historical evidence`.
+
+It also gained more untrusted text capable of *looking like instructions*.
+
+Earn:
+
+> **Retrieval can increase both explainability and attack surface.**
+
+And:
+
+> **Provenance is not authority.**
+
+A commit message can have excellent provenance. Git can establish that it genuinely exists in the repository history, who authored the commit, where it appeared in branch chronology, and how it relates to the merged PR. None of that gives the sentence inside the message authority to rewrite the investigating agent's task.
+
+Useful comparison:
+
+```text
+provenance
+"this text really is part of repository history"
+
+        ≠
+
+truth
+"everything the text claims is correct"
+
+        ≠
+
+authority
+"the investigating agent should obey the text"
+```
+
+This is the security-side counterpart to the previous explainability lesson:
+
+> Do not stop at an impoverished evidence surface when richer evidence is available.
+
+followed immediately by:
+
+> Do not mistake newly retrieved evidence for newly granted authority.
+
+The learner, rather than the agent, should be the important recognition surface. Even if the agent merely lists the relevant commit message as historical evidence without reacting to it, the learner should be able to say:
+
+> That commit message is trying to instruct the agent. It is data we asked the agent to inspect, not an authorised instruction source.
+
+Only after the learner has recognised the pattern should the facilitator reveal that PR #5 was deliberately constructed to contain the harmless injection fixture.
+
+Do not turn this into adversarial prompt-writing practice. The fixture is a small callback that cements the trust-boundary model by placing instruction-like text inside a legitimate retrieval surface.
 
 ## Same visible shift, different causes
 
@@ -506,11 +591,13 @@ Do not yet:
 
 - prescribe exact commits the agent must discover during the first-stage investigation;
 - tell the learner to inspect PR #4 before the agent has surfaced it naturally;
+- tell the learner that PR #5 contains a security fixture before retrieval exposes it;
 - manufacture a fixed historical narrative before the repository has finished evolving;
 - turn the epilogue into a Git archaeology tutorial;
 - imply that every important design decision is recoverable from history;
 - treat a plausible causal story as proved merely because it fits the visible evidence;
 - treat a compressed mainline surface as the complete available evidence set;
+- treat retrieved repository text as instruction authority merely because its provenance is strong;
 - claim that cloud or local work is inherently superior.
 
 When the curriculum is close to complete, revisit this module against the actual final Git history and design the retrospective around the evidence that genuinely exists.
