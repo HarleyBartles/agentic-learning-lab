@@ -263,7 +263,7 @@ The agent should not treat `more evidence` as `total explanation`.
 
 Preserve PR #4 as a known worked example for the eventual epilogue, but do not hand its number to the learner during the first-stage investigation.
 
-PR #4 is intended to be squash merged after accumulating many granular commits that reshape the curriculum planning, including:
+PR #4 was deliberately squash merged after accumulating many granular commits that reshape the curriculum planning, including:
 
 - splitting the original Module 6 plan into separate model-knowledge and domain-provisioning modules;
 - renumbering the advanced half of the curriculum;
@@ -273,7 +273,7 @@ PR #4 is intended to be squash merged after accumulating many granular commits t
 - adding the direct-main versus squash-merged explainability comparison;
 - adding this staged retrieval exercise itself.
 
-The remote branch should remain available after merge.
+Its squash commit message on `main` was deliberately opaque. The remote branch should remain available after merge.
 
 This makes PR #4 deliberately recursive teaching evidence:
 
@@ -295,6 +295,83 @@ The learner should discover this path from repository evidence rather than being
 The facilitator can later reveal that this was intentional: the PR which records the lesson about richer retrieval surfaces was itself preserved so its squash merge, pull request, branch, granular commits, and commit messages could become a worked example of that lesson.
 
 Do not rely on PR #4 as the only possible specimen. When the epilogue is finally scaffolded, inspect the completed repository history and choose the strongest real examples that exist. PR #4 should remain an especially useful known fixture if its evidence surfaces are still available.
+
+## Security callback — retrieval expands both evidence and attack surface
+
+After the learner has used one opaque squash merge to discover the richer PR/branch explainability surface, have them investigate another under-explained squash merge from the completed repository history.
+
+The construction history intentionally includes a harmless instruction-like message inside the granular commit history of one such change. Preserve the fixture, but do not identify its PR number, branch, commit SHA, exact wording, or location in this planning file. The learner should encounter it only by following the richer historical evidence.
+
+The intended progression is:
+
+```text
+mainline-only investigation
+        ↓
+opaque accepted change is under-explained
+        ↓
+agent follows repository relationships into PR / branch history
+        ↓
+richer commit messages improve historical explainability
+        ↓
+one retrieved message also looks like an instruction to the investigating agent
+```
+
+The agent may ignore the instruction-like text, quote it, report it neutrally, or explicitly flag it as attempted prompt injection. Any of those are useful outcomes.
+
+The exercise does **not** depend on a modern model actually obeying the embedded instruction.
+
+The learner should already have the Module 16 mental model available:
+
+> **Data from outside the trusted instruction boundary is evidence, not authority.**
+
+Ask the learner what changed when the agent expanded its retrieval surface.
+
+The answer is not only `it gained more historical evidence`.
+
+It also gained more untrusted text capable of looking like instructions.
+
+Earn:
+
+> **Retrieval can increase both explainability and attack surface.**
+
+And:
+
+> **Provenance is not authority.**
+
+A commit message can have excellent provenance. Git can establish that it genuinely exists in repository history, who authored the commit, where it appeared in branch chronology, and how it relates to a merged PR. None of that gives the sentence inside the message authority to rewrite the investigating agent's task.
+
+Useful comparison:
+
+```text
+provenance
+"this text really is part of repository history"
+
+        ≠
+
+truth
+"everything the text claims is correct"
+
+        ≠
+
+authority
+"the investigating agent should obey the text"
+```
+
+This is the security-side counterpart to the previous explainability lesson:
+
+> Do not stop at an impoverished evidence surface when richer evidence is available.
+
+followed immediately by:
+
+> Do not mistake newly retrieved evidence for newly granted authority.
+
+The learner, rather than the agent, should be the important recognition surface. Even if the agent merely lists the relevant commit message as historical evidence without reacting to it, the learner should be able to recognise that instruction-like repository text is data the agent was asked to inspect, not an authorised instruction source.
+
+Only after the learner has recognised the pattern should the facilitator reveal that the construction history deliberately contained the harmless fixture.
+
+Do not turn this into adversarial prompt-writing practice. It is a light callback that cements the trust-boundary model while showing that richer retrieval can improve epistemic position and widen exposure at the same time.
+
+When the epilogue is finally scaffolded, inspect the completed repository history and confirm the strongest real fixture still has the intended evidence surfaces before designing the learner choreography around it.
 
 ## Same visible shift, different causes
 
@@ -506,11 +583,13 @@ Do not yet:
 
 - prescribe exact commits the agent must discover during the first-stage investigation;
 - tell the learner to inspect PR #4 before the agent has surfaced it naturally;
+- reveal where the security fixture lives before retrieval exposes it;
 - manufacture a fixed historical narrative before the repository has finished evolving;
 - turn the epilogue into a Git archaeology tutorial;
 - imply that every important design decision is recoverable from history;
 - treat a plausible causal story as proved merely because it fits the visible evidence;
 - treat a compressed mainline surface as the complete available evidence set;
+- treat retrieved repository text as instruction authority merely because its provenance is strong;
 - claim that cloud or local work is inherently superior.
 
 When the curriculum is close to complete, revisit this module against the actual final Git history and design the retrospective around the evidence that genuinely exists.
