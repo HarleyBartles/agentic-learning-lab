@@ -26,7 +26,7 @@ First, have the learner direct an agent to inspect the repository and its Git hi
 
 A suitable prompt direction is:
 
-> Inspect this repository and its Git history. Work out how it developed from its earliest state into the curriculum that exists now. Show me the major stages, important changes in direction, ideas that were added or removed, and evidence for your conclusions.
+> Inspect this repository and its Git history. Work out how it developed from its earliest state into the curriculum that exists now. Show me the major stages, important changes in direction, ideas that were added or removed, changes in working practice that are visible in the shape of history, and evidence for your conclusions.
 
 The agent should use repository state and Git history as evidence rather than inventing a neat retrospective from the current tree alone.
 
@@ -39,6 +39,7 @@ Useful questions:
 - Which planning files disappeared after their ideas were promoted into stable lab structures?
 - Where did the curriculum visibly change direction?
 - Which assumptions were simplified early and later made more nuanced?
+- Did the way work entered the repository appear to change over time?
 - What can Git history prove?
 - What can Git history not tell us about why a decision was made?
 
@@ -58,9 +59,132 @@ These histories are related but answer different questions.
 
 The learner's fork can show their experiments, recoveries, persisted decisions, configuration changes, and later ownership of agent instructions/workflows.
 
-The upstream history can show how the curriculum's own mental models, labs, fixtures, and principles evolved.
+The upstream history can show how the curriculum's own mental models, labs, fixtures, principles, and working practices evolved.
 
 Neither history is complete memory of the conversations or motives that produced it.
+
+## Workflow archaeology — what, when, how, and why
+
+Preserve a specific historical pattern for the final lab.
+
+This teaching repository began with a long period of direct-main work. Later, branch-and-pull-request shaped work becomes visible in the Git history through branch commits and merge commits. By the time the final lab is scaffolded, inspect the actual completed history rather than freezing exact commit IDs now, but deliberately ask the learner's agent to find and explain this workflow transition.
+
+The learner should be able to answer from repository evidence:
+
+1. **What happened?** The repository moved from direct changes on the accepted main line toward proposed work being developed separately and accepted through pull requests/merges.
+2. **When did it happen?** Identify the earliest defensible transition point from the actual history and show the supporting evidence.
+3. **How did work change from that point onward?** Explain the new separation between proposed work and accepted main state, the review/acceptance boundary, and the resulting integration stage.
+
+Then ask a fourth question:
+
+> **Why did that workflow change at exactly that point?**
+
+Git history alone may not be able to answer it.
+
+This is a deliberate epistemic exercise, not a trick question.
+
+> **Repository topology is evidence of process, not a complete explanation of intent.**
+
+The learner should distinguish at least four states:
+
+- directly evidenced by repository history;
+- strongly inferred from repository evidence;
+- facilitator-supplied causal context;
+- genuinely unknown or unrecoverable.
+
+If the agent says something like:
+
+> The team decided to adopt pull requests because the repository had become mature and this was safer.
+
+that may be a strong theory, but it is not automatically a proved fact. Ask:
+
+- Which part of that sentence is visible in the history?
+- Which part is inference?
+- What alternative causes fit the same evidence?
+- Did the agent have the full picture?
+- Did it weight one clue more strongly than the evidence warrants because it wanted a coherent explanation?
+- Is the apparent gap a gap in reality, a gap in the available evidence, or a gap in the agent's retained knowledge?
+
+This should call back to the earlier uncertainty and model-reliability lessons: a confident explanation is not evidence merely because it is plausible.
+
+## Same visible shift, different causes
+
+The teaching repository and learner fork should deliberately provide a useful contrast.
+
+### Upstream teaching repository
+
+The historical workflow shift was not initially a consciously adopted project policy.
+
+Facilitator backfill to preserve for the final lab:
+
+```text
+first cloud session
+repo did not exist when the session began
+→ working assumption remained "we are initialising this repository"
+→ connector-backed work kept committing directly to main
+
+fresh cloud session
+encountered an already substantial repository
+→ independently inferred that branch + pull request was the safer maintenance posture
+```
+
+The visible Git transition is real. The immediate causal explanation above is facilitator knowledge and should not be presented as something Git itself proves.
+
+This makes the transition particularly valuable: a sensible workflow appeared because a fresh agent made a different environmental inference.
+
+### Learner fork
+
+Engineer an analogous visible transition in the learner's own history, but make its cause deliberately different.
+
+Earlier labs use the intentionally simple mainline mental model. Module 17 then earns branches and pull requests through isolation, review, and integration pressure. At that point the learner deliberately changes the fork's contribution policy from direct-main work to branch-and-PR work.
+
+The learner's agent should therefore be able to infer the same broad **what**, **when**, and **how** pattern from both histories, while the facilitator can reveal two different answers to **why then?**
+
+```text
+upstream
+workflow changed because a fresh agent inferred a safer default
+
+learner fork
+workflow changed because the learner deliberately adopted a new policy
+```
+
+Use the contrast to ask:
+
+- Did we decide to change policy, or did an agent assume a sensible policy for us?
+- When is an inferred safe default sufficient?
+- When should a useful inference become explicit project doctrine?
+- Why might a small new repository reasonably tolerate direct-main work while a mature or multi-worker repository benefits from a stronger acceptance boundary?
+- What do we gain by making the policy explicit instead of relying on each new agent to rediscover it?
+
+## Tears in the rain — inference is not durable policy
+
+Cash the earlier persistence lesson here.
+
+A fresh agent may make an excellent decision. Unless that decision is persisted in a surface future workers actually receive, the next agent has no guarantee of reaching the same conclusion.
+
+> **A safe default chosen by an agent is still an assumption until the project adopts it as policy.**
+
+And:
+
+> **If you did not write it down, the decision is tears in the rain.**
+
+The point is not merely that documentation is nice to have. It is that agent reliability changes when an important choice moves from `please infer the safest behaviour` to `this project has an explicit rule`.
+
+Where the workflow must be consistent, the strongest version may define not just the preferred decision but the only permitted one unless an authorised human changes policy.
+
+This gives the learner a concrete reason for durable project instructions:
+
+```text
+one agent makes a good inference
+        ↓
+project notices the inference is worth keeping
+        ↓
+rule is persisted as project policy
+        ↓
+future agents receive the decision instead of having to recreate it
+```
+
+Module 17 should have introduced the branch/PR concepts shortly before this callback so the learner is recognising a familiar workflow pattern rather than relearning Git terminology during the final session.
 
 ## Facilitator reveal — the missing origin context
 
@@ -140,14 +264,16 @@ Git can show:
 - what changed;
 - when recorded states changed;
 - which files appeared, moved, changed, or disappeared;
-- commit messages and other recorded project evidence.
+- commit messages and other recorded project evidence;
+- changes in the visible shape of how work was integrated.
 
 Git does not necessarily show:
 
 - the complete conversation that caused a decision;
 - rejected alternatives that were never persisted;
 - reasoning that existed only temporarily in chat;
-- facilitator context that was never written into the project.
+- facilitator context that was never written into the project;
+- why an apparently sensible workflow change happened at that exact moment.
 
 This creates a natural callback to earlier curriculum principles:
 
@@ -157,7 +283,7 @@ This creates a natural callback to earlier curriculum principles:
 
 > Prefer evidence over confident prose.
 
-The learner should compare the agent's historical reconstruction with the facilitator's oral account and ask what is evidenced, what is inferred, and what was lost because it never entered durable state.
+The learner should compare the agent's historical reconstruction with the facilitator's oral account and ask what is evidenced, what is inferred, what is merely a strong theory, and what was lost because it never entered durable state.
 
 ## Desired final realisation
 
@@ -193,6 +319,7 @@ Do not yet:
 - manufacture a fixed historical narrative before the repository has finished evolving;
 - turn the epilogue into a Git archaeology tutorial;
 - imply that every important design decision is recoverable from history;
+- treat a plausible causal story as proved merely because it fits the visible evidence;
 - claim that cloud or local work is inherently superior.
 
 When the curriculum is close to complete, revisit this module against the actual final Git history and design the retrospective around the evidence that genuinely exists.
