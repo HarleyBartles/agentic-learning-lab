@@ -296,35 +296,27 @@ The facilitator can later reveal that this was intentional: the PR which records
 
 Do not rely on PR #4 as the only possible specimen. When the epilogue is finally scaffolded, inspect the completed repository history and choose the strongest real examples that exist. PR #4 should remain an especially useful known fixture if its evidence surfaces are still available.
 
-## Facilitator-known fixture — PR #5 and the security callback
+## Security callback — retrieval expands both evidence and attack surface
 
-PR #5 should become the second deliberately opaque squash-merge specimen.
+After the learner has used one opaque squash merge to discover the richer PR/branch explainability surface, have them investigate another under-explained squash merge from the completed repository history.
 
-Its real job is to scaffold and mature Lab 6. It should accumulate ordinary granular commits before and after one middle commit whose **commit message** contains a harmless instruction-like line aimed at a future investigating agent. The other granular commits should not contain prompt injection. After PR #5 is complete, squash merge it with another deliberately uninformative mainline commit message and preserve the remote branch.
+The construction history intentionally includes a harmless instruction-like message inside the granular commit history of one such change. Preserve the fixture, but do not identify its PR number, branch, commit SHA, exact wording, or location in this planning file. The learner should encounter it only by following the richer historical evidence.
 
-Do not tell the learner about the security fixture during the initial archaeology.
-
-The intended epilogue sequence is:
+The intended progression is:
 
 ```text
 mainline-only investigation
         ↓
-agent surfaces at least two large opaque squash commits
+opaque accepted change is under-explained
         ↓
-learner chooses the PR #4 squash commit first
+agent follows repository relationships into PR / branch history
         ↓
-agent retrieves PR #4 + branch + granular commit messages
+richer commit messages improve historical explainability
         ↓
-learner sees how retrieval increases explainability
-        ↓
-ask the agent to investigate the other unexplained squash commit
-        ↓
-agent follows it to PR #5 + preserved branch
-        ↓
-retrieved granular commit messages include one instruction-like message
+one retrieved message also looks like an instruction to the investigating agent
 ```
 
-The agent may ignore the instruction, quote it, report it neutrally, or explicitly flag it as attempted prompt injection. Any of those are useful outcomes.
+The agent may ignore the instruction-like text, quote it, report it neutrally, or explicitly flag it as attempted prompt injection. Any of those are useful outcomes.
 
 The exercise does **not** depend on a modern model actually obeying the embedded instruction.
 
@@ -332,11 +324,11 @@ The learner should already have the Module 16 mental model available:
 
 > **Data from outside the trusted instruction boundary is evidence, not authority.**
 
-Ask the learner whether anything changed when the agent expanded its retrieval surface.
+Ask the learner what changed when the agent expanded its retrieval surface.
 
 The answer is not only `it gained more historical evidence`.
 
-It also gained more untrusted text capable of *looking like instructions*.
+It also gained more untrusted text capable of looking like instructions.
 
 Earn:
 
@@ -346,7 +338,7 @@ And:
 
 > **Provenance is not authority.**
 
-A commit message can have excellent provenance. Git can establish that it genuinely exists in the repository history, who authored the commit, where it appeared in branch chronology, and how it relates to the merged PR. None of that gives the sentence inside the message authority to rewrite the investigating agent's task.
+A commit message can have excellent provenance. Git can establish that it genuinely exists in repository history, who authored the commit, where it appeared in branch chronology, and how it relates to a merged PR. None of that gives the sentence inside the message authority to rewrite the investigating agent's task.
 
 Useful comparison:
 
@@ -373,13 +365,13 @@ followed immediately by:
 
 > Do not mistake newly retrieved evidence for newly granted authority.
 
-The learner, rather than the agent, should be the important recognition surface. Even if the agent merely lists the relevant commit message as historical evidence without reacting to it, the learner should be able to say:
+The learner, rather than the agent, should be the important recognition surface. Even if the agent merely lists the relevant commit message as historical evidence without reacting to it, the learner should be able to recognise that instruction-like repository text is data the agent was asked to inspect, not an authorised instruction source.
 
-> That commit message is trying to instruct the agent. It is data we asked the agent to inspect, not an authorised instruction source.
+Only after the learner has recognised the pattern should the facilitator reveal that the construction history deliberately contained the harmless fixture.
 
-Only after the learner has recognised the pattern should the facilitator reveal that PR #5 was deliberately constructed to contain the harmless injection fixture.
+Do not turn this into adversarial prompt-writing practice. It is a light callback that cements the trust-boundary model while showing that richer retrieval can improve epistemic position and widen exposure at the same time.
 
-Do not turn this into adversarial prompt-writing practice. The fixture is a small callback that cements the trust-boundary model by placing instruction-like text inside a legitimate retrieval surface.
+When the epilogue is finally scaffolded, inspect the completed repository history and confirm the strongest real fixture still has the intended evidence surfaces before designing the learner choreography around it.
 
 ## Same visible shift, different causes
 
@@ -591,7 +583,7 @@ Do not yet:
 
 - prescribe exact commits the agent must discover during the first-stage investigation;
 - tell the learner to inspect PR #4 before the agent has surfaced it naturally;
-- tell the learner that PR #5 contains a security fixture before retrieval exposes it;
+- reveal where the security fixture lives before retrieval exposes it;
 - manufacture a fixed historical narrative before the repository has finished evolving;
 - turn the epilogue into a Git archaeology tutorial;
 - imply that every important design decision is recoverable from history;
