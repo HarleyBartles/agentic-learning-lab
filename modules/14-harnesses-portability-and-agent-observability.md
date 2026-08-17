@@ -1,8 +1,8 @@
-# Module 13 — Harnesses, portability, and agent observability
+# Module 14 — Harnesses, portability, and agent observability
 
 Status: structured planning. This module follows specialist sub-agents deliberately: the learner first understands the conceptual specialist profile, then discovers that the mechanism for creating that worker is harness-specific and still changing quickly.
 
-Approximate duration: 1 hour for the core harness/portability lesson. The linked **13A practicum — The 20-Agent Bonfire** may run as a separate practical session or extension rather than being forced into the same hour.
+Approximate duration: 1 hour for the core harness/portability lesson. The linked **14A practicum — The 20-Agent Bonfire** may run as a separate practical session or extension rather than being forced into the same hour.
 
 ## Core idea
 
@@ -20,7 +20,7 @@ Do not teach today's product interfaces as permanent laws. Exact tool names, sch
 
 ## Why this comes immediately after specialist sub-agents
 
-Module 12 teaches a conceptual specialist profile as some combination of:
+Module 13 teaches a conceptual specialist profile as some combination of:
 
 - role;
 - instructions;
@@ -45,7 +45,7 @@ The concept `delegate this bounded review to an independent specialist` may be p
 
 ## Main comparison — port one conceptual specialist
 
-Use one specialist whose intent is already understood from Module 12. A reviewer is a good default.
+Use one specialist whose intent is already understood from Module 13. A reviewer is a good default.
 
 Conceptually:
 
@@ -157,7 +157,7 @@ And:
 
 > **Do not assume the specialist you requested is the worker that was instantiated.**
 
-Use `runtime state` deliberately here. Module 8 uses truth/authority language for which project evidence governs a decision; this section is about what configuration the harness actually instantiated, not semantic authority over project truth.
+Use `runtime state` deliberately here. Module 9 uses truth/authority language for which project evidence governs a decision; this section is about what configuration the harness actually instantiated, not semantic authority over project truth.
 
 ## Verify the effective worker
 
@@ -277,7 +277,7 @@ Earn:
 
 ## Portability exercise — predict before moving
 
-Use Module 10's introspection technique.
+Use Module 11's introspection technique.
 
 Before moving the specialist/workflow to another harness, ask the current agent to inspect its setup and classify likely portability:
 
@@ -363,7 +363,7 @@ if not: detect churn, loop, drift, or dead end
 steer while intervention is still cheap
 ```
 
-Module 11 taught the structure of non-converging loops. Here the learner can watch one developing from outside the worker.
+Module 12 taught the structure of non-converging loops. Here the learner can watch one developing from outside the worker.
 
 Useful line:
 
@@ -458,13 +458,13 @@ The same applies to explicit model routing, reasoning-effort selection, review p
 
 When a stronger model or harness absorbs one of those responsibilities reliably, reevaluate the workflow rather than preserving the old ceremony forever.
 
-## Linked 13A practicum — The 20-Agent Bonfire
+## Linked 14A practicum — The 20-Agent Bonfire
 
-The companion `13-20-agent-bonfire-and-context-transport.md` is the practical economics/context-transport cash-in for this module.
+The companion `14a-20-agent-bonfire-and-context-transport.md` is the practical economics/context-transport cash-in for this module.
 
-Do not force it into the core one-hour comparison if doing so would turn the harness lesson into a sprint through two substantial experiments. It can run immediately after Module 13 as a separate practicum, or be used as an extension once the learner has enough time to compare real usage surfaces carefully.
+Do not force it into the core one-hour comparison if doing so would turn the harness lesson into a sprint through two substantial experiments. It can run immediately after Module 14 as a separate practicum, or be used as an extension once the learner has enough time to compare real usage surfaces carefully.
 
-Keep one sequencing boundary clear: the Bonfire is about **resource economics, worker resolution, and context transport**, not about teaching concurrent mutable-workspace isolation. If the twenty-worker setup would create shared-write collisions, constrain the fixture so workers are read-only, serialised, or write to deliberately separate outputs. Module 16 owns the later lesson that concurrent mutable work earns isolation and reconciliation.
+Keep one sequencing boundary clear: the Bonfire is about **resource economics, worker resolution, and context transport**, not about teaching concurrent mutable-workspace isolation. If the twenty-worker setup would create shared-write collisions, constrain the fixture so workers are read-only, serialised, or write to deliberately separate outputs. Module 17 owns the later lesson that concurrent mutable work earns isolation and reconciliation.
 
 ## Principles
 
@@ -516,7 +516,7 @@ Do not turn this module into:
 - a claim that more expensive models are wasteful by definition;
 - a prediction that manual model routing definitely will disappear;
 - a universal portability standard that does not yet exist;
-- concurrent shared-workspace isolation mechanics that belong in Module 16.
+- concurrent shared-workspace isolation mechanics that belong in Module 17.
 
 The learner should leave able to separate portable agent intent from harness-specific adapters, verify the effective runtime worker after dispatch, reason about model/effort economics, use available observability while work is in flight, and expect the interfaces to evolve.
 
