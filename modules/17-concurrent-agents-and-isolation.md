@@ -153,6 +153,55 @@ This should remain a light-touch source-control lesson. We are teaching the conc
 
 Place this teaching late enough that branches and pull requests have a real purpose, but close enough to the epilogue that the learner can still recognise the same workflow shape when repository history becomes evidence.
 
+## Merge strategy changes the explainability surface
+
+Introduce merge strategy only as far as it changes what later investigators can see.
+
+A squash merge is useful because it can keep the accepted `main` history compact: many branch commits become one accepted commit representing the final integrated change set.
+
+That compression changes the surface available to an agent doing repository archaeology.
+
+On `main`, the agent may see:
+
+- one accepted commit;
+- the final changed files;
+- the point in mainline order where the change landed;
+- whatever summary the squash commit records.
+
+It may no longer see the branch's internal commit sequence as part of `main` history itself.
+
+But if the merged pull request remains available, the richer development surface can still be queried:
+
+- the PR's ordered commits;
+- how the work accumulated or changed across those commits;
+- the aggregate PR diff;
+- review and acceptance context where recorded;
+- when the completed batch was integrated relative to other mainline work.
+
+So do not teach `squash merge destroys history` as a blanket statement.
+
+A better principle is:
+
+> **Squash merging compresses accepted mainline history. The pull request can preserve a richer explanation of how that accepted change was assembled.**
+
+This creates an architectural trade-off rather than a right answer:
+
+```text
+mainline history
+optimised for accepted states and integration order
+
+pull-request history
+richer surface for proposal, development, review, and acceptance
+```
+
+Ask the learner:
+
+> If an agent sees one squash commit touching eight files, what can it prove from `main` alone, and what should it inspect next before guessing how that batch was developed?
+
+The desired answer is that the squash commit is a real accepted-state artifact, but the associated PR is the natural follow-up surface when the investigation needs internal development order or richer context.
+
+Module 18 should deliberately compare this with the earlier direct-main period, where the ordered mainline commits themselves may be the only durable development narrative.
+
 ## From sensible default to explicit project policy
 
 An agent may independently decide that a mature repository is safer to change through branches and pull requests. That can be a good default, but it is not durable governance merely because one competent agent chose it.
