@@ -113,6 +113,76 @@ A useful working model is:
 
 Let agents perform the mechanics while the learner inspects state, diffs, ownership, and integration evidence.
 
+## Pull requests create an acceptance boundary
+
+Once a branch has earned its place as a separate line of proposed work, introduce a pull request as the next useful concept rather than as GitHub ceremony.
+
+A lightweight working model is:
+
+- branch: keep proposed work separate from the accepted main line;
+- pull request: make the proposed change set inspectable and create an explicit review/acceptance boundary;
+- merge: deliberately accept and integrate that proposed state into the main line.
+
+The learner still does not need to learn command-level Git operation. The agent can create the branch, make the change, publish it, and raise the pull request. The learner should understand enough to inspect what the agent is proposing and answer:
+
+- what work is isolated on this branch?
+- what exactly would this pull request change?
+- what evidence says the proposed work is ready to accept?
+- what remains unverified or unresolved?
+- what changes when the pull request is merged?
+
+Before this module ends, deliberately have the learner perform at least one bounded piece of work through the full conceptual path:
+
+```text
+accepted main state
+      ↓
+branch / isolated proposed work
+      ↓
+agent changes and verifies
+      ↓
+pull request exposes the proposed change set
+      ↓
+human inspects / questions / accepts
+      ↓
+merge creates a new accepted main state
+      ↓
+verify the integrated result
+```
+
+This should remain a light-touch source-control lesson. We are teaching the concepts needed to direct and inspect agentic work through Git, not training the learner to navigate Git like a software engineer.
+
+Place this teaching late enough that branches and pull requests have a real purpose, but close enough to the epilogue that the learner can still recognise the same workflow shape when repository history becomes evidence.
+
+## From sensible default to explicit project policy
+
+An agent may independently decide that a mature repository is safer to change through branches and pull requests. That can be a good default, but it is not durable governance merely because one competent agent chose it.
+
+> **A safe default chosen by an agent is still an assumption until the project adopts it as policy.**
+
+A later fresh agent has no guarantee of reaching the same conclusion. If the workflow now matters, persist the rule somewhere future workers will actually receive it.
+
+The stronger progression is:
+
+```text
+agent infers a sensible practice
+        ↓
+human inspects whether it fits the project
+        ↓
+project deliberately adopts or rejects it
+        ↓
+important choice becomes durable policy
+        ↓
+future agents do not need to rediscover it
+```
+
+This cashes an earlier curriculum principle in source-control form:
+
+> **If you did not write it down, the decision is tears in the rain.**
+
+Where appropriate, policy should not merely tell the next agent what is probably safest. It should make the permitted workflow explicit enough that the agent does not have to guess which decision the project expects.
+
+The epilogue should call back to this distinction when the learner investigates a historical shift from direct-main work to branch-and-PR work.
+
 ## Orchestrator responsibilities under concurrency
 
 Cash the specialist-orchestration thread.
