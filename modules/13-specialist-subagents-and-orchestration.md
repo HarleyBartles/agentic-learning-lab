@@ -1,4 +1,4 @@
-# Module 12 — Specialist sub-agents and orchestration
+# Module 13 — Specialist sub-agents and orchestration
 
 Status: structured planning. Preserve the conceptual progression and tradeoffs now; exact product mechanics and lab implementation should be verified later.
 
@@ -97,7 +97,7 @@ agent profile
 
 When invoked for a task, that profile becomes a specialist worker for that piece of work.
 
-The profile above describes **intent**. Do not yet claim that every harness has fields for each item, uses the same names, permits child-model selection, or honours those settings at runtime. Module 13 exists to break that assumption.
+The profile above describes **intent**. Do not yet claim that every harness has fields for each item, uses the same names, permits child-model selection, or honours those settings at runtime. Module 14 exists to break that assumption.
 
 Do not present this as a contradiction that invalidates earlier teaching.
 
@@ -373,13 +373,13 @@ And:
 
 > **The orchestrator's job is not to delegate everything. It is to choose where delegation improves the work.**
 
-## Handoff to Module 13
+## Handoff to Module 14
 
 End with one unresolved implementation question:
 
 > We have described the worker we want. How do we know the harness will actually create *that* worker?
 
-The learner should carry a conceptual specialist profile into Module 13 without yet assuming how model choice, reasoning effort, tool allowance, inheritance, context isolation, or permissions are encoded.
+The learner should carry a conceptual specialist profile into Module 14 without yet assuming how model choice, reasoning effort, tool allowance, inheritance, context isolation, or permissions are encoded.
 
 That lets the next module earn the distinction between intended specialist contract and effective runtime worker.
 
@@ -395,4 +395,4 @@ Do not turn this module into:
 - orchestration-framework internals;
 - agent-personality roleplay without meaningful provisioning differences.
 
-The learner should leave able to reason about why a specialist exists, what makes it specialist, when the orchestrator should use it, what capability it appears to need, and what tradeoff delegation introduces — while still needing Module 13 to discover how the current harness actually realises that intent.
+The learner should leave able to reason about why a specialist exists, what makes it specialist, when the orchestrator should use it, what capability it appears to need, and what tradeoff delegation introduces — while still needing Module 14 to discover how the current harness actually realises that intent.
