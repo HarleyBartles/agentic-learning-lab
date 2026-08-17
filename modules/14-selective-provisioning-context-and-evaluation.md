@@ -1,8 +1,8 @@
-# Module 13 — Selective provisioning, context, and evaluation
+# Module 14 — Selective provisioning, context, and evaluation
 
-Status: structured planning. This module cashes several earlier breadcrumbs: persistent instructions, skill composition, context limits, retrieval, instruction scope, inspectable reasoning, and the danger of over-provisioning.
+Status: structured planning. This module cashes several earlier breadcrumbs: persistent instructions, skill composition, context limits, retrieval, instruction scope, inspectable reasoning, over-provisioning, and the context-transport/materialisation ideas introduced by the Module 13A Bonfire practicum.
 
-Approximate duration: 1 hour.
+Approximate duration: 1 hour for the core selective-provisioning lesson. The context-loading/materialisation material may become a second exercise or extension if the full set of ideas makes one hour too dense.
 
 ## Core idea
 
@@ -25,7 +25,9 @@ Earlier labs have already modelled narrow operating doctrine:
 - Module 6 asks where repeated domain knowledge should live;
 - Module 10 introduces agent self-introspection, local self-review, behavioural prediction, and test-first thinking as cheap local engineering primitives;
 - Module 11 shows multiple skills harmonising into a larger workflow;
-- Module 12 shows specialist profiles carrying narrower role-specific operating conditions.
+- Module 12 shows specialist profiles carrying narrower role-specific operating conditions;
+- Module 13 shows that harnesses differ in how those profiles, tools, models, defaults, and observability surfaces are actually realised at runtime;
+- the Module 13A Bonfire practicum asks where inference/context spend goes and introduces artifact/reference handoffs as a way to control when information enters a worker's context.
 
 Open by asking:
 
@@ -104,6 +106,178 @@ The improved worker should reach strong decisions faster with less visible polic
 Useful line:
 
 > **Things the agent does not currently need should not become things it must continuously reason about.**
+
+## Context transport is part of provisioning
+
+Now deepen the question from `what should this worker know?` to:
+
+> **When should this information enter this worker's context, and does this worker need to materialise it at all?**
+
+The Module 13A Bonfire introduces the practical pattern:
+
+```text
+large handoff value
+paste the entire brief/result into another agent's message
+→ contents enter that context immediately
+
+reference handoff
+pass a durable file/artifact location
+→ recipient can resolve/materialise it when needed
+```
+
+Files do not make context free. If a worker opens and reads the entire artifact, the contents still become part of its working context.
+
+The engineering benefit is control over **where, when, and whether** material is loaded.
+
+Earn:
+
+> **Pass references when you can. Pass contents when you must.**
+
+Do not turn that line into a blanket preference for indirection. A small self-contained value may be clearer and cheaper than creating an artifact merely to avoid a short message.
+
+## Software/systems callback — old engineering in a new medium
+
+Use this as a small callback rather than a coding lesson.
+
+Do **not** claim pass-by-reference/value originated in object-oriented programming.
+
+A more accurate line is:
+
+> **Programming and systems engineering have long dealt with the cost of moving, loading, copying, and resolving state. Agentic systems are meeting the same shape of problem with instructions, evidence, artifacts, and worker context.**
+
+Object-oriented systems make reference semantics particularly visible because programs commonly pass references to objects rather than copy whole object graphs everywhere, but the underlying concerns are broader programming principles.
+
+Name the useful parallels briefly:
+
+- references / indirection;
+- locality;
+- lazy/eager loading;
+- interfaces/contracts;
+- separation of concerns;
+- materialisation cost;
+- N+1-style repeated loading.
+
+The purpose is not to teach software implementation. It is to let the learner recognise that agentic engineering is often systems engineering expressed through different materials.
+
+## Lazy loading — `I know it exists` is not `I have loaded it`
+
+Use the agent version of lazy loading:
+
+```text
+I know this artifact exists
+        ↓
+do I need its contents?
+        ↓
+do I need all of its contents?
+        ↓
+do I need its linked doctrine/policies/evidence?
+        ↓
+materialise only the useful information graph
+```
+
+The learner should distinguish:
+
+```text
+reference awareness
+I know the file/source/artifact exists and where to resolve it
+
+materialised understanding
+I have read enough of it and its relevant dependencies
+for its content to influence this decision
+```
+
+Those are different agent states.
+
+Useful principle:
+
+> **Knowing where information lives is cheaper than loading and reasoning over all of it.**
+
+## Eager loading — selective does not mean serial rediscovery
+
+Do not teach `lazy is always good`.
+
+If a worker is known to need a coherent cluster of related information, deliberately provision or retrieve that cluster together rather than force a sequence of repeated discovery calls.
+
+For example:
+
+```text
+reviewer needs
+approved design
++ acceptance criteria
++ changed artifact
++ verification evidence
+```
+
+If every one of those is predictably required, loading them as one bounded review packet may be cleaner than making the reviewer rediscover each dependency one by one.
+
+Earn:
+
+> **Choose the loading strategy deliberately: defer what may not be needed; bundle what is predictably needed together.**
+
+## Agentic N+1 — locally sensible reads can become globally wasteful
+
+Use the classic database shape as an analogy without making the learner learn databases.
+
+Imagine twenty workers where each independently:
+
+```text
+reads the task
+→ opens the same project instructions
+→ discovers the same governing skill
+→ follows the same architecture reference
+→ loads the same supporting doctrine
+```
+
+Each read may be individually sensible.
+
+Collectively the system may repeatedly materialise substantially the same information graph.
+
+Ask:
+
+> Why are we paying to rediscover and reload the same material for every worker?
+
+Possible legitimate answers include:
+
+- independence matters, so duplicate loading is worth the cost;
+- the workers need only a smaller prepared brief;
+- one specialist should resolve the source material and persist a derived artifact;
+- a coherent bundle should be provisioned once to the stage that uses it;
+- only an integration/review worker actually needs the full source graph.
+
+The lesson is not `deduplicate every read`.
+
+It is:
+
+> **Many locally rational context loads can still form a globally inefficient system.**
+
+## The system can know more than the orchestrator currently has in context
+
+This is the conceptual jump from the Bonfire companion that Module 14 should make explicit.
+
+Durable project state, source material, specialist artifacts, and verification results can collectively encode more than any one worker has currently materialised.
+
+For example:
+
+```text
+review worker
+Completed.
+Verdict: PASS
+Evidence: reports/review.md
+```
+
+The orchestrator may only need the verdict, artifact location, and evidence receipt in order to route the workflow.
+
+Another specialist may consume `reports/review.md` directly.
+
+Earn:
+
+> **The agentic system can know more than any individual agent currently has in context.**
+
+And:
+
+> **The orchestrator coordinates where knowledge and work need to flow; it does not automatically need to ingest every artifact itself.**
+
+Keep the verification boundary from Module 8: routing an artifact without reading it does not prove its contents are correct. The stage that owns content-level correctness must still inspect or deterministically verify it.
 
 ## Instruction surfaces and scope
 
@@ -263,7 +437,9 @@ This connects directly back to agent overwhelming and selective provisioning.
 
 ## Inspectable agents — not magic black boxes
 
-Do not teach formal explainable-AI theory here. Teach a practical agent-operating habit.
+Module 13 has already taught visible activity as a harness-specific observability surface and the practical skill of scan-reading it for churn, loops, drift, and lack of new evidence.
+
+This module cashes that capability diagnostically rather than reteaching the harness comparison.
 
 Many agent harnesses expose some combination of:
 
@@ -292,6 +468,8 @@ A runtime may summarise, hide, transform, or omit parts of the model's internal 
 ## The thought stream can reveal injected concepts without explaining their provenance
 
 Use a demo where the agent repeatedly refers to a concept the learner never supplied.
+
+The learner now knows from Module 13 that a harness can produce and surface activity channels in different ways. Here the question is not how the stream is rendered, but what an unexpected concept in that stream tells us about the worker's instruction environment.
 
 A suitable live-demo candidate, subject to verification at teaching time, is a verbose agent/model configuration that repeatedly mentions an internally injected operating mode or policy while reasoning about an otherwise ordinary task.
 
@@ -524,11 +702,11 @@ Do not replace `the model is everything` with `the environment can fix everythin
 
 ## Principle
 
-> **Good agent design is selective: provision what this worker needs, where it naturally belongs, when it is needed, inspect how the worker is reasoning from those inputs, trace surprising beliefs back to their source, and test that the resulting behaviour is actually better.**
+> **Good agent design is selective: provision what this worker needs, where it naturally belongs, when it is needed; materialise information only where it earns its place; inspect how the worker is reasoning from those inputs; trace surprising beliefs back to their source; and test that the resulting behaviour is actually better.**
 
 Useful closing diagnostic:
 
-> **When an agent surprises you, do not only ask what it did. Ask what it believed, why it believed it, where that belief entered the system, and which instruction surface had authority.**
+> **When an agent surprises you, do not only ask what it did. Ask what it believed, why it believed it, where that belief entered the system, which instruction surface had authority, and which context was actually materialised for that decision.**
 
 ## Do not teach yet
 
@@ -536,10 +714,11 @@ Do not turn this into:
 
 - formal XAI theory;
 - chain-of-thought epistemology;
-- token-count optimisation;
+- token-count micro-optimisation or prompt golf;
 - vector-database internals;
 - memorising one product's entire precedence table;
 - system-prompt extraction as a party trick;
 - benchmark engineering;
 - a blanket argument for tiny prompts;
+- `always use files` or `always lazy-load` cargo cults;
 - a claim that specialist agents are always superior.

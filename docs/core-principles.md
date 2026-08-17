@@ -129,6 +129,8 @@ A useful shorthand:
 
 > Memory is context. Files are state.
 
+Later refine this further: a file can exist as durable state without any current worker having materialised its contents into working context.
+
 ## Do not make the human act as the filesystem
 
 If the real project already exists on disk, repeatedly uploading files, downloading outputs, copying changes back, and explaining which version is current creates unnecessary human synchronisation work.
@@ -146,6 +148,20 @@ A preference for shorter responses, different formatting, or a particular workfl
 When something works badly, ask:
 
 > Is this a model problem, a context problem, a harness problem, a tool problem, or a feedback problem?
+
+## A specialist profile is intent; the spawned worker is effective runtime state
+
+Once the learner begins creating specialist workers, do not assume the profile definition proves what the harness actually instantiated.
+
+A harness may understand, rename, ignore, reject, inherit, or default different profile fields.
+
+A worker can launch and complete its task while using a different model, reasoning effort, tool allowance, permission boundary, or context-isolation behaviour than the engineer intended.
+
+> **The profile is configuration intent. The spawned worker is effective runtime state.**
+
+Keep this separate from source-of-truth language. `Runtime state` here means the effective worker configuration. It does not decide which project evidence has semantic authority.
+
+Where the harness exposes the relevant evidence, verify the effective worker rather than inferring it from the requested profile or successful output.
 
 ## Give the agent the right tools
 
@@ -191,6 +207,54 @@ An agent saying it changed something is not proof that it changed it correctly.
 Verification may mean inspecting a diff, reading the file, rendering a document, running a check, searching for an old value, testing dimensions, or checking remote publication state.
 
 > Do not trust that work happened when you can inspect whether it happened.
+
+This applies to multi-agent artifact handoffs too. A worker saying `report written to X` may be a useful receipt, but it is not content-level verification of X. Put that verification responsibility on the worker/stage that actually needs to establish the artifact's contract.
+
+## Capability, context, and inference are resources
+
+An agent system is not well engineered merely because it eventually returns the right answer.
+
+A workflow may be behaviourally correct while using far more expensive model capability, reasoning effort, duplicated context, workers, retries, or coordination than the result justifies.
+
+> **A system can be behaviourally correct and operationally wrong.**
+
+Ask:
+
+> What quality, confidence, latency, independence, and risk does this job require, and what is the least costly configuration that satisfies that contract reliably?
+
+Do not teach `always use the cheapest model` or `always use fewer agents`.
+
+Teach proportionality:
+
+> **Capability, context, and inference are resources. Spend them in proportion to the job.**
+
+Current model-selection and reasoning-effort controls are implementation surfaces, not eternal agentic laws. If a future harness reliably allocates those resources itself, keep the resource-allocation principle and retire the unnecessary ceremony.
+
+## Pass references when you can; materialise contents where they are needed
+
+Specialist workflows create a context-transport problem.
+
+Large dispatch messages immediately occupy the receiving worker's context. Large final responses immediately occupy the orchestrator's context.
+
+If the real brief or deliverable already exists as durable state, another pattern is often possible:
+
+```text
+orchestrator
+→ short reference to task artifact
+→ worker reads it when needed
+→ worker writes result artifact directly
+→ short completion receipt/reference
+```
+
+> **Pass references when you can. Pass contents when you must.**
+
+Files do not make information free. If a worker reads a file, the contents still enter its context. The benefit is control over **where, when, and whether** that material is loaded.
+
+Do not force the orchestrator to ingest or transcribe an artifact merely because it coordinates the workflow. Another responsible stage can inspect the artifact directly.
+
+> **The agentic system can know more than any individual agent currently has in context.**
+
+This is the same shape of engineering problem seen in programming and systems work: references/indirection, locality, lazy/eager loading, interfaces/contracts, materialisation cost, and N+1-style repeated loading. Use those as analogies, not as a coding syllabus.
 
 ## Safe breakage is part of learning
 
@@ -381,6 +445,6 @@ Do not put secrets into model-readable prompts merely because the UI does not no
 
 ## Teach invariants; let techniques emerge
 
-Teach ideas such as source of truth, recovery, verification, isolation, bounded authority, persistent state, termination, legal workflow transitions, instruction provenance, and inspectable reasoning directly.
+Teach ideas such as source of truth, recovery, verification, isolation, bounded authority, persistent state, termination, legal workflow transitions, instruction provenance, inspectable reasoning, proportional resource use, and selective context materialisation directly.
 
-Let advanced techniques such as elaborate Git workflows, RAG, multi-agent orchestration, CI/CD, complex MCP setups, and sophisticated automation arrive when the learner encounters the problem they solve.
+Let advanced techniques such as elaborate Git workflows, RAG, multi-agent orchestration, CI/CD, complex MCP setups, sophisticated automation, explicit model routing, and harness-specific sub-agent schemas arrive when the learner encounters the problem they solve.

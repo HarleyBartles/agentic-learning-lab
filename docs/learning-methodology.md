@@ -16,7 +16,7 @@ The learner's role is to:
 - inspect what the agent actually did;
 - verify the result against evidence rather than trusting the completion message;
 - question anything they do not understand;
-- ask the agent to explain its implementation and reasoning;
+- ask the agent to explain its approach, evidence, implementation choices, and rationale at a level it can faithfully report;
 - use that new understanding to give the next instruction.
 
 The core loop is:
@@ -24,6 +24,8 @@ The core loop is:
 > **Learner instruct -> Agent do -> Learner inspect, verify and question -> Agent explain -> Learner instruct again.**
 
 The loop is iterative. The learner does not need a complete specification or complete implementation knowledge before useful work can begin.
+
+Do not confuse `Agent explain` with privileged extraction of private chain-of-thought. The learner needs inspectable rationale, evidence, actions, assumptions, and observable process — not a claim that the harness can expose every internal computation.
 
 ## Accomplish first; understand progressively
 

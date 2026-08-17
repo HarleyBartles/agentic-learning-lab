@@ -72,7 +72,7 @@ A useful summary is:
 
 ## Part 3 — Advanced agentic concepts: mastering agents
 
-Current planning range: Modules 10–15.
+Current planning range: Modules 10–16.
 
 The emphasis changes here.
 
@@ -85,7 +85,16 @@ Current advanced threads include:
 - loops, graphs, retries, stopping conditions, escalation routes, and escape hatches;
 - defining success conditions and legal workflow transitions;
 - specialist sub-agents and orchestration;
+- specialist profiles as intended worker contracts, including role, capability/model expectations, reasoning effort, tools, permissions, context, and quality criteria;
+- harness portability, runtime-specific sub-agent contracts, profile translation, model/reasoning selection, inheritance/defaults, and verification of the effective runtime worker;
+- harness observability and scan-reading visible activity for churn, looping, drift, and missing progress;
+- separating durable agent concepts from volatile product control surfaces;
+- agent-system economics: comparing quality, latency, independence, risk, and resource efficiency rather than treating successful output as the only measure of correctness;
+- **The 20-Agent Bonfire** as a linked Module 13A practicum for deliberately wasteful over-delegation, worker-default inspection, and usage comparison;
 - selective provisioning rather than accumulation;
+- context transport and materialisation: passing durable references when appropriate instead of forcing large briefs/results through every agent context;
+- lazy versus eager context loading, locality, and N+1-style repeated materialisation across workers;
+- the distinction between durable system knowledge and the subset any one orchestrator/worker currently has in context;
 - finite context and retrieval/RAG as context selection;
 - instruction scope, hierarchy, provenance, and runtime injection;
 - inspectable agent reasoning/activity and diagnosis;
@@ -93,6 +102,13 @@ Current advanced threads include:
 - trust boundaries, external content, permissions, and connected autonomy;
 - provenance and observability across stages/workers;
 - concurrent agents, isolation, reconciliation, and re-verification.
+
+Keep two sequencing boundaries explicit while these plans become labs:
+
+1. Module 13's core harness/portability lesson can remain approximately one hour; the Bonfire may run immediately afterward as a separate 13A practicum rather than being squeezed into the same session.
+2. The Bonfire is an economics/context experiment, not the concurrency-isolation lesson. If twenty workers would mutate one workspace simultaneously, constrain the fixture to read-only work, serial dispatch, or separate outputs. Module 16 owns the later pressure where concurrent mutable state forces isolation and reconciliation.
+
+Module 14 may likewise split its context-loading/materialisation work into a second exercise if necessary. Preserve the conceptual dependency rather than forcing every valuable idea into a nominal one-hour session.
 
 The conceptual shift is:
 
@@ -102,16 +118,17 @@ How do I use an agent effectively?
 
 advanced
 How do I design the environment, workflow, authority, context,
-and success conditions that make agent behaviour reliable?
+resource allocation, and success conditions that make
+agent behaviour reliable and proportionate?
 ```
 
 A useful summary is:
 
-> **Part 3 teaches the learner to engineer agent behaviour rather than merely operate agents.**
+> **Part 3 teaches the learner to engineer agent behaviour and agent-system economics rather than merely operate agents.**
 
 ## Part 4 — Epilogue as the final project task
 
-Current planning anchor: Module 16, `Epilogue: show how this was built`.
+Current planning anchor: Module 17, `Epilogue: show how this was built`.
 
 The epilogue is not only a retrospective lecture.
 
@@ -177,7 +194,7 @@ If the concept is required for basic competence with agents, it probably belongs
 
 If it tests whether foundational understanding transfers into a real project, it belongs in Part 2.
 
-If it becomes useful only after the learner can already operate agents and now needs to design more reliable, autonomous, explainable, selective, or scalable agent systems, it probably belongs in Part 3.
+If it becomes useful only after the learner can already operate agents and now needs to design more reliable, autonomous, explainable, selective, portable, economical, or scalable agent systems, it probably belongs in Part 3.
 
 If it asks the learner to synthesize the whole course and reason from the project they have built and inhabited, it belongs in the epilogue.
 
