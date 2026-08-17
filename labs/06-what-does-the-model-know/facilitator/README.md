@@ -1,6 +1,6 @@
 # Lab 6 facilitator guide
 
-Status: **Scaffolded — iterate before marking mature.**
+Status: **Mature and ready to run.**
 
 ## Learning goal
 
@@ -276,7 +276,7 @@ If the agent invokes retrieval during the closed-book phase:
 
 ## Run-ready check
 
-Before marking Lab 6 mature, confirm:
+Before the session, confirm:
 
 - all four learner cards can be followed without reading facilitator material;
 - the facilitator has at least two backup query families;
