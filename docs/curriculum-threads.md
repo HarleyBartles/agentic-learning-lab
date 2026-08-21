@@ -79,7 +79,7 @@ learner hand-edits one bounded standing rule
 fresh agent context demonstrates the changed instruction
 instructions become a named layer of the system
         ↓
-Module 6 and later provisioning work
+Labs 6–7 and later provisioning work
 learner reasons about which knowledge belongs in which layer
         ↓
 real project
@@ -177,7 +177,7 @@ This prevents the learner from replacing one simplistic belief (`the model is ev
 
 ## Specialist intent versus harness runtime state
 
-Module 12 should let the learner describe a specialist conceptually before they learn any one product's dispatch schema.
+Module 13 should let the learner describe a specialist conceptually before they learn any one product's dispatch schema.
 
 That intended worker may include:
 
@@ -188,7 +188,7 @@ That intended worker may include:
 - context/isolation expectations;
 - quality and verification contract.
 
-Module 13 then deliberately breaks the assumption that another harness will realise those fields in the same way.
+Module 14 then deliberately breaks the assumption that another harness will realise those fields in the same way.
 
 Different runtimes can ignore, rename, reject, inherit, or default different parts of the profile while still successfully launching a worker.
 
@@ -248,8 +248,8 @@ This becomes increasingly important once the learner has many available levers.
 
 Two later threads are deliberately related:
 
-- Module 7: something can exist now and still fail to be discovered through the current retrieval/navigation route;
-- Module 8: something can be absent now and still exist in recorded historical state.
+- Module 8: something can exist now and still fail to be discovered through the current retrieval/navigation route;
+- Module 9: something can be absent now and still exist in recorded historical state.
 
 Together they support the more general principle:
 
@@ -319,7 +319,7 @@ Later specialist work can deliberately break it:
 
 That earns isolation, separate workspaces/branches/worktrees, reconciliation, and merge review.
 
-The Module 13A **20-Agent Bonfire** must not accidentally cash this thread early. Keep the Bonfire workers read-only, serialised, or on separate output paths if necessary. Its lesson is economics/context transport; the shared-mutable-state collision belongs to the later concurrency module.
+The Module 14A **20-Agent Bonfire** must not accidentally cash this thread early. Keep the Bonfire workers read-only, serialised, or on separate output paths if necessary. Its lesson is economics/context transport; the shared-mutable-state collision belongs to the later concurrency module.
 
 ## Context is finite and selective
 
@@ -393,7 +393,7 @@ Earn:
 
 > **Many locally rational context loads can still form a globally inefficient system.**
 
-This should cash into Module 14 selective provisioning/context.
+This should cash into Module 15 selective provisioning/context.
 
 ## The system can know more than the orchestrator has loaded
 
@@ -603,11 +603,11 @@ Then earn:
 
 Do not teach branching mechanics as ceremony before this problem appears.
 
-## Module 9 is a synthesis checkpoint, not graduation
+## Module 10 is a synthesis checkpoint, not graduation
 
 The current `build a real agentic project` material should not imply that the curriculum is over once the learner can establish a real project home, tools, instructions, and a first skill.
 
-By Module 9, project instructions are no longer a reveal: Lab 5 already exposed and manipulated that layer. The new step is ownership in a real project and deliberate delegation of instruction maintenance where useful.
+By Module 10, project instructions are no longer a reveal: Lab 5 already exposed and manipulated that layer. The new step is ownership in a real project and deliberate delegation of instruction maintenance where useful.
 
 Its mature role is a synthesis checkpoint:
 

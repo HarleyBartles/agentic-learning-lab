@@ -23,7 +23,7 @@ Some setup may be performed in advance by the facilitator so early labs can teac
 
 ## Current labs
 
-Labs 1–6 are mature and ready to run.
+Labs 1–7 are mature and ready to run.
 
 - `01-chatbot-to-worker/` — compare ordinary cloud conversations, an on-disk worker, and a persistent cloud workspace to expose how environment changes context and artifact transport.
 - `02-give-the-cloud-agent-the-project/` — examine how project access depends on state, representation, scope, and allowed operations.
@@ -31,6 +31,7 @@ Labs 1–6 are mature and ready to run.
 - `04-repositories-save-points-and-safe-breakage/` — a theatre-production fixture that reveals working state versus recorded state, diffs and restore, commit versus push, unpublished versus published recovery, historical recovery, and the repository boundary around external side effects.
 - `05-model-harness-context-tools-and-behaviour/` — one evolving project where the learner changes standing instructions, available evidence, and verification capability, then diagnoses which system layer produced observed agent behaviour.
 - `06-what-does-the-model-know/` — a closed-book/open-book experiment where the learner predicts retained model knowledge, probes its epistemic boundary, restores retrieval, and compares remembered knowledge with evidence-backed judgment before asking why software engineering appears unusually deep.
+- `07-tools-operating-knowledge-and-domain-provisioning/` — three before/after experiments that move domain judgment from facilitator-grounded software engineering, through shared non-authoritative provision from external expertise, to a learner-grounded expert domain while keeping final verification with the human.
 
 ## Safety
 
