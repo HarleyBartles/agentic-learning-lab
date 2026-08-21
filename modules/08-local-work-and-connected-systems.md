@@ -4,13 +4,13 @@ Approximate duration: 1 hour.
 
 ## Core idea
 
-Lab 5 decomposes the system around a model. Module 6 then asks what the model already knows and what changes when external evidence is removed or restored. Module 7 turns that into practical domain provisioning across software engineering, novel writing, and technical drawing, transferring domain authority from facilitator to shared proficiency to learner.
+Lab 5 decomposes the system around a model. Lab 6 then asks what the model already knows and what changes when external evidence is removed or restored. Lab 7 turns that into practical domain provisioning across three authority arrangements: facilitator-grounded software engineering, a shared non-authoritative domain with imported expertise, and a learner-grounded expert domain.
 
-This module should begin immediately after that three-domain progression and briefly let the learner name the assembled thing before asking where it should operate.
+This module should begin immediately after that three-phase progression and briefly let the learner name the assembled thing before asking where it should operate.
 
 A useful opening question is:
 
-> In Module 7 you took models that already knew some things, gave them suitable capabilities, supplied operating/domain knowledge that could not safely be assumed, and added ways to judge the work. What exactly did you create?
+> In Lab 7 you took models that already knew some things, gave them suitable capabilities, supplied operating/domain knowledge that could not safely be assumed, and added ways to judge the work. What exactly did you create?
 
 At this stage, it is fair and useful for the learner to answer:
 
@@ -83,7 +83,7 @@ The learning-lab repository itself is useful evidence: substantial curriculum de
 
 Ask:
 
-> Across the Module 7 exercises you combined model knowledge, tools, instructions, references, domain provision and quality checks. What exactly did you just create?
+> Across the Lab 7 exercises you combined model knowledge, tools, instructions, references, domain provision and quality checks. What exactly did you just create?
 
 Let the learner reason toward `an Agent` or `a worker for this job`.
 
