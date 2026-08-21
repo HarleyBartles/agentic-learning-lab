@@ -106,7 +106,7 @@ The numbering below is the current planning order, not a promise that every modu
 4. [Repositories, save points, and safe breakage](labs/04-repositories-save-points-and-safe-breakage/)
 5. [Model, harness, context, tools, and behaviour](labs/05-model-harness-context-tools-and-behaviour/)
 6. [What does the model know?](labs/06-what-does-the-model-know/)
-7. Tools, operating knowledge, and domain provisioning
+7. [Tools, operating knowledge, and domain provisioning](labs/07-tools-operating-knowledge-and-domain-provisioning/)
 8. What did we just create? Local work and connected systems
 9. Source of truth and verification
 10. Build a real agentic project
@@ -126,9 +126,9 @@ Lab 3 stops treating cloud versus local as the organizing question and focuses o
 
 Lab 4 makes the source-control machinery visible after the learner has already benefited from it: working state, recorded history, diffs, commit versus push, historical recovery, and the boundary where Git can no longer undo external consequences.
 
-Labs 1–6 are mature and ready to run.
+Labs 1–7 are mature and ready to run.
 
-The middle curriculum deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Lab 6 then deliberately withholds supplied/retrieved knowledge to expose what the model still brings from training, where its retained grounds become uncertain, and how retrieval changes the evidential basis without becoming an oracle. Lab 7 turns from observing model knowledge to engineering domain provision through three real authority configurations: facilitator expert, shared proficiency, and learner expert. Module 8 then asks what kind of local/connected agent environment that work has created.
+The middle curriculum deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Lab 6 then deliberately withholds supplied/retrieved knowledge to expose what the model still brings from training, where its retained grounds become uncertain, and how retrieval changes the evidential basis without becoming an oracle. Lab 7 turns from observing model knowledge to engineering domain provision through three real authority configurations: facilitator-grounded software engineering, shared non-authoritative provision from external expertise, and a learner-grounded expert domain. Module 8 then asks what kind of local/connected agent environment that work has created.
 
 Modules 11–14 progressively turn a competent worker into an engineered agent system. Module 11 makes agent self-introspection, behavioural prediction, local self-review, and test-first probes explicit as cheap local primitives. Module 12 composes those primitives into autonomous human-in-the-loop workflows, loops, gates, stopping conditions, and legal routes. Module 13 then puts pressure on the `one worker does every stage` model and introduces specialist profiles, delegation, and orchestrator tradeoffs. Module 14 immediately pressure-tests the portability of that specialist abstraction by comparing harness-specific worker contracts, effective runtime configuration, current model/reasoning control surfaces, economics, and observability.
 
