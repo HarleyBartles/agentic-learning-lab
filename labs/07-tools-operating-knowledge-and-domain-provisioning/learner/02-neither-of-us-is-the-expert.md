@@ -40,7 +40,7 @@ The important fact is:
 
 > **Neither of us wrote the expertise.**
 
-Someone did not need to become the original domain expert before making that knowledge useful to an agent. The expertise was sourced, operationalised into reusable agent guidance, checked against its source, and provisioned to the worker.
+The skill author did not need to become the original domain expert before making that knowledge useful to an agent. They sourced the expertise, operationalised it into reusable agent guidance, checked enough of the source to verify that the transformation was faithful enough to use, and provisioned it to the worker.
 
 Ask the agent to revise the baseline or perform a closely comparable task with that expertise available.
 
