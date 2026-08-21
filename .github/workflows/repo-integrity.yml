@@ -1,0 +1,28 @@
+name: Repository integrity
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  repo-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Prove checker behavior
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Check real repository
+        run: python tools/repo_integrity.py .
