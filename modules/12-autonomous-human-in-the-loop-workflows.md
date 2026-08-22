@@ -214,6 +214,78 @@ This is a stronger version of the earlier rule:
 
 > Things you repeatedly tell the agent should eventually stop being things you repeatedly tell the agent.
 
+## Cash the Lab 8 lifecycle cheque — the generator exists, so why did the mesh still go stale?
+
+Bring back the learner's Lab 8 project state after enough intervening work for the generator to feel like an established capability rather than today's new trick.
+
+The setup should deliberately allow this natural failure:
+
+```text
+mesh generator exists
++
+worker can run it
++
+project structure changes
++
+human does not explicitly remind the worker to regenerate
+=
+mesh goes stale again
+```
+
+Do not begin by saying `today we are learning Git hooks`.
+
+Let the learner notice the failure and ask something close to:
+
+> I put a mesh generator in. Why did the index still go stale?
+
+Then ask what instruction the human keeps having to repeat:
+
+> Run the mesh generator before you commit the work.
+
+That should trigger the earlier curriculum rule:
+
+> **Things you keep telling the agent need to become things you stop telling the agent.**
+
+Now distinguish three layers:
+
+```text
+capability
+can the worker regenerate the mesh?
+
+operating knowledge / workflow
+knows when regeneration belongs in normal work
+
+lifecycle enforcement
+makes the required check or action occur at the boundary where freshness matters
+```
+
+This is the right place to introduce hooks as one concrete lifecycle mechanism because the learner has earned the need.
+
+A pre-commit hook can now be understood as:
+
+```text
+commit is about to become durable history
+        ↓
+run the known freshness policy
+        ↓
+current -> transition allowed
+stale   -> repair or block according to project policy
+```
+
+Do not teach `pre-commit` as the principle. The principle is:
+
+> **When a repeated instruction belongs at a predictable lifecycle transition, encode the behaviour at that transition instead of spending human attention on reminders.**
+
+Compare policies only after the learner understands the boundary:
+
+- check-and-block when explicit repair/review is the desired safety posture;
+- deterministic apply-and-stage when the generated surface is tightly owned, reproducible, and safe to update automatically;
+- CI or another shared gate when a local hook alone is not a sufficiently broad guarantee.
+
+Keep Module 9's verification distinction intact: a verifier can detect stale state without silently repairing it; a workflow may separately decide whether the lifecycle boundary blocks or invokes an explicit repair route.
+
+This callback is deliberately broader than index meshes. Ask the learner what other phrases they keep repeating to the worker at predictable stages. Those are candidates for operating knowledge, workflow transitions, hooks, checks, or other managed automation.
+
 ## Continue the workflow — specification, planning, execution, review
 
 Do not stop after the clarification demonstration.

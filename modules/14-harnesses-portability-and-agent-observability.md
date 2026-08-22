@@ -309,6 +309,85 @@ Use:
 
 Do not judge the port solely by whether the final task succeeded. Verify the effective worker and operating contract.
 
+## Cash the Lab 8 CLI breadcrumb — why managed CLIs are ambrosia for agents
+
+Lab 8 deliberately supplied a mesh generator with a decent command-line interface without teaching the interface as the lesson. By now the learner has enough agent-system context to ask why that shape was so useful.
+
+A shell-capable worker can often interrogate and use a CLI directly across harnesses even when the surrounding agent products expose very different native tool schemas.
+
+That makes a well-designed CLI a useful portability surface.
+
+Start with the non-negotiable discoverability rule:
+
+> **Every CLI should ship a useful `--help` flag.**
+
+For a human, that is basic usability. For an agent, it is runtime discoverability: the worker can ask the tool what it supports instead of relying on stale prompt knowledge or guessing flags.
+
+Use the Lab 8 generator as a callback and generalise the contract:
+
+```text
+--help
+self-describe the interface
+
+--check / --dry-run / status
+inspect or predict without mutation
+
+--apply
+make mutation explicit
+
+exit codes
+machine-readable success / failure signal
+
+stdout / stderr
+useful operational evidence and diagnostics
+
+machine-readable output
+when another tool/agent needs stable structured consumption
+```
+
+Add the behavioural properties where appropriate:
+
+- deterministic output for the same represented state;
+- idempotent mutation where repeating the operation should be safe;
+- bounded scope rather than surprising broad mutation;
+- explicit ownership of generated surfaces;
+- stable names/semantics where possible;
+- useful failure messages that tell the caller what state blocked progress.
+
+The durable idea is not `everything should be a CLI`.
+
+It is:
+
+> **Agent-facing tools should be discoverable, inspectable, explicit about mutation, and machine-verifiable.**
+
+And:
+
+> **A good CLI can act as a portable tool contract beneath several different agent harnesses.**
+
+Contrast this with a harness-native tool whose exact schema may only exist in one runtime. The native tool may be excellent, but its invocation contract is part of that harness adapter.
+
+A project-owned CLI can sometimes preserve the operational concept:
+
+```text
+same project tool
+        ↓
+Codex shell worker
+Devin shell worker
+CI runner
+human terminal
+other automation
+```
+
+while each harness still differs in how it grants shell access, permissions, context, approvals, and observability.
+
+Do not turn the module into shell programming. The learner should evaluate interface contracts, not implement command parsers manually.
+
+Useful question:
+
+> **If a fresh capable worker arrived with shell access but no remembered documentation, could it discover what this tool does, inspect safely, perform the intended action deliberately, and tell whether it succeeded?**
+
+That is an excellent agent-tool usability test.
+
 ## Harness observability — use the telemetry you have
 
 Different harnesses expose different amounts and forms of agent activity.
@@ -476,6 +555,10 @@ Keep one sequencing boundary clear: the Bonfire is about **resource economics, w
 
 > **A system can be behaviourally correct and operationally wrong.**
 
+> **Agent-facing tools should be discoverable, inspectable, explicit about mutation, and machine-verifiable.**
+
+> **A good CLI can act as a portable tool contract beneath several different agent harnesses.**
+
 > **Learn today's control surfaces seriously, but remember the underlying quality, risk, capability, latency, and cost decisions they represent.**
 
 > **Use visible activity as telemetry; scan for trajectory, churn, loops, and drift.**
@@ -504,12 +587,15 @@ If the products have converged since this module was written, teach that converg
 
 Do not preserve an obsolete discrepancy just because the lesson originally used it.
 
+Do not fossilise one CLI implementation either. The durable contract is discoverability, safe inspection, explicit mutation, machine-verifiable outcomes, bounded scope, and stable enough semantics for workers and automation to rely on.
+
 ## Do not teach
 
 Do not turn this module into:
 
 - a permanent Codex-versus-Devin feature matrix;
 - memorising tool schemas;
+- shell programming or CLI parser implementation;
 - product tribalism or `which harness is best`;
 - a claim that visible activity is a complete internal thought transcript;
 - mandatory use of the cheapest possible model;
@@ -518,7 +604,7 @@ Do not turn this module into:
 - a universal portability standard that does not yet exist;
 - concurrent shared-workspace isolation mechanics that belong in Module 17.
 
-The learner should leave able to separate portable agent intent from harness-specific adapters, verify the effective runtime worker after dispatch, reason about model/effort economics, use available observability while work is in flight, and expect the interfaces to evolve.
+The learner should leave able to separate portable agent intent from harness-specific adapters, verify the effective runtime worker after dispatch, reason about model/effort economics, recognize why well-designed project-owned tools can travel beneath different harnesses, use available observability while work is in flight, and expect the interfaces to evolve.
 
 End with the explicit reminder:
 
