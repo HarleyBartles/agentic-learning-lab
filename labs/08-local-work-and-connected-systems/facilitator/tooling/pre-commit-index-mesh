@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+ROOT="labs/08-local-work-and-connected-systems/working/environment"
+GENERATOR="$ROOT/tools/generate_index_mesh.py"
+
+if [ ! -f "$GENERATOR" ]; then
+  echo "index mesh generator not installed at $GENERATOR" >&2
+  exit 1
+fi
+
+python "$GENERATOR" "$ROOT"
+git add "$ROOT"/**/INDEX.md "$ROOT"/INDEX.md 2>/dev/null || true
