@@ -2,7 +2,15 @@
 
 A conversational, practical learning environment for understanding agentic AI by using it.
 
-This is not a formal course and the learner is not expected to become a programmer. The aim is to build useful mental models through discussion, examples, experiments, mistakes, recovery, and eventually a real project of the learner's own.
+The curriculum is organized as three progressive courses. No coding knowledge is assumed and no coding is required. The aim is to build useful mental models through discussion, examples, experiments, mistakes, recovery, and eventually a real project of the learner's own.
+
+The three-course structure is:
+
+1. **Agentic Engineering 101: Zero to Hero** — Labs 1–10. Learn to direct and understand agents competently, ending with a real agentic project.
+2. **Advanced Agentic Engineering: Mastering Agents** — Modules/Labs 11–15, including 14A. Learn to design agent behaviour: workflow, context, delegation, verification, evaluation, and autonomy.
+3. **Beyond the Agent: Engineering Agent Systems** — Modules/Labs 16–18. Learn to design the wider system: trust boundaries, specialist coordination, concurrent work, isolation, integration, provenance, and operational economics.
+
+Each course should form a coherent stopping point. In particular, Course 1 should leave the learner with a sound, self-contained foundation for competent agentic engineering rather than a known stale misconception that only a later course repairs.
 
 ## Learning philosophy
 
@@ -21,6 +29,7 @@ The lab is built around a few ideas:
 - Prefer evidence of completed work over confident agent claims.
 - Teach the learner to direct, inspect, verify, question, and iteratively steer agent work rather than becoming the agent's manual implementation layer.
 - Give the learner useful interim mental models, then deliberately break and refine them when later examples expose their limits.
+- Do not knowingly carry a materially false mental model across a course boundary.
 - Teach agents how work moves through a lifecycle, not only how to perform isolated tasks.
 - Treat delegation to specialist agents as a design choice rather than an automatic sign of maturity.
 - Treat harness interfaces as implementation contracts rather than universal agent standards; verify the effective worker instead of assuming the requested profile was honoured.
@@ -98,7 +107,9 @@ For Lab 1, learner cards should be revealed one at a time. The local Codex worke
 
 ## Curriculum
 
-The numbering below is the current planning order, not a promise that every module will keep this exact position. Conceptual dependencies matter more than fixed numbering while later labs are still being designed.
+The numbering below is the current planning order. The three course boundaries are deliberate; individual later module details may still evolve while drafts become mature labs.
+
+### Course 1 — Agentic Engineering 101: Zero to Hero
 
 1. [From chatbot to worker](labs/01-chatbot-to-worker/)
 2. [Give the cloud agent the project](labs/02-give-the-cloud-agent-the-project/)
@@ -110,12 +121,20 @@ The numbering below is the current planning order, not a promise that every modu
 8. What did we just create? Local work and connected systems
 9. Source of truth and verification
 10. Build a real agentic project
+
+Labs 1–7 are mature and ready to run. Labs 8–10 complete Course 1; Lab 10 is the synthesis project and course boundary.
+
+### Course 2 — Advanced Agentic Engineering: Mastering Agents
+
 11. Agent self-introspection and local review
 12. Autonomous human-in-the-loop workflows
 13. Specialist sub-agents and orchestration
 14. Harnesses, portability, and agent observability
 14A. The 20-Agent Bonfire and context transport
 15. Selective provisioning, context, and evaluation
+
+### Course 3 — Beyond the Agent: Engineering Agent Systems
+
 16. Trust boundaries and connected autonomy
 17. Concurrent agents and isolation
 18. Epilogue: show how this was built
@@ -126,25 +145,15 @@ Lab 3 stops treating cloud versus local as the organizing question and focuses o
 
 Lab 4 makes the source-control machinery visible after the learner has already benefited from it: working state, recorded history, diffs, commit versus push, historical recovery, and the boundary where Git can no longer undo external consequences.
 
-Labs 1–7 are mature and ready to run.
+The middle of Course 1 deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Lab 6 then deliberately withholds supplied/retrieved knowledge to expose what the model still brings from training, where its retained grounds become uncertain, and how retrieval changes the evidential basis without becoming an oracle. Lab 7 turns from observing model knowledge to engineering domain provision through three real authority configurations: facilitator-grounded software engineering, shared non-authoritative provision from external expertise, and a learner-grounded expert domain. Module 8 then asks how that worker perceives and navigates its environment and connected systems. Module 9 makes authority and verification explicit. Module 10 turns the accumulated Course 1 understanding into a learner-owned real project.
 
-The middle curriculum deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Lab 6 then deliberately withholds supplied/retrieved knowledge to expose what the model still brings from training, where its retained grounds become uncertain, and how retrieval changes the evidential basis without becoming an oracle. Lab 7 turns from observing model knowledge to engineering domain provision through three real authority configurations: facilitator-grounded software engineering, shared non-authoritative provision from external expertise, and a learner-grounded expert domain. Module 8 then asks what kind of local/connected agent environment that work has created.
+Course 2 progressively turns competent agent use into deliberate engineering of agent behaviour. Module 11 makes agent self-introspection, behavioural prediction, local self-review, and test-first probes explicit as cheap local primitives. Module 12 composes those primitives into autonomous human-in-the-loop workflows, loops, gates, stopping conditions, and legal routes. Module 13 then puts pressure on the `one worker does every stage` model and introduces specialist profiles, delegation, and orchestrator trade-offs. Module 14 pressure-tests the portability of that specialist abstraction by comparing harness-specific worker contracts, effective runtime configuration, current model/reasoning control surfaces, economics, and observability. Module 14A stress-tests context transport and orchestration through **The 20-Agent Bonfire** without turning the exercise into the later concurrency-isolation lesson. Module 15 breaks the accumulation model of provisioning and introduces selective scope, finite context, context transport/materialisation, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design.
 
-Modules 11–14 progressively turn a competent worker into an engineered agent system. Module 11 makes agent self-introspection, behavioural prediction, local self-review, and test-first probes explicit as cheap local primitives. Module 12 composes those primitives into autonomous human-in-the-loop workflows, loops, gates, stopping conditions, and legal routes. Module 13 then puts pressure on the `one worker does every stage` model and introduces specialist profiles, delegation, and orchestrator tradeoffs. Module 14 immediately pressure-tests the portability of that specialist abstraction by comparing harness-specific worker contracts, effective runtime configuration, current model/reasoning control surfaces, economics, and observability.
-
-Module 14A stress-tests context transport and orchestration through **The 20-Agent Bonfire** without turning the exercise into the later concurrency-isolation lesson.
-
-Module 15 deliberately breaks another useful but incomplete model: that good provisioning means continually adding more useful guidance and capability. It uses agent overwhelm to teach selective scope, finite context, context transport/materialisation, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design without requiring code.
-
-Module 16 connects Lab 3's authority model to connected/autonomous systems: external content is evidence rather than operating authority, capability should follow responsibility, and autonomy needs explicit stopping conditions and provenance.
-
-Module 17 finally breaks Module 4's intentionally simple `one worker, one mutable workspace` model. Concurrent specialists earn isolated workspaces, deliberate reconciliation, branch/PR acceptance boundaries, and verification of the integrated state rather than a premature Git branching lesson.
-
-Module 10 should be treated as a synthesis checkpoint rather than graduation. Once the learner can create a real agentic project, that real project can become one of the surfaces used to learn the later operating patterns.
+Course 3 widens the unit of reasoning beyond an individual worker or workflow. Module 16 connects authority to connected/autonomous systems and trust boundaries. Module 17 introduces concurrent mutable work, isolation, deliberate reconciliation, and integrated-state verification. Module 18 uses the curriculum repository itself as a final system-level investigation into provenance, history, retrieval, compression, and what available evidence can actually establish.
 
 Existing files in `modules/` are working facilitator drafts for later curriculum material that has not yet been promoted into a mature lab.
 
-See also [Core principles](docs/core-principles.md), [Learning methodology and origin](docs/learning-methodology.md), and [Curriculum threads, breadcrumbs, and future cash-ins](docs/curriculum-threads.md).
+See also [Curriculum shape](docs/curriculum-shape.md), [Core principles](docs/core-principles.md), [Learning methodology and origin](docs/learning-methodology.md), and [Curriculum threads, breadcrumbs, and future cash-ins](docs/curriculum-threads.md).
 
 ## Repository areas
 
@@ -158,9 +167,9 @@ There is deliberately no separate root-level `guided/`, `projects/`, or stable f
 
 The broad conceptual progression currently includes:
 
-**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> closed-book model knowledge and retrieval-backed evidence -> domain provisioning under changing human authority -> composed local/connected systems -> authority and verification -> real project -> self-introspection and local review -> autonomous human-in-the-loop workflow -> specialist delegation -> harness portability/effective-worker verification/observability -> context-transport stress -> selective context transport/provisioning/retrieval and evaluation -> trust boundaries -> concurrent isolation/branch-PR integration -> retrospective on how the whole framework was built**
+**chat without project access -> on-disk workspace -> connected cloud access -> persistent project state -> recoverable history -> model/harness/context/tools -> closed-book model knowledge and retrieval-backed evidence -> domain provisioning under changing human authority -> agent environment/navigation/access/discovery -> authority and verification -> learner-owned real project -> self-introspection and local review -> autonomous human-in-the-loop workflow -> specialist delegation -> harness portability/effective-worker verification/observability -> context-transport stress -> selective context transport/provisioning/retrieval and evaluation -> trust boundaries -> concurrent isolation/branch-PR integration -> retrospective on how the whole framework was built**
 
-The exact module sequence can move while labs are expanded and tested. Preserve the causal links and breadcrumbs rather than treating today's numbering as immutable.
+The exact detail inside later modules can move while labs are expanded and tested. Preserve the three course boundaries and the causal links between concepts.
 
 ## Important safety model
 
