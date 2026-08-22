@@ -74,6 +74,22 @@ class MeshToolingTests(unittest.TestCase):
         root_index = (root / "environment" / "INDEX.md").read_text(encoding="utf-8")
         self.assertNotIn("local-draft.txt", root_index)
 
+    def test_apply_removes_obsolete_tracked_generated_index(self) -> None:
+        root = self.make_repo()
+        initial = self.run_tool(root, "--apply", "--scope", "environment")
+        self.assertEqual(initial.returncode, 0, initial.stderr)
+        subprocess.run(["git", "add", "environment"], cwd=root, check=True)
+        subprocess.run(["git", "commit", "-qm", "generated mesh"], cwd=root, check=True)
+
+        subprocess.run(["git", "rm", "environment/forgotten/answer.md"], cwd=root, check=True)
+        stale_check = self.run_tool(root, "--check", "--scope", "environment")
+        self.assertNotEqual(stale_check.returncode, 0)
+        self.assertIn("environment/forgotten/INDEX.md", stale_check.stdout)
+
+        repaired = self.run_tool(root, "--apply", "--scope", "environment")
+        self.assertEqual(repaired.returncode, 0, repaired.stderr)
+        self.assertFalse((root / "environment" / "forgotten" / "INDEX.md").exists())
+
 
 if __name__ == "__main__":
     unittest.main()
