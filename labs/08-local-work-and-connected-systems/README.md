@@ -2,7 +2,7 @@
 
 Status: **Mature and ready to run.**
 
-Approximate duration: 75–90 minutes.
+Approximate duration: 60–75 minutes.
 
 No coding knowledge is assumed. No coding is required.
 
@@ -34,15 +34,21 @@ The lab earns:
 
 It then asks a second-order engineering question:
 
-> **If agents are going to rely on a navigation mesh, how do we keep it trustworthy?**
+> **If agents are going to rely on a navigation mesh, how do we keep the mesh itself trustworthy?**
 
-That earns:
+The Course 1 answer is intentionally bounded:
 
 > **Do not hand-maintain derived navigation when the project can regenerate it deterministically.**
 
-> **Inspect by default. Mutate explicitly.**
+Give the worker a tool that can rebuild the whole mesh from the project state it represents.
 
-> **If freshness matters at a lifecycle boundary, encode the check there instead of relying on memory.**
+That solves `can the mesh be reproduced correctly?`
+
+It does **not** yet solve:
+
+> **How do we make sure the worker actually runs that tool whenever the mesh needs refreshing?**
+
+Keep that cheque open. A later workflow lesson should let the learner experience the failure before cashing it.
 
 ## Three different project surfaces
 
@@ -71,8 +77,6 @@ labs/08-local-work-and-connected-systems/
                 README.md
                 generate_index_mesh.py
                 test_generate_index_mesh.py
-                pre-commit-check
-                pre-commit-apply
     learner/
         01-name-the-worker.md
         02-follow-the-mesh.md
@@ -185,54 +189,48 @@ Now ask:
 
 > **If this navigation structure can drift, why should an agent trust it tomorrow?**
 
-Reveal the facilitator-supplied generator.
+Reject `remember to edit the indexes` as the engineering solution.
 
-The generator has two explicit modes:
+Reveal the facilitator-supplied generator and give the worker access to it.
 
-```text
---check
-non-mutating inspection
-report whether generated indexes match tracked/staged project state
+Ask the worker to use the tool to regenerate the **entire** navigation mesh from the Git project state it is designed to represent.
 
---apply
-explicit mutation
-regenerate the owned INDEX.md files
-```
+Inspect the result with the learner:
 
-Run `--check` first and observe stale state without mutation. Then run `--apply`, inspect the regenerated mesh, and run `--check` again.
+- `forgotten/` should now appear in the root mesh;
+- a generated `forgotten/INDEX.md` should exist;
+- running regeneration again against unchanged project state should not keep changing the mesh;
+- unrelated untracked local drafts should not become part of generated project navigation.
 
-The supplied tests establish the intended tool contract:
-
-- stale state is detected;
-- regeneration discovers tracked structure omitted by the hand-authored mesh;
-- repeated `--apply` is byte-idempotent;
-- untracked local drafts do not leak into the generated commit mesh.
-
-Name the properties:
+Name the two properties that make the tool suitable for this derived state:
 
 ```text
 deterministic
-same tracked/staged state -> same output
+same represented project state -> same generated mesh
 
 idempotent
-repeat --apply -> no accumulating change
+regenerate again -> no accumulating change
 ```
 
-Then ask who remembers to run the check before every commit.
+The supplied CLI deliberately includes discoverability and safe operation affordances such as `--help`, a non-mutating `--check`, and explicit `--apply`. They are good tool design, but do not turn this exercise into a CLI-semantics lesson. Later Course 2 material can cash why interfaces like these are particularly useful to agents.
 
-Introduce `pre-commit` only as a lifecycle mechanism and compare two policies:
+Earn:
 
-```text
-check-and-block
-pre-commit -> --check -> stale? block -> explicit --apply -> inspect/stage -> retry
+> **If a navigation surface is derived from project state, regenerate it from that state rather than hand-editing it.**
 
-apply-and-stage
-pre-commit -> --apply -> stage only generator-owned INDEX.md paths -> continue
-```
+Then stop one step short of lifecycle automation.
 
-Neither is universally correct. The important engineering move is to choose the policy deliberately.
+Ask the learner only this:
 
-A local hook only governs commits made through that configured checkout. Shared provisioning or CI can repeat the same non-mutating check when a project needs a wider guarantee.
+> **We now have a reliable generator. Does the existence of that tool guarantee somebody will run it after every relevant project change?**
+
+Do not solve that here.
+
+The future failure should be allowed to happen naturally: the tool exists, the worker can run it, but the mesh still goes stale when the human forgets to remind the worker.
+
+That later cashes a wider curriculum rule:
+
+> **Things you keep telling the agent need to become things you stop telling the agent.**
 
 ## Exercise 5 — Cross the local boundary
 
@@ -268,7 +266,7 @@ Then:
 
 Stop there.
 
-Lab 8 owns observation, navigation, discovery, and maintenance of one navigational representation. Lab 9 owns authority and verification.
+Lab 8 owns observation, navigation, discovery, and making one navigational representation reproducible. Lab 9 owns authority and verification.
 
 ## What this lab is not
 
@@ -278,8 +276,10 @@ Do not teach generated indexes as authoritative about more than the source state
 
 Do not teach `local = agent`, `cloud = not agent`, `connector = retrieval`, or `filesystem = exploration`.
 
-Do not require the learner to write or debug the supplied scripts.
+Do not require the learner to write or debug the supplied generator.
 
-Do not turn hooks into a Git-internals or CI lecture.
+Do not teach hooks, CI gates, or automatic lifecycle enforcement here. The unresolved need to stop reminding the worker is a deliberate future teaching surface.
+
+Do not turn the generator into a CLI-design lecture. Preserve the good interface and cash its significance later.
 
 Do not solve the Lab 9 source-of-truth problem early.
