@@ -8,7 +8,7 @@ That creates a more important engineering question:
 
 A tempting answer is:
 
-> Remember to update `INDEX.md` whenever the filesystem changes.
+> Remember to update `INDEX.md` whenever project structure changes.
 
 That is a human habit, not a reliable system.
 
@@ -20,7 +20,9 @@ Copy the supplied generator into:
 
 `working/environment/tools/generate_index_mesh.py`
 
-Run it against `working/environment/`.
+Stage it if it is meant to enter your next commit, then run it against `working/environment/`.
+
+The supplied generator deliberately describes Git's staged/tracked project state rather than every unstaged file that happens to be lying around locally.
 
 Inspect the changed `INDEX.md` files.
 
@@ -28,13 +30,13 @@ Ask:
 
 - Did the generated root mesh discover `forgotten/`?
 - Did it create a local index inside that directory?
-- Does running the generator again without changing the filesystem produce the same index content?
+- Does running the generator again without changing staged/tracked structure produce the same index content?
 
 The intended properties are:
 
 ```text
 deterministic
-same project state -> same generated mesh
+same staged/tracked project state -> same generated mesh
 
 idempotent
 running it again does not keep changing the result
@@ -62,20 +64,32 @@ Its job is deliberately small:
 
 ```text
 before commit
-→ regenerate the index mesh
-→ stage the generated INDEX.md files
+→ regenerate the index mesh from staged/tracked Git state
+→ stage only the generated INDEX.md files
 → continue the commit
 ```
 
-Make one harmless filesystem change inside the exercise environment, then commit it.
+Make and stage one harmless structural change inside the exercise environment, then commit it.
 
 Inspect the commit or staged diff.
 
 Ask:
 
-- Did the relevant index change travel with the filesystem change?
+- Did the relevant index change travel with the structural change?
 - Did the hook stage unrelated project work?
 - Would another person checking out this commit receive the matching navigation mesh?
+
+## What does the hook actually guarantee?
+
+A normal `.git/hooks/pre-commit` hook belongs to this local checkout.
+
+So the guarantee is scoped:
+
+> **Commits created through this configured checkout run the freshness step before they are created.**
+
+That does not magically force another clone, another contributor, or a remote GitHub mutation to use the same hook.
+
+A larger project can provision shared hook tooling or add remote checks when it needs a repository-wide guarantee. You do not need that machinery for this exercise.
 
 ## The principle
 
@@ -89,8 +103,8 @@ Earn:
 
 > **If freshness matters at commit time, encode that expectation into the commit path instead of relying on memory.**
 
-The mesh is now more trustworthy because its contents are reproducible from the filesystem and commits automatically carry the corresponding freshness update.
+The mesh is now more trustworthy because its contents are reproducible from the staged/tracked state it is designed to represent, and commits made through this configured checkout automatically carry the corresponding freshness update.
 
-That does not make the index authoritative about every possible truth in the project. It makes the index a more reliable representation of the filesystem structure it is designed to describe.
+That does not make the index authoritative about every possible truth in the project. It makes the index a more reliable representation of the project structure it is designed to describe.
 
 Keep that distinction. The next card widens the observation problem beyond the local filesystem entirely.
