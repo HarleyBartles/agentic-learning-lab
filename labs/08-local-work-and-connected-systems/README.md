@@ -20,7 +20,7 @@ Later courses may deepen that model, but Course 1 should not leave the learner c
 
 ## Core lessons
 
-The lab should earn these distinctions through direct observation:
+The lab earns:
 
 > **Access is not context.**
 
@@ -32,13 +32,17 @@ The lab should earn these distinctions through direct observation:
 
 > **When absence matters, understand how the agent looked before trusting the conclusion.**
 
-It then adds one maintenance principle:
+It then asks a second-order engineering question:
+
+> **If agents are going to rely on a navigation mesh, how do we keep it trustworthy?**
+
+That earns:
 
 > **Do not hand-maintain derived navigation when the project can regenerate it deterministically.**
 
-And one lifecycle principle:
+> **Inspect by default. Mutate explicitly.**
 
-> **If freshness matters at commit time, encode that expectation into the commit path instead of relying on memory.**
+> **If freshness matters at a lifecycle boundary, encode the check there instead of relying on memory.**
 
 ## Three different project surfaces
 
@@ -55,8 +59,6 @@ ways to observe accessible state
 
 For the Codex worked example, applicable `AGENTS.md` instructions are supplied by the harness according to scope. `INDEX.md` has no such magic: it is a project convention the worker follows because the project or user tells it to.
 
-The learner should not collapse these into one generic idea of `files the agent can see`.
-
 ## Shape
 
 ```text
@@ -64,11 +66,13 @@ labs/08-local-work-and-connected-systems/
     README.md
     facilitator/
         README.md
-        tooling/
-            README.md
-            generate_index_mesh.py
-            pre-commit-index-mesh
-            test_generate_index_mesh.py
+        assets/
+            mesh-tooling/
+                README.md
+                generate_index_mesh.py
+                test_generate_index_mesh.py
+                pre-commit-check
+                pre-commit-apply
     learner/
         01-name-the-worker.md
         02-follow-the-mesh.md
@@ -93,15 +97,11 @@ labs/08-local-work-and-connected-systems/
 
 Reveal learner cards one at a time.
 
-Use a fresh local Codex session rooted at `working/environment/` for the scoped-instruction and navigation exercises. That location deliberately has both a parent `working/AGENTS.md` and a more-local `environment/AGENTS.md` so the learner can inspect which instruction sources are in force.
+The facilitator assets deliberately stay outside the worker root until Exercise 4. The initial hand-authored mesh must remain incomplete long enough for the learner to experience the blind spot before seeing how generated navigation can prevent that class of drift.
 
-The `forgotten/` folder is deliberately omitted from the initial hand-authored index mesh. Do not reveal that omission before the blind-spot exercise. Likewise, do not copy the facilitator's index generator or hook tooling into the working environment until the learner has experienced the drift problem.
+## Exercise 1 — Name the worker and inspect effective instructions
 
-## Exercise 1 — Name the worker and inspect its effective instructions
-
-Start from Lab 7's unanswered question.
-
-Ask the learner to reconstruct what was assembled:
+Start from Lab 7's unanswered question and reconstruct:
 
 ```text
 model
@@ -115,35 +115,21 @@ model
 + verification/feedback
 ```
 
-Then start a fresh Codex worker in `working/environment/` and ask:
+Start a fresh Codex session in `working/environment/` and ask which project instruction sources are in force.
 
-> **What project instruction sources are currently in force for you, and where did they come from?**
+Open the applicable `AGENTS.md` files with the learner.
 
-Open the corresponding `AGENTS.md` files with the learner.
-
-The point is not to memorize a filename. The learner should see a concrete example of a harness recognising project-scoped instructions and materialising the applicable ones into worker context.
+For Codex, make the product-specific fact explicit but bounded: applicable project instruction files are recognised by the harness and supplied according to scope. Do not teach that every agent harness works this way.
 
 Earn:
 
-> **The environment can contain more than the worker has in context. Harness conventions decide that some project material is supplied automatically.**
+> **A harness can automatically materialise scoped project instructions into worker context.**
 
-Do not teach that every agent harness uses `AGENTS.md` or identical scope rules.
+## Exercise 2 — Follow a project-authored navigation mesh
 
-## Exercise 2 — Follow the navigational mesh
+Open `working/environment/INDEX.md`.
 
-Open `working/environment/INDEX.md` with the learner.
-
-Explain that this repository has chosen a different mechanism for navigation: a project-authored mesh of index files.
-
-Ask the worker:
-
-> **Using only the INDEX.md navigation mesh, tell me what this environment contains and where the documented operating material lives. Do not perform a broad filesystem search.**
-
-The worker should follow the root index into the indexed child areas and build a reasonable map.
-
-The learner should first experience why this is useful: a worker can orient itself without recursively ingesting or scanning everything.
-
-Use the distinction:
+Contrast:
 
 ```text
 AGENTS.md
@@ -153,182 +139,147 @@ INDEX.md
 where should I look next?
 ```
 
-The first is harness-recognised in this worked environment. The second is a project navigation convention.
+Ask the worker to use only reachable `INDEX.md` links to map the environment. The mesh should work well across the surface it actually describes.
 
 ## Exercise 3 — Prove the blind spot
 
-Now ask a question whose answer lives in the deliberately unindexed folder:
+Ask the mesh-only worker for the field-exercise escalation keyword.
 
-> **Using only the INDEX.md navigation mesh, what is the escalation keyword for the field exercise? Do not perform a broad filesystem search.**
+The answer lives in `forgotten/answer.md`, but `forgotten/` is absent from the mesh.
 
-A compliant worker should reach the edge of the declared mesh and report that it cannot establish the answer.
+The worker should be unable to establish the answer through the permitted route.
 
-Do not frame this as stupidity or failure to obey. Under the observation method it was given, the worker has insufficient evidence.
-
-Then change only the observation route:
-
-> **List the contents of `forgotten/`, then read the relevant file and answer the same question.**
+Then ask it directly to list `forgotten/` and read the relevant file.
 
 The learner can now establish:
 
 ```text
 the folder existed
 +
-the worker had filesystem access to it
+the worker had filesystem access
 +
-the worker could list and read it when directly addressed
+the worker could read it when directly addressed
 +
-the index mesh did not lead there
+the mesh did not lead there
 =
 accessible but undiscovered through the chosen route
 ```
 
-Ask:
-
-- Did the worker lack filesystem access?
-- Did it lack the capability to read the file?
-- Was the file absent?
-- Did the index mesh contain a path to it?
-- What exactly did the first `I cannot find it` claim prove?
-
-The conceptual ladder is:
+Use the ladder:
 
 ```text
 thing exists
 !=
 thing is represented in Git
 !=
-thing is represented in the project's navigation scheme
+thing is represented in the navigation mesh
 !=
-thing has entered the worker's current context
+thing is in current model context
 !=
 worker will discover it
 ```
 
-This is not an argument against index meshes. It is a lesson in interpreting evidence produced through a particular observation method.
-
 ## Exercise 4 — Keep the mesh trustworthy
 
-Now ask the engineering question the blind spot creates:
+Now ask:
 
-> **If we are going to use this mesh to navigate the project, how do we keep it trustworthy?**
+> **If this navigation structure can drift, why should an agent trust it tomorrow?**
 
-Reject `remember to update the indexes` as the final design.
+Reveal the facilitator-supplied generator.
 
-At this point the facilitator supplies the prepared tooling.
+The generator has two explicit modes:
 
-Copy `generate_index_mesh.py` into `working/environment/tools/`, stage it if it is to enter the learner's next commit, and run it against the environment.
+```text
+--check
+non-mutating inspection
+report whether generated indexes match tracked/staged project state
 
-The generator derives navigation from Git's staged/tracked view rather than from arbitrary unstaged files in the raw working tree. That makes the generated mesh describe the project state that is actually heading toward a commit.
+--apply
+explicit mutation
+regenerate the owned INDEX.md files
+```
 
-Inspect the result:
+Run `--check` first and observe stale state without mutation. Then run `--apply`, inspect the regenerated mesh, and run `--check` again.
 
-- `forgotten/` should now appear in the root mesh;
-- a local `forgotten/INDEX.md` should be generated;
-- running the generator again without changing staged/tracked structure should produce the same index content.
+The supplied tests establish the intended tool contract:
 
-Earn:
+- stale state is detected;
+- regeneration discovers tracked structure omitted by the hand-authored mesh;
+- repeated `--apply` is byte-idempotent;
+- untracked local drafts do not leak into the generated commit mesh.
+
+Name the properties:
 
 ```text
 deterministic
-same staged/tracked project state -> same generated mesh
+same tracked/staged state -> same output
 
 idempotent
-running it again does not keep changing the result
+repeat --apply -> no accumulating change
 ```
 
-Then ask:
+Then ask who remembers to run the check before every commit.
 
-> **Who remembers to run it before every commit?**
-
-Introduce Git hooks lightly. A hook is an action Git runs at a lifecycle point. This lab needs only one example: `pre-commit`.
-
-Install the facilitator-provided hook in the learner fork. Its job is intentionally narrow:
+Introduce `pre-commit` only as a lifecycle mechanism and compare two policies:
 
 ```text
-before commit
-→ regenerate the index mesh from Git's staged/tracked state
-→ stage only the generated INDEX.md files
-→ continue the commit
+check-and-block
+pre-commit -> --check -> stale? block -> explicit --apply -> inspect/stage -> retry
+
+apply-and-stage
+pre-commit -> --apply -> stage only generator-owned INDEX.md paths -> continue
 ```
 
-Make and stage one harmless structural change inside the exercise environment, commit it, and inspect that the relevant index freshness update travelled in the same commit.
+Neither is universally correct. The important engineering move is to choose the policy deliberately.
 
-The lesson is not `always use pre-commit`. The lesson is:
-
-> **When important derived project state must stay synchronized, make the maintenance mechanism reproducible and attach it to the lifecycle point where freshness matters.**
-
-Do not overclaim what this proves. The generated mesh is now a trustworthy representation of the tracked structure it is designed to describe. It is not therefore an authority on every truth that may exist inside or outside the project.
+A local hook only governs commits made through that configured checkout. Shared provisioning or CI can repeat the same non-mutating check when a project needs a wider guarantee.
 
 ## Exercise 5 — Cross the local boundary
 
-Once the learner understands navigation inside an accessible project, widen the environment.
+Once the learner understands observation inside the project, widen the environment.
 
-Use the repository's GitHub state as the worked example.
+Use the repository's GitHub state as the preferred worked example.
 
-Ask the local worker to inspect the repository-integrity workflow and explain what the checked-in files establish about what **should** happen when the workflow runs.
+The local checkout can show what the repository-integrity workflow is configured to do. A GitHub-connected worker can establish what GitHub actually records as having happened remotely.
 
-Then use a GitHub-connected worker to establish a piece of live remote state, preferably:
+Earn:
 
-> **Did the latest repository-integrity workflow run for the relevant remote commit actually complete successfully?**
+> **Local source can describe intended remote behaviour without proving the remote event happened.**
 
-The learner should separate:
+Keep this distinction:
 
-```text
-local source
-what is configured or intended to run
-
-connected remote state
-what GitHub records as actually having happened remotely
-```
-
-If workflow-run access is unavailable, use another harmless remote-state fact such as the current remote branch head, whether a PR exists, or whether a known commit is present remotely.
-
-Do not teach `local = exploration` and `connector = retrieval`. Either access surface can support focused retrieval or broader exploration.
-
-The durable question is:
-
-> **What surface am I observing, through what route, and what does that observation actually establish?**
+> **Retrieval and exploration are strategies. Local and connected are access surfaces.**
 
 ## Handoff to Lab 9
 
-Finish by putting several reachable statements in front of the learner:
+Finish with several reachable statements that can disagree or answer different questions:
 
-- the local working copy can say one thing;
-- the GitHub remote can record another state;
-- a project note can express an intended requirement;
-- a worker can confidently summarize all three.
+- local working state;
+- GitHub remote state;
+- a durable project statement of what should be true.
 
-Then ask:
+Ask:
 
 > **The worker can reach all of these. Which one should it trust?**
 
-And:
+Then:
 
 > **What would actually prove that the required work is correct?**
 
-Do not answer those questions fully here.
+Stop there.
 
-Lab 8 has taught observation, discovery, and maintenance of one navigational representation. Lab 9 owns authority and verification.
+Lab 8 owns observation, navigation, discovery, and maintenance of one navigational representation. Lab 9 owns authority and verification.
 
 ## What this lab is not
 
-Do not turn `AGENTS.md` into an OpenAI-product trivia lecture.
+Do not teach `INDEX.md` as a universal standard.
 
-Do not teach `INDEX.md` as a universal standard or harness feature.
+Do not teach generated indexes as authoritative about more than the source state and transformation they model.
 
-Do not teach generated indexes as inherently complete descriptions of reality. They are reproducible representations of the state they are designed to index.
+Do not teach `local = agent`, `cloud = not agent`, `connector = retrieval`, or `filesystem = exploration`.
 
-Do not turn Git hooks into a deep Git-internals lesson. The learner needs the lifecycle concept, not hook plumbing mastery.
+Do not require the learner to write or debug the supplied scripts.
 
-Do not imply that index meshes should replace broad search, or that broad recursive search should replace deliberate navigation.
+Do not turn hooks into a Git-internals or CI lecture.
 
-Do not confuse an accessible object with an object already in model context.
-
-Do not teach `local = agent` or `cloud = not agent`.
-
-Do not teach connectors as inherently read-only, retrieval-only, or superior to direct project access.
-
-Do not move into specialist sub-agent profiles or orchestration yet.
-
-Do not resolve the final source-of-truth question. The next lab needs that pressure.
+Do not solve the Lab 9 source-of-truth problem early.
