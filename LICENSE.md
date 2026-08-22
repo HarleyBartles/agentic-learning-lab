@@ -23,7 +23,7 @@ A suitable attribution is:
 
 > Agentic Learning Lab by Harley Bartles, licensed under CC BY 4.0. Changes were made where applicable.
 
-Full licence text: [`LICENSES/CC-BY-4.0.txt`](LICENSES/CC-BY-4.0.txt)
+Licence reference and canonical legal-code links: [`LICENSES/CC-BY-4.0.txt`](LICENSES/CC-BY-4.0.txt)
 
 Official licence page: https://creativecommons.org/licenses/by/4.0/
 
