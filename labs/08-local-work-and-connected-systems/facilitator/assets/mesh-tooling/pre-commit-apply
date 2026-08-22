@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+ROOT="labs/08-local-work-and-connected-systems/working/environment"
+GENERATOR="$ROOT/tools/generate_index_mesh.py"
+
+python "$GENERATOR" --apply --scope "$ROOT" | while IFS= read -r path; do
+  git add -- "$path"
+done
