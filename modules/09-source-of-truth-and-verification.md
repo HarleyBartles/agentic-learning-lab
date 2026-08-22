@@ -80,6 +80,57 @@ Search for the old value. Inspect the diff. Look for accidental changes. If some
 
 Then ask whether the agent itself could have performed those checks before declaring success.
 
+## Callback from Lab 8 — verifier versus mutator
+
+Lab 8 introduced a generator because the index mesh was derived state that should be reproducible rather than hand-maintained.
+
+The supplied tool happens to expose two useful operations:
+
+```text
+check
+inspect whether the representation is current
+without changing the project
+
+apply
+change the project to regenerate the representation
+```
+
+Do not turn this into a CLI-design lesson yet. Use it to teach a verification distinction.
+
+Ask:
+
+> If I am trying to establish whether the mesh is current, should my first operation silently repair it?
+
+The answer should be no.
+
+A useful sequence is:
+
+```text
+inspect / check
+        ↓
+state is stale
+        ↓
+make an explicit repair
+        ↓
+inspect / check again
+```
+
+Earn:
+
+> **A verifier should not silently repair the thing it is supposed to verify.**
+
+And:
+
+> **Inspect first. Mutate deliberately. Verify the resulting state.**
+
+This distinction is broader than the index generator. It applies whenever an agent can both inspect and change the same project surface.
+
+Keep one Lab 8 cheque open:
+
+> The generator exists and the worker can use it. What makes sure it gets used at the right point in normal work?
+
+Do not solve that with hooks here. A later workflow module should let the learner experience the repeated-reminder failure and then automate the lifecycle step.
+
 ### 45–55 minutes — Verification depends on the artifact
 
 Compare feedback mechanisms:
@@ -200,7 +251,8 @@ Do not force historical archaeology into the first version of the Module 9 lab i
 - Git history inspection for historical recovery when appropriate;
 - artifact rendering or preview;
 - simple validation scripts;
-- GitHub remote inspection when publication or CI state is part of the claim.
+- GitHub remote inspection when publication or CI state is part of the claim;
+- the Lab 8 mesh generator as a simple `inspect -> mutate -> verify` callback.
 
 ## Discussion prompts
 
@@ -209,6 +261,7 @@ Do not force historical archaeology into the first version of the Module 9 lab i
 - Can the agent perform that verification itself?
 - Is the check independent enough to catch the original failure?
 - What is authoritative when sources disagree?
+- Why should verification and repair be separable operations?
 - Which checks should eventually become automatic?
 - If something is missing now, what evidence would tell us whether it existed in recorded project history?
 
@@ -243,3 +296,5 @@ what evidence establishes that the work satisfies it?
 ## Do not teach yet
 
 Do not build a heavy CI system merely to demonstrate verification. Start with checks a human can understand and inspect. Automation should later encode a verification habit that already makes sense.
+
+Do not cash the Lab 8 lifecycle cheque here. Knowing how to verify or regenerate the mesh is different from making that action part of the worker's normal lifecycle. Preserve that failure for later workflow teaching.
