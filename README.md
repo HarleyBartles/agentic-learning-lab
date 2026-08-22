@@ -59,7 +59,7 @@ local checkout / connectors / agent workspaces
 
 Early synchronization can remain facilitator plumbing. Later modules can deliberately reveal the difference between local working state, the learner's remote fork, and upstream curriculum state.
 
-Lab-scoped `AGENTS.md` files survive the fork. In Labs 1–4 they are facilitator-owned experimental controls: they establish stable agent behaviour and safety boundaries without making instruction architecture the subject of those labs. Lab 5 explicitly reveals this lever: the learner reads the project instructions with the facilitator, hand-edits one bounded standing rule, and starts a fresh agent to observe the resulting behaviour. Later, when the learner creates a real project, they own that instruction surface and can deliberately delegate its maintenance to an agent.
+Lab-scoped `AGENTS.md` files survive the fork. In Labs 1–4 they are facilitator-owned experimental controls: they establish stable agent behaviour and safety boundaries without making instruction architecture the subject of those labs. Lab 5 explicitly reveals this lever: the learner reads the project instructions with the facilitator, hand-edits one bounded standing rule, and starts a fresh agent to observe the resulting behaviour. Lab 8 deepens that mechanism by inspecting scoped effective instructions and contrasting harness-supplied context with project-authored navigation. Later, when the learner creates a real project, they own that instruction surface and can deliberately delegate its maintenance to an agent.
 
 ## Labs
 
@@ -118,11 +118,11 @@ The numbering below is the current planning order. The three course boundaries a
 5. [Model, harness, context, tools, and behaviour](labs/05-model-harness-context-tools-and-behaviour/)
 6. [What does the model know?](labs/06-what-does-the-model-know/)
 7. [Tools, operating knowledge, and domain provisioning](labs/07-tools-operating-knowledge-and-domain-provisioning/)
-8. What did we just create? Local work and connected systems
+8. [What did we just create? Local work and connected systems](labs/08-local-work-and-connected-systems/)
 9. Source of truth and verification
 10. Build a real agentic project
 
-Labs 1–7 are mature and ready to run. Labs 8–10 complete Course 1; Lab 10 is the synthesis project and course boundary.
+Labs 1–8 are mature and ready to run. Labs 9–10 complete Course 1; Lab 10 is the synthesis project and course boundary.
 
 ### Course 2 — Advanced Agentic Engineering: Mastering Agents
 
@@ -145,7 +145,7 @@ Lab 3 stops treating cloud versus local as the organizing question and focuses o
 
 Lab 4 makes the source-control machinery visible after the learner has already benefited from it: working state, recorded history, diffs, commit versus push, historical recovery, and the boundary where Git can no longer undo external consequences.
 
-The middle of Course 1 deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Lab 6 then deliberately withholds supplied/retrieved knowledge to expose what the model still brings from training, where its retained grounds become uncertain, and how retrieval changes the evidential basis without becoming an oracle. Lab 7 turns from observing model knowledge to engineering domain provision through three real authority configurations: facilitator-grounded software engineering, shared non-authoritative provision from external expertise, and a learner-grounded expert domain. Module 8 then asks how that worker perceives and navigates its environment and connected systems. Module 9 makes authority and verification explicit. Module 10 turns the accumulated Course 1 understanding into a learner-owned real project.
+The middle of Course 1 deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Lab 6 then deliberately withholds supplied/retrieved knowledge to expose what the model still brings from training, where its retained grounds become uncertain, and how retrieval changes the evidential basis without becoming an oracle. Lab 7 turns from observing model knowledge to engineering domain provision through three real authority configurations: facilitator-grounded software engineering, shared non-authoritative provision from external expertise, and a learner-grounded expert domain. Lab 8 then asks how that worker perceives and navigates its environment and connected systems. Module 9 makes authority and verification explicit. Module 10 turns the accumulated Course 1 understanding into a learner-owned real project.
 
 Course 2 progressively turns competent agent use into deliberate engineering of agent behaviour. Module 11 makes agent self-introspection, behavioural prediction, local self-review, and test-first probes explicit as cheap local primitives. Module 12 composes those primitives into autonomous human-in-the-loop workflows, loops, gates, stopping conditions, and legal routes. Module 13 then puts pressure on the `one worker does every stage` model and introduces specialist profiles, delegation, and orchestrator trade-offs. Module 14 pressure-tests the portability of that specialist abstraction by comparing harness-specific worker contracts, effective runtime configuration, current model/reasoning control surfaces, economics, and observability. Module 14A stress-tests context transport and orchestration through **The 20-Agent Bonfire** without turning the exercise into the later concurrency-isolation lesson. Module 15 breaks the accumulation model of provisioning and introduces selective scope, finite context, context transport/materialisation, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design.
 
