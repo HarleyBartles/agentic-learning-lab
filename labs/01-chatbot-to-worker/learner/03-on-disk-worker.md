@@ -4,11 +4,21 @@
 
 Before starting, delete `mission/output/mission-brief.md` if it exists.
 
-## Task
+## Before you type anything
 
 Open the preconfigured Codex project named:
 
 `Lab 1 - Exercise 3`
+
+Before entering the task, look at the invitation Codex shows you when it is waiting for your first instruction.
+
+Write down its exact wording somewhere you can return to at the end of Course 1.
+
+Do not analyse it yet and do not try to give a clever answer. Just record what the agent is asking you before the work begins.
+
+The exact product wording is not part of the lesson and may change over time. Record whatever equivalent opening invitation Codex actually shows at delivery time.
+
+## Task
 
 Give it only this instruction:
 
