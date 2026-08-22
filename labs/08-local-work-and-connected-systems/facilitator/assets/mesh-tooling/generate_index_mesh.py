@@ -27,10 +27,13 @@ def repo_root() -> Path:
 
 
 def tracked_paths(repo: Path, scope: str) -> list[Path]:
-    # Use Git's tracked/staged view rather than a raw filesystem walk so the mesh
-    # describes durable repository state and ignores unrelated local drafts.
     lines = git_lines(repo, "ls-files", "--cached", "--", scope)
     return [Path(line) for line in lines if Path(line).name != "INDEX.md"]
+
+
+def tracked_indexes(repo: Path, scope: str) -> set[Path]:
+    lines = git_lines(repo, "ls-files", "--cached", "--", scope)
+    return {repo / Path(line) for line in lines if Path(line).name == "INDEX.md"}
 
 
 def expected_directories(paths: list[Path], scope: Path) -> set[Path]:
@@ -92,12 +95,13 @@ def expected_mesh(repo: Path, scope_arg: str) -> dict[Path, str]:
     }
 
 
-def stale_paths(expected: dict[Path, str]) -> list[Path]:
+def stale_paths(expected: dict[Path, str], obsolete: set[Path]) -> list[Path]:
     stale: list[Path] = []
     for path, content in expected.items():
         actual = path.read_text(encoding="utf-8") if path.exists() else None
         if actual != content:
             stale.append(path)
+    stale.extend(sorted(obsolete))
     return stale
 
 
@@ -105,7 +109,8 @@ def main() -> int:
     args = parse_args()
     repo = repo_root()
     expected = expected_mesh(repo, args.scope)
-    stale = stale_paths(expected)
+    obsolete = tracked_indexes(repo, args.scope) - set(expected)
+    stale = stale_paths(expected, obsolete)
 
     if args.check:
         if stale:
@@ -116,6 +121,11 @@ def main() -> int:
             return 1
         print("Index mesh is current.")
         return 0
+
+    for path in sorted(obsolete):
+        if path.exists():
+            path.unlink()
+        print(path.relative_to(repo).as_posix())
 
     for path, content in expected.items():
         path.parent.mkdir(parents=True, exist_ok=True)
