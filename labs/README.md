@@ -23,7 +23,7 @@ Some setup may be performed in advance by the facilitator so early labs can teac
 
 ## Current labs
 
-Labs 1–9 are mature and ready to run.
+Labs 1–10 are mature and ready to run. Together they form **Course 1 — Agentic Engineering 101: Zero to Hero**.
 
 - `01-chatbot-to-worker/` — compare ordinary cloud conversations, an on-disk worker, and a persistent cloud workspace to expose how environment changes context and artifact transport.
 - `02-give-the-cloud-agent-the-project/` — examine how project access depends on state, representation, scope, and allowed operations.
@@ -34,6 +34,7 @@ Labs 1–9 are mature and ready to run.
 - `07-tools-operating-knowledge-and-domain-provisioning/` — three before/after experiments that move domain judgment from facilitator-grounded software engineering, through shared non-authoritative provision from external expertise, to a learner-grounded expert domain while keeping final verification with the human.
 - `08-local-work-and-connected-systems/` — reconstruct the provisioned worker, inspect scoped harness-supplied instructions, follow and then break an `INDEX.md` navigation mesh, prove that accessible state can remain undiscovered, and widen the observation surface from local project state to connected GitHub state.
 - `09-source-of-truth-and-verification/` — reopen the Repair Café contradiction with an explicit authority map, execute one bounded current-state repair, independently verify the worker's completion claim, separate verification from mutation, and generalise how different claims require different evidence.
+- `10-build-a-real-agentic-project/` — create a learner-owned real project, shape intent before implementation, inspect and improve one genuine result, verify it against explicit authority, and make publication and reuse-rights decisions deliberately.
 
 ## Safety
 
