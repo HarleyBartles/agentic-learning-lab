@@ -1,0 +1,16 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Official licence page:
+https://creativecommons.org/licenses/by/4.0/
+
+Canonical legal code:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Canonical plain-text legal code:
+https://creativecommons.org/licenses/by/4.0/legalcode.txt
+
+This repository applies CC BY 4.0 to curriculum and educational content as described in ../LICENSE.md.
+
+Under CC BY 4.0, reuse, redistribution, adaptation, transformation, and commercial use are permitted subject to the licence conditions, including appropriate attribution, a link to the licence, and an indication of changes when applicable.
