@@ -1,6 +1,6 @@
 # Module 10 — Build a real agentic project
 
-Approximate duration: 1 hour.
+Approximate duration: 60–75 minutes.
 
 Status: structured planning. Treat this as a synthesis checkpoint, not as graduation from the curriculum.
 
@@ -24,7 +24,8 @@ The point is not that the agent gets the site right first time. The point is tha
 
 A small website gives the learner:
 
-- a real repository and project home;
+- their first real repository that is independent of the forked learning-lab repository;
+- a genuine project home they own;
 - a visible artifact that is easy to inspect;
 - concrete changes that can be compared across commits;
 - a browser-verifiable result;
@@ -35,7 +36,7 @@ The project should remain deliberately small. The learner is not being taught fr
 
 ## Suggested session shape
 
-### 0–10 minutes — Choose the project
+### 0–10 minutes — Choose the project and create its home
 
 First ask whether the learner already has a small project they genuinely want to build.
 
@@ -51,7 +52,70 @@ Help the learner choose a simple site purpose without requiring them to arrive w
 
 The learner may also choose fictional or non-personal content if they do not want to publish personal information.
 
-### 10–20 minutes — Learner prompts, agent proposes
+Once the project is chosen, create a new repository for it rather than another fork of the learning lab.
+
+Pause there before asking the agent to fill it with work.
+
+### 10–20 minutes — This repository is yours: decide what that means
+
+This is the learner's first repository in the curriculum that exists because they chose to create it for their own project.
+
+Use that moment to separate three ideas that are easy to collapse:
+
+```text
+visibility
+who can see the repository
+
+ownership
+whose work this is
+
+licence
+what permission other people have to reuse it
+```
+
+Earn the distinction:
+
+> **A public repository is not the same thing as public-domain work.**
+
+Making work visible does not by itself express a broad permission for other people to copy, transform, redistribute, or commercialise it. A licence is the deliberate grant that answers those questions.
+
+Do not turn this into a survey of licence families or legal trivia. Start from the learner's intent:
+
+- Do you want other people merely to be able to see this work?
+- Should they be able to copy it?
+- Modify or transform it?
+- Redistribute it?
+- Use it commercially?
+- Must they credit you?
+- Does the repository contain different kinds of work that may deserve different terms?
+
+The durable principle is:
+
+> **Keep your work yours — or give it away, but do so deliberately.**
+
+If the learner wants to retain the normal default rights and grant no broad reuse permission, they do not need to add an open licence merely because the repository exists.
+
+If they do want to grant reuse rights, choose a licence because it expresses that intent.
+
+Use simple examples rather than prescribing a universal answer:
+
+- software may use a permissive software licence such as MIT when that matches the owner's intent;
+- creative or educational material may use a content licence such as CC BY 4.0 when broad reuse with attribution is intended;
+- a mixed repository can state different licences for different classes of material when that boundary is made clear.
+
+The learning-lab repository itself is the worked example. Inspect its `LICENSE.md` and ask:
+
+> What did the owner decide to let other people do with this repository?
+
+Its curriculum and educational content use CC BY 4.0, while standalone software tooling uses MIT. The point is not that this is the correct answer for every repository. The point is that the rights were chosen deliberately and recorded where future humans and agents can find them.
+
+Preserve the human authority boundary:
+
+> **An agent can explain licence options and prepare the files. The owner decides what rights to grant.**
+
+Record the learner's decision in the project. If the decision is `no broad reuse licence yet`, that can also be an explicit, deliberate outcome rather than an omission nobody thought about.
+
+### 20–30 minutes — Learner prompts, agent proposes
 
 Have the learner explain what they roughly want.
 
@@ -80,7 +144,7 @@ The learner should feel free to say things such as:
 
 The learner is exercising judgment, not supplying implementation detail.
 
-### 20–35 minutes — Baseline build
+### 30–45 minutes — Baseline build
 
 Once the learner is happy enough with the proposal, let the agent build the first pass.
 
@@ -117,7 +181,7 @@ The durable lesson is:
 
 > **Different capable models can have different strengths, and domain guidance can materially change the quality of the same model's output.**
 
-### 35–50 minutes — Add design guidance and iterate
+### 45–60 minutes — Add design guidance and iterate
 
 Now hold the project and intent stable and change the worker environment.
 
@@ -169,7 +233,7 @@ Current facilitator examples may name contemporary models, but the curriculum sh
 
 Module 10 only needs to earn the observation that model strengths differ. Later modules will examine worker profiles, harness portability, effective runtime configuration, observability, and economics in more depth.
 
-### 50–60 minutes — Verify and decide whether to publish
+### 60–75 minutes — Verify and decide whether to publish
 
 The learner should now verify the result rather than accept the agent's declaration that it is done.
 
@@ -187,9 +251,19 @@ Publication is a deliberate human decision, especially if the page contains pers
 
 Do not silently turn `build me a site` into `put this on the public internet`.
 
+Now reconnect the licensing pause. These are separate decisions:
+
+> **Should other people be able to see this?**
+
+and:
+
+> **If they can see it, what have I deliberately allowed them to do with it?**
+
+A public deployment, a public repository, and a licence grant answer different questions.
+
 The learner should recognise a natural approval boundary:
 
-> The agent can prepare the work. The learner decides whether this result should cross the public boundary.
+> The agent can prepare the work. The learner decides whether this result should cross the public boundary and what reuse rights, if any, accompany it.
 
 ## The real project becomes a later curriculum surface
 
@@ -197,6 +271,8 @@ The important outcome is not the website itself.
 
 By the end of the module, the learner has a real repository in which they have already experienced:
 
+- ownership of a project home independent of the learning-lab fork;
+- an explicit visibility and licensing decision;
 - project intent becoming durable source;
 - iterative prompting and refinement;
 - an agent proposing rather than merely executing;
@@ -254,6 +330,7 @@ Ask:
 - Which decisions belonged to the agent, and which remained human decisions?
 - Which repeated guidance deserves to become durable project knowledge?
 - Which capabilities or context did this worker not need?
+- Who can see this project, and what reuse rights have actually been granted?
 
 ## Signs the learning plan has worked so far
 
@@ -267,6 +344,7 @@ More useful signs are that they naturally ask:
 - What changed between these two versions?
 - Can I verify that rather than taking the agent's word for it?
 - Should this repeated instruction become project guidance?
+- Do I want other people to reuse this work, and under what terms?
 - Is this ready to publish, or merely ready for me to review?
 
 ## This is a synthesis checkpoint, not the end
