@@ -6,39 +6,45 @@ They are not prerequisites for the learner and are not a coding exercise.
 
 ## Files
 
-- `generate_index_mesh.py` — deterministic index generator with explicit `--check` and `--apply` modes.
-- `test_generate_index_mesh.py` — executable contract tests for stale detection, regeneration, idempotence, and ignoring untracked local drafts.
-- `pre-commit-check` — check-only hook policy; blocks a commit when generated indexes are stale.
-- `pre-commit-apply` — apply-and-stage policy; explicitly regenerates and stages only the generated `INDEX.md` files reported by the tool.
+- `generate_index_mesh.py` — deterministic/idempotent index generator for rebuilding the complete navigation mesh from represented Git project state.
+- `test_generate_index_mesh.py` — executable contract tests for regeneration, idempotence, stale detection, obsolete-index removal, and ignoring unrelated untracked local drafts.
 
-## Tool contract
+## Lab 8 teaching contract
 
-The generator follows a deliberate safety shape:
+The learner-facing lesson is deliberately smaller than the tool's full interface.
+
+The worker should be given the generator and asked to regenerate the complete mesh. The learner should observe that a derived navigational representation can be reproduced from source state instead of being hand-maintained.
+
+Earn:
+
+> **Do not hand-maintain derived navigation when the project can regenerate it deterministically.**
+
+> **If a representation is important enough for agents to rely on, make it reproducible.**
+
+The generator is intentionally a reasonably behaved CLI. It exposes `--help`, a non-mutating inspection path, explicit mutation, useful exit status, deterministic output, and idempotent regeneration.
+
+Do **not** turn those interface details into the Lab 8 lesson. They are preserved as a future Course 2 breadcrumb about why self-describing, managed CLIs are particularly useful to agents.
+
+## Deliberately unsolved here
+
+Do not install or supply a Git hook in Lab 8.
+
+Do not add CI enforcement.
+
+Do not add standing workflow instructions telling the worker to regenerate before every commit.
+
+Lab 8 should leave this true:
 
 ```text
---check
-non-mutating
-exit 0 when current
-exit non-zero and name stale generated surfaces when drift exists
-
---apply
-explicit mutation
-write the deterministic generated surfaces
-print only the paths it owns/wrote
+generator exists
++
+worker can use it
+!=
+worker will remember to use it at the right lifecycle point
 ```
 
-The mesh is derived from Git's tracked/staged view rather than a raw working-tree scan. Untracked local drafts therefore do not silently enter generated navigation for a commit.
+A later module should deliberately let the mesh go stale despite the generator being available, then ask why the human is still repeatedly reminding the worker to run it.
 
-The durable lesson is broader than this script:
+That is the future cash-in for:
 
-> **Inspect by default. Mutate explicitly.**
-
-> **Generated state should be deterministic and idempotent before lifecycle automation is allowed to maintain it.**
-
-## Hook policy comparison
-
-The check-only hook is the simpler safety default: detect drift, block, then require an explicit `--apply` before retrying the commit.
-
-The apply-and-stage hook is a more automated policy. It is acceptable here because the generator owns a narrow deterministic surface and the hook stages only paths emitted by that generator. Never replace that allow-list with a broad `git add .`.
-
-A local `.git/hooks/pre-commit` hook only governs commits made through that configured checkout. Shared hook provisioning or CI can repeat the same check when a project needs a repository-wide guarantee; Lab 8 only needs the concept.
+> **Things you keep telling the agent need to become things you stop telling the agent.**
