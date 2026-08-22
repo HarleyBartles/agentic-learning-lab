@@ -246,10 +246,10 @@ This becomes increasingly important once the learner has many available levers.
 
 ## Access, observation, and absence
 
-Two later threads are deliberately related:
+Two deliberately related threads now land at different stages:
 
-- Module 8: something can exist now and still fail to be discovered through the current retrieval/navigation route;
-- Module 9: something can be absent now and still exist in recorded historical state.
+- Lab 8: something can exist now and still fail to be discovered through the current retrieval/navigation route;
+- Module 18: something can be absent from current state and still exist in recorded historical state.
 
 Together they support the more general principle:
 
@@ -267,7 +267,7 @@ not present now
 never existed
 ```
 
-This should later connect to retrieval systems, RAG, repository history, connector limitations, and context selection.
+Lab 9 deliberately does **not** cash the historical half of this thread. It uses scoped current-state verification instead, and defers `is it tracked?` → `was it ever tracked?` until repository archaeology, provenance, and compressed evidence surfaces are the actual subject in Module 18.
 
 ## Source of truth and verification are distinct questions
 
@@ -275,7 +275,7 @@ Lab 3 deliberately leaves the learner with a contradiction between durable artif
 
 > When the project disagrees with itself, how does an agent know what to trust?
 
-The later source-of-truth module should explicitly reopen that same Repair Cafe contradiction rather than introducing authority as a disconnected concept.
+Lab 9 explicitly reopens that same Repair Café contradiction rather than introducing authority as a disconnected concept.
 
 Distinguish:
 
