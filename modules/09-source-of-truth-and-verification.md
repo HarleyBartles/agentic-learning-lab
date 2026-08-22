@@ -4,15 +4,54 @@ Approximate duration: 1 hour.
 
 ## Core idea
 
+Lab 8 should leave the learner with a precise observation problem:
+
+> A worker can reach several pieces of evidence through different access and discovery routes. Which one should it trust, and what would actually prove the work is correct?
+
+Module 9 owns that distinction.
+
+Access and discovery answer:
+
+> What can the worker observe, and how did that evidence reach it?
+
+Authority and verification answer different questions:
+
+> Which source defines the requirement or current truth?
+
+and:
+
+> What evidence establishes that the work actually satisfies it?
+
 An agent saying something happened is not the same as it having happened correctly.
 
 The learner should move from evaluating answers to evaluating work.
 
 > Prefer evidence over confident prose.
 
+Do not collapse authority and verification. A worker can verify perfectly against the wrong source of truth.
+
 ## Suggested session shape
 
-### 0–15 minutes — Separate claim from state
+### 0–15 minutes — Reopen the Lab 8 contradiction
+
+Do not start Module 9 as a disconnected verification lecture.
+
+Bring back the end of Lab 8: local project state, GitHub remote state, or another durable source may all be accessible while saying different things or answering different parts of the question.
+
+Ask:
+
+> The worker can see all of these. Which one wins?
+
+Then separate the questions:
+
+- Which source is authoritative for this claim?
+- What evidence would prove that the required outcome actually happened?
+
+This should cash the Lab 8 lesson without undoing it:
+
+> **Observation method constrains what the worker can know. Authority constrains what it should treat as defining truth. Verification constrains what it may safely claim is complete.**
+
+### 15–30 minutes — Separate claim from state
 
 Use a simple example:
 
@@ -29,7 +68,7 @@ Possible evidence:
 
 The point is to make `completion message` and `completed work` feel like different objects.
 
-### 15–35 minutes — Run a verification exercise
+### 30–45 minutes — Run a verification exercise
 
 Give the local agent a task such as:
 
@@ -41,7 +80,7 @@ Search for the old value. Inspect the diff. Look for accidental changes. If some
 
 Then ask whether the agent itself could have performed those checks before declaring success.
 
-### 35–50 minutes — Verification depends on the artifact
+### 45–55 minutes — Verification depends on the artifact
 
 Compare feedback mechanisms:
 
@@ -58,7 +97,14 @@ Discuss why `the source file looks right` may not prove that a generated artifac
 
 For example, a document-generation script may run successfully while the rendered PDF clips text or has broken layout.
 
-### 50–60 minutes — Source of truth
+The Lab 8 GitHub Actions example should now pay off cleanly:
+
+- local workflow source can establish what should run;
+- remote GitHub state is required to establish whether a particular remote run actually occurred and what result GitHub recorded.
+
+That does not make remote state universally authoritative. The claim determines which evidence surface is relevant.
+
+### 55–60 minutes — Source of truth
 
 Create or revisit a disagreement between conversation memory, a note, generated output, and an authoritative project file.
 
@@ -69,7 +115,7 @@ Ask:
 - Should generated output ever silently overwrite source material?
 - Does a local commit prove that GitHub received the work?
 
-Use this to reinforce that authoritative state should be explicit rather than inferred from whichever message is newest.
+Use this to reinforce that authoritative state should be explicit rather than inferred from whichever message is newest or easiest to access.
 
 ## Future callback — "is it tracked?" becomes "was it ever tracked?"
 
@@ -127,14 +173,25 @@ Useful lines to earn:
 
 > Git is recorded project history, not just a backup of the files currently present.
 
-This future callback fits naturally with verification because recovery starts with evidence: inspect history before concluding that a missing object is unrecoverable.
+This callback pairs directly with Lab 8:
 
-It also pairs usefully with the discoverability lesson in Module 8:
+```text
+Lab 8
+not found through this current route
+!=
+does not exist now
 
-- something can exist now but fail to be discovered through the agent's normal navigation path;
-- something can be absent now but still be discoverable in historical project state.
+Lab 9
+not present in current state
+!=
+never existed in recorded history
+```
 
-Do not force historical archaeology into the first version of the Module 9 lab if it distracts from the main verification lesson. Preserve it as a later exercise or advanced callback.
+Together they support:
+
+> **Your observation method constrains what conclusions absence can support.**
+
+Do not force historical archaeology into the first version of the Module 9 lab if it distracts from the main authority/verification lesson. Preserve it as a later exercise or advanced callback if necessary.
 
 ## Tools to experiment with
 
@@ -143,18 +200,19 @@ Do not force historical archaeology into the first version of the Module 9 lab i
 - Git history inspection for historical recovery when appropriate;
 - artifact rendering or preview;
 - simple validation scripts;
-- GitHub remote inspection when publication is part of the task.
+- GitHub remote inspection when publication or CI state is part of the claim.
 
 ## Discussion prompts
 
 - What evidence would convince us this task is actually complete?
+- Which source defines what `correct` means here?
 - Can the agent perform that verification itself?
 - Is the check independent enough to catch the original failure?
 - What is authoritative when sources disagree?
 - Which checks should eventually become automatic?
 - If something is missing now, what evidence would tell us whether it existed in recorded project history?
 
-## Useful distinction
+## Useful distinctions
 
 A worker report is not durable proof.
 
@@ -167,7 +225,20 @@ For repo-backed work, distinguish:
 - checks pass;
 - change is actually merged where expected.
 
-Each is a different state.
+Each is a different state and each requires evidence from the surface capable of establishing that claim.
+
+Also distinguish:
+
+```text
+access/discovery
+what evidence can the worker reach, and how?
+
+authority
+which source defines the requirement/current truth?
+
+verification
+what evidence establishes that the work satisfies it?
+```
 
 ## Do not teach yet
 

@@ -1,158 +1,145 @@
 # Curriculum shape
 
-The curriculum has a deliberate four-part macro-structure.
+The curriculum has a deliberate three-course structure.
 
-The exact module numbering can still move while later labs are designed. Preserve the shape and conceptual dependencies even if individual topics are renumbered.
+The exact shape of an individual lab can still evolve while it is being designed, but the course boundaries are now part of the curriculum contract. Preserve the cognitive progression rather than treating all eighteen modules as one undifferentiated run.
 
 ```text
-Agents 101: zero to hero
+Course 1
+Agentic Engineering 101: Zero to Hero
+Labs 1–10
         ↓
-mid-curriculum project
+Course 2
+Advanced Agentic Engineering: Mastering Agents
+Modules/Labs 11–15, including 14A
         ↓
-Advanced agentic concepts: mastering agents
-        ↓
-epilogue / final project task
+Course 3
+Beyond the Agent: Engineering Agent Systems
+Modules/Labs 16–18
 ```
 
-## Part 1 — Agents 101: zero to hero
+The three courses are related but should each reach a coherent stopping point. In particular, Course 1 is not an intentionally incomplete prelude. A learner who stops after Lab 10 should leave with a sound, self-contained foundation for competent agentic engineering rather than carrying known stale misconceptions that only a later course repairs.
 
-Current planning range: Modules/Labs 1–8.
+Later courses may deepen, qualify, or pressure-test earlier models, but they should build on models that were already useful and substantially correct at the prior course boundary.
 
-This is the foundational run from ordinary chat use to basic agentic competence.
+## Course 1 — Agentic Engineering 101: Zero to Hero
 
-The learner should finish this section able to reason about an agentic system without treating it as one mysterious AI blob.
+Current range: Labs/Modules 1–10.
 
-The current conceptual progression includes:
+Course 1 takes the learner from ordinary chat use to competent practical agentic engineering, ending with a real project of their own.
 
-- conversation versus workspace;
-- project access and context transport;
-- durable project state;
-- recovery and source-control save points;
-- model versus harness/configuration/context/tools;
-- provisioning tools and operating/domain knowledge;
-- local work, connectors, and access surfaces;
-- source of truth, authority, verification, and evidence.
+The learner should finish Course 1 able to reason about an agentic system without treating it as one mysterious AI blob. They should understand the major surfaces that shape agent behaviour, know how a worker observes and acts on a project, distinguish access from discovery, distinguish evidence from authority, verify completed work rather than trusting completion prose, recover reversible mistakes, and deliberately shape a useful worker environment.
 
-The learner is not expected to master advanced orchestration here.
+The current progression includes:
 
-The goal is that they can successfully direct useful agent work, inspect what happened, recover from mistakes, and reason about the main layers that produced the behaviour they observed.
+1. conversation versus worker behaviour;
+2. project access and context transport;
+3. durable project state;
+4. repositories, recovery, and safe breakage;
+5. model, harness, context, tools, instructions, environment, state, and feedback;
+6. model knowledge versus supplied/retrieved evidence;
+7. domain provisioning under different human-authority arrangements;
+8. agent environment, navigation, scoped instructions, access surfaces, discovery, local work, and connectors;
+9. source of truth, authority, verification, and evidence;
+10. a real learner-owned agentic project that synthesizes the course.
 
-A useful summary is:
+Lab 10 is the Course 1 synthesis project, not a separate macro-part between foundation and advanced material.
 
-> **Part 1 teaches the learner how to use and understand agents competently.**
+The project should make the learner apply the first course in a real setting:
 
-## Part 2 — Mid-curriculum project
-
-Current planning anchor: Module 9, `Build a real agentic project`.
-
-This is a synthesis checkpoint rather than graduation.
-
-The learner stops working only through prepared curriculum fixtures and creates a genuine agentic project around something they actually care about.
-
-The project should force them to apply the first half of the curriculum in a real setting:
-
-- choose a project home;
+- create and own a project home;
+- make visibility, ownership, and licensing decisions deliberately;
 - identify authoritative state;
 - establish recovery;
 - select capabilities deliberately;
 - decide what should and should not be connected;
 - introduce persistent project instructions when justified;
-- capture reusable workflow knowledge as skills when justified;
-- define how completed work will be verified.
+- capture reusable workflow knowledge when justified;
+- define how completed work will be verified;
+- direct, inspect, refine, and accept agent work without manually implementing it themselves.
 
-It should feel less like another lesson and more like:
-
-> You now know enough to build one of these for real.
-
-The learner's real project can then become one of the surfaces used in the advanced half of the curriculum alongside bounded teaching fixtures.
+The learner's project can then become one of the working surfaces used by Courses 2 and 3 alongside bounded teaching fixtures.
 
 A useful summary is:
 
-> **Part 2 proves that the foundational mental models transfer into a real project.**
+> **Course 1 teaches the learner to direct, understand, verify, and deliberately shape useful agents competently.**
 
-## Part 3 — Advanced agentic concepts: mastering agents
+The course boundary matters. Do not deliberately leave a learner at the end of Lab 10 holding a mental model that the curriculum already knows is materially false. Progressive disclosure is welcome; deferred correction of a known misconception across a course break is not.
 
-Current planning range: Modules 10–16.
+## Course 2 — Advanced Agentic Engineering: Mastering Agents
 
-The emphasis changes here.
+Current range: Modules/Labs 11–15, including the linked 14A practicum.
 
-The learner is no longer mainly learning how to get an agent to work. They are learning how to deliberately design the operating system around capable agents.
+Course 2 starts from a learner who can already operate and verify a useful worker. The emphasis changes from competent use to deliberate design of agent behaviour.
 
-Current advanced threads include:
+The learner should learn to shape how work proceeds, how the worker checks itself, when humans intervene, when specialist workers are justified, how context moves, how harnesses realise intended worker profiles, and how changes to an agentic system are evaluated rather than merely admired.
 
-- agent self-introspection, counterfactual self-simulation, cheap local self-review, behavioural prediction, and test-first probes;
+Current Course 2 threads include:
+
+- agent self-introspection, behavioural prediction, cheap local self-review, and test-first probes;
 - autonomous human-in-the-loop workflows;
 - loops, graphs, retries, stopping conditions, escalation routes, and escape hatches;
-- defining success conditions and legal workflow transitions;
-- specialist sub-agents and orchestration;
-- specialist profiles as intended worker contracts, including role, capability/model expectations, reasoning effort, tools, permissions, context, and quality criteria;
-- harness portability, runtime-specific sub-agent contracts, profile translation, model/reasoning selection, inheritance/defaults, and verification of the effective runtime worker;
-- harness observability and scan-reading visible activity for churn, looping, drift, and missing progress;
-- separating durable agent concepts from volatile product control surfaces;
-- agent-system economics: comparing quality, latency, independence, risk, and resource efficiency rather than treating successful output as the only measure of correctness;
-- **The 20-Agent Bonfire** as a linked Module 13A practicum for deliberately wasteful over-delegation, worker-default inspection, and usage comparison;
+- success conditions and legal workflow transitions;
+- specialist sub-agents, delegation, and orchestrator trade-offs;
+- specialist profiles as intended worker contracts;
+- harness portability and effective runtime worker verification;
+- model/reasoning selection, defaults, inheritance, and observability;
+- agent-system economics: capability, context, inference, latency, quality, independence, and risk;
+- **The 20-Agent Bonfire** as a linked 14A practicum for deliberately wasteful over-delegation, worker-default inspection, context transport, and usage comparison;
 - selective provisioning rather than accumulation;
-- context transport and materialisation: passing durable references when appropriate instead of forcing large briefs/results through every agent context;
-- lazy versus eager context loading, locality, and N+1-style repeated materialisation across workers;
-- the distinction between durable system knowledge and the subset any one orchestrator/worker currently has in context;
+- context transport and materialisation;
+- lazy versus eager loading and N+1-style repeated context work;
 - finite context and retrieval/RAG as context selection;
-- instruction scope, hierarchy, provenance, and runtime injection;
-- inspectable agent reasoning/activity and diagnosis;
-- lightweight evaluation and TDD-inspired agent design;
-- trust boundaries, external content, permissions, and connected autonomy;
-- provenance and observability across stages/workers;
-- concurrent agents, isolation, reconciliation, and re-verification.
+- lightweight evaluation and TDD-inspired agent design.
 
-Keep two sequencing boundaries explicit while these plans become labs:
-
-1. Module 13's core harness/portability lesson can remain approximately one hour; the Bonfire may run immediately afterward as a separate 13A practicum rather than being squeezed into the same session.
-2. The Bonfire is an economics/context experiment, not the concurrency-isolation lesson. If twenty workers would mutate one workspace simultaneously, constrain the fixture to read-only work, serial dispatch, or separate outputs. Module 16 owns the later pressure where concurrent mutable state forces isolation and reconciliation.
-
-Module 14 may likewise split its context-loading/materialisation work into a second exercise if necessary. Preserve the conceptual dependency rather than forcing every valuable idea into a nominal one-hour session.
+Keep the 14A boundary explicit: the Bonfire is an economics/context/orchestration pressure test, not yet the shared-mutable-state concurrency lesson. If many workers would mutate one workspace simultaneously, constrain the exercise so Course 3 can earn isolation and reconciliation from the real problem later.
 
 The conceptual shift is:
 
 ```text
-foundation
-How do I use an agent effectively?
+Course 1
+How do I direct and understand a useful agent competently?
 
-advanced
-How do I design the environment, workflow, authority, context,
-resource allocation, and success conditions that make
-agent behaviour reliable and proportionate?
+Course 2
+How do I deliberately design the worker's behaviour,
+workflow, context, delegation, verification,
+evaluation, and autonomy?
 ```
 
 A useful summary is:
 
-> **Part 3 teaches the learner to engineer agent behaviour and agent-system economics rather than merely operate agents.**
+> **Course 2 teaches the learner to engineer agent behaviour rather than merely operate agents.**
 
-## Part 4 — Epilogue as the final project task
+## Course 3 — Beyond the Agent: Engineering Agent Systems
 
-Current planning anchor: Module 17, `Epilogue: show how this was built`.
+Current range: Modules/Labs 16–18.
 
-The epilogue is not only a retrospective lecture.
+Course 3 widens the design boundary again.
 
-It should function as the final project task.
+The learner now treats individual agents as components inside a larger operational system. Concepts introduced in Course 2 such as specialist coordination and resource economics remain active, but the pressure moves to the wider system around them: trust, connected authority, concurrent work, isolation, integration, provenance, and reconstruction of how system state came to exist.
 
-The learner is asked to inspect and reason about the repository they have been working in throughout the curriculum.
+Current Course 3 threads include:
 
-A suitable task direction is:
+- trust boundaries and connected autonomy;
+- external content as evidence rather than operating authority;
+- permissions, least capability, and consequential human gates;
+- provenance across connected stages, workers, and systems;
+- specialist coordination under wider system constraints;
+- operational economics as a system property rather than only a per-worker choice;
+- concurrent agents and shared mutable state;
+- isolated workspaces/branches/worktrees where appropriate;
+- deliberate reconciliation and integration;
+- verification of integrated state rather than trusting individually successful worker returns;
+- repository and workflow archaeology;
+- compressed versus richer evidence surfaces;
+- source provenance without confusing provenance for authority;
+- the curriculum repository itself as a final system-level investigation surface.
 
-> Inspect this repository and its history. Reconstruct how it developed, identify major changes in direction, explain which mental models were introduced and later refined or broken, and distinguish what the available evidence proves from what it cannot recover.
+Module 18, `Epilogue: show how this was built`, belongs to Course 3. It is not a separate fourth part.
 
-This should require the learner to use many of the capabilities developed across the course:
+The epilogue should function as a final worked system problem rather than only a retrospective lecture. The learner should inspect and reason about the repository they have inhabited throughout the curriculum, reconstruct how it developed, identify major changes in direction, distinguish what available evidence proves from what it cannot establish, and direct an agent through that investigation rather than manually performing all of the archaeology.
 
-- project exploration;
-- repository/Git history;
-- source-of-truth reasoning;
-- evidence versus confident narrative;
-- context and retrieval choices;
-- instruction and provenance awareness;
-- directing an agent rather than manually performing the archaeology;
-- questioning the agent's reconstruction;
-- recognizing when a plausible explanation is not adequately evidenced.
-
-If the learner has used their own fork throughout the curriculum, the epilogue can compare two histories:
+If the learner has used their own fork throughout the curriculum, the final investigation can compare two related histories:
 
 ```text
 upstream curriculum history
@@ -162,40 +149,39 @@ learner fork history
 how this learner actually worked through and changed their laboratory
 ```
 
-These are related but answer different questions.
-
-The symmetry with the start of the curriculum is intentional:
-
-```text
-beginning
-learner enters a prepared project
-and directs an agent through a bounded task
-
-ending
-learner enters the whole accumulated project
-and directs an agent to understand the project itself
-```
-
-The environment has become more complex, but the learner has changed more than the environment.
-
-At the beginning, the curriculum must heavily prepare the conditions around them.
-
-At the end, the learner should be able to decide what evidence matters, provision and direct the worker appropriately, interrogate uncertainty, trace authority and provenance, and judge whether the resulting explanation is actually credible.
-
 A useful summary is:
 
-> **Part 4 uses the curriculum repository itself as the final worked problem and proof of the learning method.**
+> **Course 3 teaches the learner to engineer the system around agents: trust, coordination, concurrency, integration, provenance, and operational behaviour.**
+
+## The three cognitive grades
+
+The intended progression can be summarized as:
+
+```text
+Course 1 — competent agentic engineer
+I can direct, understand, provision, navigate, verify,
+and safely operate useful agent work.
+
+Course 2 — advanced agentic engineer
+I can deliberately design agent behaviour, workflow,
+context, delegation, evaluation, and autonomy.
+
+Course 3 — agent-systems engineer
+I can design the wider system in which agents coordinate,
+act under trust and capability boundaries, work concurrently,
+integrate state, preserve provenance, and spend resources proportionately.
+```
+
+These are cognitive grades, not job titles or claims of mastery after a fixed number of hours. They describe the level of system the learner is being asked to reason about.
 
 ## Editorial test for future topics
 
-When adding or moving material, ask which layer of the curriculum it serves.
+When adding or moving material, ask which course boundary the concept serves.
 
-If the concept is required for basic competence with agents, it probably belongs in Part 1.
+If the concept is required for a learner to competently direct, understand, navigate, recover, provision, and verify ordinary agentic work, it belongs in Course 1.
 
-If it tests whether foundational understanding transfers into a real project, it belongs in Part 2.
+If it assumes that competence and teaches deliberate design of worker behaviour, workflow, delegation, context, self-checking, evaluation, or bounded autonomy, it belongs in Course 2.
 
-If it becomes useful only after the learner can already operate agents and now needs to design more reliable, autonomous, explainable, selective, portable, economical, or scalable agent systems, it probably belongs in Part 3.
+If it widens the unit of reasoning from one worker/workflow to the surrounding multi-agent or connected system — trust boundaries, coordination, concurrency, integration, provenance, operational economics, or system archaeology — it belongs in Course 3.
 
-If it asks the learner to synthesize the whole course and reason from the project they have built and inhabited, it belongs in the epilogue.
-
-Do not force every interesting advanced concept into the first eight modules merely because it is important. Let the learner earn the need for richer models.
+Do not force advanced material earlier merely because it is important. Equally, do not knowingly leave Course 1 with a materially false model simply because a later course could repair it. Each course boundary should be a credible place for the learner to stop.
