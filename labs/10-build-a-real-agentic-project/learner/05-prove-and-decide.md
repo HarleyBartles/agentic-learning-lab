@@ -70,3 +70,47 @@ You do not need to remember every technical term.
 A useful Course 1 endpoint is being able to say:
 
 > **I can give an agent a real project, make important state durable, give it useful capabilities and expertise, steer it through results rather than manually implementing the work, check what it actually did, and decide whether I accept or publish it.**
+
+## Return to the first invitation
+
+At the start of Course 1, before you gave Codex its first task, you wrote down the exact invitation it showed while waiting for you to begin.
+
+Find that wording now.
+
+If the product wording has changed since then, keep the original wording you recorded. The comparison is about how *you* read the invitation, not about preserving a particular interface string.
+
+Read it again and ask yourself:
+
+- What did I think this question was asking me at the beginning?
+- What did I think I needed to know before I could answer it?
+- What did I think `we` meant?
+- What do I think `we` means now?
+- Do I still feel that I need to know exactly what can be built or how to build it before beginning?
+- Could `I don't know yet — help me work out what would be worth building` now be a perfectly good answer?
+
+At the beginning, a simple invitation may have hidden a pile of unanswered questions:
+
+```text
+What can we build?
+What can't we build?
+What does "we" mean?
+How much do I need to build?
+How much can the agent build for me?
+How do I know whether the result is right?
+```
+
+At the end of Course 1, the same invitation can mean something much simpler:
+
+> **What outcome should we work toward together?**
+
+You bring intent, judgment, authority, preferences, and acceptance.
+
+The agent brings proposal, exploration, implementation capability, and self-review.
+
+The project carries durable state, instructions, sources, history, and constraints.
+
+Together you iterate until there is enough evidence for you to accept the result.
+
+The interface did not need to become more complicated. Your understanding of the collaboration did.
+
+> **At the beginning of the course, the opening invitation sounded like a question you were expected to know how to answer. Now it can sound like the beginning of a collaboration.**
