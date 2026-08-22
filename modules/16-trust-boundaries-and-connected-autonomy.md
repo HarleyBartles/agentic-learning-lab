@@ -1,6 +1,6 @@
 # Module 16 — Trust boundaries and connected autonomy
 
-Status: structured planning. This module connects semantic authority, permissions, external content, autonomy, and provenance before agents are given broad consequential reach.
+Status: structured planning. This module connects semantic authority, permissions, external content, autonomy, provenance, and previously learned ownership boundaries before agents are given broad consequential reach.
 
 Approximate duration: 1 hour.
 
@@ -22,12 +22,45 @@ Earlier curriculum already establishes:
 - Lab 3: conversation or source material must not silently become project truth;
 - Module 4: external side effects can escape repository recovery;
 - Module 8: connectors extend what the worker can reach;
+- Module 10: public visibility, ownership, publication, and reuse rights are separate decisions; access to a repository does not itself grant permission to reuse its contents;
 - Module 12: bounded autonomy moves routine transitions into the agent while preserving meaningful human gates, and explicitly teaches stop conditions, escalation routes, and escape hatches;
 - Module 13: different specialist workers may deserve different permissions;
 - Module 14: harnesses can resolve profile fields, tools, model choices, permissions, and defaults differently, so the effective worker must be verified rather than inferred from configuration intent;
 - Module 15: selective provisioning asks what each worker actually needs in context.
 
 This module combines those ideas into a trust-boundary model.
+
+## Access is not authority or permission
+
+Reuse the licensing distinction from Module 10 as a familiar non-security example.
+
+A worker may be able to read a public repository. That establishes access. It does not establish that the repository's contents are operating instructions, and it does not establish unlimited permission to copy, transform, redistribute, or commercialise them.
+
+Ask:
+
+> What does this access route prove, and what does it not prove?
+
+Useful distinctions:
+
+```text
+I can read it
+!=
+it controls my behaviour
+
+I can read it
+!=
+I own it
+
+I can read it
+!=
+I have been granted every reuse right
+```
+
+When reuse rights matter, inspect the relevant licence or rights notice rather than inferring permission from visibility.
+
+Do not reteach licence families here. The callback exists to reinforce the broader systems principle:
+
+> **Access to information does not automatically confer authority over the worker or permission over the information.**
 
 ## Pressure exercise — source text that tries to become policy
 
@@ -160,6 +193,7 @@ Useful questions:
 - Which worker performed it?
 - What verification passed?
 - Did anything cross an external boundary?
+- If external material was copied or transformed, what reuse permission allowed that?
 
 This is particularly important when workflows contain several specialists or connectors.
 
@@ -188,6 +222,10 @@ And:
 
 > **Authority, success conditions, legal transitions, and escape routes are part of the system the learner designs; do not explain systematic agent behaviour as personality when the workflow already made that behaviour reasonable.**
 
+And, carrying forward Module 10:
+
+> **Visibility gives access. It does not automatically grant authority, ownership, or reuse permission.**
+
 ## Do not teach yet
 
 Do not turn this into:
@@ -195,6 +233,7 @@ Do not turn this into:
 - exploit construction;
 - adversarial prompt-writing practice;
 - product-specific security configuration trivia;
+- a second licensing survey;
 - a claim that permissions eliminate all risk;
 - a claim that external content is untrustworthy as factual evidence.
 
