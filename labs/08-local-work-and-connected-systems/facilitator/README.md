@@ -2,7 +2,7 @@
 
 Status: **Mature and ready to run.**
 
-Approximate duration: 75–90 minutes.
+Approximate duration: 60–75 minutes.
 
 ## Learning goal
 
@@ -22,9 +22,7 @@ Then deepen the navigation lesson:
 
 > **Do not hand-maintain derived navigation when the project can regenerate it deterministically.**
 
-> **If freshness matters at a lifecycle boundary, encode the check there instead of relying on memory.**
-
-> **Inspect by default. Mutate explicitly.**
+> **If a representation is important enough for agents to rely on, make it reproducible.**
 
 The Course-1-safe agent model is:
 
@@ -34,7 +32,7 @@ The Course-1-safe agent model is:
 
 No coding knowledge is assumed. No coding is required.
 
-The learner does not need to understand Python, shell syntax, Git internals, workflow YAML, or hook implementation. The facilitator supplies and operates the mechanics when needed. The learner participates in the judgment loop.
+The learner does not need to understand Python, shell syntax, Git internals, workflow YAML, or hook implementation. The facilitator supplies and operates mechanics when needed. The learner participates in the judgment loop.
 
 ## Setup
 
@@ -148,76 +146,71 @@ and:
 
 > **When absence matters, understand how the agent looked before trusting the conclusion.**
 
-## Exercise 4 — Make the mesh maintainable
+## Exercise 4 — Make the mesh reproducible
 
 Ask:
 
-> **If agents are going to rely on this mesh, how do we keep it trustworthy?**
+> **If agents are going to rely on this mesh, how do we keep the mesh itself trustworthy?**
 
-Let `remember to update it` surface naturally, then pressure it. Who remembers? How does a team know? What does the commit actually contain?
+Let `remember to update it` surface naturally, then pressure it. A manually maintained derived representation will drift eventually.
 
 Reveal `facilitator/assets/mesh-tooling/`.
 
-Copy `generate_index_mesh.py` to `working/environment/tools/generate_index_mesh.py` and stage it if it will be part of the learner commit.
+Copy `generate_index_mesh.py` to `working/environment/tools/generate_index_mesh.py` and let the worker inspect its own usage/help surface rather than teaching the learner the implementation.
 
-### First show check versus apply
+Ask the worker to regenerate the **entire** mesh from the Git project state the mesh is intended to represent.
 
-Run the generator with `--check` first.
-
-It should report stale generated state and make no mutation.
-
-Then run `--apply`, inspect the resulting indexes, and run `--check` again.
-
-The learner should observe:
+Inspect the result:
 
 - `forgotten/` becomes represented;
-- repeated `--apply` is byte-idempotent;
-- the same tracked/staged structure yields the same mesh;
-- untracked local drafts do not enter the generated mesh.
+- a generated `forgotten/INDEX.md` exists;
+- the same represented state produces the same mesh;
+- regenerating again does not accumulate further changes;
+- unrelated untracked drafts do not become part of generated project navigation.
 
-Earn the general tool contract:
-
-> **Mutation-capable maintenance tools should provide a non-mutating inspection path and require explicit mutation intent.**
-
-### Then introduce pre-commit as a lifecycle point
-
-Explain a Git hook only as an automatic lifecycle action. The point is not Git trivia.
-
-Compare the two supplied policies.
-
-**Check and block:**
+Name the useful properties:
 
 ```text
-pre-commit
-→ generator --check
-→ stale? block
-→ explicitly run --apply
-→ inspect/stage
-→ retry commit
+deterministic
+same represented project state -> same generated mesh
+
+idempotent
+regenerate again -> no accumulating change
 ```
 
-This is the simpler safety posture.
+The generator deliberately has a good CLI surface, including `--help`, non-mutating inspection and explicit mutation. Do not make those interface semantics the lesson here. Preserve them as a breadcrumb for later Course 2 work on agent-friendly tools.
 
-**Apply and stage owned generated files:**
+Earn:
 
-```text
-pre-commit
-→ generator --apply
-→ stage only paths emitted by the generator
-→ continue commit
-```
+> **If a navigation surface is derived from project state, regenerate it from that state rather than hand-editing it.**
 
-This is more automated. It is acceptable because the generator is deterministic/idempotent and the staging surface is narrow. It must never become a broad `git add .`.
-
-Install one policy for the exercise. Make and stage one harmless structural change, then attempt the commit and inspect what happens.
+Then deliberately leave one problem unsolved.
 
 Ask:
 
-- did stale navigation get caught or repaired at the boundary?
-- did unrelated unstaged work stay out?
-- does the resulting commit carry matching navigation state?
+> **We now have a reliable generator. Does the existence of that tool guarantee the worker will run it whenever the mesh needs refreshing?**
 
-Keep the guarantee correctly scoped: `.git/hooks/pre-commit` belongs to this checkout. It does not force another clone or GitHub web edit to use the hook. Shared hook provisioning or CI can repeat the same check when a wider guarantee is needed; do not build that system here.
+The answer is no.
+
+Do not install a hook, write standing workflow instructions, add CI enforcement, or otherwise solve the lifecycle problem in Lab 8.
+
+The learner should later be allowed to encounter the natural failure:
+
+```text
+generator exists
++
+worker can use it
++
+project changes
++
+no one remembers to ask for regeneration
+=
+mesh can still go stale
+```
+
+That later cashes a central curriculum rule:
+
+> **Things you keep telling the agent need to become things you stop telling the agent.**
 
 ## Exercise 5 — Widen beyond the filesystem
 
@@ -265,8 +258,6 @@ If Codex cannot clearly name its instruction sources, open the files manually an
 
 If the generator includes an unrelated untracked draft, treat that as a tooling defect and stop. The supplied tests exist specifically to prevent that false lesson.
 
-If hooks are awkward on the learner platform, treat installation as facilitator plumbing. The learner needs to see the lifecycle invariant, not debug shell execution.
-
 If workflow-run state is unavailable, use another remote-only fact such as branch head, PR presence, or commit presence.
 
 ## Do not teach yet
@@ -277,7 +268,9 @@ Do not teach generated indexes as universally authoritative. They are trustworth
 
 Do not teach broad recursive search as universally better than guided navigation.
 
-Do not turn hooks into a hook-manager survey or CI architecture lesson.
+Do not teach hooks, hook managers, CI gates, or lifecycle enforcement. The missing lifecycle behaviour is deliberate future curriculum pressure.
+
+Do not turn the generator into a CLI design lesson. Preserve the good interface and cash its value later.
 
 Do not introduce specialist sub-agent profiles or orchestration.
 
