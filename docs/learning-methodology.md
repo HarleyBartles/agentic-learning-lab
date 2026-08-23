@@ -1,6 +1,6 @@
 # Learning methodology and origin
 
-This document records the curriculum-wide teaching method behind the Agentic Learning Lab and the origin story that should be revisited at the end of the curriculum.
+This document records the curriculum-wide teaching method behind the Agentic Learning Lab and the origin story that should be revisited in the Course 2 retrospective capstone.
 
 ## This is not a coding course
 
@@ -108,7 +108,7 @@ repeat
 
 The facilitator knew enough to drive the process critically. They did not need to know the complete shape of the finished curriculum before beginning.
 
-This is an important distinction to make explicit in the epilogue:
+This is an important distinction to make explicit in the Course 2 retrospective capstone:
 
 > The interesting fact is not that the facilitator already knew how to build the finished framework.
 >
@@ -116,7 +116,7 @@ This is an important distinction to make explicit in the epilogue:
 
 ## Verbatim origin prompt
 
-The following is the first prompt that started the curriculum-design conversation. Preserve it verbatim for the final retrospective. Do not tidy it into a better specification before showing it to the learner.
+The following is the first prompt that started the curriculum-design conversation. Preserve it verbatim for the Course 2 retrospective capstone. Do not tidy it into a better specification before showing it to the learner.
 
 > I'm going to teach my brother a few things about using agentic AI. I don't really have a learning plan or anything. I know a whole bunch of stuff through my own hard earned learning but not sure what's valuable to pass on and what's better to allow him to discover. He's not dumb, he's an intelligent guy. He's not a coder though - I think I'll need to start with some basic engineering concepts like source control. For example, the benefit of having a repo for your agents to work in for a project - project isolation, persistent agent operating environment and so on. 
 >
@@ -128,10 +128,12 @@ The prompt matters because it is visibly incomplete, contains assumptions that t
 
 In particular, the initial prompt leans toward breaking a `cloud is enough` preconception by demonstrating on-disk work. The resulting curriculum became more nuanced: cloud, local, connected, and mixed environments are selected according to what the project and task require. The repository's own construction through a cloud connector is evidence of that refinement.
 
-## Final retrospective principle
+## Course 2 retrospective capstone principle
 
-At the end of the curriculum, the learner should be able to look back at this repository and recognise that the method used to build the course is the same method they have been taught to use elsewhere:
+At the end of Course 2, the learner should be able to look back at this repository and recognise that the method used to build the course is the same method they have been taught to use elsewhere:
 
 > Start before you know everything. Give the agent a real environment and a useful goal. Inspect the work. Verify it. Ask why. Correct it. Persist what matters. Then instruct again.
 
 The goal is not dependence on an agent's answers. The goal is progressively stronger learner judgment while the agent performs more of the implementation work.
+
+This retrospective closes Course 2. It does not close the overall curriculum; Course 3 follows it.
