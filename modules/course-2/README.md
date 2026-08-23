@@ -14,15 +14,15 @@ The current planning sequence is:
 6. **Selective provisioning, context, and evaluation**
 7. **Trust boundaries and connected autonomy**
 8. **Concurrent agents and isolation**
-9. **Epilogue: show how this was built**
+9. **Retrospective: how this repo was built — Course 2 capstone**
 
 These are planning modules, not a promise that the mature course will contain exactly nine labs. As the drafts are expanded into runnable labs, a topic may remain one lab or split where the learner needs another experiential step. Ten labs is a useful target if the material naturally earns it, not a quota.
 
-The old root-level draft filenames such as `11-agent-self-introspection-and-local-review.md`, `14a-20-agent-bonfire-and-context-transport.md`, and `18-epilogue-show-how-this-was-built.md` pre-date the course-local numbering decision. Treat their numeric prefixes as **legacy source-history identifiers**, not current curriculum numbers.
+The old root-level draft filenames such as `11-agent-self-introspection-and-local-review.md`, `14a-20-agent-bonfire-and-context-transport.md`, and `18-epilogue-show-how-this-was-built.md` pre-date the course-local numbering decision. Treat their numeric prefixes and old `epilogue` wording as **legacy source-history identifiers**, not current curriculum names.
 
 The old `14A` exception is deliberately retired in the new taxonomy. **The 20-Agent Bonfire is simply Course 2 Module 5.** There is no lettered module in the current sequence.
 
-The course-local planning files in this directory are the authoritative numbering surface for Course 2.
+The course-local planning files in this directory are the authoritative numbering and naming surface for Course 2.
 
 ## Course boundary
 
@@ -86,11 +86,15 @@ Source draft: [`../17-concurrent-agents-and-isolation.md`](../17-concurrent-agen
 
 Let multiple capable workers create the shared-state problem, then earn isolation, reconciliation, integration, and verification of the integrated result.
 
-### 9 — Epilogue: show how this was built
+### 9 — Retrospective: how this repo was built — Course 2 capstone
 
-Source draft: [`../18-epilogue-show-how-this-was-built.md`](../18-epilogue-show-how-this-was-built.md)
+Current Course 2 identity: [`09-retrospective-how-this-repo-was-built.md`](09-retrospective-how-this-repo-was-built.md)
+
+Legacy source draft: [`../18-epilogue-show-how-this-was-built.md`](../18-epilogue-show-how-this-was-built.md)
 
 Use the Agentic Learning Lab repository itself as the Course 2 capstone investigation. The learner should reconstruct and critique how the agent system, curriculum, repository history, and evidence surfaces were engineered rather than merely consume them.
+
+It is a retrospective because it deliberately looks back across the repository and the learner's experience. It is not an epilogue; Course 3 follows it.
 
 ## Expansion rule
 
@@ -104,6 +108,7 @@ Do not preserve old numbering pressure. Course 2 currently has nine planning mod
 - the old 11–18 drafts, including old 14A, all feed the Course 2 mastery arc;
 - the causal order between concepts is preserved;
 - the learner ends with a coherent sense of **agent mastery** rather than a bag of disconnected advanced tricks;
-- the repository retrospective remains the Course 2 capstone unless later planning deliberately replaces it with something stronger.
+- the repository retrospective is the current **Course 2 capstone** unless later planning deliberately replaces it with something stronger;
+- current-facing material must not describe that capstone as an epilogue.
 
 Course 3 will reset to Lab 1 again and should be planned as a genuinely new course rather than inheriting material merely because it used to sit after global Module 15.
