@@ -7,8 +7,8 @@ The curriculum is organized as three progressive courses. No coding knowledge is
 The three-course structure is:
 
 1. **Agentic Engineering 101: Zero to Hero** — Labs 1–10. Learn to direct and understand agents competently, ending with a real agentic project.
-2. **Advanced Agentic Engineering: Mastering Agents** — its own course-local Lab 1 onward sequence. Learn to design agent behaviour: workflow, context, delegation, verification, evaluation, and autonomy.
-3. **Beyond the Agent: Engineering Agent Systems** — its own course-local Lab 1 onward sequence. Learn to design the wider system: trust boundaries, specialist coordination, concurrent work, isolation, integration, provenance, and operational economics.
+2. **Advanced Agentic Engineering: Mastering Agents** — its own course-local Lab 1 onward sequence. Learn to deliberately engineer agent behaviour, workflow, context, delegation, verification, evaluation, autonomy, trust boundaries, concurrency, isolation, integration, and the evidence produced by those systems.
+3. **Beyond the Agent: Engineering Agent Systems** — its own course-local Lab 1 onward sequence. Course 3 begins after the Course 2 mastery arc and will be planned as a genuinely new system-level course rather than inheriting topics merely because they once had higher global module numbers.
 
 **Lab numbers reset at each course boundary.** Course 2 does not begin at Lab 11, and Course 3 will not inherit Course 2's final number. The number of labs in Courses 2 and 3 remains an editorial decision while their planning modules are expanded into mature labs. Ten labs per course is a useful target where the material naturally supports it, not a quota that should force artificial splitting.
 
@@ -128,7 +128,7 @@ Labs 1–10 are mature and ready to run. Together they form **Course 1 — Agent
 
 ### Course 2 — Advanced Agentic Engineering: Mastering Agents
 
-Current planning sequence, using **Course 2-local numbering**:
+Current planning sequence, using **Course 2-local linear numbering**:
 
 1. Agent self-introspection and local review
 2. Autonomous human-in-the-loop workflows
@@ -136,20 +136,19 @@ Current planning sequence, using **Course 2-local numbering**:
 4. Harnesses, portability, and agent observability
 5. The 20-Agent Bonfire and context transport
 6. Selective provisioning, context, and evaluation
+7. Trust boundaries and connected autonomy
+8. Concurrent agents and isolation
+9. Epilogue: show how this was built
 
-These are planning modules, not a commitment that Course 2 will contain exactly six mature labs. As each area is expanded, it may remain one lab or split where the learning pressure genuinely warrants it. The course may grow toward roughly ten labs without preserving any old global 11–15 numbering.
+The former `14A` is now simply Course 2 Module 5. The new taxonomy has no lettered exception.
 
-See [`modules/course-2/README.md`](modules/course-2/README.md) for the Course 2 planning index and the mapping from older draft filenames.
+These are planning modules, not a commitment that Course 2 will contain exactly nine mature labs. As each area is expanded, it may remain one lab or split where the learning pressure genuinely warrants it. The existing nine-module spine gives us natural room to land at ten mature labs without manufacturing filler.
+
+See [`modules/course-2/README.md`](modules/course-2/README.md) for the authoritative Course 2 planning index and the mapping from older draft filenames.
 
 ### Course 3 — Beyond the Agent: Engineering Agent Systems
 
-Course 3 will also restart at **Lab 1**. Its current planning themes remain:
-
-1. Trust boundaries and connected autonomy
-2. Concurrent agents and isolation
-3. Epilogue: show how this was built
-
-Those themes may likewise expand into more mature labs. Course 3 numbering is local to Course 3, not a continuation of either earlier course.
+Course 3 will restart at **Lab 1** after the Course 2 mastery arc. Its detailed planning sequence is intentionally not pinned down by the old global 16–18 numbering; those topics now belong to Course 2.
 
 Lab 2 is the direct continuation of Lab 1. Lab 1 showed that an agent which cannot see the project surface cannot know what project state is missing. Lab 2 changes that access condition by giving cloud ChatGPT a bridge to the learner's repository, then compares connector-mediated access with direct local workspace access.
 
@@ -159,9 +158,9 @@ Lab 4 makes the source-control machinery visible after the learner has already b
 
 The middle of Course 1 deliberately compounds earlier ideas rather than replacing them. Lab 5 decomposes observed agent behaviour into model, harness, instructions, context, tools, environment, state, and feedback. Lab 6 then deliberately withholds supplied/retrieved knowledge to expose what the model still brings from training, where its retained grounds become uncertain, and how retrieval changes the evidential basis without becoming an oracle. Lab 7 turns from observing model knowledge to engineering domain provision through three real authority configurations: facilitator-grounded software engineering, shared non-authoritative provision from external expertise, and a learner-grounded expert domain. Lab 8 then asks how that worker perceives and navigates its environment and connected systems. Lab 9 makes authority, verification, evidence, and human acceptance explicit. Lab 10 turns the accumulated Course 1 understanding into a learner-owned real project and closes the first course with a full intent → proposal → build → inspection → verification loop.
 
-Course 2 progressively turns competent agent use into deliberate engineering of agent behaviour. Course 2 Module 1 makes agent self-introspection, behavioural prediction, local self-review, and test-first probes explicit as cheap local primitives. Module 2 composes those primitives into autonomous human-in-the-loop workflows, loops, gates, stopping conditions, and legal routes. Module 3 then puts pressure on the `one worker does every stage` model and introduces specialist profiles, delegation, and orchestrator trade-offs. Module 4 pressure-tests the portability of that specialist abstraction by comparing harness-specific worker contracts, effective runtime configuration, current model/reasoning control surfaces, economics, and observability. Module 5 stress-tests context transport and orchestration through **The 20-Agent Bonfire** without turning the exercise into the later concurrency-isolation lesson. Module 6 breaks the accumulation model of provisioning and introduces selective scope, finite context, context transport/materialisation, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design.
+Course 2 progressively turns competent agent collaboration into deliberate engineering of agent behaviour and agent operation. Course 2 Module 1 makes agent self-introspection, behavioural prediction, local self-review, and test-first probes explicit as cheap local primitives. Module 2 composes those primitives into autonomous human-in-the-loop workflows, loops, gates, stopping conditions, and legal routes. Module 3 puts pressure on the `one worker does every stage` model and introduces specialist profiles, delegation, and orchestrator trade-offs. Module 4 pressure-tests the portability of that specialist abstraction by comparing harness-specific worker contracts, effective runtime configuration, current model/reasoning control surfaces, economics, and observability. Module 5 stress-tests context transport and orchestration through **The 20-Agent Bonfire**. Module 6 breaks the accumulation model of provisioning and introduces selective scope, finite context, context transport/materialisation, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design. Module 7 extends the engineered worker into connected systems where authority, permissions, provenance, and consequential actions matter. Module 8 makes concurrent mutable work force the need for isolation, reconciliation, integration, and integrated-state verification. Module 9 then turns the curriculum repository itself into the mastery capstone: the learner investigates how the whole thing was built, what its history proves, and what they would change.
 
-Course 3 widens the unit of reasoning beyond an individual worker or workflow. Its local Module 1 connects authority to connected/autonomous systems and trust boundaries. Module 2 introduces concurrent mutable work, isolation, deliberate reconciliation, and integrated-state verification. Module 3 uses the curriculum repository itself as a final system-level investigation into provenance, history, retrieval, compression, and what available evidence can actually establish.
+Course 3 begins from that stronger endpoint and will widen the design boundary again. Its exact lab spine should be planned deliberately rather than inferred from legacy numbering.
 
 Existing files in `modules/` are working facilitator drafts for later curriculum material that has not yet been promoted into a mature lab. Legacy numeric prefixes on older planning files are source-history identifiers only; the course-local planning indexes are authoritative for curriculum numbering.
 
