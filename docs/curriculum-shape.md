@@ -72,13 +72,27 @@ The course boundary matters. Do not deliberately leave a learner at the end of L
 
 Current planning range: Course 2-local Labs 1 onward.
 
-Course 2 starts from a learner who can already operate and verify a useful worker. The emphasis changes from competent collaboration to deliberate engineering of agent behaviour.
+Course 2 starts from a learner who can already operate and verify a useful worker. The emphasis changes from competent collaboration to deliberate engineering of agent behaviour and agent operation.
 
-This shift should feel expansive rather than corrective. The learner's Course 1 competence is real: they can collaborate with agents to produce useful outcomes. Course 2 opens another layer by showing that deliberately shaping how an agent behaves, checks itself, receives context, delegates work, and moves through a workflow is a discipline in its own right.
+This shift should feel expansive rather than corrective. The learner's Course 1 competence is real: they can collaborate with agents to produce useful outcomes. Course 2 opens another layer by showing that deliberately shaping how an agent behaves, checks itself, receives context, delegates work, moves through workflows, acts across trust boundaries, and coordinates with other workers is a discipline in its own right.
 
-The learner should learn to shape how work proceeds, how the worker checks itself, when humans intervene, when specialist workers are justified, how context moves, how harnesses realise intended worker profiles, and how changes to an agentic system are evaluated rather than merely admired.
+The current Course 2 planning sequence is linear:
 
-Current Course 2 threads include:
+1. agent self-introspection and local review;
+2. autonomous human-in-the-loop workflows;
+3. specialist sub-agents and orchestration;
+4. harnesses, portability, and agent observability;
+5. **The 20-Agent Bonfire and context transport**;
+6. selective provisioning, context, and evaluation;
+7. trust boundaries and connected autonomy;
+8. concurrent agents and isolation;
+9. epilogue: show how this was built.
+
+The former `14A` numbering is retired. In the new taxonomy, **The 20-Agent Bonfire is simply Course 2 Module 5**.
+
+These nine planning modules are not a promise that Course 2 will contain exactly nine mature labs. A dense planning module may split when it becomes a real experiential lab. Ten mature labs is therefore a natural possibility, but not a quota.
+
+Course 2 should teach the learner to shape:
 
 - agent self-introspection, behavioural prediction, cheap local self-review, and test-first probes;
 - autonomous human-in-the-loop workflows;
@@ -89,16 +103,16 @@ Current Course 2 threads include:
 - harness portability and effective runtime worker verification;
 - model/reasoning selection, defaults, inheritance, and observability;
 - agent-system economics: capability, context, inference, latency, quality, independence, and risk;
-- **The 20-Agent Bonfire** as a context/economics/orchestration pressure test for deliberately wasteful over-delegation, worker-default inspection, context transport, and usage comparison;
+- context transport, materialisation, and deliberately wasteful over-delegation through **The 20-Agent Bonfire**;
 - selective provisioning rather than accumulation;
-- context transport and materialisation;
-- lazy versus eager loading and N+1-style repeated context work;
-- finite context and retrieval/RAG as context selection;
-- lightweight evaluation and TDD-inspired agent design.
+- finite context, retrieval/RAG as context selection, lightweight evaluation, and TDD-inspired agent design;
+- trust boundaries, external evidence versus operating authority, permissions, and consequential human gates;
+- concurrent mutable work, isolation, reconciliation, integration, and verification of integrated state;
+- provenance, repository archaeology, compressed versus richer evidence surfaces, and reconstruction of how the system came to exist.
 
-Keep the Bonfire boundary explicit: it is an economics/context/orchestration pressure test, not yet the shared-mutable-state concurrency lesson. If many workers would mutate one workspace simultaneously, constrain the exercise so Course 3 can earn isolation and reconciliation from the real problem later.
+The Bonfire remains an economics/context/orchestration pressure test at Module 5; shared-mutable-state concurrency is deliberately earned later in Module 8.
 
-The current Course 2 planning sequence is indexed at [`modules/course-2/README.md`](../modules/course-2/README.md). Older root-level draft filenames with prefixes such as `11-`, `14-`, or `14a-` are legacy source-history identifiers only; they are not current curriculum numbering.
+The current Course 2 planning sequence is indexed at [`modules/course-2/README.md`](../modules/course-2/README.md). Older root-level draft filenames with prefixes such as `11-`, `14a-`, `16-`, or `18-` are legacy source-history identifiers only; they are not current curriculum numbering.
 
 The conceptual shift is:
 
@@ -107,45 +121,19 @@ Course 1
 How do I collaborate with a useful agent competently?
 
 Course 2
-How do I deliberately engineer the agent's behaviour,
-workflow, context, delegation, verification,
+How do I deliberately engineer agents,
+their behaviour, workflows, context,
+delegation, boundaries, coordination,
 evaluation, and autonomy?
 ```
 
 A useful summary is:
 
-> **Course 2 teaches the learner to engineer agent behaviour rather than merely collaborate with agents.**
+> **Course 2 teaches the learner to engineer agents rather than merely collaborate with them.**
 
-The intended emotional arc matters too. At the end of Course 1 the learner should plausibly feel that a new world has opened and that they can collaborate with agents to tackle real work. Course 2 should preserve that confidence while revealing a second world underneath it: engineering the workers themselves.
+The intended emotional arc matters. At the end of Course 1 the learner should plausibly feel that a new world has opened and that they can collaborate with agents to tackle real work. Course 2 should preserve that confidence while revealing a second world underneath it: engineering the workers themselves.
 
-## Course 3 — Beyond the Agent: Engineering Agent Systems
-
-Current planning range: Course 3-local Labs 1 onward.
-
-Course 3 widens the design boundary again.
-
-The learner now treats individual agents as components inside a larger operational system. Concepts introduced in Course 2 such as specialist coordination and resource economics remain active, but the pressure moves to the wider system around them: trust, connected authority, concurrent work, isolation, integration, provenance, and reconstruction of how system state came to exist.
-
-Current Course 3 threads include:
-
-- trust boundaries and connected autonomy;
-- external content as evidence rather than operating authority;
-- permissions, least capability, and consequential human gates;
-- provenance across connected stages, workers, and systems;
-- specialist coordination under wider system constraints;
-- operational economics as a system property rather than only a per-worker choice;
-- concurrent agents and shared mutable state;
-- isolated workspaces/branches/worktrees where appropriate;
-- deliberate reconciliation and integration;
-- verification of integrated state rather than trusting individually successful worker returns;
-- repository and workflow archaeology;
-- compressed versus richer evidence surfaces;
-- source provenance without confusing provenance for authority;
-- the curriculum repository itself as a final system-level investigation surface.
-
-The current retrospective/epilogue planning theme belongs to Course 3. It is not a separate fourth part.
-
-The epilogue should function as a final worked system problem rather than only a retrospective lecture. The learner should inspect and reason about the repository they have inhabited throughout the curriculum, reconstruct how it developed, identify major changes in direction, distinguish what available evidence proves from what it cannot establish, and direct an agent through that investigation rather than manually performing all of the archaeology.
+The current capstone is the repository retrospective. The learner should inspect and reason about the Agentic Learning Lab repository they have inhabited throughout the curriculum, reconstruct how it developed, identify major changes in direction, distinguish what available evidence proves from what it cannot establish, and critique the engineering decisions rather than merely identify them.
 
 If the learner has used their own fork throughout the curriculum, the final investigation can compare two related histories:
 
@@ -157,27 +145,41 @@ learner fork history
 how this learner actually worked through and changed their laboratory
 ```
 
-A useful summary is:
+That is the mastery payoff: not just `I can use this system`, but `I can explain how this agent system was engineered, test its claims, and say what I would change.`
 
-> **Course 3 teaches the learner to engineer the system around agents: trust, coordination, concurrency, integration, provenance, and operational behaviour.**
+## Course 3 — Beyond the Agent: Engineering Agent Systems
+
+Current planning range: Course 3-local Labs 1 onward.
+
+Course 3 will begin after the Course 2 mastery arc and restart at Lab 1.
+
+Its detailed lab spine is intentionally not inherited from the old global Module 16–18 numbering. Trust boundaries, concurrency/isolation, and the repository retrospective now remain inside Course 2 because they are part of the intended agent-mastery progression already under discussion.
+
+Course 3 should therefore be planned as a genuinely new widening of the design boundary rather than a bucket for topics whose old global numbers happened to come after 15.
+
+A useful provisional summary remains:
+
+> **Course 3 teaches the learner to engineer the wider systems in which agents participate.**
+
+Its exact promises, themes, and stopping point should be designed explicitly when Course 3 planning begins.
 
 ## The three cognitive grades
 
-The intended progression can be summarized as:
+The intended progression can currently be summarized as:
 
 ```text
 Course 1 — competent agentic engineer
 I can direct, understand, provision, navigate, verify,
 and safely operate useful agent work.
 
-Course 2 — advanced agentic engineer
-I can deliberately design agent behaviour, workflow,
-context, delegation, evaluation, and autonomy.
+Course 2 — advanced agentic engineer / agent mastery
+I can deliberately design and critique agents, their behaviour,
+workflow, context, delegation, boundaries, coordination,
+evaluation, autonomy, and evidence surfaces.
 
 Course 3 — agent-systems engineer
-I can design the wider system in which agents coordinate,
-act under trust and capability boundaries, work concurrently,
-integrate state, preserve provenance, and spend resources proportionately.
+The exact wider-system contract will be defined when Course 3
+is planned rather than inferred from legacy numbering.
 ```
 
 These are cognitive grades, not job titles. Course 2's title deliberately promises **Mastering Agents**; that promise means mastery of the agent-engineering layer taught by the course, not a claim that the learner has exhausted a fast-moving field.
@@ -188,8 +190,8 @@ When adding or moving material, ask which course boundary the concept serves.
 
 If the concept is required for a learner to competently direct, understand, navigate, recover, provision, and verify ordinary agentic work, it belongs in Course 1.
 
-If it assumes that competence and teaches deliberate design of worker behaviour, workflow, delegation, context, self-checking, evaluation, or bounded autonomy, it belongs in Course 2.
+If it assumes that competence and teaches deliberate design or critique of agents, their behaviour, workflow, delegation, context, self-checking, evaluation, bounded autonomy, trust boundaries, or coordinated execution, it belongs in Course 2.
 
-If it widens the unit of reasoning from one worker/workflow to the surrounding multi-agent or connected system — trust boundaries, coordination, concurrency, integration, provenance, operational economics, or system archaeology — it belongs in Course 3.
+Course 3 should only claim material once its own system-level promise and progression have been deliberately designed.
 
 Do not force advanced material earlier merely because it is important. Equally, do not knowingly leave Course 1 with a materially false model simply because a later course could repair it. Each course boundary should be a credible place for the learner to stop.
