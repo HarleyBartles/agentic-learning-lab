@@ -86,7 +86,7 @@ The current Course 2 planning sequence is linear:
 6. selective provisioning, context, and evaluation;
 7. trust boundaries and connected autonomy;
 8. concurrent agents and isolation;
-9. epilogue: show how this was built.
+9. retrospective: how this repo was built — **Course 2 capstone**.
 
 The former `14A` numbering is retired. In the new taxonomy, **The 20-Agent Bonfire is simply Course 2 Module 5**.
 
@@ -133,7 +133,9 @@ A useful summary is:
 
 The intended emotional arc matters. At the end of Course 1 the learner should plausibly feel that a new world has opened and that they can collaborate with agents to tackle real work. Course 2 should preserve that confidence while revealing a second world underneath it: engineering the workers themselves.
 
-The current capstone is the repository retrospective. The learner should inspect and reason about the Agentic Learning Lab repository they have inhabited throughout the curriculum, reconstruct how it developed, identify major changes in direction, distinguish what available evidence proves from what it cannot establish, and critique the engineering decisions rather than merely identify them.
+The **Course 2 capstone** is the retrospective investigation of the Agentic Learning Lab repository. The learner should inspect and reason about the repository they have inhabited throughout the curriculum, reconstruct how it developed, identify major changes in direction, distinguish what available evidence proves from what it cannot establish, and critique the engineering decisions rather than merely identify them.
+
+It is deliberately described as a retrospective capstone, not an epilogue. Course 3 follows it.
 
 If the learner has used their own fork throughout the curriculum, the final investigation can compare two related histories:
 
